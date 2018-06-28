@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 // Components
-// import Header from '../../components/header/Header';
 
 // Assets
 import './header.css';

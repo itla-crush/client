@@ -10,7 +10,7 @@ class Newsfeed extends Component {
     render() {
       return (
         <div className="Newsfeed">
-            <Header />
+          <h1>Soy Newsfeed</h1>
         </div>
       );
     }
