@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Components
-import Header from '../../components/header/header.js';
+import Header from '../../components/header/Header';
 
 // Assets
 import './home.css';
@@ -10,12 +10,11 @@ class Home extends Component {
     render() {
       return (
         <div className="Home">
-            {/* <Header /> */}
-            <h1>Hola Desde React</h1>
+            <Header />
         </div>
       );
     }
   }
   
-  export default App;
+  export default Home;
   
