@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 // Components
 import Header from './global/components/Header';
 import Content from './global/components/Content';
-import Footer from './global/components/Footer';
 
 // Styles
 import './index.css';
