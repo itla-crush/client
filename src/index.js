@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 import Header from './global/components/Header';
 import Content from './global/components/Content';
 
-// Styles
+// Assets
 import './index.css';
-import './global/styles/bootstrap/css/bootstrap.min.css';
-import './global/styles/bootstrap/js/fontawesome-all.js';
+import '../public/bootstrap/css/bootstrap.min.css';
+import '../public/bootstrap/js/fontawesome-all.js';
+import '../public/fontawesome/js/all.js';
 
 ReactDOM.render(<Header />, document.getElementById('header-root'));
 ReactDOM.render(<Content />, document.getElementById('content-root'));
