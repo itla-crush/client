@@ -11,6 +11,7 @@ class ChatSidebar extends Component {
       return (
         <section className="ChatSidebar">
           <div className>
+            <h4>Chat Online!</h4>
             {/* Chat Users */}
             <div className="chatOrderedList">
               <div className="chat-sidebar">

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Header from '../../components/header/Header';
 import UserSidebar from '../../components/user_sidebar/UserSidebar';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
-import ChatSidebar from '../../components/chat_sidebar/ChatSidebar'
+import ChatSidebar from '../../components/chat_sidebar/ChatSidebar';
 
 // Assets
 import './home.css';
