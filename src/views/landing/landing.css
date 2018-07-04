@@ -1,15 +1,19 @@
 body {
 	width: 100vw;
 	height: 100vh;
-	margin: 0 auto;
+    margin: 0 auto;
+    padding: 0px;
 	display: flex;
   	/* justify-content: center; */
 	align-items: center;
-	font-family: "Ubuntu";
+    font-family: "Ubuntu";
 	/* background-image: url('../../../public/img/sun2.jpg'); */
 	background-size: 100vw 100vh;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+.cont {
+    width: 100vw;
 }
 .Landing {
 	display: flex;
@@ -18,33 +22,15 @@ body {
 	height: 80vh;
 	background-color: rgba(0, 0, 0, 0.4);
 	margin: 0 auto;
-	/*border: solid 1px rgb();*/
 	border-radius: 8px;
 	overflow: hidden;
 }
 
-.welcome {
-	display: flex;
-	flex-direction: column;
-    justify-content: space-between;
-	width: 40%;
-	height: 100%;
-	padding: 16px;
-	box-sizing: border-box; 
-	background-color: rgba(0, 255, 255, 0.2);
-	/* Agrega borde solo en las esquinas del lado izquierdo */
-	border-top-left-radius: 8px;
-	-moz-border-radius-topleft: 8px;
-
-	border-bottom-left-radius: 8px;
-	-moz-border-radius-bottomleft: 8px;
-}
 .container-right {
 	width: 60%;
 	padding: 15px;
 	box-sizing: border-box;
 	background-color: rgba(255, 255, 255, 0.95);
-	/* Agrega borde solo en las esquinas del lado derecho */
 	border-top-right-radius: 8px;
 	-moz-border-radius-topright: 8px;
 	border-bottom-right-radius: 8px;
@@ -53,263 +39,42 @@ body {
   	justify-content: center;
 	align-items: center;
 }
-/* -----ESTILOS AL CONTENEDOR INTERIOR IZQUIERDO ----- */
 
-.in-welcome {
-	width: 80%;
-	margin: 0 auto;
-	/* Se puede eliminar, solo es para marcar el area de vista */
-	/* background-color: rgba(0, 0, 0, 0 .5); */
-	/* border: solid 1px white; */
-	border-radius: 3px;
-	display: flex; 
-  	/*justify-content: flex-start;*/
-	align-items: center; 
-}
-.Landing .welcome h1 {
-	/*margin: 0 auto;*/
-	text-align: center;
-	color: rgb(255, 255, 255);
-	font-family: "Istok Web";
-	font-weight: 400;
-    font-size: 42px;
-}
-.welcome .in-welcome .left-in .mensajes{
-	margin-bottom: 45px;
-	margin-top: 40px;	
-}
-.welcome .in-welcome .left-in .mensajes h5{
-	color: #FFFAFB;
-}
-.welcome .in-welcome .left-in .mensajes h5{
-	font-size: 24px;
-} 
-
-/* -----ESTILOS AL CONTENEDOR INTERIOR DERECHO ----- */
-.in-container-right {
-	width: 85%;
-	height: 90%;
-	margin: 0 auto;
-	/* Se puede eliminar, solo es para marcar el area de vista */
-	/* background-color: rgba(0, 0, 0, 0);
-	border: solid 1px rgba(0, 0, 0, 0.5); */
-	border-radius: 3px;
-}
-.Landing .container-right .in-container-right h2 {
-	margin: 0 auto;
-    font-family: "Abel";
-	font-weight: 400;
-	color: rgba(247, 1, 76, 0.8);
-    font-size: 28px;
-	text-decoration: none;
-	margin-bottom: 50px;
-}
-.Landing .container-right .in-container-right h2 a {
-	color: rgba(247, 1, 76, 0.8);
-    text-decoration: none;
-    text-decoration-style: unset;
-}
-.in-container-right .olvidar{
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-}
-.in-container-right .olvidar a{
-	text-decoration: none;
-	margin: 10px;
-}
-/* -----ESTILOS FORMULARIO ----- */
-.in-container-right .input i{
-	margin-right: 8px;
-} 
-.in-container-right .input{
-	display: flex;
-	/* margin-bottom: 20px; */
-}
-.in-container-right input[type="text"],
-.in-container-right input[type="email"],
-.in-container-right input[type="password"]{
-	margin-bottom: 25px;
-}
-.in-container-right .input-r{
-	display: flex;
-	justify-content: space-between;
-}
-.in-container-right .input-r .dn{
-	margin-right: 10px;
-}
-.in-container-right .boton{
-	display: flex;
-	justify-content: center; 
-	margin-bottom:8px; 
-	/* margin:auto; */	
-}
-/* -----ESTILOS BOTONOES ----- */
-.in-container-right .boton .btn-iniciar-sesion{
-	font-family: "AbeeZee";
-	font-size: 16px;
-	border-radius: 20px;
-	border: none;
-	border: 1px solid transparent;
-	background-color: #5bc0de;
-	border-color: #46b8da;	
-	 padding: 8px 0; 
-	color: #fff;
-	width: 50%;
-}
-.in-container-right .boton .btn-iniciar-sesion:focus{
-	color: #fff;
-	background-color: #31b0d5;
-	border-color: #1b6d85;
-}
-.in-container-right .boton .btn-iniciar-sesion:hover{
-	color: #fff;
-	background-color: #31b0d5;
-	border-color: #269abc;
-}
-.in-container-right .boton .btn-iniciar-sesion:active{
-	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
-.in-container-right .boton .btn2{
-	font-family: "AbeeZee";
-	font-size: 16px;
-	border-radius: 20px;
-	border: none;
-	border: 1px solid transparent;
-	background: #2BBBAD;
-	padding: 8px  0px;
-	color: #fff;
-	width: 50%;
-}
-.in-container-right .boton .btn2:hover{
-	color: #fff;
-	background-color: #18ab9d;
-}
-.in-container-right .boton .btn2:active{
-	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
-.in-container-right .boton .btn-registro{
-	font-family: "AbeeZee";
-	font-size: 14px;
-	border-radius: 20px;
-	border: none;
-	border: 1px solid transparent;
-	padding: 8px 0px;
-	background-color: #5bc0de;
-	border-color: #46b8da;	
-	color: #fff;
-	width: 50%;
-}
-.in-container-right .boton .btn-registro:focus{
-	color: #fff;
-	background-color: #31b0d5;
-	border-color: #1b6d85;
-}
-.in-container-right .boton .btn-registro:hover{
-	color: #fff;
-	background-color: #31b0d5;
-	border-color: #269abc;
-}
-.in-container-right .boton .btn-registro:active{
-	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
-.in-container-right .boton .btn2:hover{
-	color: #fff;
-}
-.Landing .welcome .in-welcome li {
-	margin-top: 16px;
-	margin-bottom: 16px;
-	margin-left: 0px;
-	margin-right: 0px;
-}
-.Landing .welcome .in-welcome p {
-	width: 100%;
-	font-size: 12px;
-	color: rgb(255, 255, 255);
-	text-align: center;
-}
 /* -----ESTILOS RESPONSIVE ----- */
-@media screen and (max-width: 1024px){
-	.welcome .in-welcome .left-in .mensajes{
-		margin-bottom: 30px;
-		margin-top: 25px;
-	}
-	.welcome .in-welcome .left-in .mensajes h5{
-		font-size: 18px;
-	} 
-}
 @media screen and (max-width: 1000px){
 	.Landing {
 		width: 80%;
 	}
-	.Landing .welcome h1 {
-		font-size: 38px;
-	}
-	.welcome .in-welcome .left-in .mensajes{
-		margin-bottom: 35px;
-		margin-top: 30px;
-	}
-	.welcome .in-welcome .left-in .mensajes h5{
-		font-size: 20px;
-	} 
 }
-@media screen and (max-width: 850px){
-	.welcome .in-welcome .left-in .mensajes{
-		margin-bottom: 25px;
-		margin-top: 25px;
-	}
-	.welcome .in-welcome .left-in .mensajes h5{
-		font-size: 17px;
-	} 
-}
+
 @media screen and (max-width: 730px){
-	.welcome{
-		display: none;
-	}
 	.Landing{
 		height: auto;
 	}
-.container-right {
-	width: 100%;
-	/* Agrega borde solo en las esquinas del lado izquierdo */
-	border-top-left-radius: 8px;
-	-moz-border-radius-topleft: 8px;
+    .container-right {
+        width: 100%;
+        border-top-left-radius: 8px;
+        -moz-border-radius-topleft: 8px;
 
-	border-bottom-left-radius: 8px;
-	-moz-border-radius-bottomleft: 8px;
-   }
+        border-bottom-left-radius: 8px;
+        -moz-border-radius-bottomleft: 8px;
+    }
 }
-@media screen and (max-width: 535px){
-	 .in-container-right .input-r{
-		display: flex;
-		flex-direction: column;
-	} 
-}
+
 @media screen and (max-width: 450px){
 	.Landing{
 		width: 100%;
 		height: 100%;
 		border-radius: 0px;
 	}
-	.container-right{
-		border-radius: 0px;
-	}
 	body{
 		background-image: none;
 	}
 	.container-right {
+		border-radius: 0px;
 		background: #ECE9E6;  /* fallback for old browsers */
 		background: -webkit-linear-gradient(to bottom, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
 		background: linear-gradient(to bottom, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 		
-	}
-	.in-container-right .boton .btn-iniciar-sesion{
-		min-width: 150px;
-	}
-	.in-container-right .boton .btn2{
-		min-width: 150px;
 	}
 }

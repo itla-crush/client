@@ -19,7 +19,7 @@ class Welcome extends Component {
                         <h5><i className="far fa-comment-dots" /> Lee declaraciones privadas</h5>
                     </div>
                     <div className="mensajes">
-                        <h5><i className="fas fa-eye" /> Declarate publico o anonimo</h5>
+                        <h5><i className="fas fa-eye" /> Declarate en público o anónimo</h5>
                     </div>
                 </div>
             </div>

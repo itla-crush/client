@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-
-// Components
-// import Header from '../../components/header/Header';
+import PropTypes from 'prop-types';
 
 // Assets
 import './signin.css';
+import '../../css/signin_signup.css';
 
 class Signin extends Component {
+    
+    changeView = () => {
+      this.props.changeView();
+    }
+
+    linkNoAction = (event) => {
+      event.preventDefault();
+    }
+
     render() {
       return (
         // <div className="Signin">
             <div className="in-container-right">
-              <h2><a href="#">Iniciar Sesion</a> / <a href="#">Registrar</a></h2>
+              <h2><a href="#" onClick={this.linkNoAction} className="stronge">Iniciar Sesion</a> / <a href="#" onClick={this.changeView}>Registrar</a></h2>
               <form className="formulario" action>
                 <div className="input">
                   <i className="Large material-icons prefix">account_circle</i>
