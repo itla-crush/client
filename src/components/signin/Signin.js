@@ -1,35 +1,54 @@
 ﻿import React, { Component } from 'react';
 
+import firebase from 'firebase';
+import _ from 'lodash';
+
 // Assets
 import './signin.css';
 import '../../css/signin_signup.css';
 
 class Signin extends Component {
+    constructor(props) {
+      super(props);
+
+      this.noAction = this.noAction.bind(this);
+      this.signInWithEmail = this.signInWithEmail.bind(this);
+    }
     
     changeView = () => {
       this.props.changeView();
     }
 
-    linkNoAction = (event) => {
+    noAction = (event) => {
       event.preventDefault();
+    }
+
+    signInWithEmail = (event) => {
+      event.preventDefault();
+      let email = document.getElementById('emailLogin').value;
+      let password = document.getElementById('passwordLogin').value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(error => {
+        console.log(error);
+      });
     }
 
     render() {
       return (
         // <div className="Signin">
             <div className="in-container-right">
-              <h2><a href="#" onClick={this.linkNoAction} className="stronge">Iniciar Sesion</a> / <a href="#" onClick={this.changeView}>Registrar</a></h2>
-              <form className="formulario" action>
+              <h2><a href="#" onClick={this.noAction} className="stronge">Iniciar Sesion</a> / <a href="#" onClick={this.changeView}>Registrar</a></h2>
+              <form className="formulario" onSubmit={this.signInWithEmail}>
                 <div className="input">
                   <i className="Large material-icons prefix">account_circle</i>
-                  <input placeholder="Correo" id="icon_prefix" type="email" className="validate" required />
+                  <input id="emailLogin" placeholder="Correo" type="email" className="validate" required />
                 </div>
                 <div className="input">
                   <i className="material-icons prefix">lock_open</i>
-                  <input placeholder="Contraseña" id="last_name" type="password" className="validate" required />
+                  <input id="passwordLogin" placeholder="Contraseña" type="password" className="validate" required />
                 </div>
                 <div className="boton">
-                  <input type="submit" defaultValue="Iniciar Sesion" className="btn-iniciar-sesion" /> 
+                  <button onClick={this.signInWithEmail} className="btn-iniciar-sesion">Iniciar Sesion</button>
                 </div>
                 <div className="boton">
                   <input type="button" defaultValue="Invitado" className="btn2" /> 

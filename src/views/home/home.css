@@ -1,22 +1,406 @@
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-    background-color: rgba(0, 0, 0, 0.03);
-}
-
-.container {
+/* .container {
     display: flex;
     justify-content: space-between;
-}
+} */
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
     .container {
         height: 80px;
         padding-top: 10px;
     }
+} */
+
+.main-content {
+    width: 100%;
+    /* height: 100%; */
+    margin-bottom: 16px; 
+    /* margin-top: 3740px; */
+    padding-top: 3840px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0px;
+}
+
+@media (min-width: 720px){ 
+    .main-content {
+        /* padding-top: 100px; */
+    }
+}
+
+.div-content h4 {
+    padding-top: 5px;
+}
+.div-left,
+.div-right {
+    /*width: 25%;*/
+    /*height: 100%; */
+    /*border-radius: 5px;*/
+    /* Este elemento estan horribles pero no tuve de otra */
+    /*position: fixed;*/
+}
+
+.div-left {
+    /*float: left;*/
+} 
+
+.div-right {
+    /*float: right;*/
+    /*right: 16px;*/
+}
+
+.div-left {
+    /*float: left;*/
+} 
+
+.fixed-top-left {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+} 
+
+.fixed-top-right {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    /*left: 0;*/
+    z-index: 1030;
+}
+
+.div-left .div-content,
+.div-right .div-content {
+    width: 90%;
+    /*border: solid 1px rgba(0, 0, 0, 0.1);*/
+    background-color: rgba(255, 255, 255, 1);
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.div-content-center {
+    width: 92%;
+    margin: 0 auto;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
+/*-------------------- POST ------ vl------------------ post------------------------------------------------*/
+
+.post {
+    border: solid 1px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 30px;
+    padding-bottom: 0px;
+}
+
+.header-post {
+    padding: 10px;
+    box-sizing: border-box;
+    display: inline-flex;
+    /*justify-content: flex-start;*/
+    align-items: center;
+}
+
+.div-img-profile {
+    /*margin-bottom: 10px;*/
+}
+
+.img-profile {
+    width: 50px;
+    height: 50px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.div-user a {
+    /*margin-left: 10px;*/
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+
+.div-user p {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.div-text-post p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.div-img-post {
+    width: 100%;
+    max-height: 500px;
+    min-height: 350px;
+    border-top: solid 1px rgba(0, 0, 0, 0.1);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    /*background-color: rgba(0, 0, 0, 0.08);*/
+}
+
+.img-post {
+    width: 100%;  
+    max-height: 500px;
+    min-height: 350px;
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+}
+
+.div-footer {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.section-like-comment {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+}
+
+.icon-post {
+    font-size: 25px;
+    /*color: rgb(247, 1, 76);*/
+    color: rgba(0, 0, 0, 0.8);
+    margin-right: 15px;
+}
+
+.div-likes a {
+    padding-left: 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.div-comments ul {
+    margin-top: 10px;
+}
+
+.div-comments ul li {
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+/*.div-form-comment {
+    margin: 0px;
+    padding: 0px;
+}
+
+.form-comment {
+    margin: 0px;
+    padding: 0px;
+}*/
+
+.div-form-comment .hl {
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.13);
+}
+
+.textarea-comment { 
+    width: 91%;
+    max-width: 91%;
+    min-width: 91%;
+    resize: none;
+    padding: 10px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-style: none;
+    border-color: Transparent;
+    overflow: auto;
+    outline: none;
+
+    /* margin-bottom: 0px; */
+    overflow: hidden;
+}
+
+.form-comment button {
+    margin: 0px;
+    padding-right: 15px;
+    padding-top: 10px;
+    /*padding-top: 0px;*/
+    /*padding-bottom: 10px;*/
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    box-sizing: border-box;
+    position: relative;
+    float: right;
+}
+
+.icon-comment {
+    font-size: 25px;
+}
+
+/* Extra */
+
+.div-comments ul li a {
+    margin-right: 5px;
+}
+
+.form-comment button img {
+    width: 25px;
+    height: 25px;
+}
+
+/*-------------------- /POST -----------------------------------------------------------------------*/
+
+/*-------------------- CHAT LIST -------------------------------------------------------------------*/
+
+.div-right div h4 {
+    /*margin-top: 15px;*/
+    text-align: center;
+    /*font-size: 20px;*/
+}
+
+.chat-sidebar ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.li-each-chat {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.li-each-chat:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.li-each-chat a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.div-chat-content .div-img-profile-chat {
+    width: 50px;
+    height: 45px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 0px;
+    padding-right: 2px;
+
+}
+
+.img-profile-chat {
+    width: 40px;
+    height: 40px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 50%;
+    /*margin-right: 15px;*/
+}
+
+.div-chat-content {
+    box-sizing: border-box;
+}
+
+.div-user-chat {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*margin: 10px;*/
+}
+
+.div-user-chat span {
+    margin: 5px;
+}
+
+.div-chat-content div {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+/*-------------------- /CHAT LIST ------------------------------------------------------------------*/
+
+/*-------------------- USER INFO -------------------------------------------------------------------*/
+
+.div-left div h4 {
+    /*margin-top: 5px;*/
+    text-align: center;
+}
+
+.img-profile-user {
+    width: 100px;
+    height: 100px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 50%;
+    /*margin: 10px;*/
+}
+
+.div-left div .username {
+    /*font-size: 15px;*/
+    margin-top: 0px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.footer-user-sidebar {
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+.footer-user-sidebar .hl {
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.div-left div .username h6 {
+    margin-top: 5px;
+}
+
+.footer-user-sidebar div {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-user-sidebar div p {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 0.4em;
+}
+
+.vl {
+    /*margin-top: 0.5em;
+    margin-bottom: 0.2em;*/
+    /*margin-left: 10px;
+    margin-right: 10px;*/
+    border-left: solid 1px rgba(0, 0, 0, 0.15);
+    /*height: 35px;*/
+    /*height: 2.1em;*/
+    height: 3em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+/*-------------------- /USER INFO ------------------------------------------------------------------*/
