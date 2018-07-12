@@ -10,7 +10,7 @@ class CreatePost extends Component {
 
     render() {
         return (
-            <div className style={{width: '90%', margin: '0 auto', marginBottom: 35}}>
+            <div className="" style={{width: '90%', margin: '0 auto', marginBottom: 35}}>
                 <div>Componente Para Nuevas Publicaciones</div>
             </div>
         )

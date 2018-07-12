@@ -56,7 +56,7 @@
     }
 }
 @media screen and (max-width: 600px) {
-    .container {
+    .navbar .container {
       height: 80px;
       padding-top: 10px;
     }
@@ -74,7 +74,7 @@
 }
 
 @media screen and (max-width: 522px) {
-    .container {
+    .navbar .container {
          height: auto;
     }
     .navbar .container .lg{
