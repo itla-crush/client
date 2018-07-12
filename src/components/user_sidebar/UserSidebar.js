@@ -12,7 +12,7 @@ class UserSidebar extends Component {
         <div className="div-content">
           <h4>{this.props.displayName}</h4>
           <div className="div-img-profile center-content">  {/* Contenedor de la Imagen de Perfil */}
-            <a href="#">
+            <a href={`/profile/${this.props.uid}`}>
               <img alt={this.props.displayName} className="img-profile-user" src={this.props.photoURL} /> {/* Imagen */}
             </a>
           </div>

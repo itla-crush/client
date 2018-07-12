@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
+// Views 
 import Home from './views/home/Home';
 import Landing from './views/landing/Landing';
+import Profile from './views/profile/Profile';
+import EditProfile from './views/edit_profile/EditProfile';
+import Page404 from './views/page404/Page404';
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
 import firebase from 'firebase';
@@ -41,19 +46,23 @@ class App extends Component {
             }
         });
     }
-
+// match.params.id
     render() {
         return (
-            <div className="App">
-                {/* {this.state.isSignedIn ? ( */}
-                    <Home />
-                    {/* // <div>
-                    //     <button onClick={this.signOut}>SignOut</button>
-                    // </div>
-                // ) : (
-                //     <Landing />
-                // )} */}
-            </div>
+            <BrowserRouter>
+                <div className="App">
+                    <Switch>
+                        {/* <Redirect to="/profile" /> */}
+                        {/* <Route path='' component={Landing} /> */}
+                        <Route path='/index' component={Landing} />
+                        <Route path='/home' component={Home} />
+                        <Route path='/profile' component={Profile} />
+                        <Route path='/edit_profile' component={EditProfile} />
+                        {/* <Route path='/edit_profile?:id' component={EditProfile} /> */}
+                        <Route component={Page404} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }

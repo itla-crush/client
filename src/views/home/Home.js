@@ -7,6 +7,7 @@ import UserSidebar from '../../components/user_sidebar/UserSidebar';
 import CreatePost from '../../components/create_post/CreatePost';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
 import ChatSidebar from '../../components/chat_sidebar/ChatSidebar';
+import Footer from '../../components/footer/Footer';
 
 // Assets
 import './home.css';
@@ -33,7 +34,6 @@ class Home extends Component {
             var uid = null;
             var providerData = null;
             if (user) {
-                console.log({user: user});
                 displayName = user.displayName;
                 email = user.email;
                 emailVerified = user.emailVerified;
@@ -78,7 +78,7 @@ class Home extends Component {
             <div className="main-content">
                 <div className="row" style={{width: '100%'}}>
                     <div className="col-md-3 fixed-top-left div-left center-content">
-                        <UserSidebar displayName={this.state.displayName} photoURL={this.state.photoURL} />
+                        <UserSidebar uid={this.state.uid} displayName={this.state.displayName} photoURL={this.state.photoURL} />
                     </div>
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
@@ -91,6 +91,7 @@ class Home extends Component {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
       );
     }
