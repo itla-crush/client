@@ -32,13 +32,7 @@ class Home extends Component {
 
     stateAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
-            var displayName = null;
-            var email = null;
-            var emailVerified = null;
-            var photoURL = null;
-            var isAnonymous = null;
-            var uid = null;
-            var providerData = null;
+            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
             if (user) {
                 displayName = user.displayName;
                 email = user.email;
@@ -59,7 +53,7 @@ class Home extends Component {
                   displayName: displayName,
                   email: email,
                   photoURL: photoURL,
-              });
+            });
         });
     }
 
