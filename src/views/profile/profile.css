@@ -1,4 +1,7 @@
 /* -----------------------ESTILOS DEL PERFIL PRINCIPAL------------------------ */
+.Profile {
+    width: 100vw;
+}
 .center-content {
     display: flex;
     justify-content: center;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Header from '../../components/header/Header';
 
 import './profile.css';
 
-export default class Perfil extends Component {
+export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.addBootstrap4 = this.addBootstrap4.bind(this);
@@ -18,10 +19,11 @@ export default class Perfil extends Component {
     render(){
      return(
 
-       <div> 
+       <div className="Profile"> 
+           <Header />
         <div className="pf">
             <div className="foto">
-                <img className src="../img/modelo-default.jpg" />
+            <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt />
             </div>
             <section className="informacion ">
                 <div className="datos-conf">

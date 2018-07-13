@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Header from '../../components/header/Header';
 
 import './editprofile.css';
 
-export default class Editar extends Component {
+export default class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.addBootstrap4 = this.addBootstrap4.bind(this);
@@ -17,7 +18,9 @@ export default class Editar extends Component {
 
     render(){ 
         return(
-            <div className="configuracion">
+            <div className="EditProfile">
+                <Header />
+            <div className="configuracion ">
                 <div className="opciones">
                     <div className="opcion1">
                     <ul>
@@ -33,7 +36,7 @@ export default class Editar extends Component {
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src="../img/modelo-default.jpg" alt />
+                        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt />
                     </div>
                     <div className="editar-foto">
                         <p>Dalton Tejada Cortorreal</p>
@@ -71,6 +74,7 @@ export default class Editar extends Component {
                 <div className="confirmacion">
                     <button type="button" className="btn">Guardar cambios</button>
                 </div>
+            </div>
             </div>
         );
     }

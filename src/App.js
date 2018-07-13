@@ -6,6 +6,7 @@ import Home from './views/home/Home';
 import Landing from './views/landing/Landing';
 import Profile from './views/profile/Profile';
 import EditProfile from './views/edit_profile/EditProfile';
+import ChangePassword from './views/change_password/ChangePassword';
 import Page404 from './views/page404/Page404';
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
@@ -58,6 +59,7 @@ class App extends Component {
                         <Route path='/home' component={Home} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/edit_profile' component={EditProfile} />
+                        <Route path='/change_password' component={ChangePassword} />
                         {/* <Route path='/edit_profile?:id' component={EditProfile} /> */}
                         <Route component={Page404} />
                     </Switch>

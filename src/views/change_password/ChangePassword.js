@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class Password extends Component{
+export default class ChangePassword extends Component{
     render(){
         return(
-            <div>
+            <div className="ChangePassword">
                 <div className="form-group">
                     <div className="info"><label htmlFor className>Actual</label></div>
                     <div className="entrada">

@@ -1,4 +1,7 @@
 /* --------- ESTILOS VISTA CONFIGURACION ------------- */
+.EditProfile {
+    width: 100vw;
+}
 .configuracion{ 
     overflow: hidden;
     margin: auto;
