@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import firebase from 'firebase';
 
 // Components
 
@@ -7,6 +8,29 @@ import { Link } from 'react-router-dom';
 import './header.css';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSignedIn: false
+        }
+        this.stateAuth = this.stateAuth.bind(this);
+        this.setState();
+    }
+
+    stateAuth = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({
+                    isSignedIn: true
+                });
+            } else {
+                this.setState({
+                    isSignedIn: false
+                });
+            }
+        });
+    }
+
     render() {
       return (
         <header>
@@ -27,7 +51,8 @@ class Header extends Component {
                     <ul className="nav navbar-nav"> 
                     <li><a href="/home"><i className="fa fa-home icono" /></a></li>
                     <li><a href="#"><i className="fa fa-heart icono" /></a></li>
-                    <li><a href="/profile"><i className="fa fa-user icono" /></a></li>
+                    {/* <li><a href="/profile"><i className="fa fa-user icono" /></a></li> */}
+                    <li><a href={this.state.isSignedIn ? '/profile' :  '/index'}><i className="fa fa-user icono" /></a></li>
                     </ul>
                 </div>
                 </div>
