@@ -36,7 +36,7 @@ export default class EditProfile extends Component {
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt />
+                        <img src="../img/modelo-default.jpg" alt />
                     </div>
                     <div className="editar-foto">
                         <p>Dalton Tejada Cortorreal</p>
