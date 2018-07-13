@@ -88,8 +88,8 @@ class App extends Component {
                         <Route path='/edit_profile' component={EditProfile} />
                         <Route path='/change_password' component={ChangePassword} />
                         <Route path='/edit_profile?:id' component={EditProfile} />
-                        <Route path='/' exact="true" strict="true" component={Landing} />
-                        <Route path='' exact="true" strict="true" component={Landing} />
+                        <Route path='/' exact strict component={Landing} />
+                        <Route path='' exact strict component={Landing} />
                         <Route component={Page404} />
                     </Switch>
                 </div>

@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import firebase from 'firebase';
-import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 // Assets
 import './signin.css';
@@ -13,6 +13,7 @@ class Signin extends Component {
 
       this.noAction = this.noAction.bind(this);
       this.signInWithEmail = this.signInWithEmail.bind(this);
+      this.handleGuest = this.handleGuest.bind(this);
     }
     
     changeView = () => {
@@ -33,6 +34,10 @@ class Signin extends Component {
       });
     }
 
+    handleGuest = () => {
+      firebase.auth().signOut();
+    }
+
     render() {
       return (
         // <div className="Signin">
@@ -51,7 +56,9 @@ class Signin extends Component {
                   <button onClick={this.signInWithEmail} className="btn-iniciar-sesion">Iniciar Sesion</button>
                 </div>
                 <div className="boton">
-                  <input type="button" defaultValue="Invitado" className="btn2" /> 
+                  <a href="/home" className="center-content">
+                    <input type="button" onClick={this.handleGuest} defaultValue="Invitado" className="btn2" /> 
+                  </a>
                 </div>
               </form>
               <div className="olvidar">

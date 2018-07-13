@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
+
+// Components
 import Header from '../../components/header/Header';
 
 import './editprofile.css';
@@ -6,8 +9,48 @@ import './editprofile.css';
 export default class EditProfile extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            user: null,
+            uid: null,
+            displayName: null,
+            email: null,
+            photoURL: null,
+        }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
+        this.getUser = this.getUser.bind(this);
+    }
+
+    componentWillMount() {
+        this.getUser();
+    }
+
+    getUser = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
+            if (user) {
+                displayName = user.displayName;
+                email = user.email;
+                emailVerified = user.emailVerified;
+                photoURL = user.photoURL;
+                isAnonymous = user.isAnonymous;
+                uid = user.uid;
+                providerData = user.providerData;
+              } else {
+                  // Temporal, No Va Asi
+                displayName = 'Invitado';
+                email = 'guest@gmail.com';
+                emailVerified = false;
+                photoURL = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
+              }
+              this.setState({
+                  user: user,
+                  uid: uid,
+                  displayName: displayName,
+                  email: email,
+                  photoURL: photoURL,
+            });
+        });
     }
 
     addBootstrap4 = () => {
@@ -29,30 +72,30 @@ export default class EditProfile extends Component {
                     </div>
                     <div className="opcion1 xxx">
                     <ul>
-                        <li><a href="#">Cambiar contraseña</a></li>
+                        <li><a href="/change_password">Cambiar contraseña</a></li>
                     </ul>
                     </div>
                 </div>
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt="" />
+                        <img src={this.state.photoURL} alt={this.state.displayName} />
                     </div>
                     <div className="editar-foto">
-                        <p>Dalton Tejada Cortorreal</p>
+                        <p>{this.state.displayName}</p>
                         <a href="#">Editar foto de Perfil</a>
                     </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label htmlFor className>Nombre</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" id placeholder />
+                        <input type="text" className="form-control" id placeholder="Nombre" value={this.state.displayName} />
                     </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label htmlFor className>Apellidos</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" id placeholder />
+                        <input type="text" className="form-control" id placeholder="Apellidos" value={this.state.displayName} />
                     </div>
                     </div>
                     <div className="form-group">
@@ -61,13 +104,13 @@ export default class EditProfile extends Component {
                         <div className="input-group-prepend">
                         <div className="input-group-text">@</div>
                         </div>
-                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder />
+                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.displayName} />
                     </div>
                     </div>
                     <div className="form-group">
-                    <div className="info"><label htmlFor className>Correo</label></div>
+                    <div className="info"><label className>Correo</label></div>
                     <div className="entrada">
-                        <input type="email" className="form-control" id placeholder />
+                        <input type="email" className="form-control" id placeholder="Correo" value={this.state.email} />
                     </div>
                     </div>
                 </div>

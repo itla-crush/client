@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
+
+// Components
 import Header from '../../components/header/Header';
 
 import './profile.css';
@@ -15,31 +18,42 @@ export default class Profile extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
+        this.getUser = this.getUser.bind(this);
     }
 
-    user = () => {
-        var user = firebase.auth().currentUser;
-        var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
-        if (user) {
-            displayName = user.displayName;
-            email = user.email;
-            emailVerified = user.emailVerified;
-            photoURL = user.photoURL;
-            isAnonymous = user.isAnonymous;
-            uid = user.uid;
-            providerData = user.providerData;
-          } else {
-            displayName = 'Invitado';
-            email = 'guest@gmail.com';
-            emailVerified = false;
-            photoURL = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
-          }
-          this.setState({
-              user: user,
-              uid: uid,
-              displayName: displayName,
-              email: email,
-              photoURL: photoURL,
+    componentWillMount() {
+        this.getUser();
+    }
+
+    getUser = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
+            if (user) {
+                displayName = user.displayName;
+                email = user.email;
+                emailVerified = user.emailVerified;
+                photoURL = user.photoURL;
+                isAnonymous = user.isAnonymous;
+                uid = user.uid;
+                providerData = user.providerData;
+                console.log('getIdToken');
+                console.log(user.getIdToken);
+                console.log('getIdTokenResult');
+                console.log(user.getIdTokenResult);
+              } else {
+                  // Temporal, No Va Asi
+                displayName = 'Invitado';
+                email = 'guest@gmail.com';
+                emailVerified = false;
+                photoURL = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
+              }
+              this.setState({
+                  user: user,
+                  uid: uid,
+                  displayName: displayName,
+                  email: email,
+                  photoURL: photoURL,
+            });
         });
     }
 
@@ -65,7 +79,7 @@ export default class Profile extends Component {
                     <p className>{`@${this.state.displayName}`}</p>
                 </div>
                 <div className="editar">
-                    <a href="editar.html">Editar Perfil</a>
+                    <a href="/edit_profile">Editar Perfil</a>
                 </div>
                 </div>
                 <div className="estadisticas">

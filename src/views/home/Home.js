@@ -80,7 +80,7 @@ class Home extends Component {
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
                         <CreatePost />
-                        <button onClick={this.signOut}>SignOut</button>
+                        {/* <button onClick={this.signOut}>SignOut</button> */}
                         <Newsfeed />
                     </div>
                     <div className="col-md-3"></div>
