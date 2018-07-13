@@ -9,14 +9,14 @@ class Header extends Component {
     render() {
       return (
         <header>
-            <nav className="navbar  navbar-default nav-content">
+            <nav className="navbar navbar-default nav-content">
                 <div className="container d-flex justify-content-around">
                 <div className="lg">
-                    <img alt="App-Logo" src="../img/cupido3.png" id="logo" className="logo" />
+                    <img src="img/cupido3.png" id="logo" className="logo" alt />
                 </div>
                 <div className="search">
                     <form action="#" method="POST">
-                        <input type="text" className="form-control text-search" placeholder="Buscar" />
+                    <input type="text" className="form-control text-search" placeholder="Buscar" />
                     </form>
                 </div>
                 {/*Iconos del Menu*/}

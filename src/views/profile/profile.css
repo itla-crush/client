@@ -1,22 +1,300 @@
-.in-container-right h2 .stronge {
-    font-size: 34px;
+/* -----------------------ESTILOS DEL PERFIL PRINCIPAL------------------------ */
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pf{
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+}
+.pf .foto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-right: 30px;
+}
+.pf .foto img{
+    width: 200px;
+    border-radius: 125px;
+}
+.pf .informacion {
+    width: 50%;
+}
+.pf .informacion .datos-conf{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+.pf .informacion .datos-conf .nombre-usuario h2{
+    margin-top: 0;
+    font-weight: normal;
+    font-family: "AbeeZee";
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+.pf .informacion .datos-conf .editar a{
+    font-family: "AbeeZee";
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #5bc0de;
+    text-decoration: none;
+}
+.pf .informacion .estadisticas {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    border: solid 1px rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 30px;
+}
+.pf .informacion .estadisticas .realizados p,
+.pf .informacion .estadisticas .privado p,
+.pf .informacion .estadisticas .seguidos p{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.pf .informacion .estadisticas .realizados h5,
+.pf .informacion .estadisticas .privado h5,
+.pf .informacion .estadisticas .seguidos h5{
+    text-align: center;
+    margin-top: 0px;
+}
+/* --------------------ESTILOS PERFIL SEGUNDO -------------------*/
+.pf-segundo{
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    display: none;
+}
+.pf-segundo .foto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-right: 30px;
+}
+.pf-segundo .foto img{
+    width: 200px;
+    border-radius: 125px;
+}
+.pf-segundo .informacion {
+    width: 50%;
+}
+.pf-segundo .informacion .datos-conf{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+.pf-segundo .informacion .nombre-usuario h2{
+    margin-top: 0;
+    font-weight: normal;
+    font-family: "AbeeZee";
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+.pf-segundo .informacion .datos-conf .editar a{
+    font-family: "AbeeZee";
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #5bc0de;
+    text-decoration: none;
+}
+.estadist-segundo {
+    margin-top: 20px;
+    display: none;
+    justify-content: space-around;
+    border-top: solid 1px rgba(0, 0, 0, 0.12);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 30px;
+}
+.estadist-segundo .realizados h4,
+.estadist-segundo .privado h4,
+.estadist-segundo .seguidos h4{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.estadist-segundo .realizados p,
+.estadist-segundo .privado p,
+.estadist-segundo .seguidos p{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 
-.in-container-right .olvidar {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
+@media screen and (max-width: 1185px){
+    .pf .informacion {
+        width: 60%;
+    }
+    .pf .informacion .datos-conf{
+        display: flex;
+        flex-direction: column;
+    }
+    /* -----ESTILOS DE LA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo .informacion {
+        width: 60%;
+    }
+    .pf-segundo .informacion .datos-conf{
+        display: flex;
+        flex-direction: column;
+    }
 }
+@media screen and (max-width: 925px){
 
-.in-container-right .olvidar a {
-	text-decoration: none;
-	margin: 10px;
+       .pf .informacion .datos-conf{
+        display: flex;
+        flex-direction: column;
+       }
+       .pf .informacion .datos-conf .editar{
+           margin-top: 5px;
+           margin-left: 0;
+       }
+       .pf .informacion .datos-conf .editar a{
+        font-family: "AbeeZee";
+        font-size: 15px;
+        border-radius: 5px;
+        padding: 10px;
+        color: #fff;
+        border: 1px solid transparent;
+        background-color: #5bc0de;
+        text-decoration: none;
+    }
+     /* -----ESTILOS DE LA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo .informacion .datos-conf{
+        display: flex;
+        flex-direction: column;
+       }
+       .pf-segundo .informacion .datos-conf .editar{
+           margin-top: 5px;
+           margin-left: 0;
+       }
+       .pf-segundo .informacion .datos-conf .editar a{
+        font-family: "AbeeZee";
+        font-size: 15px;
+        border-radius: 5px;
+        padding: 10px;
+        color: #fff;
+        border: 1px solid transparent;
+        background-color: #5bc0de;
+        text-decoration: none;
+    }
 }
+@media screen and (max-width: 768px){
+    .pf .foto img{
+        width: 170px;
+        border-radius: 125px;
+    }    
+    .pf .informacion .datos-conf .nombre-usuario h2{
+       font-size: 26px;
+    }
+    .pf .informacion .datos-conf .nombre-usuario h4{
+        font-size: 16px;
+     }
+      /* -----ESTILOS DE LA SEGUNDA VISTA PERFIL ------- */
+     .pf-segundo .foto img{
+        width: 170px;
+        border-radius: 125px;
+    }    
+    .pf-segundo .informacion .datos-conf .nombre-usuario h2{
+       font-size: 26px;
+    }
+    .pf-segundo .informacion .datos-conf .nombre-usuario h4{
+        font-size: 16px;
+     }
+}
+@media screen and (max-width: 700px){
+    .pf .foto img{
+        width: 150px;
+        border-radius: 125px;
+    }   
+    .pf .informacion {
+        width: 70%;
+    }
+    /* -----ESTILOS DELA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo .foto img{
+        width: 150px;
+        border-radius: 125px;
+    }   
+    .pf-segundo .informacion {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 665px){
+    .pf{
+        display: none;
+    }
+    /* -----ESTILOS A LA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo .foto{
+        margin-right: 15px;
+        margin-left: 15px;
+        width: 100px;
+    }
+    .pf-segundo .foto img{
+        width: 100px;
+    }  
+    .pf-segundo{
+        width: 100%;
+        display: flex;
+    }
+    .pf-segundo .informacion .datos-conf{
+        display: block;
+    }
+    .estadist-segundo {
+        display: flex;
+    } 
+    .pf-segundo .informacion .datos-conf .nombre-usuario h2{
+        font-size: 22px;
+    }
+    .pf-segundo .informacion .datos-conf .editar{
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
 
-.in-container-right .input i {
-	margin-right: 8px;
-} 
-
-.in-container-right .input {
-	display: flex;
+    /* ----------- PUBLICACIONES ------------ POST */
+    .publicaciones .contenedor-post{
+        width: auto;
+    }
+    .publicaciones .contenedor-post .post{
+        border-radius: 0px;
+        border-right: 0px;
+        border-left: 0px;
+    }
+}
+@media screen and (max-width: 600px){ 
+    /* -----ESTILOS A LA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo{ 
+        margin-top: 120px;
+    }
+    .estadist-segundo{
+        margin-bottom: 15px;
+    }
+}
+@media screen and (max-width: 350px){
+    /* -----ESTILOS A LA SEGUNDA VISTA PERFIL ------- */
+    .pf-segundo .foto img{
+        width: 80px;
+    }  
+    .pf-segundo .informacion .datos-conf .nombre-usuario h2{
+        font-size: 18px;
+    }
+    .pf-segundo .informacion .datos-conf .nombre-usuario h4{
+        font-size: 12px;
+    }
 }

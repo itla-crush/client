@@ -1,4 +1,4 @@
-.navbar{
+header .navbar{
     padding: 0px;
     position: fixed;
     top: 0;
@@ -6,11 +6,11 @@
     left: 0;
     z-index: 1030;
 }
-.nav-content .iconos .navbar-nav {
+header .nav-content .iconos .navbar-nav {
     display: flex;
     flex-direction: row;
 }
-.nav-content .iconos .navbar-nav li a{
+header .nav-content .iconos .navbar-nav li a{
     padding: 15px;
 }
 .nav-content .iconos .icono{
@@ -51,12 +51,12 @@
 }
 /* ----- AQUI RESPONSIVE DEL MENU --------- */
 @media screen and (min-width: 576px){
-    .navbar .container {
+    header .navbar .container {
         max-width: 1000px;
     }
 }
 @media screen and (max-width: 600px) {
-    .navbar .container {
+    .container {
       height: 80px;
       padding-top: 10px;
     }
@@ -72,9 +72,8 @@
         margin-right: 10px;
     }
 }
-
 @media screen and (max-width: 522px) {
-    .navbar .container {
+    .container {
          height: auto;
     }
     .navbar .container .lg{
