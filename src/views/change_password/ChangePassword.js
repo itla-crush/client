@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './changepassword.css';
+
 export default class ChangePassword extends Component{
     render(){
         return(
