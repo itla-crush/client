@@ -16,7 +16,7 @@ class Newsfeed extends Component {
       <header className="header-post">
         <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
           <a href="#">
-            <img alt="" className="img-profile" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+            <img alt="" className="img-profile" src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" /> {/* Imagen */}
           </a>
         </div>
         <div className="div-user"> 
@@ -68,7 +68,7 @@ class Newsfeed extends Component {
       <header className="header-post">
         <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
           <a href="#">
-            <img alt="" className="img-profile" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+            <img alt="" className="img-profile" src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" /> {/* Imagen */}
           </a>
         </div>
         <div className="div-user"> 
@@ -120,7 +120,7 @@ class Newsfeed extends Component {
       <header className="header-post">
         <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
           <a href="#">
-            <img alt="" className="img-profile" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+            <img alt="" className="img-profile" src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" /> {/* Imagen */}
           </a>
         </div>
         <div className="div-user"> 
@@ -171,7 +171,7 @@ class Newsfeed extends Component {
       <header className="header-post">
         <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
           <a href="#">
-            <img alt="" className="img-profile" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+            <img alt="" className="img-profile" src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" /> {/* Imagen */}
           </a>
         </div>
         <div className="div-user"> 
@@ -222,7 +222,7 @@ class Newsfeed extends Component {
       <header className="header-post">
         <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
           <a href="#">
-            <img alt className="img-profile" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+            <img alt className="img-profile" src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" /> {/* Imagen */}
           </a>
         </div>
         <div className="div-user"> 

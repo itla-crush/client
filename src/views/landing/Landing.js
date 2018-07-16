@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // Components
 import Welcome from '../../components/welcome/Welcome';
 // eslint-disable-next-line
-import Singin from '../../components/signin/Signin';
+import Signin from '../../components/signin/Signin';
 // eslint-disable-next-line
 import Signup from '../../components/signup/Signup';
 
@@ -54,10 +55,16 @@ class Landing extends Component {
                 {/* Contenedor Derecho */}
                 <div className="container-right"> 
                     {this.state.isSigninShowen ? (
-                        <Singin changeView={this.changeView.bind(this)} />
+                        <Signin changeView={this.changeView.bind(this)} />
                     ) : (
                         <Signup changeView={this.changeView.bind(this)} />
                     )}
+                    {/* <BrowserRouter>
+                        <Switch>
+                            <Route  path='/index/signin' render={() => <Signin />} />
+                            <Route  path='/index/signup' render={() => <Signup />} />
+                        </Switch>
+                    </BrowserRouter> */}
                 </div>
             </div>
         </div>

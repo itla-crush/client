@@ -15,6 +15,13 @@ class Signup extends Component {
       this.noAction = this.noAction.bind(this);
       this.signInWithGoogle = this.signInWithGoogle.bind(this);
       this.signUpWithEmail = this.signUpWithEmail.bind(this);
+      this.writeUserData = this.writeUserData.bind(this);
+      this.generateUsername = this.generateUsername.bind(this);
+      this.generateDisplayName = this.generateDisplayName.bind(this);
+    }
+
+    componentDidMount() {
+      // alert(_.now()+'');
     }
 
     changeView = () => {
@@ -25,20 +32,42 @@ class Signup extends Component {
       event.preventDefault();
     }
 
+    generateDisplayName = (name, lastname) => {
+      name = _.split(name, ' ', 1);
+      lastname = _.split(lastname, ' ', 1);
+      return `${name} ${lastname}`;
+    }
+
+    generateUsername = (name, lastname) => {
+      name = _.split(name, ' ', 1);
+      lastname = _.split(lastname, ' ', 1);
+      return `@${_.toLower(name+lastname)}`;
+    }
+
     signInWithGoogle = () => {
       var provider = new firebase.auth.GoogleAuthProvider();
       // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+      // Autenticar con Google
       firebase.auth().signInWithPopup(provider)
       .then(res => {
-        firebase.database().ref('users/' + res.user.uid).set({
-          displayName: res.user.displayName,
-          name: res.user.displayName,
-          lastname: res.user.displayName,
-          email: res.user.email,
-          photoURL: res.user.photoURL,
-          username: `@${res.user.displayName}`
-        }, error => {
-          console.log(error);
+        // Buscar el usuario en la base de datos
+        firebase.database().ref('/users/' + res.user.uid).once('value')
+        .then(snapshot => {
+          console.log(res);
+          // Escribir el usuario si no existe
+          if(snapshot.val() === null) {
+            this.writeUserData(res);
+          } else {
+            firebase.database().ref('users/' + res.user.uid).set({
+              lastSignInTime: res.user.metadata.lastSignInTime || 'null'
+            }, error => {
+              console.log(error);
+            });
+          }
+          // End Escribir Usurio
+        })
+        .catch(e => {
+          console.log(`Code: ${e.code} Message: ${e.message}`);
         });
       })
       .catch(e => {
@@ -46,14 +75,36 @@ class Signup extends Component {
       });
     }
 
+    writeUserData = (res) => {
+      var name = res.additionalUserInfo.profile.given_name;
+      var lastname = res.additionalUserInfo.profile.family_name;
+      var username = this.generateUsername(name, lastname);
+      var displayName = this.generateDisplayName(name, lastname);
+      firebase.database().ref('users/' + res.user.uid).set({
+        username: username,
+        displayName: displayName,
+        name: name,
+        lastname: lastname,
+        email: res.user.email,
+        photoURL: res.user.photoURL || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
+        creationTime: res.user.metadata.creationTime || 'null',
+        lastSignInTime: res.user.metadata.lastSignInTime || 'null',
+        verified_email: res.additionalUserInfo.profile.verified_email || 'null',
+        gender: res.additionalUserInfo.profile.gender || 'null',
+        id: res.additionalUserInfo.profile.id || 'null'
+      }, error => {
+        console.log(error);
+      });
+    }
+
     signUpWithEmail = (event) => {
       event.preventDefault();
-      let name = document.getElementById('name').value;
-      let lastname = document.getElementById('lastname').value;
-      let username = document.getElementById('username').value;
-      let email = document.getElementById('email').value;
-      let password = document.getElementById('password').value;
-      let verifyPassword = document.getElementById('verifyPassword').value;
+      let name = _.thim(document.getElementById('name').value);
+      let lastname = _.thim(document.getElementById('lastname').value);
+      let username = _.thim(document.getElementById('username').value);
+      let email = _.thim(document.getElementById('email').value);
+      let password = _.thim(document.getElementById('password').value);
+      let verifyPassword = _.thim(document.getElementById('verifyPassword').value);
       
       if(_.isEqual(password, verifyPassword)) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -63,7 +114,7 @@ class Signup extends Component {
             name: name,
             lastname: lastname,
             email: res.user.email,
-            photoURL : 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg',
+            photoURL : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
             username: username
           }, error => {
             console.log(error);

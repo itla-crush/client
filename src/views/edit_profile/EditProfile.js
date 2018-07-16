@@ -41,7 +41,7 @@ export default class EditProfile extends Component {
                 displayName = 'Invitado';
                 email = 'guest@gmail.com';
                 emailVerified = false;
-                photoURL = 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg';
+                photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
               }
               this.setState({
                   user: user,
