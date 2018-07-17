@@ -59,7 +59,7 @@ export default class Profile extends Component {
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
-        pre.innerHTML = '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><script src="bootstrap/js/fontawesome-all.js"></script><link rel="stylesheet" href="bootstrap_4/css/bootstrap.min.css">';	
+        pre.innerHTML = '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><link rel="stylesheet" href="bootstrap_4/css/bootstrap.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
     
