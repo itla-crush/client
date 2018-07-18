@@ -126,20 +126,87 @@ class Signup extends Component {
       }
     }
 
+    calendar(){
+    //   const Calender = document.querySelector('.datepicker');
+		// M.Datepicker.init(Calender,{
+		// 	format:'dd/mmm/yyyy',
+		// 	i18n:{
+		// 		clear:'Limpiar',
+		// 		cancel:'Cancelar',
+		// 		done:'Aceptar',
+		// 		months:[
+		// 			'Enero',
+		// 			'Febrero',
+		// 			'Marzo',
+		// 			'Abril',
+		// 			'Mayo',
+		// 			'Junio',
+		// 			'Julio',
+		// 			'Agosto',
+		// 			'Septiembre',
+		// 			'Octubre',
+		// 			'Noviembre',
+		// 			'Diciembre'
+		// 			],
+		// 		monthsShort:[
+		// 					'Ene',
+		// 					'Feb',
+		// 					'Mar',
+		// 					'Abr',
+		// 					'May',
+		// 					'Jun',
+		// 					'Jul',
+		// 					'Agost',
+		// 					'Sept',
+		// 					'Oct',
+		// 					'Nov',
+		// 					'Dic'
+		// 					],
+		// 	    weekdays:[
+		// 				'Domingo',
+		// 				'Lunes',
+		// 				'Martes',
+		// 				'Miercoles',
+		// 				'Jueves',
+		// 				'Viernes',
+		// 				'Sabado'
+		// 				],
+		// 		weekdaysShort:[
+		// 			'Lun',
+		// 			'Mart',
+		// 			'Mierc',
+		// 			'Jue',
+		// 			'Vie',
+		// 			'Sab',
+		// 			'Dom'	
+		// 			]
+		// 	}
+		// })
+      
+    }
+
     render() {
       return (
         <div className="Signup">
             <div className="in-container-right">
               <h2><a href="#" onClick={this.changeView}>Iniciar Sesion</a> / <a href="#" onClick={this.noAction} className="stronge">Registrar</a></h2>
               <form className="formulario" onSubmit={this.signUpWithEmail}>
+
                 <div className="input-r">
                     <input id="name" className="dn" placeholder="Nombre" type="text" />
                     <input id="lastname" placeholder="Apellidos" type="text" className="validate" />	
                 </div>
+
                 <input id="username" placeholder="Nombre de usuario" type="text" className="validate" />
                 <input id="email" placeholder="Correo" type="email" className="validate" />
-                <input id="password" placeholder="Contraseña" type="password" className="validate" />
-                <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
+
+                <div className="input-r">
+                    <input id="password" className="dn" placeholder="Contraseña" type="password" className="validate" />
+                    <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
+                </div>
+                
+                <input type="text" class="datepicker" placeholder="Fecha de nacimiento"/>
+
                 {/* <div class=""> */}
                 <div className="boton">
                     <button onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>

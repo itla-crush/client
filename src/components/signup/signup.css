@@ -10,6 +10,9 @@
 .in-container-right .input-r .dn { 
 	margin-right: 10px;
 }
+.in-container-right .sexo{
+    display: flex;
+}
 
 @media screen and (max-width: 535px) {
     .in-container-right .input-r {
