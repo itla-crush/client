@@ -5,7 +5,10 @@
 
 .profile-widget-header {
 	width: 100%;
-	padding: 25px;
+	padding-top: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 15px;
     display: inline-flex;
     align-items: center;
     box-sizing: border-box;
@@ -17,7 +20,6 @@
 	height: 125px;
 	border-radius: 50%;
 	background-color: rgba(0, 0, 0, 0);
-	margin-right: 25px;
 }
 
 .user-img-profile {
@@ -29,18 +31,72 @@
 }
 
 .div-username {
+	margin-left: 20px;
+	margin-right: 28px;
+}
 
+.div-username a {
+	text-decoration: none;
+}
+
+.div-username a p {
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+}
+
+.div-username a p.user-name {
+	font-size: 20px;
+}
+
+#button-close-modal {
+	top: 0;
+	right: 0;
+}
+
+.button-view-profile {
+	font-family: "AbeeZee";
+	font-size: 16px;
+	border-radius: 20px;
+	border: none;
+	border: 1px solid transparent;
+	background-color: #5bc0de;
+	border-color: #46b8da;	
+	padding: 6px 9px; 
+	color: #fff;
+	cursor: pointer;
+}
+
+.button-view-profile:focus {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #1b6d85;
+}
+
+.button-view-profile:hover {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+}
+
+.button-view-profile:active {
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
 .profile-widget-content {
 	width: 100%;
-	padding: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 15px;
+    box-sizing: border-box;
 }
 
 .profile-widget-footer {
 	width: 100%;
-	padding: 0px 0px 0px 0px;
-	margin-bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+    box-sizing: border-box;
 	background-color: #5bc0de;
 	/* background-color: #18ab9d; */
 	border-bottom-right-radius: 0.3rem;
@@ -66,8 +122,8 @@
     font-size: 15px !important;
     font-weight: normal !important;
 	margin: 0px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 12px;
+	padding-bottom: 12px;
     text-decoration: none !important;
 	text-transform: uppercase;
 	cursor: pointer;

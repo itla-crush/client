@@ -19,12 +19,18 @@ class ProfileWidget extends Component {
                       </a>
                     </div>
                     <div className="div-username"> 
-                      <a href="#">@anonimo</a> {/* Usuario */}
-                      <p>32 min</p>
+                      <a href="#">
+                        <p className="user-name">Name and Lastname</p>
+                        <p>@Username</p>
+                      </a>
+                    </div>
+                    <div>
+                      {/* <button id="button-close-modal" type="button" className="close" data-dismiss="modal">&times;</button> */}
+                      <button className="button-view-profile">Ver Perfil</button>
                     </div>
                   </div>
                   <div className="profile-widget-content">
-                    Hola
+                    More info is missing here.
                   </div>
                   <div className="profile-widget-footer center-content">
                     <button className="btn-o"><i class="fa fa-user-plus"></i> Seguir</button>
