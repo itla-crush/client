@@ -1,0 +1,43 @@
+/* .ProfileWidget {
+	width: 100vw;
+	height: 100vh;
+} */
+
+.profile-widget-content {
+	width: 100%;
+}
+
+.profile-widget-footer {
+	width: 100%;
+}
+
+.btn-o {
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    color: #ffffff !important;
+    display: inline-block;
+    font-family: open sans;
+    font-size: 15px !important;
+    font-weight: normal !important;
+    margin: 0 0 10px;
+    padding: 5px 11px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    
+   /* background-color: rgba(255, 255, 255, 0.1); */
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.btn-o:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+    color: #fff !important;
+}
+
+.btn-o:focus {
+   background:#b63b4d;
+    color: #fff;
+    border: 1px solid #b63b4d;
+}
