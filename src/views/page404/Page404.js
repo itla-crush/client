@@ -22,7 +22,7 @@ class Page404 extends Component {
       return (
         <div className="Page404">
           {/* <p>Page404</p> */}
-          {/* Button to Open the Modal */}
+          {/* Button to Open the Modal */} 
           <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">
             Open modal
           </button>

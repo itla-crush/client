@@ -6,8 +6,9 @@ import './profilewidget.css';
 class ProfileWidget extends Component {
     render() {
       return (
-        <div className="ProfileWidget">
+        // <div className="ProfileWidget">
           <div className="modal fade" id="myModal">
+          {/* <div className="modal fade show" id="myModal" style={{display: 'block'}}> */}
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
 
@@ -56,14 +57,14 @@ class ProfileWidget extends Component {
                   <div className="profile-widget-footer center-content">
                     <button className="btn-o"><i class="fas fa-user-plus"></i> Seguir</button>
                     <button className="btn-o"><i class="fas fa-envelope"></i> Mensaje</button>
-                    <button className="btn-o"><i class="fas fa-pencil-alt"></i> Dedicatoria</button>
+                    <button className="btn-o"><i class="fas fa-pencil-alt"></i> Declaración</button>
                   </div>
                 </div>
 
               </div>
             </div>
           </div>
-        </div>
+        // </div>
       );
     }
 }
