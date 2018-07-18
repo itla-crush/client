@@ -31,11 +31,32 @@ class ProfileWidget extends Component {
                   </div>
                   <div className="profile-widget-content">
                     More info is missing here.
+                    <div className="">
+
+                    </div>
+                    {/* <div className="below">
+                      <div className="center-content">
+                        <div className="">
+                          <p>Seguidos</p>
+                          <p>34</p>
+                        </div>
+                        <hr className="vl" />
+                        <div>
+                          <p>Posts</p>
+                          <p>7</p>
+                        </div>
+                        <hr className="vl" />
+                        <div>
+                          <p>Para mí</p>
+                          <p>3</p>
+                        </div>
+                      </div>
+                    </div> */}
                   </div>
                   <div className="profile-widget-footer center-content">
-                    <button className="btn-o"><i class="fa fa-user-plus"></i> Seguir</button>
-                    <button className="btn-o"><i class="fa fa-user-plus"></i> Mensaje</button>
-                    <button className="btn-o"><i class="fa fa-user-plus"></i> Dedicatoria</button>
+                    <button className="btn-o"><i class="fas fa-user-plus"></i> Seguir</button>
+                    <button className="btn-o"><i class="fas fa-envelope"></i> Mensaje</button>
+                    <button className="btn-o"><i class="fas fa-pencil-alt"></i> Dedicatoria</button>
                   </div>
                 </div>
 
