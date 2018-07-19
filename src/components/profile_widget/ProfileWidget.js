@@ -31,9 +31,15 @@ class ProfileWidget extends Component {
                     </div>
                   </div>
                   <div className="profile-widget-content">
-                    More info is missing here.
-                    <div className="">
-
+                    <div className="profile-widget-info">
+                      <div className="profile-widget-info-content" style={{width: '50%'}}>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Edad:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>19 años</span></p>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Sexo:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Hombre</span></p>
+                      </div>
+                      <div className="profile-widget-info-content" style={{width: '50%'}}>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Info:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Respuesta</span></p>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Info:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Respuesta</span></p>
+                      </div>
                     </div>
                     {/* <div className="below">
                       <div className="center-content">

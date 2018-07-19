@@ -162,7 +162,10 @@
 }
 
 .div-footer {
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
     box-sizing: border-box;
 }
 
@@ -195,7 +198,7 @@
     padding-bottom: 5px;
 }
 
-/*.div-form-comment {
+.div-form-comment {
     margin: 0px;
     padding: 0px;
 }
@@ -203,7 +206,7 @@
 .form-comment {
     margin: 0px;
     padding: 0px;
-}*/
+}
 
 .div-form-comment .hl {
     margin-top: 0.5em;
@@ -214,10 +217,21 @@
     border-color: rgba(0, 0, 0, 0.13);
 }
 
+.div-form-comment .send {
+    vertical-align: super;
+    cursor: pointer;
+    user-select: none;
+}
+
+.div-form-comment .send:focus {
+    cursor: pointer;
+}
+
 .textarea-comment { 
-    width: 91%;
-    max-width: 91%;
-    min-width: 91%;
+    width: 94%;
+    max-width: 94%;
+    min-width: 93%;
+    height: 100%;
     resize: none;
     padding: 10px;
     margin: 0px;
@@ -237,7 +251,7 @@
     padding-right: 15px;
     padding-top: 10px;
     /*padding-top: 0px;*/
-    /*padding-bottom: 10px;*/
+    padding-bottom: 0px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     box-sizing: border-box;
