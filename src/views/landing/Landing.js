@@ -44,7 +44,7 @@ class Landing extends Component {
          
         document.body.style.backgroundImage = `url(img/${this.props.backgroundID || 1}.jpg)`; 
         document.querySelector("head").innerHTML += '<style>body{ height: 100vh;</style>';
-       
+        
     }
 
     render() {
