@@ -17,7 +17,7 @@ class Newsfeed extends Component {
     render() {
       // this.setState({
         var data = {
-          fromUsername: "@anonimo",
+          fromUsername: "@username",
           toUsername: "@anonimo",
           photoUrl: null,
           date: null,
@@ -40,7 +40,6 @@ class Newsfeed extends Component {
             }
           ]
         };
-        // this.setState({datas: [data, data, data]});
         var datas = [data, data, data];
       // });
       return (

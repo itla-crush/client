@@ -74,7 +74,7 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="App">
+                <div className="App" style={{width: '100%;'}}>
                     <Switch>
                         {/* {this.state.isSignedIn ? (<Redirect from="" exact="true" strict="true" to="/home" />) : (<Redirect from="" exact="true" strict="true" to="/index" />)}
                         {this.state.isSignedIn ? (<Redirect from="/" exact="true" strict="true" to="/home" />) : (<Redirect from="/" exact="true" strict="true" to="/index" />)}
