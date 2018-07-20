@@ -205,7 +205,16 @@ class Signup extends Component {
                     <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
                 </div>
                 
-                <input type="text" class="datepicker" placeholder="Fecha de nacimiento"/>
+                <div className="datecalendario">
+                   <input type="text" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
+                 </div>
+
+                 <select className="gender">
+                    <option value="volvo">Hombre</option>
+                    <option value="saab">Mujer</option>
+                    <option value="saab">Mujer</option>
+                    <option value="saab">Mujer</option>
+                  </select>
 
                 {/* <div class=""> */}
                 <div className="boton">

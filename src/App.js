@@ -49,6 +49,7 @@ class App extends Component {
     }
 // match.params.id
     render() {
+        console.log("APP b"+this.props.backgroundID);
         // let redirectToIndex_1;
         // let redirectToIndex_2;
         // let redirectIndex;
@@ -82,7 +83,7 @@ class App extends Component {
                         {this.state.isSignedIn ? (<Route path='/edit_profile' component={EditProfile} />) : (<Redirect from="/edit_profile" exact="false" strict="false" to="/index" />)}
                         {this.state.isSignedIn ? (<Route path='/change_password' component={ChangePassword} />) : (<Redirect from="/change_password" exact="false" strict="false" to="/index" />)} */}
                         
-                        <Route path='/index' component={Landing} />
+                        <Route path='/index' component={Landing} backgroundID={this.props.backgroundID} />
                         <Route path='/home' component={Home} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/edit_profile' component={EditProfile} />

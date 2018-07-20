@@ -28,4 +28,5 @@ if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().o
 //     return !!firebase.auth().currentUser;
 // }
 
-ReactDOM.render(<App isSignedIn={!!firebase.auth().currentUser} />, document.getElementById('root'));
+var backgroundID = Math.floor(Math.random() * (5-1) + 1); 
+ReactDOM.render(<App  isSignedIn={!!firebase.auth().currentUser} backgroundID={backgroundID} />, document.getElementById('root'));

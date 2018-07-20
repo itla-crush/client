@@ -1,3 +1,10 @@
+
+.Signup{
+    margin: 0 auto;
+    width: 85%;
+	height: 90%;
+}
+
 .in-container-right h2 .stronge {
     font-size: 34px;
 }
@@ -13,6 +20,15 @@
 .in-container-right .sexo{
     display: flex;
 }
+
+.in-container-right .datecalendario{
+	display: flex;
+	align-items: center;
+}
+.in-container-right .datecalendario input[type="text"]{
+	width: 50%;
+}
+
 
 @media screen and (max-width: 535px) {
     .in-container-right .input-r {

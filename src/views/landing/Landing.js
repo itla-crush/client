@@ -41,15 +41,14 @@ class Landing extends Component {
         var pre = document.createElement('pre');
         pre.innerHTML = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
-        
-        var numero = Math.floor(Math.random() * (5-1) + 1);  
-        document.body.style.backgroundImage =`url(img/+.jpg)`; 
-
-        document.querySelector("head").innerHTML += `<style>body{ height: 100vh; background-image: url(<img src=../../../public/img/${numero}.jpg); </style>`
+         
+        document.body.style.backgroundImage = `url(img/${this.props.backgroundID || 1}.jpg)`; 
+        document.querySelector("head").innerHTML += '<style>body{ height: 100vh;</style>';
        
     }
 
     render() {
+        console.log("Landing b "+this.props);
       return (
         <div className="cont">
             <div className="Landing">
