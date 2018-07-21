@@ -38,11 +38,11 @@ class Header extends Component {
                 <div className="container d-flex justify-content-around">
                 <div className="lg">
                     <Link to="/home">
-                        <img src="img/cupido3.png" id="logo" className="logo" alt />
+                        <img src="img/cupido3.png" id="logo" className="logo" alt="Logo" />
                     </Link>
                 </div>
                 <div className="search">
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" style={{paddingBottom: "15px"}}>
                         <input type="text" className="form-control text-search" placeholder="Buscar" />
                     </form>
                 </div>

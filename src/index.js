@@ -24,9 +24,6 @@ if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().o
         'sure you are running the codelab using `firebase serve`');
 }
 
-// isUserSignedIn = () => {
-//     return !!firebase.auth().currentUser;
-// }
-
 var backgroundID = Math.floor(Math.random() * (5-1) + 1); 
+
 ReactDOM.render(<App  isSignedIn={!!firebase.auth().currentUser} backgroundID={backgroundID} />, document.getElementById('root'));
