@@ -34,7 +34,7 @@ class Newsfeed extends Component {
               <p>{`${this.props.data.date.day} de ${this.props.data.date.month} a las ${this.props.data.time}`}</p>
             </div>
           </header>
-          <div className> {/* Contenido Del Post */}
+          <div className=""> {/* Contenido Del Post */}
             <div className="div-text-post">{/* Texto Del Post */}
               <p>{this.props.data.text || ""}</p>
             </div> 
