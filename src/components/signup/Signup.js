@@ -18,65 +18,12 @@ class Signup extends Component {
       this.writeUserData = this.writeUserData.bind(this);
       this.generateUsername = this.generateUsername.bind(this);
       this.generateDisplayName = this.generateDisplayName.bind(this);
+      this.calendar = this.calendar.bind(this);
     }
 
-    // componentDidMount() {
-    //   const Calender = document.querySelector('.datepicker');
-	  //  	M.Datepicker.init(Calender,{
-		// 	format:'dd/mmm/yyyy',
-		// 	i18n:{
-		// 		clear:'Limpiar',
-		// 		cancel:'Cancelar',
-		// 		done:'Aceptar',
-		// 		months:[
-		// 			'Enero',
-		// 			'Febrero',
-		// 			'Marzo',
-		// 			'Abril',
-		// 			'Mayo',
-		// 			'Junio',
-		// 			'Julio',
-		// 			'Agosto',
-		// 			'Septiembre',
-		// 			'Octubre',
-		// 			'Noviembre',
-		// 			'Diciembre'
-		// 			],
-		// 		monthsShort:[
-		// 					'Ene',
-		// 					'Feb',
-		// 					'Mar',
-		// 					'Abr',
-		// 					'May',
-		// 					'Jun',
-		// 					'Jul',
-		// 					'Agost',
-		// 					'Sept',
-		// 					'Oct',
-		// 					'Nov',
-		// 					'Dic'
-		// 					],
-		// 	    weekdays:[
-		// 				'Domingo',
-		// 				'Lunes',
-		// 				'Martes',
-		// 				'Miercoles',
-		// 				'Jueves',
-		// 				'Viernes',
-		// 				'Sabado'
-		// 				],
-		// 		weekdaysShort:[
-		// 			'Lun',
-		// 			'Mart',
-		// 			'Mierc',
-		// 			'Jue',
-		// 			'Vie',
-		// 			'Sab',
-		// 			'Dom'	
-		// 			]
-		// 	}
-		// });
-    // }
+    componentDidMount() {
+      this.calendar();
+    }
 
     changeView = () => {
       this.props.changeView();
@@ -180,62 +127,26 @@ class Signup extends Component {
       }
     }
 
-    calendar(){
-    //   const Calender = document.querySelector('.datepicker');
-	  //  	M.Datepicker.init(Calender,{
-		// 	format:'dd/mmm/yyyy',
-		// 	i18n:{
-		// 		clear:'Limpiar',
-		// 		cancel:'Cancelar',
-		// 		done:'Aceptar',
-		// 		months:[
-		// 			'Enero',
-		// 			'Febrero',
-		// 			'Marzo',
-		// 			'Abril',
-		// 			'Mayo',
-		// 			'Junio',
-		// 			'Julio',
-		// 			'Agosto',
-		// 			'Septiembre',
-		// 			'Octubre',
-		// 			'Noviembre',
-		// 			'Diciembre'
-		// 			],
-		// 		monthsShort:[
-		// 					'Ene',
-		// 					'Feb',
-		// 					'Mar',
-		// 					'Abr',
-		// 					'May',
-		// 					'Jun',
-		// 					'Jul',
-		// 					'Agost',
-		// 					'Sept',
-		// 					'Oct',
-		// 					'Nov',
-		// 					'Dic'
-		// 					],
-		// 	    weekdays:[
-		// 				'Domingo',
-		// 				'Lunes',
-		// 				'Martes',
-		// 				'Miercoles',
-		// 				'Jueves',
-		// 				'Viernes',
-		// 				'Sabado'
-		// 				],
-		// 		weekdaysShort:[
-		// 			'Lun',
-		// 			'Mart',
-		// 			'Mierc',
-		// 			'Jue',
-		// 			'Vie',
-		// 			'Sab',
-		// 			'Dom'	
-		// 			]
-		// 	}
-		// })
+    calendar = () => {
+      // $(document).ready(function(){
+      //   $('.datepicker').datepicker();
+      // });
+
+      // const Calender = document.getElementById("datepicker");
+      // // var instance = M.Datepicker.getInstance(Calender);
+      // // instance.open();
+      // M.Datepicker.init(Calender, {
+      //   format:'dd/mmm/yyyy',
+      //   i18n:{
+      //     clear:'Limpiar',
+      //     cancel:'Cancelar',
+      //     done:'Aceptar',
+      //     months:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      //     monthsShort:['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Agost', 'Sept', 'Oct', 'Nov', 'Dic'],
+      //     weekdays:['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+      //     weekdaysShort:['Lun', 'Mart', 'Mierc', 'Jue', 'Vie', 'Sab', 'Dom']
+      //   }
+      // });
     }
 
     render() {

@@ -68,7 +68,7 @@
     <div id="root"></div>
     
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
@@ -86,7 +86,13 @@
       //   var instances = M.Datepicker.init(elems, options);
       // });
   
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+
       const Calender = document.getElementById("datepicker");
+      // var instance = M.Datepicker.getInstance(Calender);
+      // instance.open();
       M.Datepicker.init(Calender, {
         format:'dd/mmm/yyyy',
         i18n:{
