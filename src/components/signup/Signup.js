@@ -99,12 +99,12 @@ class Signup extends Component {
 
     signUpWithEmail = (event) => {
       event.preventDefault();
-      let name = _.thim(document.getElementById('name').value);
-      let lastname = _.thim(document.getElementById('lastname').value);
-      let username = _.thim(document.getElementById('username').value);
-      let email = _.thim(document.getElementById('email').value);
-      let password = _.thim(document.getElementById('password').value);
-      let verifyPassword = _.thim(document.getElementById('verifyPassword').value);
+      let name = _.trim(document.getElementById('name').value);
+      let lastname = _.trim(document.getElementById('lastname').value);
+      let username = _.trim(document.getElementById('username').value);
+      let email = _.trim(document.getElementById('email').value);
+      let password = _.trim(document.getElementById('password').value);
+      let verifyPassword = _.trim(document.getElementById('verifyPassword').value);
       
       if(_.isEqual(password, verifyPassword)) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
