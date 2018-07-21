@@ -79,5 +79,26 @@
     <script src="https://www.gstatic.com/firebase/5.2.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebase/5.2.0/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebase/init.js"></script>  -->
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems, options);
+      });
+  
+      const Calender = document.getElementById("datepicker");
+      M.Datepicker.init(Calender, {
+        format:'dd/mmm/yyyy',
+        i18n:{
+          clear:'Limpiar',
+          cancel:'Cancelar',
+          done:'Aceptar',
+          months:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+          monthsShort:['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Agost', 'Sept', 'Oct', 'Nov', 'Dic'],
+          weekdays:['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+          weekdaysShort:['Lun', 'Mart', 'Mierc', 'Jue', 'Vie', 'Sab', 'Dom']
+        }
+      });
+    </script>
   </body>
 </html>
