@@ -26,7 +26,7 @@ class UserSidebar extends Component {
               <footer className="footer-user-sidebar">
                 <hr className="hl" />
                 <div className="center-content">
-                  <div className>
+                  <div className="">
                     <p>Seguidos</p>
                     <p>34</p>
                   </div>
