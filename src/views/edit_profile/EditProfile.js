@@ -64,7 +64,7 @@ export default class EditProfile extends Component {
             <div className="EditProfile">
                 <Header />
             <div className="configuracion ">
-                <div className="opciones">
+                {/* <div className="opciones">
                     <div className="opcion1">
                     <ul>
                         <li><a href="#">Editar perfil</a></li>
@@ -75,6 +75,9 @@ export default class EditProfile extends Component {
                         <li><a href="/change_password">Cambiar contraseña</a></li>
                     </ul>
                     </div>
+                </div> */}
+                <div className="nombre-usuario">
+                    <p>{this.state.displayName}</p>
                 </div>
                 <div className="cambiar-info">
                     <div className="form-group div-foto">

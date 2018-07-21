@@ -14,7 +14,7 @@
     background-color: rgba(255, 255, 255, 1);
     margin-bottom: 30px;
 }
-.opciones{
+/* .opciones{
     display: flex;
 }
 .opciones .opcion1 {
@@ -33,7 +33,15 @@
     color: #0D3B66;
     font-family: "AbeeZee";
     text-decoration: none;
+} */
+.configuracion .nombre-usuario p{
+    text-align: center;
+    font-size: 26px;
+    font-family: "AbeeZee";
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
+
 .configuracion .cambiar-info{
     padding-right: 30px;
     padding-left: 30px;

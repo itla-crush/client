@@ -23,16 +23,43 @@
 
 .in-container-right .datecalendario{
 	display: flex;
-	align-items: center;
+	justify-content: center;
 }
 .in-container-right .datecalendario input[type="text"]{
-	width: 50%;
 }
+.in-container-right .datecalendario .genero{
+    padding-bottom: 20px;
+}
+.in-container-right .datecalendario .genero .sexo{
+    font-family: "Ubuntu";
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 20px;
+    height: 40px;
+    border: solid 0px rgba(0, 0, 0, 0);
+}
+.in-container-right .datecalendario .genero .sexo:focus{
+    /* background-color: #18ab9d; */
+    outline: 0px;
+  
+}
+.in-container-right .datecalendario .genero .sexo option:focus{
+      /* background: #18ab9d; */
+}
+
 
 
 @media screen and (max-width: 535px) {
     .in-container-right .input-r {
        display: flex;
        flex-direction: column;
-   } 
+   }
+   .in-container-right .datecalendario{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    }
+    .in-container-right .datecalendario .genero{
+        width: 50%;
+        margin: auto;
+    }
 }

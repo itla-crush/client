@@ -128,7 +128,7 @@ class Signup extends Component {
 
     calendar(){
     //   const Calender = document.querySelector('.datepicker');
-		// M.Datepicker.init(Calender,{
+	  //  	M.Datepicker.init(Calender,{
 		// 	format:'dd/mmm/yyyy',
 		// 	i18n:{
 		// 		clear:'Limpiar',
@@ -182,7 +182,6 @@ class Signup extends Component {
 		// 			]
 		// 	}
 		// })
-      
     }
 
     render() {
@@ -206,15 +205,19 @@ class Signup extends Component {
                 </div>
                 
                 <div className="datecalendario">
-                   <input type="text" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
-                 </div>
+                  <div>
+                    <input type="text" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
+                  </div>
+                    <div className="col s12 m6 genero">
+                      <select className="browser-default sexo">
+                        <option value disabled selected>Sexo</option>
+                        <option className="opciones" value={1}>Hombre</option>
+                        <option className="opciones" value={2}>Mujer</option>
+                      </select>
+                    </div>
+                </div>
 
-                 <select className="gender">
-                    <option value="volvo">Hombre</option>
-                    <option value="saab">Mujer</option>
-                    <option value="saab">Mujer</option>
-                    <option value="saab">Mujer</option>
-                  </select>
+                 
 
                 {/* <div class=""> */}
                 <div className="boton">

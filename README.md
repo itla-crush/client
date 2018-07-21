@@ -10,6 +10,17 @@ git commit -m "first commit"
 git remote add origin https://github.com/itla-crush/client.git 
 git push -u origin master
 
+
+  -- Siempre que hagas cambios, haz esto --
+git add .
+git commit -m "Comentario"
+git push -u origin master
+
+
+-- Para ver cambios que ha hecho los otros programadores --
+git pull origin master
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
