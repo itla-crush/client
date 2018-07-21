@@ -16,16 +16,19 @@
 .in-container-right .input-r .dn { 
 	margin-right: 10px;
 }
+.in-container-right .input-r .nn { 
+	margin-right: 20px;
+}
 .in-container-right .sexo{
     display: flex;
 }
 
 .in-container-right .datecalendario{
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
 .in-container-right .datecalendario .dada{
-    width: 50%;
+    width: 70%;
 }
 .in-container-right .datecalendario input[type="text"]{
 }
@@ -36,7 +39,7 @@
     font-family: "Ubuntu";
     background-color: rgba(0, 0, 0, 0);
     font-size: 20px;
-    height: 40px;
+    height: 20px;
     border: solid 0px rgba(0, 0, 0, 0);
 }
 .in-container-right .datecalendario .genero .sexo:focus{
