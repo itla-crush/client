@@ -8,6 +8,11 @@
 .in-container-right h2 .stronge {
     font-size: 34px;
 }
+.in-container-right input[type="text"],
+.in-container-right input[type="email"],
+.in-container-right input[type="password"]{
+	margin-bottom: 15px;
+}
 
 .in-container-right .input-r {
 	display: flex;

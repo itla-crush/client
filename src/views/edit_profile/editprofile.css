@@ -58,7 +58,7 @@
     margin-bottom: 25px;
 }
 .configuracion .cambiar-info .form-group .foto-perfil img{
-    width: 80px;
+    width: 100px;
     border-radius: 125px;
     margin-right: 10px;
 }
@@ -85,6 +85,11 @@
 .configuracion .cambiar-info .form-group .entrada{
     width: 60%;
 }
+.configuracion .confirmacion .acciones{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
 .configuracion .confirmacion{ 
     display: flex;
     justify-content: center;
@@ -97,12 +102,28 @@
     border: none;
     border-radius: 7px;
 }
+.configuracion .confirmacion .btn-contra{
+    font-family: "AbeeZee";
+    color: #fff;
+    background-color: #3E92CC;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 12px;
+}
 .configuracion .confirmacion .btn:focus{
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 255);
 }
-.configuracion .confirmacion .btn:hover{
+.configuracion .confirmacion .btn-contra:focus{
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255);
+}
+.configuracion .confirmacion btn:hover{
     color: #fff;
 	background-color: #18ab9d;
+}
+.configuracion .confirmacion .btn-contra:hover{
+    color: #fff;
+    background: #1D84B5;
+    cursor: pointer;
 }
 .configuracion .confirmacion .btn:active{
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
@@ -143,4 +164,19 @@
     .configuracion .cambiar-info .form-group .editar-foto{
         text-align: center;
     }
+    .configuracion .confirmacion .acciones{
+        width: 90%; 
+    }
 }
+@media screen and (max-width: 522px){
+    .configuracion .confirmacion{
+        padding: 10px;
+    }
+    .configuracion .confirmacion .acciones{
+        display: block;
+    }
+    .configuracion .confirmacion .acciones .act{
+       width: auto;
+    }
+}
+

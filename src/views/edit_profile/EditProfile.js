@@ -118,7 +118,10 @@ export default class EditProfile extends Component {
                     </div>
                 </div>
                 <div className="confirmacion">
-                    <button type="button" className="btn">Guardar cambios</button>
+                    <div className="acciones">
+                        <div className="act"><button type="button" className="btn-contra">Cambiar contraseña</button></div>
+                        <div className="act"><button type="button" className="btn">Guardar cambios</button></div>
+                    </div>
                 </div>
             </div>
             </div>
