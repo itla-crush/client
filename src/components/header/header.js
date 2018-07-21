@@ -14,7 +14,7 @@ class Header extends Component {
             isSignedIn: false
         }
         this.stateAuth = this.stateAuth.bind(this);
-        this.setState();
+        this.stateAuth();
     }
 
     stateAuth = () => {
