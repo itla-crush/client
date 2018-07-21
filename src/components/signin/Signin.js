@@ -43,7 +43,7 @@ class Signin extends Component {
         // <div className="Signin">
             <div className="in-container-right">
               <h2><a href="#" onClick={this.noAction} className="stronge">Iniciar Sesion</a> / <a href="#" onClick={this.changeView}>Registrar</a></h2>
-              <form className="formulario" onSubmit={this.signInWithEmail}>
+              <form className="formulario form-1" onSubmit={this.signInWithEmail}>
                 <div className="input">
                   <i className="Large material-icons prefix">account_circle</i>
                   <input id="emailLogin" placeholder="Correo" type="email" className="validate" required />

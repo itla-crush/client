@@ -186,7 +186,7 @@ class Signup extends Component {
 
     render() {
       return (
-        <div className="Signup">
+        
             <div className="in-container-right">
               <h2><a href="#" onClick={this.changeView}>Iniciar Sesion</a> / <a href="#" onClick={this.noAction} className="stronge">Registrar</a></h2>
               <form className="formulario" onSubmit={this.signUpWithEmail}>
@@ -216,9 +216,6 @@ class Signup extends Component {
                       </select>
                     </div>
                 </div>
-
-                 
-
                 {/* <div class=""> */}
                 <div className="boton">
                     <button onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>
@@ -229,7 +226,6 @@ class Signup extends Component {
                 <button onClick={this.signInWithGoogle} className="btn2">Ingresar con Google</button>
               </div>
             </div>
-        </div>
       );
     }
   }
