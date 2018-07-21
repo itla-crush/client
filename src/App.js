@@ -49,7 +49,6 @@ class App extends Component {
     }
 // match.params.id
     render() {
-        console.log("APP b"+this.props.backgroundID);
         // let redirectToIndex_1;
         // let redirectToIndex_2;
         // let redirectIndex;
@@ -74,7 +73,7 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="App" style={{width: "100%;"}}>
+                <div className="App" style={{width: "100%"}}>
                     <Switch>
                         {/* {this.state.isSignedIn ? (<Redirect from="" exact="true" strict="true" to="/home" />) : (<Redirect from="" exact="true" strict="true" to="/index" />)}
                         {this.state.isSignedIn ? (<Redirect from="/" exact="true" strict="true" to="/home" />) : (<Redirect from="/" exact="true" strict="true" to="/index" />)}
@@ -82,8 +81,9 @@ class App extends Component {
                         {this.state.isSignedIn ? (<Route path='/profile' component={Profile} />) : (<Redirect from="/profile" exact="false" strict="false" to="/index" />)}
                         {this.state.isSignedIn ? (<Route path='/edit_profile' component={EditProfile} />) : (<Redirect from="/edit_profile" exact="false" strict="false" to="/index" />)}
                         {this.state.isSignedIn ? (<Route path='/change_password' component={ChangePassword} />) : (<Redirect from="/change_password" exact="false" strict="false" to="/index" />)} */}
-                        
-                        <Route path='/index' component={Landing} backgroundID={this.props.backgroundID} />
+                         
+                        {/* <Route path='/index' component={Landing} backgroundID={this.props.backgroundID} /> */}
+                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                         <Route path='/home' component={Home} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/edit_profile' component={EditProfile} />

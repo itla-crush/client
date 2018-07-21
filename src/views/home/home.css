@@ -312,9 +312,9 @@ body {
 }
 
 .textarea-comment { 
-    width: 91%;
-    max-width: 91%;
-    min-width: 91%;
+    width: 94%;
+    max-width: 94%;
+    min-width: 93%;
     resize: none;
     padding: 10px;
     margin: 0px;
@@ -328,18 +328,16 @@ body {
     overflow: hidden;
 }
 
-.form-comment button {
+/* .form-comment button {
     margin: 0px;
     padding-right: 15px;
     padding-top: 10px;
-    /*padding-top: 0px;*/
-    /*padding-bottom: 10px;*/
     background-color: rgba(0, 0, 0, 0);
     border: none;
     box-sizing: border-box;
     position: relative;
     float: right;
-}
+} */
 
 .icon-comment {
     font-size: 25px;
@@ -351,9 +349,13 @@ body {
     margin-right: 5px;
 }
 
-.form-comment button img {
-    width: 25px;
-    height: 25px;
+
+
+.form-comment i {
+    /* width: 25px;
+    height: 25px; */
+    vertical-align: super;
+    cursor: pointer;
 }
 
 /*-------------------- /POST -----------------------------------------------------------------------*/

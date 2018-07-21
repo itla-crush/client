@@ -76,9 +76,9 @@ class Newsfeed extends Component {
             <div className="div-form-comment">
                 <hr className="hl" />
                 <form className="form-comment">
-                <textarea id="textareaComment" className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
-                {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
-                {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
+                  <textarea id="textareaComment" className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
+                  {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
+                  {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
                 </form>
             </div>
           </div>

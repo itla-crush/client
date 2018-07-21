@@ -210,7 +210,7 @@ class Signup extends Component {
                   </div>
                     <div className="col s12 m6 genero">
                       <select className="browser-default sexo">
-                        <option value disabled selected>Sexo</option>
+                        <option value disabled defaultValue>Sexo</option>
                         <option className="opciones" value={1}>Hombre</option>
                         <option className="opciones" value={2}>Mujer</option>
                       </select>
