@@ -33,11 +33,12 @@ class Landing extends Component {
 
     addMaterialize = () => {
         var pre = document.createElement('pre');
-        pre.innerHTML = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">';	
+        pre.innerHTML = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
           
         document.body.style.backgroundImage = `url(img/${this.props.backgroundID || 4}.jpg)`; 
-        document.querySelector("head").innerHTML += '<style>body{ height: 100vh; }</style><script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>'; 
+        document.querySelector("head").innerHTML += '<style>body{ height: 100vh; }</style>'; 
+        // document.querySelector("head").innerHTML += '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>'; 
     }
 
     render() {
