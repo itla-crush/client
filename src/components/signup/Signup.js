@@ -205,7 +205,7 @@ class Signup extends Component {
                 </div>
                 
                 <div className="datecalendario">
-                  <div>
+                  <div className="dada">
                     <input type="text" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
                   </div>
                     <div className="col s12 m6 genero">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // Components
-import Header from '../../components/header/Header';
+import Header from '../../components/header/header';
 import UserSidebar from '../../components/user_sidebar/UserSidebar';
 import CreatePost from '../../components/create_post/CreatePost';
 import Newsfeed from '../../components/newsfeed/NewsFeed';

@@ -1,6 +1,4 @@
-.in-container-right h2{
-    margin-bottom: 20px;
-}
+
 .in-container-right h2 .stronge {
     font-size: 34px;
 }
@@ -24,7 +22,10 @@
 
 .in-container-right .datecalendario{
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+}
+.in-container-right .datecalendario .dada{
+    width: 50%;
 }
 .in-container-right .datecalendario input[type="text"]{
 }
