@@ -11,7 +11,7 @@ class ChatSidebar extends Component {
       return (
         <aside className="right-aside center-content">
           <section>
-            <div className>
+            <div className="">
               <h4>Chat Online!</h4>
               {/* Chat Users */}
               <div className="chatOrderedList">
@@ -19,7 +19,7 @@ class ChatSidebar extends Component {
                   <ul className="list-unstyled">
                     {/* Each User Chat */}
                     <li className="li-each-chat">
-                      <a className href="#">
+                      <a className="" href="#">
                         <div className="div-chat-content center-content">
                           <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
                             <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
@@ -32,7 +32,7 @@ class ChatSidebar extends Component {
                       </a>
                     </li>
                     <li className="li-each-chat">
-                      <a className href="#">
+                      <a className="" href="#">
                         <div className="div-chat-content center-content">
                           <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
                             <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
@@ -44,7 +44,7 @@ class ChatSidebar extends Component {
                       </a>
                     </li>
                     <li className="li-each-chat">
-                      <a className href="#">
+                      <a className="" href="#">
                         <div className="div-chat-content center-content">
                           <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
                             <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />

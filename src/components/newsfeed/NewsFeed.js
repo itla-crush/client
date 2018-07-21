@@ -50,8 +50,8 @@ class Newsfeed extends Component {
           </div>
           <div className="div-footer"> {/* Pie Del Post */}
             <section className="section-like-comment">
-              <a className href="#"><i className="far fa-heart icon-post" /></a>
-              <a className href="#"><i className="far fa-comment icon-post" /></a>
+              <a className="" href="#"><i className="far fa-heart icon-post" /></a>
+              <a className="" href="#"><i className="far fa-comment icon-post" /></a>
             </section>
             <section> {/* Cantidad Me Gusta del Post */}
               <div className="div-likes">
@@ -62,8 +62,8 @@ class Newsfeed extends Component {
               <ul className="list-unstyled">
                 {
                   this.props.data.comments ? (
-                    this.props.data.comments.map(comment => 
-                        <li className=""> 
+                    this.props.data.comments.map((comment, key) => 
+                        <li key={key} className=""> 
                             <a href={`profile/${comment.uid}`}>{comment.username}</a><span>{comment.text}</span>
                         </li>
                         )
