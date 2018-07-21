@@ -60,7 +60,8 @@
 }
 .publicacion-amor .publicar{
     padding: 5px;
-    margin-top: 5px;
+    margin:auto;
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }

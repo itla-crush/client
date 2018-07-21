@@ -20,16 +20,6 @@ class CreatePost extends Component {
             <div className="tema"> <h6>Para</h6> </div>
             <div className="destino"> <input type="text" className="" /> </div>
           </div>
-        {/* <div className="seleccion">
-          <div className="tema"><h6>¿Quienes pueden ver esto?</h6></div>
-          <div className="input-group">
-            <div className="form-check">
-              <div><input className="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" defaultValue="option1" aria-label="..." />Todos</div>
-              <div><input className="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio2" defaultValue="option" aria-label="..." />Registrados</div> 
-            </div>
-          </div>
-        </div> */}
-        {/* </div> */}
         <div className="form-group">
           <textarea className="form-control text" placeholder="Descripcion..." id="comment" defaultValue={""} />
           <div class="form-check">
