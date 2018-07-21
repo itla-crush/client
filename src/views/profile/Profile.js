@@ -10,11 +10,14 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
+            user: "@invitado",
             uid: null,
-            displayName: null,
+            displayName: "Invitado",
             email: null,
             photoURL: null,
+            newsFeedCount: null,
+            privatePostCount: null,
+            followers: null
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
@@ -36,10 +39,6 @@ export default class Profile extends Component {
                 isAnonymous = user.isAnonymous;
                 uid = user.uid;
                 providerData = user.providerData;
-                console.log('getIdToken');
-                console.log(user.getIdToken);
-                console.log('getIdTokenResult');
-                console.log(user.getIdTokenResult);
               } else {
                   // Temporal, No Va Asi
                 displayName = 'Invitado';
@@ -68,72 +67,71 @@ export default class Profile extends Component {
 
        <div className="Profile"> 
            <Header />
-        <div className="pf">
-            <div className="foto">
-            <img src={this.state.photoURL} alt={this.state.displayName} />
+            <div className="pf">
+                <div className="foto">
+                    <img src={this.state.photoURL} alt={this.state.displayName} />
+                </div>
+                <section className="informacion ">
+                    <div className="datos-conf">
+                        <div className="nombre-usuario">
+                            <h2>{this.state.displayName}</h2>
+                            <p className>{`@${this.state.displayName}`}</p>
+                        </div>
+                        <div className="editar">
+                            <a href="/edit_profile">Editar Perfil</a>
+                        </div>
+                    </div>
+                    <div className="estadisticas">
+                        <div className="realizados">
+                            <p>Publicaciones</p>
+                            <h5>{this.state.newsFeedCount || "0"}</h5>
+                        </div>
+                        <div className="privado">
+                            <p>Privados</p>
+                            <h5>{this.state.privatePostCount || "0"}</h5>
+                        </div>
+                        <div className="seguidos">
+                            <p>Seguidos</p>
+                            <h5>{this.state.followers || "0"}</h5>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <section className="informacion ">
-                <div className="datos-conf">
-                <div className="nombre-usuario">
-                    <h2>{this.state.displayName}</h2>
-                    <p className>{`@${this.state.displayName}`}</p>
-                </div>
-                <div className="editar">
-                    <a href="/edit_profile">Editar Perfil</a>
-                </div>
-                </div>
-                <div className="estadisticas">
-                <div className="realizados">
-                    <p>Publicaciones</p>
-                    <h5>7</h5>
-                </div>
-                <div className="privado">
-                    <p>Privados</p>
-                    <h5>3</h5>
-                </div>
-                <div className="seguidos">
-                    <p>Seguidos</p>
-                    <h5>26</h5>
-                </div>
-                </div>
-            </section>
-        </div>
 
-        <div>
-        {/* Segunda vista de usuario */}
-        <div className="pf-segundo" id="pf-segundo">
-        <div className="foto">
-            <img className src="../img/modelo-default.jpg" />
+            {/* Segunda vista de usuario */}
+            {/* <div>
+                <div className="pf-segundo" id="pf-segundo">
+                    <div className="foto">
+                        <img className src="../img/modelo-default.jpg" />
+                    </div>
+                    <section className="informacion ">
+                        <div className="datos-conf">
+                            <div className="nombre-usuario">
+                                <h2>Dalton Tejada Cortorreal</h2>
+                                <p className>@MegadaltonOT</p>
+                            </div>
+                            <div className="editar">
+                                <a href="/edit_profile">Editar Perfil</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div className="estadist-segundo">
+                    <div className="realizados">
+                        <h4>7</h4>
+                        <p>Publicaciones</p><p>
+                        </p></div>
+                    <div className="privado">
+                        <h4>3</h4>
+                        <p>Privados</p> 
+                    </div>
+                    <div className="seguidos">
+                        <h4>26</h4>
+                        <p>Seguidos</p> 
+                    </div>
+                </div>
+            </div> */}
         </div>
-        <section className="informacion ">
-            <div className="datos-conf">
-            <div className="nombre-usuario">
-                <h2>Dalton Tejada Cortorreal</h2>
-                <p className>@MegadaltonOT</p>
-            </div>
-            <div className="editar">
-                <a href="#">Editar Perfil</a>
-            </div>
-            </div>
-        </section>
-        </div>
-        <div className="estadist-segundo">
-        <div className="realizados">
-            <h4>7</h4>
-            <p>Publicaciones</p><p>
-            </p></div>
-        <div className="privado">
-            <h4>3</h4>
-            <p>Privados</p> 
-        </div>
-        <div className="seguidos">
-            <h4>26</h4>
-            <p>Seguidos</p> 
-        </div>
-        </div>
-        </div>
-    </div>
-        
-     );
+        );
     }
 }

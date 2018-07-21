@@ -32,13 +32,13 @@ class ProfileWidget extends Component {
                   </div>
                   <div className="profile-widget-content">
                     <div className="profile-widget-info">
-                      <div className="profile-widget-info-content" style={{width: '50%'}}>
-                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Edad:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>19 años</span></p>
-                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Sexo:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Hombre</span></p>
+                      <div className="profile-widget-info-content" style={{width: '38%'}}>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Edad:</span> <span style={{color: 'rgba(0, 0, 0, 0.87)'}}>19 años</span></p>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Sexo:</span> <span style={{color: 'rgba(0, 0, 0, 0.87)'}}>Hombre</span></p>
                       </div>
-                      <div className="profile-widget-info-content" style={{width: '50%'}}>
-                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Info:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Respuesta</span></p>
-                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Info:</span> <span style={{color: 'rgba(0, 0, 0, 0.85)'}}>Respuesta</span></p>
+                      <div className="profile-widget-info-content" style={{width: '62%'}}>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Ciudad:</span> <span style={{color: 'rgba(0, 0, 0, 0.87)'}}>Santo Domingo</span></p>
+                        <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Contacto:</span> <span style={{color: 'rgba(0, 0, 0, 0.87)'}}>(809) 555-7777</span></p>
                       </div>
                     </div>
                     {/* <div className="below">
@@ -61,9 +61,9 @@ class ProfileWidget extends Component {
                     </div> */}
                   </div>
                   <div className="profile-widget-footer center-content">
-                    <button className="btn-o"><i class="fas fa-user-plus"></i> Seguir</button>
-                    <button className="btn-o"><i class="fas fa-envelope"></i> Mensaje</button>
-                    <button className="btn-o"><i class="fas fa-pencil-alt"></i> Declaración</button>
+                    <button className="btn-o"><i className="fas fa-user-plus"></i> Seguir</button>
+                    <button className="btn-o"><i className="fas fa-envelope"></i> Mensaje</button>
+                    <button className="btn-o"><i className="fas fa-pencil-alt"></i> Declaración</button>
                   </div>
                 </div>
 

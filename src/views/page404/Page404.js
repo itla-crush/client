@@ -8,8 +8,8 @@ import ProfileWidget from '../../components/profile_widget/ProfileWidget';
 class Page404 extends Component {
     constructor(props) {
       super(props);
-      this.addBootstrap4ForModals = this.addBootstrap4ForModals.bind(this);
-      this.addBootstrap4ForModals();
+      this.addBootstrap4 = this.addBootstrap4.bind(this);
+      this.addBootstrap4();
     }
 
     addBootstrap4 = () => {
@@ -23,9 +23,7 @@ class Page404 extends Component {
         <div className="Page404">
           {/* <p>Page404</p> */}
           {/* Button to Open the Modal */} 
-          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Open modal
-          </button>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>
           {/* The Modal */}
           <ProfileWidget />
         </div>
