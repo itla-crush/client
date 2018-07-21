@@ -20,9 +20,63 @@ class Signup extends Component {
       this.generateDisplayName = this.generateDisplayName.bind(this);
     }
 
-    componentDidMount() {
-      // alert(_.now()+'');
-    }
+    // componentDidMount() {
+    //   const Calender = document.querySelector('.datepicker');
+	  //  	M.Datepicker.init(Calender,{
+		// 	format:'dd/mmm/yyyy',
+		// 	i18n:{
+		// 		clear:'Limpiar',
+		// 		cancel:'Cancelar',
+		// 		done:'Aceptar',
+		// 		months:[
+		// 			'Enero',
+		// 			'Febrero',
+		// 			'Marzo',
+		// 			'Abril',
+		// 			'Mayo',
+		// 			'Junio',
+		// 			'Julio',
+		// 			'Agosto',
+		// 			'Septiembre',
+		// 			'Octubre',
+		// 			'Noviembre',
+		// 			'Diciembre'
+		// 			],
+		// 		monthsShort:[
+		// 					'Ene',
+		// 					'Feb',
+		// 					'Mar',
+		// 					'Abr',
+		// 					'May',
+		// 					'Jun',
+		// 					'Jul',
+		// 					'Agost',
+		// 					'Sept',
+		// 					'Oct',
+		// 					'Nov',
+		// 					'Dic'
+		// 					],
+		// 	    weekdays:[
+		// 				'Domingo',
+		// 				'Lunes',
+		// 				'Martes',
+		// 				'Miercoles',
+		// 				'Jueves',
+		// 				'Viernes',
+		// 				'Sabado'
+		// 				],
+		// 		weekdaysShort:[
+		// 			'Lun',
+		// 			'Mart',
+		// 			'Mierc',
+		// 			'Jue',
+		// 			'Vie',
+		// 			'Sab',
+		// 			'Dom'	
+		// 			]
+		// 	}
+		// });
+    // }
 
     changeView = () => {
       this.props.changeView();
@@ -206,7 +260,7 @@ class Signup extends Component {
                 
                 <div className="datecalendario">
                   <div className="dada">
-                    <input type="text" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
+                    <input type="text" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
                   </div>
                     <div className="col s12 m6 genero">
                       <select className="browser-default sexo">
