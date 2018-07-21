@@ -10,7 +10,7 @@ class CreatePost extends Component {
 
     render() {
         return (
-            <div className="" style={{width: '90%', margin: '0 auto', marginBottom: 35}}>
+          <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
             <div className="card publicacion-amor">
         <div className="card-body">
           <label>Hacer Confesion</label>

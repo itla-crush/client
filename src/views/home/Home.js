@@ -106,6 +106,7 @@ class Home extends Component {
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section>
+                    <CreatePost />
                     <div>
                       {/* <Newsfeed />
                       <Newsfeed />
