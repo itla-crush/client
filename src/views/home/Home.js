@@ -111,7 +111,7 @@ class Home extends Component {
                       {/* <Newsfeed />
                       <Newsfeed />
                       <Newsfeed /> */}
-                      {datas.map(data => <Newsfeed data={data} />)}
+                      {datas.map((data, key) => <Newsfeed key={key} data={data} />)}
                     </div>
                   </section>
                 </main>
