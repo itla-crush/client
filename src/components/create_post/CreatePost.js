@@ -22,7 +22,7 @@ class CreatePost extends Component {
           </div>
         <div className="form-group">
           <textarea className="form-control text" placeholder="Descripcion..." id="comment" defaultValue={""} />
-          <div class="form-check">
+          <div className="form-check">
             <input type="checkbox" className="check" id="exampleCheck1"/>
             <label className="form-check-label" for="exampleCheck1">Publico</label>
           </div>
