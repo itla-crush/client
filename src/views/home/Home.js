@@ -69,6 +69,35 @@ class Home extends Component {
     }
 
     render() {
+      // this.setState({
+        var data = {
+          fromUsername: "@username",
+          toUsername: "@anonimo",
+          photoUrl: null,
+          date: {
+            day: "17", 
+            month: "julio",
+            year: "2018"
+          },
+          time: "15:19",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend sem a dui rutrum mattis. Nullam vitae massa ullamcorper, sollicitudin mauris quis, scelerisque purus. Curabitur a efficitur nisl, nec porta elit. Nullam a tellus quis nunc porta vulputate. Quisque suscipit, quam sed dapibus pharetra, orci tortor hendrerit lacus, sed blandit quam arcu ut tortor. Mauris nibh justo, molestie ac erat porttitor, volutpat sodales metus.",
+          imageUrl: "https://capitol.texas.gov/images/backgrounds/capitolc_1024.jpg",
+          likes: "1,234",
+          comments: [
+            {
+              uid: '@Username1',
+              username: '@Username1',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend sem a dui rutrum mattis.'
+            },
+            {
+              uid: '@Username1',
+              username: '@Username2',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend sem a dui rutrum mattis. Nullam vitae massa ullamcorper, sollicitudin mauris quis, scelerisque purus. Curabitur a efficitur nisl, nec porta elit. Nullam a tellus quis nunc porta vulputate.'
+            }
+          ]
+        };
+        var datas = [data, data, data];
+      // });
       return (
         <div className="Home">
             <Header />
@@ -78,10 +107,10 @@ class Home extends Component {
                 <main className="main center-content">
                   <section>
                     <div>
+                      {/* <Newsfeed />
                       <Newsfeed />
-                      <Newsfeed />
-                      <Newsfeed />
-                      {/* {datas.map(data => <Post data={data} />)} */}
+                      <Newsfeed /> */}
+                      {datas.map(data => <Newsfeed data={data} />)}
                     </div>
                   </section>
                 </main>
