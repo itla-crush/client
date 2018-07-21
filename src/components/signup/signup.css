@@ -25,7 +25,8 @@
 
 .in-container-right .datecalendario{
 	display: flex;
-	justify-content: center;
+    justify-content: center;
+    align-items: center;
 }
 .in-container-right .datecalendario .dada{
     width: 70%;
@@ -33,13 +34,13 @@
 .in-container-right .datecalendario input[type="text"]{
 }
 .in-container-right .datecalendario .genero{
-    padding-bottom: 20px;
+    height: 30px;
 }
 .in-container-right .datecalendario .genero .sexo{
     font-family: "Ubuntu";
     background-color: rgba(0, 0, 0, 0);
-    font-size: 20px;
-    height: 20px;
+    font-size: 19px;
+    height: 30px;
     border: solid 0px rgba(0, 0, 0, 0);
 }
 .in-container-right .datecalendario .genero .sexo:focus{
