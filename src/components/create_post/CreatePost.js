@@ -45,7 +45,8 @@ class CreatePost extends Component {
                 </div>
               </div>
               <div className="publicar">
-                <div><button type="file" className="botons upload">Subir foto</button></div>
+                <div><input type="file" className="botons upload" accept="image/png, image/jpeg" /></div>
+                {/* <div><button type="file" className="botons upload">Subir foto</button></div> */}
                 <div><button className="botons public">Publicar</button></div>
               </div>
             </div>
