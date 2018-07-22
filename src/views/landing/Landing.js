@@ -7,6 +7,8 @@ import Welcome from '../../components/welcome/Welcome';
 import Signin from '../../components/signin/Signin';
 // eslint-disable-next-line
 import Signup from '../../components/signup/Signup';
+// eslint-disable-next-line
+import ForgottenPassword from '../../components/forgotten_password/ForgottenPassword';
 
 // Assets
 import './landing.css';
@@ -57,6 +59,7 @@ class Landing extends Component {
                     )}
                 </div>
             </div>
+            <ForgottenPassword />
         </div>
       );
     }

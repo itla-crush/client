@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // Assets
 import './signin.css';
+import './modalpassword.css';
 import '../../css/signin_signup.css';
 
 class Signin extends Component {
@@ -15,15 +16,13 @@ class Signin extends Component {
       this.signInWithEmail = this.signInWithEmail.bind(this);
       this.handleGuest = this.handleGuest.bind(this);
       this.generatePassword = this.generatePassword.bind(this);
-      console.log(this.generatePassword());
     }
 
     generatePassword = () => {
       let chars = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
       let password = "";
-      for (let i=0; i<16; i++) password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+      for (let i = 0; i < 16; i++) password += chars.charAt(Math.floor(Math.random()*chars.length)); 
       return password;
-      // console.log(password);
     }
     
     changeView = () => {
@@ -73,7 +72,7 @@ class Signin extends Component {
               </form>
               <div className="olvidar">
                 <div className="olvidar-2">
-                  <a href="/forgotpassword">¿Olvidaste tu contraseña?</a>
+                  <a href="#" data-toggle="modal" data-target="#myModalPassword" onClick={e => e.preventDefault}>¿Olvidaste tu contraseña?</a>
                 </div>
               </div>
             </div>
