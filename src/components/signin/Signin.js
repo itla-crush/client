@@ -14,6 +14,16 @@ class Signin extends Component {
       this.noAction = this.noAction.bind(this);
       this.signInWithEmail = this.signInWithEmail.bind(this);
       this.handleGuest = this.handleGuest.bind(this);
+      this.generatePassword = this.generatePassword.bind(this);
+      console.log(this.generatePassword());
+    }
+
+    generatePassword = () => {
+      let chars = "abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789";
+      let password = "";
+      for (let i=0; i<16; i++) password += chars.charAt(Math.floor(Math.random()*chars.length)); 
+      return password;
+      // console.log(password);
     }
     
     changeView = () => {
