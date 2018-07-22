@@ -63,7 +63,7 @@ class Signin extends Component {
               </form>
               <div className="olvidar">
                 <div className="olvidar-2">
-                  <a href="#">¿Olvidaste tu contraseña?</a>
+                  <a href="/forgotpassword">¿Olvidaste tu contraseña?</a>
                 </div>
               </div>
             </div>

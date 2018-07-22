@@ -8,6 +8,7 @@ import Landing from '../views/landing/Landing';
 import Profile from '../views/profile/Profile';
 import EditProfile from '../views/edit_profile/EditProfile';
 import Page404 from '../views/page404/Page404';
+// import Forgotpassword from '../components/forgotpassword/Forgotpassword';
 
 const AppRoute = () => {
     <BrowserRouter>
@@ -17,6 +18,7 @@ const AppRoute = () => {
         <Switch>
             <Route path='/home' component={Home} />
             <Route path='/index' component={Landing} />
+            {/* <Route path='/forgotpassword' component={Forgotpassword} /> */}
             <Route path='/profile/:id' component={Profile} />
             <Route path='/edit_profile/:id' component={EditProfile} />
             {/* <Route path='/edit_profile?:id' component={EditProfile} /> */}

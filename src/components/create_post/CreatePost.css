@@ -33,7 +33,12 @@
 }
 .publicacion-amor .destinatario input[type="text"]:active{
 
-     border-style: none;
+    border: 0px solid #000;
+    border-style: none;
+}
+.publicacion-amor .destinatario input[type="text"]:focus{
+    border: 0px solid #000;
+    border-style: none;
 }
 .publicacion-amor .destinatario .tema{
     width: 10%;
