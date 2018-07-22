@@ -73,7 +73,7 @@ header .nav-content .iconos .navbar-nav li a{
     }
 }
 @media screen and (max-width: 522px) {
-    .container {
+    .nav-content .container {
          height: auto;
     }
     .navbar .container .lg{
@@ -90,5 +90,28 @@ header .nav-content .iconos .navbar-nav li a{
     .navbar .container .iconos{
         margin-bottom: 7px;
     }
-
 }
+/* @media screen and (max-width: 780px) {
+    header .nav-content .iconos .navbar-nav {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        height: 80px;
+        padding-top: 10px;
+    }
+    .nav-content .search .text-search {
+        margin: 15px 10px 0;
+        min-width: 200px;
+        height: 40px;
+    }
+    .nav-content .lg,
+    .nav-content .search,
+    .nav-content .iconos {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+} */

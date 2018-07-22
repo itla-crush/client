@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // Components
-import Header from '../../components/header/header';
+import Header from '../../components/header/Header';
 
 import './editprofile.css';
 
@@ -13,6 +13,8 @@ export default class EditProfile extends Component {
             user: null,
             uid: null,
             displayName: null,
+            name: null,
+            lastname: null,
             username: null,
             email: null,
             photoURL: null,
@@ -28,15 +30,34 @@ export default class EditProfile extends Component {
 
     getUser = () => {
         firebase.auth().onAuthStateChanged(user => {
-            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
+            var displayName, username, name, lastname, email, emailVerified, photoURL, isAnonymous, uid, providerData;
             if (user) {
-                displayName = user.displayName;
-                email = user.email;
-                emailVerified = user.emailVerified;
-                photoURL = user.photoURL;
-                isAnonymous = user.isAnonymous;
-                uid = user.uid;
-                providerData = user.providerData;
+                firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
+                    snapshot = snapshot.val();
+                    displayName = snapshot.displayName;
+                    username = snapshot.username;
+                    name = snapshot.name;
+                    lastname = snapshot.lastname;
+                    email = snapshot.email;
+                    emailVerified = snapshot.emailVerified;
+                    photoURL = snapshot.photoURL;
+                    isAnonymous = snapshot.isAnonymous;
+                    uid = snapshot.uid;
+                    providerData = snapshot.providerData;
+                    this.setState({
+                        user: user,
+                        username: username,
+                        name: name,
+                        lastname: lastname,
+                        uid: uid,
+                        displayName: displayName,
+                        email: email,
+                        photoURL: photoURL,
+                  });
+                })
+                .catch(e => {
+                    console.log(`Code: ${e.code} Message: ${e.message}`);
+                });
               } else {
                   // Temporal, No Va Asi
                 displayName = 'Invitado';
@@ -44,13 +65,7 @@ export default class EditProfile extends Component {
                 emailVerified = false;
                 photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
               }
-              this.setState({
-                  user: user,
-                  uid: uid,
-                  displayName: displayName,
-                  email: email,
-                  photoURL: photoURL,
-            });
+              
         });
     }
 
@@ -78,12 +93,12 @@ export default class EditProfile extends Component {
                     </div>
                 </div> */}
                 <div className="nombre-usuario">
-                    <p>{this.state.displayName}</p>
+                    <p>{this.state.displayName || ''}</p>
                 </div>
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src={this.state.photoURL} alt={this.state.displayName} />
+                        <img src={this.state.photoURL} alt={this.state.displayName || ''} />
                     </div>
                     <div className="editar-foto">
                         <p>{this.state.displayName}</p>
@@ -91,30 +106,30 @@ export default class EditProfile extends Component {
                     </div>
                     </div>
                     <div className="form-group">
-                    <div className="info"><label htmlFor className>Nombre</label></div>
+                    <div className="info"><label>Nombre</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" id placeholder="Nombre" value={this.state.displayName} />
+                        <input type="text" className="form-control" placeholder="Nombre" value={this.state.name || ''} />
                     </div>
                     </div>
                     <div className="form-group">
-                    <div className="info"><label htmlFor className>Apellidos</label></div>
+                    <div className="info"><label>Apellidos</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" id placeholder="Apellidos" value={this.state.displayName} />
+                        <input type="text" className="form-control" placeholder="Apellidos" value={this.state.lastname || ''} />
                     </div>
                     </div>
                     <div className="form-group">
-                    <div className="info"><label className htmlFor>Nombre de usuario</label></div>
+                    <div className="info"><label>Nombre de usuario</label></div>
                     <div className="input-group entrada">
                         <div className="input-group-prepend">
-                        <div className="input-group-text">@</div>
+                            <div className="input-group-text">@</div>
                         </div>
-                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.displayName} />
+                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.username || ''} />
                     </div>
                     </div>
                     <div className="form-group">
-                    <div className="info"><label className>Correo</label></div>
+                    <div className="info"><label>Correo</label></div>
                     <div className="entrada">
-                        <input type="email" className="form-control" id placeholder="Correo" value={this.state.email} />
+                        <input type="email" className="form-control" placeholder="Correo" value={this.state.email || ''} />
                     </div>
                     </div>
                 </div>

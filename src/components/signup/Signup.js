@@ -151,46 +151,45 @@ class Signup extends Component {
 
     render() {
       return (
-        
-            <div className="in-container-right">
-              <h2><a href="#" onClick={this.changeView}>Iniciar Sesion</a> / <a href="#" onClick={this.noAction} className="stronge">Registrar</a></h2>
-              <form className="formulario" onSubmit={this.signUpWithEmail}>
+        <div className="in-container-right">
+          <h2 style={{marginBottom: "30px"}}><a href="#" onClick={this.changeView}>Iniciar Sesion</a> / <a href="#" onClick={this.noAction} className="stronge">Registrar</a></h2>
+          <form className="formulario" onSubmit={this.signUpWithEmail}>
 
-                <div className="input-r">
-                    <input id="name" className="dn" placeholder="Nombre" type="text" />
-                    <input id="lastname" placeholder="Apellidos" type="text" className="validate" />	
-                </div>
-
-                <input id="username" placeholder="Nombre de usuario" type="text" className="validate" />
-                <input id="email" placeholder="Correo" type="email" className="validate" />
-
-                <div className="input-r">
-                    <input id="password"className="dn" placeholder="Contraseña" type="password" className="validate" />
-                    <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
-                </div>
-                
-                <div className="datecalendario">
-                  <div className="dada">
-                    <input type="text" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
-                  </div>
-                    <div className="col s12 m6 genero">
-                      <select className="browser-default sexo">
-                        <option value disabled defaultValue>Sexo</option>
-                        <option className="opciones" value={1}>Hombre</option>
-                        <option className="opciones" value={2}>Mujer</option>
-                      </select>
-                    </div>
-                </div>
-                {/* <div class=""> */}
-                <div className="boton">
-                    <button onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>
-                </div>
-                {/* </div> */}
-              </form>
-              <div className="boton">
-                <button onClick={this.signInWithGoogle} className="btn2">Ingresar con Google</button>
-              </div>
+            <div className="input-r">
+                <input id="name" className="dn" placeholder="Nombre" type="text" />
+                <input id="lastname" placeholder="Apellidos" type="text" className="validate" />	
             </div>
+
+            <input id="username" placeholder="Nombre de usuario" type="text" className="validate" />
+            <input id="email" placeholder="Correo" type="email" className="validate" />
+
+            <div className="input-r">
+                <input id="password"className="dn" placeholder="Contraseña" type="password" className="validate" />
+                <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
+            </div>
+            
+            <div className="datecalendario">
+              <div className="dada">
+                <input type="text" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
+              </div>
+                <div className="col s12 m6 genero">
+                  <select className="browser-default sexo">
+                    <option value disabled defaultValue>Sexo</option>
+                    <option className="opciones" value={1}>Hombre</option>
+                    <option className="opciones" value={2}>Mujer</option>
+                  </select>
+                </div>
+            </div>
+            {/* <div class=""> */}
+            <div className="boton">
+                <button onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>
+            </div>
+            {/* </div> */}
+          </form>
+          <div className="boton">
+            <button onClick={this.signInWithGoogle} className="btn2">Ingresar con Google</button>
+          </div>
+        </div>
       );
     }
   }
