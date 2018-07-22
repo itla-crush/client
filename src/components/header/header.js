@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
+import _ from 'lodash';
 
 // Components
 
@@ -15,6 +16,7 @@ class Header extends Component {
         }
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
+        this.handleSearchUser = this.handleSearchUser.bind(this);
     }
 
     stateAuth = () => {
@@ -31,6 +33,20 @@ class Header extends Component {
         });
     }
 
+    handleSearchUser = () => {
+        var searchUser = document.getElementById('search-user');
+        // console.log(data.value);
+        if(!_.isEmpty(_.trim(searchUser.value))) {
+            firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
+            .then(snapshot => {
+              console.log(snapshot.val() || 'Null Snapshot Val()');
+            })
+            .catch(e => {
+              console.log(`Code: ${e.code} Message: ${e.message}`);
+            });
+        }
+    }
+
     render() {
       return (
         <header>
@@ -42,8 +58,8 @@ class Header extends Component {
                     </Link>
                 </div>
                 <div className="search">
-                    <form action="#" method="POST" style={{paddingBottom: "15px"}}>
-                        <input type="text" className="form-control text-search" placeholder="Buscar" />
+                    <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
+                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" />
                     </form>
                 </div>
                 {/*Iconos del Menu*/}

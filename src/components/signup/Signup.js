@@ -59,7 +59,7 @@ class Signup extends Component {
           if(snapshot.val() === null) {
             this.writeUserData(res);
           } else {
-            firebase.database().ref('users/' + res.user.uid).set({
+            firebase.database().ref('users/' + res.user.uid).update({
               lastSignInTime: res.user.metadata.lastSignInTime || 'null'
             }, error => {
               console.log(error);

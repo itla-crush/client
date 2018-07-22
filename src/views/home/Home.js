@@ -19,6 +19,7 @@ class Home extends Component {
             user: null,
             uid: null,
             displayName: null,
+            username: null,
             email: null,
             photoURL: null,
         }
@@ -32,8 +33,9 @@ class Home extends Component {
 
     stateAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
-            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
+            var displayName, username, email, emailVerified, photoURL, isAnonymous, uid, providerData;
             if (user) {
+                username = user.username;
                 displayName = user.displayName;
                 email = user.email;
                 emailVerified = user.emailVerified;
@@ -48,6 +50,7 @@ class Home extends Component {
                 photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
               }
               this.setState({
+                  username: username,
                   user: user,
                   uid: uid,
                   displayName: displayName,
@@ -102,7 +105,7 @@ class Home extends Component {
         <div className="Home">
             <Header />
             <div className="container main-content">
-              <UserSidebar />
+              <UserSidebar photoUrl={this.state.photoURL} displayName={this.state.displayName} username={this.state.username} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section>

@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import firebase from 'firebase';
+import _ from 'lodash';
 
 // Assets
 import './CreatePost.css';
@@ -6,6 +8,21 @@ import './CreatePost.css';
 class CreatePost extends Component {
     constructor(props) {
         super(props);
+        this.handleSearchUser = this.handleSearchUser.bind(this);
+    }
+
+    handleSearchUser = () => {
+        var searchUser = document.getElementById('search-user');
+        // console.log(data.value);
+        if(!_.isEmpty(_.trim(searchUser.value))) {
+          firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
+          .then(snapshot => {
+            console.log(snapshot.val() || 'Null Snapshot Val()');
+          })
+          .catch(e => {
+            console.log(`Code: ${e.code} Message: ${e.message}`);
+          });
+        }
     }
 
     render() {
@@ -15,24 +32,24 @@ class CreatePost extends Component {
               <div className="card-body">
                 <label>Hacer Confesion</label>
               </div>
-          {/* <div class="destinatario-p"> */}
-          <div className="destinatario">
-            <div className="tema"> <h6>Para</h6> </div>
-            <div className="destino"> <input type="text" className="" /> </div>
-          </div>
-        <div className="form-group">
-          <textarea className="form-control text" placeholder="Descripcion..." id="comment" defaultValue={""} />
-          <div className="form-check">
-            <input type="checkbox" className="check" id="exampleCheck1"/>
-            <label className="form-check-label" htmlFor="exampleCheck1">Publico</label>
-          </div>
-        </div>
-        <div className="publicar">
-          <div><button className="botons upload">Subir foto</button></div>
-          <div><button className="botons public">Publicar</button></div>
-        </div>
-      </div>
+              {/* <div class="destinatario-p"> */}
+              <div className="destinatario">
+                <div className="tema"><h6>Para</h6></div>
+                <div className="destino"><input onChange={this.handleSearchUser} type="text" className="" /></div>
+              </div>
+              <div className="form-group">
+                <textarea className="form-control text" placeholder="Declaración..." id="comment" defaultValue={""} />
+                <div className="form-check">
+                  <input type="checkbox" className="check" id="exampleCheck1"/>
+                  <label className="form-check-label" htmlFor="exampleCheck1">Publico</label>
+                </div>
+              </div>
+              <div className="publicar">
+                <div><button type="file" className="botons upload">Subir foto</button></div>
+                <div><button className="botons public">Publicar</button></div>
+              </div>
             </div>
+          </div>
         )
     }
 }

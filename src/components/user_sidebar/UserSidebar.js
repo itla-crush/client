@@ -4,23 +4,23 @@ import React, { Component } from 'react';
 import './usersidebar.css';
 
 class UserSidebar extends Component {
-    constructor(props) {
-      super(props);
-    }
+    // constructor(props) {
+    //   super(props);
+    // }
     render() {
       return (
         <aside className="left-aside center-content">
           <section> 
             <div>
-              <h4>User Name</h4>
+              <h4>{this.props.displayName || 'Invitado'}</h4> 
               <div className="div-img-profile center-content">  {/* Contenedor de la Imagen de Perfil */}
                 <a href="#">
-                  <img className="img-profile-user" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" /> {/* Imagen */}
+                  <img alt="" className="img-profile-user" src={this.props.photoUrl || "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"} /> {/* Imagen */}
                 </a>
               </div>
               <div className="center-content">
                 <a className="username" href="#">
-                  <h5>@username</h5>
+                  <h5>{this.props.username || '@invitado'}</h5> 
                 </a>
               </div> 
               <footer className="footer-user-sidebar">

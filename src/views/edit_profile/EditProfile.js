@@ -13,6 +13,7 @@ export default class EditProfile extends Component {
             user: null,
             uid: null,
             displayName: null,
+            username: null,
             email: null,
             photoURL: null,
         }

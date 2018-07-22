@@ -133,3 +133,10 @@ var userId = firebase.auth().currentUser.uid;
     // ...
 });
 */
+
+export function searchUsers(userName) {
+    var reference = firebase.database.ref('users/').once('value').then((snapshot) => {
+        console.log(snapshot.val());
+        console.log(snapshot);
+    });
+}
