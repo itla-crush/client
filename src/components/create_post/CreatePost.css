@@ -1,7 +1,3 @@
-.CreatePost {
-
-}
-
 .publicacion-amor  {
     border-radius: 5px;
     /* background-color: rgba(255, 0, 43, 0.103); */
@@ -73,6 +69,7 @@
     width: 100%;
     border: none;
     padding: 10px 15px;
+    cursor: pointer;
 }
 .publicacion-amor .publicar .public{
     background: rgba(224, 5, 60, 0.911);
@@ -85,6 +82,8 @@
     font-family:"AbeeZee";
     border-radius: 7px;
     background-color: #3E92CC;
+    cursor: pointer;
+    text-align: center;
 }
 .publicacion-amor .publicar .upload:hover{
     color: #fff;
@@ -98,6 +97,13 @@
 }
 .publicacion-amor .publicar .upload:focus{
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 255)
+}
+.inputfile {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
 }
 /* .publicacion-amor .publicar .btn{
     font-family:"AbeeZee";

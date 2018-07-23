@@ -16,48 +16,20 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
-            uid: null,
+          user: {
             displayName: null,
+            photoUrl: null,
             username: null,
             email: null,
-            photoURL: null,
+            name: null,
+            lastname: null,
+            uid: null
+          }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
-        this.stateAuth = this.stateAuth.bind(this);
-        this.stateAuth();
         
         this.signOut = this.signOut.bind(this);
-    }
-
-    stateAuth = () => {
-        firebase.auth().onAuthStateChanged(user => {
-            var displayName, username, email, emailVerified, photoURL, isAnonymous, uid, providerData;
-            if (user) {
-                username = user.username;
-                displayName = user.displayName;
-                email = user.email;
-                emailVerified = user.emailVerified;
-                photoURL = user.photoURL;
-                isAnonymous = user.isAnonymous;
-                uid = user.uid;
-                providerData = user.providerData;
-              } else {
-                displayName = 'Invitado';
-                email = 'guest@gmail.com';
-                emailVerified = false;
-                photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
-              }
-              this.setState({
-                  username: username,
-                  user: user,
-                  uid: uid,
-                  displayName: displayName,
-                  email: email,
-                  photoURL: photoURL,
-            });
-        });
     }
 
     signOut = () => {
@@ -69,6 +41,12 @@ class Home extends Component {
         var pre = document.createElement('pre');
         pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
+    }
+
+    componentWillReceiveProps(nextProps) {
+      this.setState({
+        user: nextProps.user
+      });
     }
 
     render() {
@@ -105,11 +83,11 @@ class Home extends Component {
         <div className="Home">
             <Header />
             <div className="container main-content">
-              <UserSidebar photoUrl={this.state.photoURL} displayName={this.state.displayName} username={this.state.username} />
+              <UserSidebar photoUrl={this.state.user.photoURL || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} displayName={this.state.user.displayName || 'Invitado'} username={this.state.user.username || '@invitado'} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section>
-                    <CreatePost />
+                    { this.state.user.displayName && this.state.user.username ? (<CreatePost />) : ("") }
                     <div>
                       {/* <Newsfeed />
                       <Newsfeed />

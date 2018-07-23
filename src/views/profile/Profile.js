@@ -10,51 +10,25 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: "@invitado",
-            uid: null,
-            displayName: "Invitado",
+          user: {
+            displayName: null,
+            photoUrl: null,
+            username: null,
             email: null,
-            photoURL: null,
-            newsFeedCount: null,
-            privatePostCount: null,
-            followers: null
+            name: null,
+            lastname: null,
+            uid: null
+          }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
-        this.getUser = this.getUser.bind(this);
     }
 
-    componentWillMount() {
-        this.getUser();
-    }
-
-    getUser = () => {
-        firebase.auth().onAuthStateChanged(user => {
-            var displayName, email, emailVerified, photoURL, isAnonymous, uid, providerData;
-            if (user) {
-                displayName = user.displayName;
-                email = user.email;
-                emailVerified = user.emailVerified;
-                photoURL = user.photoURL;
-                isAnonymous = user.isAnonymous;
-                uid = user.uid;
-                providerData = user.providerData;
-              } else {
-                  // Temporal, No Va Asi
-                displayName = 'Invitado';
-                email = 'guest@gmail.com';
-                emailVerified = false;
-                photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
-              }
-              this.setState({
-                  user: user,
-                  uid: uid,
-                  displayName: displayName,
-                  email: email,
-                  photoURL: photoURL,
-            });
-        });
-    }
+    componentWillReceiveProps(nextProps) {
+      this.setState({
+        user: nextProps.user
+      });
+    } 
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
@@ -69,13 +43,13 @@ export default class Profile extends Component {
            <Header />
             <div className="pf">
                 <div className="foto">
-                    <img src={this.state.photoURL} alt={this.state.displayName} />
+                    <img src={this.state.user.photoURL} alt={this.state.user.displayName} />
                 </div>
                 <section className="informacion ">
                     <div className="datos-conf">
                         <div className="nombre-usuario">
-                            <h2>{this.state.displayName}</h2>
-                            <p>{`@${this.state.displayName}`}</p>
+                            <h2>{this.state.user.displayName}</h2>
+                            <p>{this.state.user.username}</p>
                         </div>
                         <div className="editar">
                             <a href="/edit_profile">Editar Perfil</a>
@@ -84,15 +58,15 @@ export default class Profile extends Component {
                     <div className="estadisticas">
                         <div className="realizados">
                             <p>Publicaciones</p>
-                            <h5>{this.state.newsFeedCount || "0"}</h5>
+                            <h5>{this.state.user.newsFeedCount || "0"}</h5>
                         </div>
                         <div className="privado">
                             <p>Privados</p>
-                            <h5>{this.state.privatePostCount || "0"}</h5>
+                            <h5>{this.state.user.privatePostCount || "0"}</h5>
                         </div>
                         <div className="seguidos">
                             <p>Seguidos</p>
-                            <h5>{this.state.followers || "0"}</h5>
+                            <h5>{this.state.user.followers || "0"}</h5>
                         </div>
                     </div>
                 </section>
