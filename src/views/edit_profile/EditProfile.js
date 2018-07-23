@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // Components
-import Header from '../../components/header/Header';
+import Header from '../../components/header/header';
 
 import './editprofile.css';
 
