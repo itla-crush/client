@@ -10,14 +10,35 @@ class CreatePost extends Component {
         super(props);
         this.state = {
           newPost: {
+            toUsername: null,
             toDiplayName: null,
             toUid: null,
-            imageSrc: null
+            imageFile: null
           }
         }
         this.handleSearchUser = this.handleSearchUser.bind(this);
-        this.handleNewPost = this.handleSearchUser.bind(this);
+        this.handleNewPost = this.handleNewPost.bind(this);
         this.handleUploadImage = this.handleUploadImage.bind(this);
+        this.submitNewPost = this.submitNewPost.bind(this);
+        this.setPositionInputFile = this.setPositionInputFile.bind(this);
+      }
+  
+    componentDidMount() {
+        // this.setPositionInputFile();
+        // document.getElementsByTagName('body')[0].onscroll = () => {
+        //   this.setPositionInputFile();
+        // };
+    }
+
+    setPositionInputFile = () => {
+      var elemento = document.getElementById('divinputfile');
+      var posicion = elemento.getBoundingClientRect();
+      
+      var inputfile = document.getElementById('inputfile');
+      inputfile.style.marginTop = posicion.top - 10;
+      inputfile.style.marginLeft = posicion.left - 50;
+
+      console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
     }
 
     handleSearchUser = () => {
@@ -35,25 +56,79 @@ class CreatePost extends Component {
     }
 
     handleNewPost = () => {
+      var datetime = new Date();
+      console.log(datetime);
+      console.log(datetime.getFullYear());
+      console.log(datetime.getMonth());
+      console.log(datetime.getDate());
+      console.log(datetime.getHours());
+      console.log(datetime.getMinutes());
+      console.log(datetime.getSeconds());
+      console.log(datetime.getMilliseconds());
+      console.log(datetime.getTime());
+      console.log(datetime.getTimezoneOffset());
+
+      console.log(datetime.getMonth() + 1);
+      console.log(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours());
+
+      var uid = this.props.uid;
+      var displayName = this.props.displayName;
+      var username = this.props.username;
+      var photoUrl = this.props.photoUrl;
+      var toDiplayName = this.state.newPost.toDiplayName;
+      var toUsername = this.state.newPost.toUsername;
+      var toUid = this.state.newPost.toUid;
       var textDeclaration = document.getElementById('textDeclaration');
       var isPublicCheck = document.getElementById('isPublicCheck');
+      var isAnonimousCheck = document.getElementById('isAnonimousCheck');
+      var imageFile = this.state.newPost.imageFile;
       textDeclaration = textDeclaration.value;
       isPublicCheck = isPublicCheck.checked;
+      isAnonimousCheck = isAnonimousCheck.checked;
+
+      var postData = {
+        fromUid: uid,
+        fromDisplayName: displayName, 
+        fromUsername: username, 
+        fromPhotoUrl: photoUrl,
+        toUid: toUid,
+        toUsername: toUsername,
+        toDiplayName: toDiplayName,
+        text: textDeclaration,
+        isPublic: isPublicCheck,
+        isAnonimous: isAnonimousCheck,
+        imageUrl: null,
+        date: {
+          day: null,
+          month: null,
+          year: null
+        },
+        time: null
+      };
+      console.log(postData);
+      //this.submitNewPost(postData);
     }
 
-    handleUploadImage = (event) => {
-      const file = event.target.files[0];
-      console.log(file);
-      this.setState({ newPost: { imageSrc: file.name } });
-      // firebase.database().ref(`users/${res.user.uid}/`).set({
+    submitNewPost = (postData) => {
+      // firebase.database().ref(`users/${uid}/`).push().set({
         
       // }, error => {
-      //   console.log(error);
+      //   console.log(error); 
       // });
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      var updates = {};
+      if(postData.isPublicCheck) {
+        updates[`/posts/${newPostKey}`] = postData;
+      }
+      updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
+      updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
+    
+      firebase.database().ref().update(updates);
     }
 
-    showImageUploaded = (evt) => {
-      var files = evt.target.files;
+    handleUploadImage = (evt) => {
+      const files = evt.target.files;
+      this.setState({ newPost: { imageFile: files[0] } });
       
       for (var i = 0, f; f = files[i]; i++) {
         if (!f.type.match('image.*')) {
@@ -71,7 +146,7 @@ class CreatePost extends Component {
         reader.readAsDataURL(f);
       }
     }
-
+    
     render() {
         return (
           <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
@@ -87,13 +162,15 @@ class CreatePost extends Component {
                 <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
                 <div className="form-check">
                   <input type="checkbox" className="check" id="isPublicCheck"/>
-                  <label className="form-check-label" htmlFor="isPublicCheck">Publico</label>
+                  <label className="form-check-label" htmlFor="isPublicCheck">Público</label>
+                  <input type="checkbox" className="check" id="isAnonimousCheck"/>
+                  <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
                 </div>
               </div>
               {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
-              <div id="imageView"></div>
+              {this.state.newPost.imageFile ? <div id="imageView"></div> : ""}
               <div className="publicar">
-                <div><div className="botons upload"><input type="file" onChange={this.handleUploadImage} className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
+                <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
                 <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
               </div>
             </div>
