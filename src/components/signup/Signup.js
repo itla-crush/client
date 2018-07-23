@@ -59,7 +59,7 @@ class Signup extends Component {
           if(snapshot.val() === null) {
             this.writeUserData(res);
           } else {
-            firebase.database().ref('users/' + res.user.uid).update({
+            firebase.database().ref(`/users/${res.user.uid}/`).update({
               lastSignInTime: res.user.metadata.lastSignInTime || 'null'
             }, error => {
               console.log(error);
@@ -92,7 +92,8 @@ class Signup extends Component {
         lastSignInTime: res.user.metadata.lastSignInTime || 'null',
         verified_email: res.additionalUserInfo.profile.verified_email || 'null',
         gender: res.additionalUserInfo.profile.gender || 'null',
-        id: res.additionalUserInfo.profile.id || 'null'
+        id: res.additionalUserInfo.profile.id || 'null',
+        uid: res.user.uid || 'null'
       }, error => {
         console.log(error);
       });

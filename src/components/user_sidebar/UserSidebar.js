@@ -12,15 +12,15 @@ class UserSidebar extends Component {
         <aside className="left-aside center-content">
           <section> 
             <div>
-              <h4>{this.props.displayName || 'Invitado'}</h4> 
+              <h4>{this.props.displayName}</h4> 
               <div className="div-img-profile center-content">  {/* Contenedor de la Imagen de Perfil */}
                 <a href="#">
-                  <img alt="" className="img-profile-user" src={this.props.photoUrl || "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"} /> {/* Imagen */}
+                  <img alt="" className="img-profile-user" src={this.props.photoUrl} /> {/* Imagen */}
                 </a>
               </div>
               <div className="center-content">
                 <a className="username" href="#">
-                  <h5>{this.props.username || '@invitado'}</h5> 
+                  <h5>{this.props.username}</h5> 
                 </a>
               </div> 
               <footer className="footer-user-sidebar">

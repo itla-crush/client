@@ -18,11 +18,44 @@ class App extends Component {
         super(props);
         this.state = {
             isSignedIn: this.props.isSignedIn,
-            guest: false
+            currentUser: null,
+            guest: false,
+            user: {
+                displayName: null,
+                photoUrl: null,
+                username: null,
+                email: null,
+                name: null,
+                lastname: null,
+                uid: null
+            }
         }
-
         this.isUserSignedIn = this.isUserSignedIn.bind(this);
         this.signOut = this.signOut.bind(this);
+        this.stateAuth = this.stateAuth.bind(this);
+        this.stateAuth();
+    }
+
+    stateAuth = () => {
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            this.setState({
+                currentUser: true
+            });
+            firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
+                this.setState({
+                    user: snapshot.val(),
+                });
+            }) 
+            .catch(e => {
+                console.log(`Code: ${e.code} Message: ${e.message}`);
+            });
+          } else {
+                this.setState({
+                    currentUser: null
+                });
+            }
+        });
     }
 
     isUserSignedIn = () => {
@@ -50,52 +83,39 @@ class App extends Component {
     }
 // match.params.id
     render() {
-        // let redirectToIndex_1;
-        // let redirectToIndex_2;
-        // let redirectIndex;
-        // let redirectProfile;
-        // let redirectEditProfile;
-        // let redirectChangePassword;
-        // if(this.state.isSignedIn) {
-        //     redirectToIndex_1 = <Route path='' exact component={Home} />;
-        //     redirectToIndex_2 = <Route path='/' exact component={Home} />;
-        //     redirectIndex = <Route path='/index' component={Home} />;
-        //     redirectProfile = <Route path='/profile' component={Profile} />;
-        //     redirectEditProfile = <Route path='/edit_profile' component={EditProfile} />;
-        //     redirectChangePassword = <Route path='/change_password' component={ChangePassword} />;
-        // } else {
-        //     redirectToIndex_1 = <Route path='' exact component={Landing} />;
-        //     redirectToIndex_2 = <Route path='/' exact component={Landing} />;
-        //     redirectIndex = <Route path='/index' component={Landing} />;
-        //     redirectProfile = <Route path='/profile' component={Landing} />;
-        //     redirectEditProfile = <Route path='/edit_profile' component={Landing} />;
-        //     redirectChangePassword = <Route path='/change_password' component={Landing} />;
-        // }
 
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
+                { this.state.currentUser ? (
                     <Switch>
-                        {/* {this.state.isSignedIn ? (<Redirect from="" exact="true" strict="true" to="/home" />) : (<Redirect from="" exact="true" strict="true" to="/index" />)}
-                        {this.state.isSignedIn ? (<Redirect from="/" exact="true" strict="true" to="/home" />) : (<Redirect from="/" exact="true" strict="true" to="/index" />)}
-                        {this.state.isSignedIn ? (<Redirect from="/index" exact="false" strict="false" to="/home" />) : (<Route path='/index' component={Landing} />)}
-                        {this.state.isSignedIn ? (<Route path='/profile' component={Profile} />) : (<Redirect from="/profile" exact="false" strict="false" to="/index" />)}
-                        {this.state.isSignedIn ? (<Route path='/edit_profile' component={EditProfile} />) : (<Redirect from="/edit_profile" exact="false" strict="false" to="/index" />)}
-                        {this.state.isSignedIn ? (<Route path='/change_password' component={ChangePassword} />) : (<Redirect from="/change_password" exact="false" strict="false" to="/index" />)} */}
-                         
-                        {/* <Route path='/index' component={Landing} backgroundID={this.props.backgroundID} /> */}
-                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='/home' component={Home} />
+                        {/* <Route path='/index' render={(props) => (<Home user={this.state.user} />)} /> */}
+                        <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
-                        <Route path='/profile' component={Profile} />
-                        <Route path='/edit_profile' component={EditProfile} />
+                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} />)} />
+                        <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} />)} />
                         <Route path='/change_password' component={ChangePassword} />
-                        <Route path='/edit_profile?:id' component={EditProfile} />
                         <Route path='/profile_widget' component={Page404} />
-                        <Route path='/' exact strict component={Landing} />
-                        <Route path='' exact strict component={Landing} />
 
-                    </Switch>
+                        <Redirect from='/index' exact to='/home' />
+
+                        <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                    </Switch> 
+                ) : (
+                    <Switch>
+
+                        {/* <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
+                        <Route path='/forgotpassword' component={Forgotpassword} />
+                        <Route path='/profile' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='/edit_profile' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='/change_password' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='/edit_profile?:id' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} /> */}
+                        {/* <Route path='/profile_widget' component={Page404} /> */}
+                        {/* <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} /> */}
+                    </Switch> 
+                ) }
                 </div>
             </BrowserRouter>
         );

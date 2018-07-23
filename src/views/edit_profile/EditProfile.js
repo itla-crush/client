@@ -10,63 +10,24 @@ export default class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
-            uid: null,
+          user: {
             displayName: null,
-            name: null,
-            lastname: null,
+            photoUrl: null,
             username: null,
             email: null,
-            photoURL: null,
+            name: null,
+            lastname: null,
+            uid: null
+          }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
-        this.getUser = this.getUser.bind(this);
     }
 
-    componentWillMount() {
-        this.getUser();
-    }
-
-    getUser = () => {
-        firebase.auth().onAuthStateChanged(user => {
-            var displayName, username, name, lastname, email, emailVerified, photoURL, isAnonymous, uid, providerData;
-            if (user) {
-                firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
-                    snapshot = snapshot.val();
-                    displayName = snapshot.displayName;
-                    username = snapshot.username;
-                    name = snapshot.name;
-                    lastname = snapshot.lastname;
-                    email = snapshot.email;
-                    emailVerified = snapshot.emailVerified;
-                    photoURL = snapshot.photoURL;
-                    isAnonymous = snapshot.isAnonymous;
-                    uid = snapshot.uid;
-                    providerData = snapshot.providerData;
-                    this.setState({
-                        user: user,
-                        username: username,
-                        name: name,
-                        lastname: lastname,
-                        uid: uid,
-                        displayName: displayName,
-                        email: email,
-                        photoURL: photoURL,
-                  });
-                })
-                .catch(e => {
-                    console.log(`Code: ${e.code} Message: ${e.message}`);
-                });
-              } else {
-                  // Temporal, No Va Asi
-                displayName = 'Invitado';
-                email = 'guest@gmail.com';
-                emailVerified = false;
-                photoURL = 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
-              }
-              
-        });
+    componentWillReceiveProps(nextProps) {
+      this.setState({
+        user: nextProps.user
+      });
     }
 
     addBootstrap4 = () => {
@@ -93,28 +54,28 @@ export default class EditProfile extends Component {
                     </div>
                 </div> */}
                 <div className="nombre-usuario">
-                    <p>{this.state.displayName || ''}</p>
+                    <p>{this.state.user.displayName || ''}</p>
                 </div>
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src={this.state.photoURL} alt={this.state.displayName || ''} />
+                        <img src={this.state.user.photoURL} alt={this.state.user.displayName || ''} />
                     </div>
                     <div className="editar-foto">
-                        <p>{this.state.displayName}</p>
+                        <p>{this.state.user.displayName}</p>
                         <a href="#">Editar foto de Perfil</a>
                     </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label>Nombre</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" placeholder="Nombre" value={this.state.name || ''} />
+                        <input type="text" className="form-control" placeholder="Nombre" value={this.state.user.name || ''} />
                     </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label>Apellidos</label></div>
                     <div className="entrada">
-                        <input type="text" className="form-control" placeholder="Apellidos" value={this.state.lastname || ''} />
+                        <input type="text" className="form-control" placeholder="Apellidos" value={this.state.user.lastname || ''} />
                     </div>
                     </div>
                     <div className="form-group">
@@ -123,13 +84,13 @@ export default class EditProfile extends Component {
                         <div className="input-group-prepend">
                             <div className="input-group-text">@</div>
                         </div>
-                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.username || ''} />
+                        <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.user.username || ''} />
                     </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label>Correo</label></div>
                     <div className="entrada">
-                        <input type="email" className="form-control" placeholder="Correo" value={this.state.email || ''} />
+                        <input type="email" className="form-control" placeholder="Correo" value={this.state.user.email || ''} />
                     </div>
                     </div>
                 </div>

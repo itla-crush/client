@@ -8,21 +8,68 @@ import './CreatePost.css';
 class CreatePost extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          newPost: {
+            toDiplayName: null,
+            toUid: null,
+            imageSrc: null
+          }
+        }
         this.handleSearchUser = this.handleSearchUser.bind(this);
+        this.handleNewPost = this.handleSearchUser.bind(this);
+        this.handleUploadImage = this.handleUploadImage.bind(this);
     }
 
     handleSearchUser = () => {
-        var searchUser = document.getElementById('search-user');
-        // console.log(data.value);
-        if(!_.isEmpty(_.trim(searchUser.value))) {
-          firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
-          .then(snapshot => {
-            console.log(snapshot.val() || 'Null Snapshot Val()');
-          })
-          .catch(e => {
-            console.log(`Code: ${e.code} Message: ${e.message}`);
-          });
+      var searchUser = document.getElementById('search-user');
+      // console.log(data.value);
+      if(!_.isEmpty(_.trim(searchUser.value))) {
+        firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
+        .then(snapshot => {
+          console.log(snapshot.val() || 'Null Snapshot Val()');
+        })
+        .catch(e => {
+          console.log(`Code: ${e.code} Message: ${e.message}`);
+        });
+      }
+    }
+
+    handleNewPost = () => {
+      var textDeclaration = document.getElementById('textDeclaration');
+      var isPublicCheck = document.getElementById('isPublicCheck');
+      textDeclaration = textDeclaration.value;
+      isPublicCheck = isPublicCheck.checked;
+    }
+
+    handleUploadImage = (event) => {
+      const file = event.target.files[0];
+      console.log(file);
+      this.setState({ newPost: { imageSrc: file.name } });
+      // firebase.database().ref(`users/${res.user.uid}/`).set({
+        
+      // }, error => {
+      //   console.log(error);
+      // });
+    }
+
+    showImageUploaded = (evt) => {
+      var files = evt.target.files;
+      
+      for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match('image.*')) {
+          continue;
         }
+    
+        var reader = new FileReader();
+    
+        reader.onload = (function(theFile) {
+        return function(e) {
+          document.getElementById("imageView").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+        };
+        })(f);
+    
+        reader.readAsDataURL(f);
+      }
     }
 
     render() {
@@ -32,23 +79,22 @@ class CreatePost extends Component {
               <div className="card-body">
                 <label>Hacer Confesion</label>
               </div>
-              {/* <div class="destinatario-p"> */}
               <div className="destinatario">
                 <div className="tema"><h6>Para</h6></div>
                 <div className="destino"><input onChange={this.handleSearchUser} type="text" className="" /></div>
               </div>
               <div className="form-group">
-                <textarea className="form-control text" placeholder="Declaración..." id="comment" defaultValue={""} />
+                <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
                 <div className="form-check">
-                  <input type="checkbox" className="check" id="exampleCheck1"/>
-                  <label className="form-check-label" htmlFor="exampleCheck1">Publico</label>
+                  <input type="checkbox" className="check" id="isPublicCheck"/>
+                  <label className="form-check-label" htmlFor="isPublicCheck">Publico</label>
                 </div>
               </div>
+              {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
+              <div id="imageView"></div>
               <div className="publicar">
-                {/* <div><input type="file" className="botons upload" accept="image/png, image/jpeg" /></div> */}
-                {/* <div><input style={{backgroundColor:"rgba(0,0,0,0)",color:"rgba(0,0,0,0)",width:"100%",height:"100%",zIndex:"-2"}} type="file" className="" accept="image/png, image/jpeg" /><button className="botons upload">Subir foto</button></div> */}
-                <div><button className="botons upload">Subir foto</button></div>
-                <div><button className="botons public">Publicar</button></div>
+                <div><div className="botons upload"><input type="file" onChange={this.handleUploadImage} className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
+                <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
               </div>
             </div>
           </div>
