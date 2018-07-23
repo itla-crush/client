@@ -55,12 +55,13 @@ class Home extends Component {
           fromUsername: "@username",
           toUsername: "@anonimo",
           photoUrl: null,
-          date: {
+          timestamp: {
             day: "17", 
             month: "julio",
-            year: "2018"
+            year: "2018",
+            minute: "17",
+            hour: "32"
           },
-          time: "15:19",
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend sem a dui rutrum mattis. Nullam vitae massa ullamcorper, sollicitudin mauris quis, scelerisque purus. Curabitur a efficitur nisl, nec porta elit. Nullam a tellus quis nunc porta vulputate. Quisque suscipit, quam sed dapibus pharetra, orci tortor hendrerit lacus, sed blandit quam arcu ut tortor. Mauris nibh justo, molestie ac erat porttitor, volutpat sodales metus.",
           imageUrl: "https://capitol.texas.gov/images/backgrounds/capitolc_1024.jpg",
           likes: "1,234",

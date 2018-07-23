@@ -56,21 +56,6 @@ class CreatePost extends Component {
     }
 
     handleNewPost = () => {
-      var datetime = new Date();
-      console.log(datetime);
-      console.log(datetime.getFullYear());
-      console.log(datetime.getMonth());
-      console.log(datetime.getDate());
-      console.log(datetime.getHours());
-      console.log(datetime.getMinutes());
-      console.log(datetime.getSeconds());
-      console.log(datetime.getMilliseconds());
-      console.log(datetime.getTime());
-      console.log('----- Extras -----');
-      console.log(datetime.getTimezoneOffset());
-      console.log(datetime.getMonth() + 1);
-      console.log(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours());
-
       var uid = this.props.uid;
       var displayName = this.props.displayName;
       var username = this.props.username;
@@ -81,11 +66,12 @@ class CreatePost extends Component {
       var textDeclaration = document.getElementById('textDeclaration');
       var isPublicCheck = document.getElementById('isPublicCheck');
       var isAnonimousCheck = document.getElementById('isAnonimousCheck');
-      var imageFile = this.state.newPost.imageFile;
+      var imageFile = document.getElementById('inputfile');
       textDeclaration = textDeclaration.value;
       isPublicCheck = isPublicCheck.checked;
       isAnonimousCheck = isAnonimousCheck.checked;
-
+      imageFile = imageFile.value;
+      
       var postData = {
         fromUid: uid,
         fromDisplayName: displayName, 
@@ -98,24 +84,20 @@ class CreatePost extends Component {
         isPublic: isPublicCheck,
         isAnonimous: isAnonimousCheck,
         imageUrl: null,
-        date: {
-          day: null,
-          month: null,
-          year: null
-        },
-        time: null
+        timestamp: {
+          day: new Date().getDate(),
+          month: new Date().getMonth(),
+          year: new Date().getFullYear(),
+          minute: new Date().getMinutes(),
+          hour: new Date().getHours()
+        }
       };
       console.log(postData);
-      //this.submitNewPost(postData);
+      //this.submitNewPost(postData, imageFile);
     }
 
-    submitNewPost = (postData) => {
-      // firebase.database().ref(`users/${uid}/`).push().set({
-        
-      // }, error => {
-      //   console.log(error); 
-      // });
-      var newPostKey = firebase.database().ref().child('posts').push().key;
+    submitNewPost = (postData, imageFile) => {
+      var newPostKey /*= firebase.database().ref().child('posts').push().key*/;
       var updates = {};
       if(postData.isPublicCheck) {
         updates[`/posts/${newPostKey}`] = postData;
@@ -123,7 +105,36 @@ class CreatePost extends Component {
       updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
       updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
     
-      firebase.database().ref().update(updates);
+      if(imageFile && imageFile.toString() != '') {
+        var storageRef = firebase.storage().ref();
+        var uploadTask = storageRef.child(`images/${imageFile.name}`).put(imageFile);
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        snapshot => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, error => {
+        
+        }, () => {
+        // Upload completed successfully, now we can get the download URL
+          uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            console.log('File available at', downloadURL);
+          });
+        });
+
+
+      } else {
+        //firebase.database().ref().update(updates);
+      }
     }
 
     handleUploadImage = (evt) => {

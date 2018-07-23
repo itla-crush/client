@@ -31,7 +31,7 @@ class Newsfeed extends Component {
             <div className="div-user"> 
               <a href="#">{this.props.data.fromUsername || "Anonimo"}</a> {/* Usuario */}
               {/* <p>17 de julio a las 15:19</p> */}
-              <p>{`${this.props.data.date.day} de ${this.props.data.date.month} a las ${this.props.data.time}`}</p>
+              <p>{`${this.props.data.timestamp.day} de ${this.props.data.timestamp.month} a las ${this.props.data.timestamp.minute}:${this.props.data.timestamp.hour}`}</p>
             </div>
           </header>
           <div className=""> {/* Contenido Del Post */}
