@@ -59,31 +59,6 @@ body {
 
 
 
-@media screen and (max-width: 780px) {
-    header .nav-content .iconos .navbar-nav {
-        display: flex;
-        flex-direction: row;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .container {
-        height: 80px;
-        padding-top: 10px;
-        /* background-size: 100vw; */
-    }
-    .nav-content .search .text-search {
-        margin: 15px 10px 0;
-        min-width: 200px;
-        height: 40px;
-    }
-    .nav-content .lg,
-    .nav-content .search,
-    .nav-content .iconos {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-}
 
 /*---------------------------------------------------------*/
 
@@ -92,13 +67,12 @@ body {
     -webkit-margin: 0;
 }*/
 
-.nav-content {
-    /*width: 100vw;*/
+/* .nav-content {
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
     min-width: 540px;
     min-height: 65px;
     background-color: rgba(255, 255, 255, 1);
-}
+} */
 
 .container section { 
     width: 90%;

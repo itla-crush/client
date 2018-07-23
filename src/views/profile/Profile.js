@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // Components
-import Header from '../../components/header/header';
+import Header from '../../components/header/Header';
 
 import './profile.css';
 
@@ -75,7 +75,7 @@ export default class Profile extends Component {
                     <div className="datos-conf">
                         <div className="nombre-usuario">
                             <h2>{this.state.displayName}</h2>
-                            <p className>{`@${this.state.displayName}`}</p>
+                            <p>{`@${this.state.displayName}`}</p>
                         </div>
                         <div className="editar">
                             <a href="/edit_profile">Editar Perfil</a>
