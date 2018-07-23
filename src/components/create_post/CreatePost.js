@@ -66,8 +66,8 @@ class CreatePost extends Component {
       console.log(datetime.getSeconds());
       console.log(datetime.getMilliseconds());
       console.log(datetime.getTime());
+      console.log('----- Extras -----');
       console.log(datetime.getTimezoneOffset());
-
       console.log(datetime.getMonth() + 1);
       console.log(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours());
 
