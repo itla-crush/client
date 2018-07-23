@@ -83,7 +83,6 @@ class App extends Component {
     }
 // match.params.id
     render() {
-
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
