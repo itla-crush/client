@@ -56,6 +56,21 @@ class CreatePost extends Component {
     }
 
     handleNewPost = () => {
+      var datetime = new Date();
+      console.log(datetime);
+      console.log(datetime.getFullYear());
+      console.log(datetime.getMonth());
+      console.log(datetime.getDate());
+      console.log(datetime.getHours());
+      console.log(datetime.getMinutes());
+      console.log(datetime.getSeconds());
+      console.log(datetime.getMilliseconds());
+      console.log(datetime.getTime());
+      console.log(datetime.getTimezoneOffset());
+
+      console.log(datetime.getMonth() + 1);
+      console.log(datetime.getHours() > 12 ? datetime.getHours() - 12 : datetime.getHours());
+
       var uid = this.props.uid;
       var displayName = this.props.displayName;
       var username = this.props.username;
