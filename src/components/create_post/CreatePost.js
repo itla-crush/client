@@ -52,6 +52,26 @@ class CreatePost extends Component {
       // });
     }
 
+    showImageUploaded = (evt) => {
+      var files = evt.target.files;
+      
+      for (var i = 0, f; f = files[i]; i++) {
+        if (!f.type.match('image.*')) {
+          continue;
+        }
+    
+        var reader = new FileReader();
+    
+        reader.onload = (function(theFile) {
+        return function(e) {
+          document.getElementById("imageView").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+        };
+        })(f);
+    
+        reader.readAsDataURL(f);
+      }
+    }
+
     render() {
         return (
           <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
@@ -71,7 +91,7 @@ class CreatePost extends Component {
                 </div>
               </div>
               {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
-              <div><output id="list"></output></div>
+              <div id="imageView"></div>
               <div className="publicar">
                 <div><div className="botons upload"><input type="file" onChange={this.handleUploadImage} className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
                 <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
