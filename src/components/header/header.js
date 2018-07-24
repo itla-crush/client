@@ -6,7 +6,7 @@ import _ from 'lodash';
 // Components
 
 // Assets
-import './Header.css';
+import './header.css'; 
 
 class Header extends Component {
     constructor(props) {

@@ -93,48 +93,58 @@ class CreatePost extends Component {
         }
       };
       console.log(postData);
-      //this.submitNewPost(postData, imageFile);
+      this.submitNewPost(postData, imageFile);
     }
 
     submitNewPost = (postData, imageFile) => {
+      var imageFileUploaded = document.getElementById('inputfile');
+      imageFileUploaded = imageFileUploaded.files[0];
+
       var newPostKey /*= firebase.database().ref().child('posts').push().key*/;
       var updates = {};
-      if(postData.isPublicCheck) {
-        updates[`/posts/${newPostKey}`] = postData;
-      }
-      updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
-      updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
     
       if(imageFile && imageFile.toString() != '') {
         var storageRef = firebase.storage().ref();
-        var uploadTask = storageRef.child(`images/${imageFile.name}`).put(imageFile);
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        snapshot => {
+        var uploadTask = storageRef.child(`images/post_image/${imageFileUploaded.name}`).put(imageFileUploaded);
+
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
-              break;
-          }
+          // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // console.log('Upload is ' + progress + '% done');
+          // switch (snapshot.state) {
+          //   case firebase.storage.TaskState.PAUSED: // or 'paused'
+          //     console.log('Upload is paused');
+          //     break;
+          //   case firebase.storage.TaskState.RUNNING: // or 'running'
+          //     console.log('Upload is running');
+          //     break;
+          // }
         }, error => {
-        
+          console.log(error);
         }, () => {
         // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            console.log('File available at', downloadURL);
+            postData.imageUrl = downloadURL;
+            if(postData.isPublicCheck) {
+              updates[`/public-posts/${newPostKey}`] = postData;
+            }
+            updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
+            updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
+            console.log(downloadURL);
+            //firebase.database().ref().update(updates);
           });
         });
 
 
       } else {
+        if(postData.isPublicCheck) {
+          updates[`/posts/${newPostKey}`] = postData;
+        }
+        updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
+        updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
         //firebase.database().ref().update(updates);
       }
+      console.log(postData);
     }
 
     handleUploadImage = (evt) => {
