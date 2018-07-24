@@ -39,7 +39,8 @@ class ResultWidget extends Component {
       const users = this.props.users;
       console.log(users);
       var listItems;
-      if(users){
+      if(users.c2k0mncVwFaxAeeeqp0I5ZiEfdR2){
+        console.log('IF');
         listItems = users.map((user) =>
           <li key={user.id}>
             <a href="#">
@@ -54,6 +55,7 @@ class ResultWidget extends Component {
           </li>
         );
       } else {
+        console.log('ELSE');
         listItems = <li>No hay usuarios</li>;
       }
       return (
@@ -64,8 +66,6 @@ class ResultWidget extends Component {
             </div>
             <div className="personas">
               <div className="busqueda-perfil">
-                {/* <UserList users={this.props.users} /> */}
-                {/* {this.UserList} */}
                 {/* { users ? (
                   console.log('If')
                   ) : (

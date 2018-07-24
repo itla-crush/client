@@ -14,7 +14,9 @@ class Header extends Component {
         super(props);
         this.state = {
             isSignedIn: false,
-            users: 'Hola'
+            users: {
+
+            }
         }
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
@@ -77,8 +79,8 @@ class Header extends Component {
                 </div>
                 <div className="search">
                     <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
-                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="" data-trigger="" data-placement="up" data-content="My popover content. My popover content.<br>My popover content. My popover content." />
-                        {/* <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." /> */}
+                        {/* <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="" data-trigger="" data-placement="up" data-content="My popover content. My popover content.<br>My popover content. My popover content." /> */}
+                        <input id="search-user" onChange={this.handleSearchUser} type="text" autocomplete="off" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="¡No hay resultados!" />
                     </form>
                 </div>
                 {/*Iconos del Menu*/}
@@ -92,7 +94,7 @@ class Header extends Component {
                 </div>
                 </div>
             </nav>
-            <ResultWidget users={this.state.users || ''} />
+            {/* <ResultWidget users={this.state.users || ''} /> */}
         </header>
         
       );
