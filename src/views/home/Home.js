@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 // Components
-import Header from '../../components/header/Header';
-import ResultWidget from '../../components/result_widget/ResultWidget';
+import Header from '../../components/header/header';
 import UserSidebar from '../../components/user_sidebar/UserSidebar';
 import CreatePost from '../../components/create_post/CreatePost';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
@@ -50,14 +49,6 @@ class Home extends Component {
       });
     }
 
-    // obtener = () => {
-    //   var z= document.getElementById('search-user');
-    //   var posicion = z.getBoundingClientRect();
-
-    //   console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
-    // } 
-
-
     render() {
       // this.setState({
         var data = {
@@ -92,7 +83,6 @@ class Home extends Component {
       return (
         <div className="Home">
             <Header />
-            <ResultWidget />
             <div className="container main-content">
               <UserSidebar photoUrl={this.state.user.photoURL || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} displayName={this.state.user.displayName || 'Invitado'} username={this.state.user.username || '@invitado'} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import _ from 'lodash';
+import ResultWidget from '../../components/result_widget/ResultWidget';
 
 // Components
 
 // Assets
-import './header.css'; 
+import './Header.css'; 
 
 class Header extends Component {
     constructor(props) {
@@ -32,6 +33,13 @@ class Header extends Component {
             }
         });
     }
+
+    obtener = () => {
+        var z= document.getElementById('search-user');
+        var posicion = z.getBoundingClientRect();
+  
+        console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
+      } 
 
     handleSearchUser = () => {
         var searchUser = document.getElementById('search-user');
@@ -82,7 +90,9 @@ class Header extends Component {
                 </div>
                 </div>
             </nav>
+            <ResultWidget />
         </header>
+        
       );
     }
   }

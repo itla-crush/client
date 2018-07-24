@@ -26,7 +26,7 @@ class ForgottenPassword extends Component {
                                         <div className="cc"><label htmlFor="">Correo</label></div>
                                         <input type="email" placeholder=""/>
                                     </div>
-                                <div className="btn"><input type="submit" value="Enviar"/></div> 
+                                <div className=""><input type="submit" value="Enviar"/></div> 
                                 </form>
                             </div>
                         </div>

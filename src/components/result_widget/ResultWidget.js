@@ -7,7 +7,6 @@ class ResultWidget extends Component {
         super(props);
     }
     
-    
     render() {
         return (
         <div className="wd">
