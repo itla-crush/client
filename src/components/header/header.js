@@ -18,6 +18,7 @@ class Header extends Component {
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
         this.handleSearchUser = this.handleSearchUser.bind(this);
+        this.obtener = this.obtener.bind(this);
     }
 
     stateAuth = () => {
@@ -34,12 +35,6 @@ class Header extends Component {
         });
     }
 
-    obtener = () => {
-        var z= document.getElementById('search-user');
-        var posicion = z.getBoundingClientRect();
-  
-        console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
-      } 
 
     handleSearchUser = () => {
         var searchUser = document.getElementById('search-user');
@@ -56,13 +51,17 @@ class Header extends Component {
        
     }
 
+    componentDidMount() {
+        this.obtener();
+    }
+
     obtener = () => {
-        var z= document.getElementById('search-user');
+        var z = document.getElementById('search-user');
         var posicion = z.getBoundingClientRect();
   
         // console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
         console.log(posicion)
-      } 
+    } 
 
     render() {
       return (
@@ -76,7 +75,7 @@ class Header extends Component {
                 </div>
                 <div className="search">
                     <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
-                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" />
+                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." />
                     </form>
                 </div>
                 {/*Iconos del Menu*/}

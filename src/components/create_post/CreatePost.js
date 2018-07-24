@@ -181,7 +181,7 @@ class CreatePost extends Component {
               </div>
               <div className="destinatario">
                 <div className="tema"><h6>Para</h6></div>
-                <div className="destino"><input onChange={this.handleSearchUser} type="text" className="" /></div>
+                <div className="destino"><input onChange={this.handleSearchUser} type="text" className="" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." /></div>
               </div>
               <div className="form-group">
                 <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />

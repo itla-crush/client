@@ -1,5 +1,8 @@
 .wd{ 
     position: absolute;
+    z-index: 1035;
+    top: -33px;
+    left: 514px;
 }
 .resultados{  
     margin: auto;
