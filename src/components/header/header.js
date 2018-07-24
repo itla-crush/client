@@ -45,7 +45,16 @@ class Header extends Component {
               console.log(`Code: ${e.code} Message: ${e.message}`);
             });
         }
+       
     }
+
+    obtener = () => {
+        var z= document.getElementById('search-user');
+        var posicion = z.getBoundingClientRect();
+  
+        // console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
+        console.log(posicion)
+      } 
 
     render() {
       return (

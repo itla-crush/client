@@ -7,12 +7,56 @@ class ResultWidget extends Component {
         super(props);
     }
     
+    
     render() {
         return (
-            // Esta clase no es necesaria (TalVez)
-            <div className="ResultWidget">
-
-            </div>
+        <div className="wd">
+            <div className="resultados">
+        <div className="cuadrito">
+          {/* <div class="cuadrito-hijo"></div> */}
+        </div>
+        <div className="personas">
+          <div className="busqueda-perfil">
+            <a href="#">
+              <div className="resultado-imagen">
+                <img src="../img/perfil/clasico2.jpg" alt />
+              </div>
+              <div className="resultado-nombres">
+                <p>Dalton Tejada C</p>
+                <p>MegadaltonOT</p>
+              </div>
+            </a>
+            <a href="#">
+              <div className="resultado-imagen">
+                <img src="../img/perfil/clasico2.jpg" alt />
+              </div>
+              <div className="resultado-nombres">
+                <p>Jenisee Olivaris</p>
+                <p>jen18</p>
+              </div>
+            </a>
+            <a href="#">
+              <div className="resultado-imagen">
+                <img src="../img/perfil/clasico2.jpg" alt />
+              </div>
+              <div className="resultado-nombres">
+                <p>Pedro Antonio</p>
+                <p>El-franAntonio</p>
+              </div>
+            </a>
+            <a href="#">
+              <div className="resultado-imagen">
+                <img src="../img/perfil/clasico2.jpg" alt />
+              </div>
+              <div className="resultado-nombres">
+                <p>Luisa Mariel</p>
+                <p>Mariel</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
         );
     }
 }
