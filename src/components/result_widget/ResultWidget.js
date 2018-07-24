@@ -1,61 +1,64 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import './resultwidget.css';
 
 class ResultWidget extends Component {
     constructor(props) {
       super(props);
+      this.UserList = this.UserList.bind(this);
+    }
+
+    UserList = () => {
+      const users = this.props.users;
+      console.log(users);
+      var listItems;
+      // if(_.isArray(users) && !_.isEmpty(users)){
+        listItems = users.map((user) =>
+          <li key={user.id}>
+            <a href="#">
+              <div className="resultado-imagen">
+                <img src={user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} alt="" />
+              </div>
+              <div className="resultado-nombres">
+                <p>{user.displayName || 'Username'}</p>
+                <p>{user.username || '@username'}</p>
+              </div>
+            </a>
+          </li>
+        );
+      // } else {
+      //   listItems = 'No hay usuarios';
+      // }
+      return (
+        <ul className="list-unstyled">{listItems}</ul>
+      );
     }
     
     render() {
-        return (
-          <div className="wd"> 
-            <div className="resultados">
-              <div className="cuadrito">
-                {/* <div class="cuadrito-hijo"></div> */}
-              </div>
-              <div className="personas">
-                <div className="busqueda-perfil">
-                  <a href="#">
-                    <div className="resultado-imagen">
-                      <img src="../img/perfil/clasico2.jpg" alt="" />
-                    </div>
-                    <div className="resultado-nombres">
-                      <p>Dalton Tejada C</p>
-                      <p>MegadaltonOT</p>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className="resultado-imagen">
-                      <img src="../img/perfil/clasico2.jpg" alt="" />
-                    </div>
-                    <div className="resultado-nombres">
-                      <p>Jenisee Olivaris</p>
-                      <p>jen18</p>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className="resultado-imagen">
-                      <img src="../img/perfil/clasico2.jpg" alt="" />
-                    </div>
-                    <div className="resultado-nombres">
-                      <p>Pedro Antonio</p>
-                      <p>El-franAntonio</p>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className="resultado-imagen">
-                      <img src="../img/perfil/clasico2.jpg" alt="" />
-                    </div>
-                    <div className="resultado-nombres">
-                      <p>Luisa Mariel</p>
-                      <p>Mariel</p>
-                    </div>
-                  </a>
-                </div>
+      const users = this.props.users;
+      console.log(users);
+      var listItems;
+      return (
+        <div className="wd"> 
+          <div className="resultados">
+            <div className="cuadrito">
+              {/* <div class="cuadrito-hijo"></div> */}
+            </div>
+            <div className="personas">
+              <div className="busqueda-perfil">
+                {/* <UserList users={this.props.users} /> */}
+                {/* {this.UserList} */}
+                { users ? (
+                  console.log('If')
+                  ) : (
+                  console.log('Else')
+                )
+                }
               </div>
             </div>
           </div>
+        </div>
       );
     }
 }

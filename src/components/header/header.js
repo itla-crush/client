@@ -13,7 +13,8 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSignedIn: false
+            isSignedIn: false,
+            users: 'Hola'
         }
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
@@ -43,6 +44,7 @@ class Header extends Component {
             firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
             .then(snapshot => {
               console.log(snapshot.val() || 'Null Snapshot Val()');
+              this.setState({users: snapshot.val()});
             })
             .catch(e => {
               console.log(`Code: ${e.code} Message: ${e.message}`);
@@ -75,7 +77,8 @@ class Header extends Component {
                 </div>
                 <div className="search">
                     <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
-                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." />
+                        <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="" data-trigger="" data-placement="up" data-content="My popover content. My popover content.<br>My popover content. My popover content." />
+                        {/* <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." /> */}
                     </form>
                 </div>
                 {/*Iconos del Menu*/}
@@ -89,7 +92,7 @@ class Header extends Component {
                 </div>
                 </div>
             </nav>
-            <ResultWidget />
+            <ResultWidget users={this.state.users || ''} />
         </header>
         
       );
