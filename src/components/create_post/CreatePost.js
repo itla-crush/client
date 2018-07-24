@@ -6,22 +6,22 @@ import _ from 'lodash';
 import './CreatePost.css';
 
 class CreatePost extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          newPost: {
-            toUsername: null,
-            toDiplayName: null,
-            toUid: null,
-            imageFile: null
-          }
+  constructor(props) {
+      super(props);
+      this.state = {
+        newPost: {
+          toUsername: null,
+          toDiplayName: null,
+          toUid: null,
+          imageFile: null
         }
-        this.handleSearchUser = this.handleSearchUser.bind(this);
-        this.handleNewPost = this.handleNewPost.bind(this);
-        this.handleUploadImage = this.handleUploadImage.bind(this);
-        this.submitNewPost = this.submitNewPost.bind(this);
-        this.setPositionInputFile = this.setPositionInputFile.bind(this);
       }
+      this.handleSearchUser = this.handleSearchUser.bind(this);
+      this.handleNewPost = this.handleNewPost.bind(this);
+      this.handleUploadImage = this.handleUploadImage.bind(this);
+      this.submitNewPost = this.submitNewPost.bind(this);
+      this.setPositionInputFile = this.setPositionInputFile.bind(this);
+    }
   
     componentDidMount() {
         // this.setPositionInputFile();
@@ -35,8 +35,8 @@ class CreatePost extends Component {
       var posicion = elemento.getBoundingClientRect();
       
       var inputfile = document.getElementById('inputfile');
-      inputfile.style.marginTop = posicion.top - 10;
-      inputfile.style.marginLeft = posicion.left - 50;
+      inputfile.style.top = posicion.top;
+      inputfile.style.left = posicion.left;
 
       console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
     }

@@ -39,8 +39,10 @@ class App extends Component {
     stateAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
+            console.log('Logeado');
             this.setState({
                 currentUser: true
+                
             });
             firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
                 this.setState({
@@ -54,6 +56,7 @@ class App extends Component {
                 this.setState({
                     currentUser: null
                 });
+                console.log('Sesion cerrada');
             }
         });
     }
@@ -86,9 +89,9 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
-                { this.state.currentUser ? (
+                {/* { this.state.currentUser ? ( */}
                     <Switch>
-                        {/* <Route path='/index' render={(props) => (<Home user={this.state.user} />)} /> */}
+                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                         <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
                         <Route path='/profile' render={(props) => (<Profile user={this.state.user} />)} />
@@ -96,13 +99,13 @@ class App extends Component {
                         <Route path='/change_password' component={ChangePassword} />
                         <Route path='/profile_widget' component={Page404} />
 
-                        <Redirect from='/index' exact to='/home' />
+                        {/* <Redirect from='/index' exact to='/home' /> */}
 
                         <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                         <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                     </Switch> 
-                ) : (
-                    <Switch>
+                {/* ) : (
+                    <Switch> */}
 
                         {/* <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
@@ -113,8 +116,8 @@ class App extends Component {
                         {/* <Route path='/profile_widget' component={Page404} /> */}
                         {/* <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                         <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} /> */}
-                    </Switch> 
-                ) }
+                    {/* </Switch> 
+                ) } */}
                 </div>
             </BrowserRouter>
         );
