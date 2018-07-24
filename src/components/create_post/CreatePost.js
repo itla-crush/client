@@ -92,8 +92,12 @@ class CreatePost extends Component {
           hour: new Date().getHours()
         }
       };
-      console.log(postData);
-      this.submitNewPost(postData, imageFile);
+
+      if(!_.isEmpty(_.trim(textDeclaration)) && _.isEmpty(_.trim(textDeclaration)) > 10 ) {
+        this.submitNewPost(postData, imageFile);
+      } else {
+        alert('La declaracion es obligatoria y debe tener mas de 10 digitos!');
+      }
     }
 
     submitNewPost = (postData, imageFile) => {

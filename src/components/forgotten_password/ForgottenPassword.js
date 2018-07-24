@@ -6,10 +6,9 @@ class ForgottenPassword extends Component {
 
     render(){
         return(
-            <div className="modal fade" id="myModalPassword">
-            {/* <div className="modal fade show" id="myModal" style={{display: 'block'}}> */}
-              <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
+                <div className="modal" id="myModalPassword">
+                {/* modal-content */}
+                <div class="">
                     <div className="forgot">
                         <div className="forgot-son">
                             <div className="titulo">
@@ -31,9 +30,8 @@ class ForgottenPassword extends Component {
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
-            </div>
+                </div>
         );
     }
 }
