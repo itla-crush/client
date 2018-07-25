@@ -42,7 +42,6 @@ class App extends Component {
             console.log('Logeado');
             this.setState({
                 currentUser: true
-                
             });
             firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
                 this.setState({

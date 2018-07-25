@@ -43,7 +43,7 @@ export default class Profile extends Component {
            <Header />
             <div className="pf">
                 <div className="foto">
-                    <img src={this.state.user.photoURL} alt={this.state.user.displayName} />
+                    <img src={this.state.user.photoUrl} alt={this.state.user.displayName} />
                 </div>
                 <section className="informacion ">
                     <div className="datos-conf">
