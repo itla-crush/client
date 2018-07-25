@@ -54,7 +54,7 @@ class Signup extends Component {
         // Buscar el usuario en la base de datos
         firebase.database().ref('/users/' + res.user.uid).once('value')
         .then(snapshot => {
-          console.log(res);
+          console.log(`Signup.js 57: ${res}`);
           // Escribir el usuario si no existe
           if(snapshot.val() === null) {
             this.writeUserData(res);
@@ -87,7 +87,7 @@ class Signup extends Component {
         name: name,
         lastname: lastname,
         email: res.user.email,
-        photoURL: res.user.photoURL || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
+        photoUrl: res.user.photoURL || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
         creationTime: res.user.metadata.creationTime || 'null',
         lastSignInTime: res.user.metadata.lastSignInTime || 'null',
         verified_email: res.additionalUserInfo.profile.verified_email || 'null',
@@ -116,7 +116,7 @@ class Signup extends Component {
             name: name,
             lastname: lastname,
             email: res.user.email,
-            photoURL : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
+            photoUrl : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
             username: username
           }, error => {
             console.log(error);

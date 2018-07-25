@@ -8,7 +8,7 @@ class ForgottenPassword extends Component {
         return(
                 <div className="modal" id="myModalPassword">
                 {/* modal-content */}
-                <div class="">
+                <div className="">
                     <div className="forgot">
                         <div className="forgot-son">
                             <div className="titulo">

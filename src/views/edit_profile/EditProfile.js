@@ -59,7 +59,7 @@ export default class EditProfile extends Component {
                 <div className="cambiar-info">
                     <div className="form-group div-foto">
                     <div className="foto-perfil">
-                        <img src={this.state.user.photoURL} alt={this.state.user.displayName || ''} />
+                        <img src={this.state.user.photoUrl} alt={this.state.user.displayName || ''} />
                     </div>
                     <div className="editar-foto">
                         <p>{this.state.user.displayName}</p>
