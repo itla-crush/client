@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Components
-import Header from '../../components/header/header';
+import Header from '../../components/header/Header';
 
 import './changepassword.css';
 

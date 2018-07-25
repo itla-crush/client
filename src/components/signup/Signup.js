@@ -128,6 +128,13 @@ class Signup extends Component {
       }
     }
 
+    opciones = () => {
+    //  option:hover{
+    //     color: white;
+    //      background: #488f8f;
+    //   }
+    }
+
     calendar = () => {
       // $(document).ready(function(){
       //   $('.datepicker').datepicker();
@@ -176,8 +183,8 @@ class Signup extends Component {
                 <div className="genero">
                   <select className="browser-default sexo">
                     <option selected disabled >Sexo</option>
-                    <option className="opciones" value={1}>Hombre</option>
-                    <option className="opciones" value={2}>Mujer</option>
+                    <option id="op" className="opciones" value={1}>Hombre</option>
+                    <option id="op" className="opciones" value={2}>Mujer</option>
                   </select>
                 </div>
             </div>
