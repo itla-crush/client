@@ -128,6 +128,13 @@ class Signup extends Component {
       }
     }
 
+    opciones = () => {
+    //  option:hover{
+    //     color: white;
+    //      background: #488f8f;
+    //   }
+    }
+
     calendar = () => {
       // $(document).ready(function(){
       //   $('.datepicker').datepicker();
@@ -165,7 +172,7 @@ class Signup extends Component {
             <input id="email" placeholder="Correo" type="email" className="validate" />
 
             <div className="input-r">
-                <input id="password"className="dn" placeholder="Contraseña" type="password" className="validate" />
+                <input id="password" className="dn" placeholder="Contraseña" type="password" />
                 <input id="verifyPassword" placeholder="Confirma Contraseña" type="password" className="validate" />
             </div>
             
@@ -173,11 +180,11 @@ class Signup extends Component {
               <div className="dada">
                 <input type="text" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
               </div>
-                <div className="col s12 m6 genero">
+                <div className="genero">
                   <select className="browser-default sexo">
-                    <option value disabled defaultValue>Sexo</option>
-                    <option className="opciones" value={1}>Hombre</option>
-                    <option className="opciones" value={2}>Mujer</option>
+                    <option selected disabled >Sexo</option>
+                    <option id="op" className="opciones" value={1}>Hombre</option>
+                    <option id="op" className="opciones" value={2}>Mujer</option>
                   </select>
                 </div>
             </div>

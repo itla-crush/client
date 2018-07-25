@@ -7,7 +7,7 @@ import ResultWidget from '../../components/result_widget/ResultWidget';
 // Components
 
 // Assets
-import './header.css'; 
+import './Header.css'; 
 
 class Header extends Component {
     constructor(props) {
