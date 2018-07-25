@@ -52,7 +52,7 @@ class Header extends Component {
 
     handleSearchUser = () => {
         var searchUser = document.getElementById('search-user');
-        var dataVal = searchUser.getAttribute("data-content");
+        // var dataVal = searchUser.getAttribute("data-content");
 
         var newData = '¡No hay resultados!';
 
@@ -67,7 +67,7 @@ class Header extends Component {
                 this.setState({ newData });
 
               } else {
-                console.log('ELSE Header.js 65');
+                console.log('ELSE Header.js 70');
                 newData = '¡No hay resultados!';
                 this.setState({ newData });
               }
