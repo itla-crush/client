@@ -13,22 +13,26 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newData: '¡No hay resultados!',
+            newData: null,
+            showResult: false,
             isSignedIn: false,
-            users: {
-                displayName: null,
-                photoUrl: null,
-                username: null,
-                email: null,
-                name: null,
-                lastname: null,
-                uid: null
-            }
+            users: null
+            // newData: {
+            //     displayName: null,
+            //     photoUrl: null,
+            //     username: null,
+            //     email: null,
+            //     name: null,
+            //     lastname: null,
+            //     uid: null
+            // }
         }
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
         this.handleSearchUser = this.handleSearchUser.bind(this);
         this.obtener = this.obtener.bind(this);
+        this.handleOnBur = this.handleOnBur.bind(this);
+        this.handleOnFocus = this.handleOnFocus.bind(this);
     }
 
     stateAuth = () => {
@@ -50,21 +54,22 @@ class Header extends Component {
         var searchUser = document.getElementById('search-user');
         var dataVal = searchUser.getAttribute("data-content");
 
-        var newData = '¡No hay resultados! 53';
+        var newData = '¡No hay resultados!';
 
         if(!_.isEmpty(_.trim(searchUser.value))) {
+            this.setState({ showResult: true });
             firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
             .then(snapshot => {
               this.setState({users: snapshot.val()});
 
               if(snapshot.val()) {
-                  console.log('IF Header.js 61');
-                  newData = 'IF Header.js 62';
-                  this.setState({ newData });
+                newData = snapshot.val();
+                this.setState({ newData });
+
               } else {
-                  console.log('ELSE Header.js 65');
-                  newData = '¡No hay resultados! 66';
-                  this.setState({ newData });
+                console.log('ELSE Header.js 65');
+                newData = '¡No hay resultados!';
+                this.setState({ newData });
               }
               
             })
@@ -72,15 +77,25 @@ class Header extends Component {
               console.log(`Code: ${e.code} Message: ${e.message}`);
             });
         } else {
-            newData = '¡No hay resultados! 75';
+            newData = '¡No hay resultados!';
             this.setState({ newData });
         }
         
-        searchUser.setAttribute("data-content", this.state.newData || '¡No hay resultados! 79');
+        //searchUser.setAttribute("data-content", searchUser.value);
     }
 
     componentDidMount() {
         this.obtener();
+    }
+
+    handleOnBur = () => {
+        this.setState({showResult: false});
+    }
+
+    handleOnFocus = () => {
+        if(this.state.newData) {
+            this.setState({showResult: true});
+        }
     }
 
     obtener = () => {
@@ -88,7 +103,7 @@ class Header extends Component {
         var posicion = z.getBoundingClientRect();
   
         // console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
-        console.log(posicion)
+        // console.log(posicion);
     } 
 
     render() {
@@ -103,8 +118,8 @@ class Header extends Component {
                 </div>
                 <div className="search">
                     <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
-                        {/* <input id="search-user" onChange={this.handleSearchUser} type="text" className="form-control text-search" placeholder="Buscar" data-toggle="" data-trigger="" data-placement="up" data-content="My popover content. My popover content.<br>My popover content. My popover content." /> */}
-                        <input id="search-user" onChange={this.handleSearchUser} type="text" autoComplete="off" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="¡No hay resultados!" />
+                        <input id="search-user" onChange={this.handleSearchUser} onFocus={this.handleOnFocus} onBlur={this.handleOnBur} type="text" autoComplete="off" className="form-control text-search" placeholder="Buscar"  />
+                        {/* <input id="search-user" onChange={this.handleSearchUser} type="text" autoComplete="off" className="form-control text-search" placeholder="Buscar" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="¡No hay resultados!" /> */}
                     </form>
                 </div>
                 {/*Iconos del Menu*/}
@@ -118,7 +133,9 @@ class Header extends Component {
                 </div>
                 </div>
             </nav>
-            {/* <ResultWidget users={this.state.users || ''} /> */}
+            { this.state.showResult ? (
+                <ResultWidget users={this.state.newData || '¡No hay resultados!'} /> ) : ( "" ) 
+            }
         </header>
         
       );
