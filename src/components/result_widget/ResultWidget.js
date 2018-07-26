@@ -16,7 +16,7 @@ class ResultWidget extends Component {
       this.props.setUserDataPost(value);
     }
   }
-  
+
   render() {
     var users = this.props.users;
     var listItems = '';
