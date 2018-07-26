@@ -122,7 +122,7 @@ class CreatePost extends Component {
       };
 
       if(!_.isEmpty(_.trim(textDeclaration))) {
-        if((_.trim(textDeclaration)).length > 10) {
+        if((_.trim(textDeclaration)).length > 5) {
           if(toUid) {
             this.submitNewPost(postData, imageFile);
           } else {
