@@ -58,6 +58,7 @@ class Post extends Component {
         return (
             <article className="post">
                 <header className="header-post">
+                {/* <div className="info-person-fech"> */}
                 <div className="div-img-profile">
                     <a href="#">
                         <img alt={this.state.fromUsername} className="img-profile" src={this.state.photoUrl} />
@@ -67,6 +68,7 @@ class Post extends Component {
                     <a href="#">{this.state.fromUsername}</a>
                     <p>32 min</p>
                 </div>
+                {/* </div> */}
                 </header>
                 <div className="">
                 <div className="div-text-post">
