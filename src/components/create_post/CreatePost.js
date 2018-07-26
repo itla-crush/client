@@ -28,6 +28,7 @@ class CreatePost extends Component {
       this.setPositionInputFile = this.setPositionInputFile.bind(this);
       this.handleOnBurPost = this.handleOnBurPost.bind(this);
       this.handleOnFocusPost = this.handleOnFocusPost.bind(this);
+      this.clearForm = this.clearForm.bind(this);
       // this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
     }
   
@@ -184,7 +185,7 @@ class CreatePost extends Component {
         updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
         firebase.database().ref().update(updates);
       }
-      console.log(postData);
+      this.clearForm();
     }
 
     handleUploadImage = (evt) => {
@@ -239,41 +240,57 @@ class CreatePost extends Component {
         });
       }
     }
+
+    clearForm = () => {
+      var searchUserPost = document.getElementById('search-user-post');
+      var textDeclaration = document.getElementById('textDeclaration');
+      var isPublicCheck = document.getElementById('isPublicCheck');
+      var isAnonimousCheck = document.getElementById('isAnonimousCheck');
+      var imageFile = document.getElementById('inputfile');
+      searchUserPost.value = '';
+      textDeclaration.value = '';
+      isPublicCheck.checked = false;
+      isAnonimousCheck.checked = false;
+      imageFile.value = '';
+      // imageView.innerHTML = '';
+      this.setState({ imageFile: null });
+      this.setState({ newPost: {toUsername: null, toDiplayName: null, toUid: null} });
+    }
     
     render() {
-        return (
-          <div>
-            <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
-              <div className="card publicacion-amor">
-                <div className="card-body">
-                  <label>Hacer Confesion</label>
-                </div>
-                <div className="destinatario">
-                  <div className="tema"><h6>Para</h6></div>
-                  <div className="destino"><input id="search-user-post" onChange={this.handleSearchUserPost} type="text" className="" autoComplete="off" onFocus={this.handleOnFocusPost} onBlur={this.handleOnBurPost} /></div>
-                </div>
-                <div className="form-group">
-                  <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
-                  <div className="form-check">
-                    <input type="checkbox" className="check" id="isPublicCheck"/>
-                    <label className="form-check-label" htmlFor="isPublicCheck">Público</label>
-                    <input type="checkbox" className="check" id="isAnonimousCheck"/>
-                    <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
-                  </div>
-                </div>
-                {this.state.imageFile ? <div id="imageView"></div> : ""}
-                <div className="publicar">
-                  <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
-                  <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
+      return (
+        <div>
+          <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
+            <div className="card publicacion-amor">
+              <div className="card-body">
+                <label>Hacer Confesion</label>
+              </div>
+              <div className="destinatario">
+                <div className="tema"><h6>Para</h6></div>
+                <div className="destino"><input id="search-user-post" onChange={this.handleSearchUserPost} type="text" className="" autoComplete="off" onFocus={this.handleOnFocusPost} onBlur={this.handleOnBurPost} /></div>
+              </div>
+              <div className="form-group">
+                <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
+                <div className="form-check">
+                  <input type="checkbox" className="check" id="isPublicCheck"/>
+                  <label className="form-check-label" htmlFor="isPublicCheck">Público</label>
+                  <input type="checkbox" className="check" id="isAnonimousCheck"/>
+                  <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
                 </div>
               </div>
+              {this.state.imageFile ? <div id="imageView"></div> : ""}
+              <div className="publicar">
+                <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
+                <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
+              </div>
             </div>
-            { this.state.showResult ? (
-              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
-            ) : ( "" ) 
-            }
           </div>
-        )
+          { this.state.showResult ? (
+            <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
+          ) : ( "" ) 
+          }
+        </div>
+      )
     }
 }
 

@@ -66,7 +66,6 @@ class Header extends Component {
                 this.setState({ newData });
 
               } else {
-                console.log('ELSE Header.js 70');
                 newData = '¡No hay resultados!';
                 this.setState({ newData });
               }
@@ -82,7 +81,7 @@ class Header extends Component {
         
         //searchUser.setAttribute("data-content", searchUser.value);
     }
-    
+
     handleOnNoFocus = () => {
       this.setState({showResult: false});
     }
