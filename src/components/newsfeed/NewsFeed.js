@@ -20,24 +20,41 @@ class Newsfeed extends Component {
     }
 
     handleSendComment = (event) => {
-      var textAreaComment = document.getElementById(`textareaComment${this.props.id}`);
-      textAreaComment = textAreaComment.value;
+      var txtAreaComment = document.getElementById(`textareaComment${this.props.id}`);
+      var textAreaComment = txtAreaComment.value;
 
-      var commentData = {
-        fromUid: null,
-        toUid: null
+      if(this.props.currentUserUid !== 'null') {
+        var toUid = this.props.data.toUid; // Para actualizar el comentario en el destinatario
+        var fromUid = this.props.data.fromUid; // Para actualizar el comentario en el owner del post
+  
+        var commentData = {
+          uid: this.props.currentUserUid,
+          text: textAreaComment, 
+          // username: this.props.currentUserName,
+          displayName: this.props.currentUserDisplayName,
+          timestamp: {
+            day: new Date().getDate(),
+            month: new Date().getMonth(),
+            year: new Date().getFullYear(),
+            minute: new Date().getMinutes(),
+            hour: new Date().getHours()
+          }
+        }
+        var newCommentKey = firebase.database().ref().child(`/users/${fromUid}/posts/${this.props.id}/comments`).push().key;
+        var updates = {};
+  
+        if(this.props.data.isPublic) {
+          updates[`/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
+        }
+        updates[`/users/${fromUid}/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
+        updates[`/users/${toUid}/posts-to-me/${this.props.id}/comments/${newCommentKey}`] = commentData;
+        firebase.database().ref().update(updates);
+
+      } else {
+        console.log('Debes iniciar sesión para hacer comentarios.')
       }
 
-      //var newCommentKey = firebase.database().ref().child(`posts/${this.props.id}`).push().key;
-      var newCommentKey = firebase.database().ref().child(`users/${this.props.data.uid}/posts`).push().key;
-      var updates = {};
-
-      if(this.props.data.isPublic) {
-        updates[`/posts/${newCommentKey}`] = commentData;
-      }
-      updates[`/users/${commentData.fromUid}/posts/${newCommentKey}`] = commentData;
-      updates[`/users/${commentData.toUid}/posts-to-me/${newCommentKey}`] = commentData;
-      //firebase.database().ref().update(updates);
+      txtAreaComment.value = '';
     }
 
     handleFocusComment = (event) => {
@@ -55,8 +72,7 @@ class Newsfeed extends Component {
       postsRef.on('value', snapshot => {
         var comments = snapshot.val();
         if(comments) {
-          // this.setState({ comments });
-          console.log(comments);
+          this.setState({ comments });
         }
       });
     }
@@ -64,7 +80,8 @@ class Newsfeed extends Component {
     render() {
       var month = this.getMonth(this.props.data.timestamp.month);
       var photoUrl = this.props.data.isAnonimous == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
-      var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromUsername;
+      var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
+      var comments = this.state.comments;
       return (
         <article className="post">
           <header className="header-post">
@@ -106,10 +123,10 @@ class Newsfeed extends Component {
             <div className="div-comments"> {/* Seccion de Comentarios del Post */}
               <ul className="list-unstyled">
                 {
-                  this.props.data.comments ? (
-                    this.props.data.comments.map((comment, key) => 
-                        <li key={key} className=""> 
-                            <a href={`profile/${comment.uid}`}>{comment.username}</a><span>{comment.text}</span>
+                  comments ? (
+                    Object.keys(comments).map((comment) => 
+                        <li key={comment} className=""> 
+                            <a href={`profile-friend/${comments[comment].uid}`}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
                         </li>
                         )
                     ) : (

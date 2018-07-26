@@ -73,7 +73,7 @@ class Home extends Component {
                     { this.state.user.displayName && this.state.user.username ? (<CreatePost uid={this.state.user.uid} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} username={this.state.user.username} displayName={this.state.user.displayName} />) : ("") }
                     <div>
                       { posts ? ( 
-                        Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} />).reverse() 
+                        Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
                         ) : ( "" )
                       }
                     </div>
