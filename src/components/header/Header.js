@@ -100,8 +100,8 @@ class Header extends Component {
         var z = document.getElementById('search-user');
         var posicion = z.getBoundingClientRect();
   
-        // console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
-        // console.log(posicion);
+        console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
+        console.log(posicion);
     } 
 
     render() {
