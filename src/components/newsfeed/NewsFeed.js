@@ -20,7 +20,24 @@ class Newsfeed extends Component {
     }
 
     handleSendComment = (event) => {
-      alert(document.getElementById(`textareaComment${this.props.id}`).value);
+      var textAreaComment = document.getElementById(`textareaComment${this.props.id}`);
+      textAreaComment = textAreaComment.value;
+
+      var commentData = {
+        fromUid: null,
+        toUid: null
+      }
+
+      //var newCommentKey = firebase.database().ref().child(`posts/${this.props.id}`).push().key;
+      var newCommentKey = firebase.database().ref().child(`users/${this.props.data.uid}/posts`).push().key;
+      var updates = {};
+
+      if(this.props.data.isPublic) {
+        updates[`/posts/${newCommentKey}`] = commentData;
+      }
+      updates[`/users/${commentData.fromUid}/posts/${newCommentKey}`] = commentData;
+      updates[`/users/${commentData.toUid}/posts-to-me/${newCommentKey}`] = commentData;
+      //firebase.database().ref().update(updates);
     }
 
     handleFocusComment = (event) => {
