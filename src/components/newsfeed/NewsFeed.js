@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 
 // Components
 import Post from '../../components/post/Post';
@@ -10,7 +11,8 @@ class Newsfeed extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          datas: null
+          datas: null,
+          comments: null
       }
       this.handleSendComment = this.handleSendComment.bind(this);
       this.getMonth = this.getMonth.bind(this);
@@ -29,6 +31,17 @@ class Newsfeed extends Component {
     getMonth = (month) => {
       let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
       return meses[month];
+    }
+
+    componentDidMount() {
+      var postsRef = firebase.database().ref(`posts/${this.props.id}/comments`);
+      postsRef.on('value', snapshot => {
+        var comments = snapshot.val();
+        if(comments) {
+          // this.setState({ comments });
+          console.log(comments);
+        }
+      });
     }
 
     render() {
