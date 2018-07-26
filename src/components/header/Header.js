@@ -49,7 +49,6 @@ class Header extends Component {
         });
     }
 
-
     handleSearchUser = () => {
         var searchUser = document.getElementById('search-user');
         // var dataVal = searchUser.getAttribute("data-content");

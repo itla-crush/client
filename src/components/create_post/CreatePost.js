@@ -1,14 +1,19 @@
 ﻿import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
+import ResultWidget from '../../components/result_widget/ResultWidget';
 
 // Assets
 import './CreatePost.css';
 
 class CreatePost extends Component {
-  constructor(props) {
+    constructor(props) {
       super(props);
       this.state = {
+        newData: null,
+        showResult: false,
+        isSignedIn: false,
+        users: null,
         newPost: {
           toUsername: null,
           toDiplayName: null,
@@ -16,11 +21,14 @@ class CreatePost extends Component {
           imageFile: null
         }
       }
-      this.handleSearchUser = this.handleSearchUser.bind(this);
+      this.handleSearchUserPost = this.handleSearchUserPost.bind(this);
       this.handleNewPost = this.handleNewPost.bind(this);
       this.handleUploadImage = this.handleUploadImage.bind(this);
       this.submitNewPost = this.submitNewPost.bind(this);
       this.setPositionInputFile = this.setPositionInputFile.bind(this);
+      this.handleOnBurPost = this.handleOnBurPost.bind(this);
+      this.handleOnFocusPost = this.handleOnFocusPost.bind(this);
+      this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
     }
   
     componentDidMount() {
@@ -41,18 +49,37 @@ class CreatePost extends Component {
       console.log(posicion.top, posicion.right, posicion.bottom, posicion.left);
     }
 
-    handleSearchUser = () => {
-      var searchUser = document.getElementById('search-user');
-      // console.log(data.value);
+    handleSearchUserPost = () => {
+      var searchUser = document.getElementById('search-user-post');
+      // var dataVal = searchUser.getAttribute("data-content");
+
+      var newData = '¡No hay resultados!';
+
       if(!_.isEmpty(_.trim(searchUser.value))) {
-        firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
-        .then(snapshot => {
-          console.log(snapshot.val() || 'Null Snapshot Val()');
-        })
-        .catch(e => {
-          console.log(`Code: ${e.code} Message: ${e.message}`);
-        });
+          this.setState({ showResult: true });
+          firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
+          .then(snapshot => {
+            this.setState({users: snapshot.val()});
+
+            if(snapshot.val()) {
+              newData = snapshot.val();
+              this.setState({ newData });
+            } else {
+              console.log('ELSE Header.js 70');
+              newData = '¡No hay resultados!';
+              this.setState({ newData });
+            }
+            
+          })
+          .catch(e => {
+            console.log(`Code: ${e.code} Message: ${e.message}`);
+          });
+      } else {
+          newData = '¡No hay resultados!';
+          this.setState({ newData });
       }
+      
+      //searchUser.setAttribute("data-content", searchUser.value);
     }
 
     handleNewPost = () => {
@@ -171,34 +198,54 @@ class CreatePost extends Component {
         reader.readAsDataURL(f);
       }
     }
+
+    handleOnBurPost = () => {
+      // this.setState({showResult: false});
+    }
+
+    handleOnFocusPost = () => {
+        if(this.state.newData) {
+            this.setState({showResult: true});
+        }
+    }
+
+    getUserDataFromSearch = (props) => {
+      // console.log(`CreatePost.js 213: ${props}`);
+    }
     
     render() {
         return (
-          <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
-            <div className="card publicacion-amor">
-              <div className="card-body">
-                <label>Hacer Confesion</label>
-              </div>
-              <div className="destinatario">
-                <div className="tema"><h6>Para</h6></div>
-                <div className="destino"><input onChange={this.handleSearchUser} type="text" className="" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="My popover content. My popover content.<br>My popover content. My popover content." /></div>
-              </div>
-              <div className="form-group">
-                <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
-                <div className="form-check">
-                  <input type="checkbox" className="check" id="isPublicCheck"/>
-                  <label className="form-check-label" htmlFor="isPublicCheck">Público</label>
-                  <input type="checkbox" className="check" id="isAnonimousCheck"/>
-                  <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
+          <div>
+            <div className="CreatePost" style={{width: '100%', margin: '0 auto', marginBottom: 30}}>
+              <div className="card publicacion-amor">
+                <div className="card-body">
+                  <label>Hacer Confesion</label>
+                </div>
+                <div className="destinatario">
+                  <div className="tema"><h6>Para</h6></div>
+                  <div className="destino"><input id="search-user-post" onChange={this.handleSearchUserPost} type="text" className="" autoComplete="off" onFocus={this.handleOnFocusPost} onBlur={this.handleOnBurPost} /></div>
+                </div>
+                <div className="form-group">
+                  <textarea id="textDeclaration" className="form-control text" placeholder="Declaración..." defaultValue={""} />
+                  <div className="form-check">
+                    <input type="checkbox" className="check" id="isPublicCheck"/>
+                    <label className="form-check-label" htmlFor="isPublicCheck">Público</label>
+                    <input type="checkbox" className="check" id="isAnonimousCheck"/>
+                    <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
+                  </div>
+                </div>
+                {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
+                {this.state.newPost.imageFile ? <div id="imageView"></div> : ""}
+                <div className="publicar">
+                  <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
+                  <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
                 </div>
               </div>
-              {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
-              {this.state.newPost.imageFile ? <div id="imageView"></div> : ""}
-              <div className="publicar">
-                <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
-                <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
-              </div>
             </div>
+            { this.state.showResult ? (
+              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch} />
+            ) : ( "" ) 
+            }
           </div>
         )
     }

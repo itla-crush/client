@@ -25,7 +25,8 @@ class Signup extends Component {
       this.calendar();
     }
 
-    changeView = () => {
+    changeView = (e) => {
+      e.preventDefault();
       this.props.changeView();
     }
 

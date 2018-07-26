@@ -25,7 +25,8 @@ class Signin extends Component {
       return password;
     }
     
-    changeView = () => {
+    changeView = (e) => {
+      e.preventDefault();
       this.props.changeView();
     }
 

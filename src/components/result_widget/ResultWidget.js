@@ -7,6 +7,7 @@ class ResultWidget extends Component {
   constructor(props) {
     super(props);
     this.UserList = this.UserList.bind(this);
+    // this.setUserDataPost = this.setUserDataPost.bind(this);
   }
 
   UserList = () => {
@@ -34,6 +35,11 @@ class ResultWidget extends Component {
       <ul className="list-unstyled">{listItems}</ul>
     );
   }
+    
+  setUserDataPost = (e) => {
+    e.preventDefault();
+    this.props.setUserDataPost();
+  }
   
   render() {
     var users = this.props.users;
@@ -43,7 +49,7 @@ class ResultWidget extends Component {
 
       listItems = Object.keys(users).map((user, key) =>
         <li key={users[user].id}>
-          <a href={`profile-friend/${users[user].uid}`} onClick={e => e.preventDefault()}>
+          <a id={users[user].id} href={`profile-friend/${users[user].uid}`} onClick={this.setUserDataPost(this.id)}>
             <div className="resultado-imagen">
               <img src={users[user].photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} alt="" />
             </div>
@@ -56,12 +62,11 @@ class ResultWidget extends Component {
       );
 
     } else {
-      console.log('ELSE');
       listItems = <li>¡No hay resultados!</li>;
     }
 
     return (
-      <div className="wd"> 
+      <div className={this.props.metadata ? "wd-post" : "wd"}> 
         <div className="resultados">
           <div className="cuadrito"></div>
           <div className="personas">
