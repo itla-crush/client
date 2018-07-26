@@ -13,25 +13,40 @@ class Newsfeed extends Component {
           datas: null
       }
       this.handleSendComment = this.handleSendComment.bind(this);
+      this.getMonth = this.getMonth.bind(this);
+      this.handleFocusComment = this.handleFocusComment.bind(this);
     }
 
     handleSendComment = (event) => {
-      alert(document.getElementById('textareaComment').value);
+      alert(document.getElementById(`textareaComment${this.props.id}`).value);
+    }
+
+    handleFocusComment = (event) => {
+      event.preventDefault();
+      document.getElementById(`textareaComment${this.props.id}`).focus();
+    }
+
+    getMonth = (month) => {
+      let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      return meses[month];
     }
 
     render() {
+      var month = this.getMonth(this.props.data.timestamp.month);
+      var photoUrl = this.props.data.isAnonimuos == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
+      var username = this.props.data.isAnonimuos == true ? "Anonimo" : this.props.data.fromUsername;
       return (
         <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
               <a href="#">
-              <img alt={""} className="img-profile" src={this.props.data.photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} />
+              <img alt={""} className="img-profile" src={photoUrl} />
               </a>
             </div>
             <div className="div-user"> 
-              <a href="#">{this.props.data.fromUsername || "Anonimo"}</a> {/* Usuario */}
+              <a href="#">{username}</a> {/* Usuario */}
               {/* <p>17 de julio a las 15:19</p> */}
-              <p>{`${this.props.data.timestamp.day} de ${this.props.data.timestamp.month} a las ${this.props.data.timestamp.minute}:${this.props.data.timestamp.hour}`}</p>
+              <p>{`${this.props.data.timestamp.day} de ${month} a las ${this.props.data.timestamp.hour}:${this.props.data.timestamp.minute}`}</p>
             </div>
           </header>
           <div className=""> {/* Contenido Del Post */}
@@ -51,7 +66,7 @@ class Newsfeed extends Component {
           <div className="div-footer"> {/* Pie Del Post */}
             <section className="section-like-comment">
               <a className="" href="#"><i className="far fa-heart icon-post" /></a>
-              <a className="" href="#"><i className="far fa-comment icon-post" /></a>
+              <a className="" href="#" onClick={this.handleFocusComment}><i className="far fa-comment icon-post" /></a>
             </section>
             <section> {/* Cantidad Me Gusta del Post */}
               <div className="div-likes">
@@ -76,7 +91,7 @@ class Newsfeed extends Component {
             <div className="div-form-comment">
                 <hr className="hl" />
                 <form className="form-comment">
-                  <textarea id="textareaComment" className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
+                  <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
                   {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
                   {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
                 </form>

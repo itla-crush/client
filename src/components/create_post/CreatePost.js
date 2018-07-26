@@ -14,11 +14,11 @@ class CreatePost extends Component {
         showResult: false,
         isSignedIn: false,
         users: null,
+        imageFile: null,
         newPost: {
           toUsername: null,
           toDiplayName: null,
-          toUid: null,
-          imageFile: null
+          toUid: null
         }
       }
       this.handleSearchUserPost = this.handleSearchUserPost.bind(this);
@@ -28,14 +28,13 @@ class CreatePost extends Component {
       this.setPositionInputFile = this.setPositionInputFile.bind(this);
       this.handleOnBurPost = this.handleOnBurPost.bind(this);
       this.handleOnFocusPost = this.handleOnFocusPost.bind(this);
-      this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
+      // this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
     }
   
     componentDidMount() {
-        // this.setPositionInputFile();
-        // document.getElementsByTagName('body')[0].onscroll = () => {
-        //   this.setPositionInputFile();
-        // };
+      //  console.log(this.state.newPost);
+      //  console.log(this.state.newPost.toUid);
+      //  console.log(this.state.newPost['toUid']);
     }
 
     setPositionInputFile = () => {
@@ -83,13 +82,15 @@ class CreatePost extends Component {
     }
 
     handleNewPost = () => {
+      var toUser = this.state.newPost;
+      var toDiplayName = toUser['toDiplayName'];
+      var toUsername = toUser['toUsername'];
+      var toUid = toUser['toUid'];
+
       var uid = this.props.uid;
       var displayName = this.props.displayName;
       var username = this.props.username;
       var photoUrl = this.props.photoUrl;
-      var toDiplayName = this.state.newPost.toDiplayName;
-      var toUsername = this.state.newPost.toUsername;
-      var toUid = this.state.newPost.toUid;
       var textDeclaration = document.getElementById('textDeclaration');
       var isPublicCheck = document.getElementById('isPublicCheck');
       var isAnonimousCheck = document.getElementById('isAnonimousCheck');
@@ -120,67 +121,75 @@ class CreatePost extends Component {
         }
       };
 
-      if(!_.isEmpty(_.trim(textDeclaration)) && _.isEmpty(_.trim(textDeclaration)) > 10 ) {
-        this.submitNewPost(postData, imageFile);
+      if(!_.isEmpty(_.trim(textDeclaration))) {
+        if((_.trim(textDeclaration)).length > 10) {
+          if(toUid) {
+            this.submitNewPost(postData, imageFile);
+          } else {
+            console.log('Debes elegir el destinatario.');
+          }
+        } else {
+          console.log('La declaracion debe tener mas de 10 caracteres.');
+        }
       } else {
-        alert('La declaracion es obligatoria y debe tener mas de 10 digitos!');
+        console.log('La declaracion es obligatoria.');
       }
+
     }
 
     submitNewPost = (postData, imageFile) => {
       var imageFileUploaded = document.getElementById('inputfile');
       imageFileUploaded = imageFileUploaded.files[0];
 
-      var newPostKey /*= firebase.database().ref().child('posts').push().key*/;
+      var newPostKey = firebase.database().ref().child('posts').push().key;
       var updates = {};
     
-      if(imageFile && imageFile.toString() != '') {
+      if(imageFile && imageFile.toString() !== '') {
         var storageRef = firebase.storage().ref();
         var uploadTask = storageRef.child(`images/post_image/${imageFileUploaded.name}`).put(imageFileUploaded);
 
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          // var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          // console.log('Upload is ' + progress + '% done');
-          // switch (snapshot.state) {
-          //   case firebase.storage.TaskState.PAUSED: // or 'paused'
-          //     console.log('Upload is paused');
-          //     break;
-          //   case firebase.storage.TaskState.RUNNING: // or 'running'
-          //     console.log('Upload is running');
-          //     break;
-          // }
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED:
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING:
+              console.log('Upload is running');
+              break;
+          }
         }, error => {
           console.log(error);
         }, () => {
         // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             postData.imageUrl = downloadURL;
-            if(postData.isPublicCheck) {
-              updates[`/public-posts/${newPostKey}`] = postData;
+            if(postData.isPublic) {
+              updates[`/posts/${newPostKey}`] = postData;
             }
-            updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
+            updates[`/users/${postData.fromUid}/posts/${newPostKey}`] = postData;
             updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
             console.log(downloadURL);
-            //firebase.database().ref().update(updates);
+            firebase.database().ref().update(updates);
           });
         });
 
-
       } else {
-        if(postData.isPublicCheck) {
+        if(postData.isPublic) {
           updates[`/posts/${newPostKey}`] = postData;
         }
-        updates[`/users/${postData.uid}/posts/${newPostKey}`] = postData;
+        updates[`/users/${postData.fromUid}/posts/${newPostKey}`] = postData;
         updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
-        //firebase.database().ref().update(updates);
+        firebase.database().ref().update(updates);
       }
       console.log(postData);
     }
 
     handleUploadImage = (evt) => {
       const files = evt.target.files;
-      this.setState({ newPost: { imageFile: files[0] } });
+      this.setState({ imageFile: files[0] });
       
       for (var i = 0, f; f = files[i]; i++) {
         if (!f.type.match('image.*')) {
@@ -199,8 +208,12 @@ class CreatePost extends Component {
       }
     }
 
+    handleOnNoFocus = () => {
+      this.setState({showResult: false});
+    }
+
     handleOnBurPost = () => {
-      // this.setState({showResult: false});
+      setTimeout(this.handleOnNoFocus.bind(this), 300);
     }
 
     handleOnFocusPost = () => {
@@ -208,9 +221,23 @@ class CreatePost extends Component {
             this.setState({showResult: true});
         }
     }
+    
+    getUserDataFromSearch = (val) => {
+      if(val) {
+        firebase.database().ref(`/users/${val}`).once('value')
+        .then(snapshot => {
 
-    getUserDataFromSearch = (props) => {
-      // console.log(`CreatePost.js 213: ${props}`);
+          if(snapshot.val()) {
+            var user = snapshot.val();
+            document.getElementById('search-user-post').value = user.displayName;
+            this.setState({ newPost: { toUsername: user.username, toDiplayName: user.displayName, toUid: user.uid} });         
+          }  
+          
+        })
+        .catch(e => {
+          console.log(`Code: ${e.code} Message: ${e.message}`);
+        });
+      }
     }
     
     render() {
@@ -234,8 +261,7 @@ class CreatePost extends Component {
                     <label className="form-check-label" htmlFor="isAnonimousCheck">Anónimo</label>
                   </div>
                 </div>
-                {/* <div><img src={this.state.newPost.imageSrc || ""} ></img></div> */}
-                {this.state.newPost.imageFile ? <div id="imageView"></div> : ""}
+                {this.state.imageFile ? <div id="imageView"></div> : ""}
                 <div className="publicar">
                   <div><div id="divinputfile" className="botons upload"><input type="file" onChange={this.handleUploadImage} id="inputfile" className="inputfile" accept="image/png, image/jpeg" />Subir foto</div></div>
                   <div><button onClick={this.handleNewPost} className="botons public">Publicar</button></div>
@@ -243,7 +269,7 @@ class CreatePost extends Component {
               </div>
             </div>
             { this.state.showResult ? (
-              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch} />
+              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
             ) : ( "" ) 
             }
           </div>

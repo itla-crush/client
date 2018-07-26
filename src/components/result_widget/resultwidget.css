@@ -71,7 +71,9 @@
     z-index: 1000;
     top: 185.5px;
     /* margin-top: -150px; */
-    left: 0px;
+    left: 550px;
+
+    max-width: 228px;
 }
 .wd-post .resultados {  
     margin: auto;

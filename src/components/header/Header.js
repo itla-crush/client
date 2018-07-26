@@ -82,13 +82,13 @@ class Header extends Component {
         
         //searchUser.setAttribute("data-content", searchUser.value);
     }
-
-    componentDidMount() {
-        this.obtener();
+    
+    handleOnNoFocus = () => {
+      this.setState({showResult: false});
     }
 
     handleOnBur = () => {
-        this.setState({showResult: false});
+        setTimeout(this.handleOnNoFocus.bind(this), 300);
     }
 
     handleOnFocus = () => {

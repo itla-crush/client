@@ -16,6 +16,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          posts: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -28,7 +29,6 @@ class Home extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
-        
         this.signOut = this.signOut.bind(this);
     }
 
@@ -49,6 +49,16 @@ class Home extends Component {
       });
     }
 
+    componentDidMount() {
+      var postsRef = firebase.database().ref('posts/');
+      postsRef.on('value', snapshot => {
+        var posts = snapshot.val();
+        if(posts) {
+          this.setState({ posts });
+        }
+      });
+    }
+
     render() {
       // this.setState({
         var data = {
@@ -57,7 +67,7 @@ class Home extends Component {
           photoUrl: null,
           timestamp: {
             day: "17", 
-            month: "julio",
+            month: "6",
             year: "2018",
             minute: "17",
             hour: "32"
@@ -77,8 +87,8 @@ class Home extends Component {
               text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend sem a dui rutrum mattis. Nullam vitae massa ullamcorper, sollicitudin mauris quis, scelerisque purus. Curabitur a efficitur nisl, nec porta elit. Nullam a tellus quis nunc porta vulputate.'
             }
           ]
-        };
-        var datas = [data, data, data];
+        }; 
+        var posts = this.state.posts;
       // });
       return (
         <div className="Home">
@@ -90,10 +100,10 @@ class Home extends Component {
                   <section>
                     { this.state.user.displayName && this.state.user.username ? (<CreatePost uid={this.state.user.uid} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} username={this.state.user.username} displayName={this.state.user.displayName} />) : ("") }
                     <div>
-                      {/* <Newsfeed />
-                      <Newsfeed />
-                      <Newsfeed /> */}
-                      {datas.map((data, key) => <Newsfeed key={key} data={data} />)}
+                      { posts ? ( 
+                        Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} />).reverse() 
+                        ) : ( "" )
+                      }
                     </div>
                   </section>
                 </main>
