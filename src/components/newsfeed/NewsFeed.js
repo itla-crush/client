@@ -33,8 +33,8 @@ class Newsfeed extends Component {
 
     render() {
       var month = this.getMonth(this.props.data.timestamp.month);
-      var photoUrl = this.props.data.isAnonimuos == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
-      var username = this.props.data.isAnonimuos == true ? "Anonimo" : this.props.data.fromUsername;
+      var photoUrl = this.props.data.isAnonimous == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
+      var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromUsername;
       return (
         <article className="post">
           <header className="header-post">
