@@ -8,12 +8,20 @@ class ResultWidget extends Component {
     super(props);
     // this.setUserDataPost = this.setUserDataPost.bind(this);
   }
+
+  // setUid = (e) => {
+  //   e.preventDefault();
+  // }
     
   setUserDataPost = (e) => {
     e.preventDefault();
     if(this.props.setUserDataPost) {
       var value = e.currentTarget.id;
       this.props.setUserDataPost(value);
+    }
+    if(this.props.getUid) {
+      var value = e.currentTarget.id;
+      this.props.getUid(value);
     }
   }
 
@@ -23,9 +31,9 @@ class ResultWidget extends Component {
     
     if(users !== '¡No hay resultados!'){
 
-      listItems = Object.keys(users).map((user) =>
+      listItems = Object.keys(users).map((user) => 
         <li key={users[user].id}>
-          <a id={user} alt={users[user].id} href={`profile-friend/${users[user].uid}`} onClick={this.setUserDataPost}>
+          <a id={user} alt={users[user].id} href={`profile-friend/${users[user].uid}`} onClick={this.setUserDataPost}  data-toggle={this.props.setUserDataPost ? "" : "modal"} data-target="#myModal">
             <div className="resultado-imagen">
               <img src={users[user].photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} alt="" />
             </div>

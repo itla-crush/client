@@ -20,11 +20,12 @@ class ChatWidget extends Component {
           listItems = Object.keys(messages).map((message) =>
             <li key={message} className={messages[message].uid == currentUserUid ? "right clearfix" : "left clearfix"}>
                 <span className={messages[message].uid == currentUserUid ? "chat-img pull-right" : "chat-img pull-left"}>
-                    <img src={messages[message].photoUrl} alt="" className="img-circle" />
+                    <img src={messages[message].photoUrl || ''} alt="" className="img-circle" />
                 </span>
                 <div className="chat-body clearfix">
                     <div className="header">
-                        <strong className="primary-font">{messages[message].displayName}</strong> <small className={messages[message].uid == currentUserUid ? "pull-right text-muted" : "pull-left text-muted"}>
+                        <strong className="primary-font">{messages[message].displayName}</strong> 
+                        <small className={messages[message].uid == currentUserUid ? "text-muted" : "pull-left text-muted"}>
                         <span className="glyphicon glyphicon-time" />12 mins ago</small>
                     </div>
                     <p>{messages[message].text}</p>
@@ -56,8 +57,8 @@ class ChatWidget extends Component {
                             </span>
                             <div className="chat-body clearfix">
                                 <div className="header">
-                                    <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
-                                    <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                    <strong className="primary-font">Jack Sparrow</strong> 
+                                    <small className="pull-right text-muted"><span className="glyphicon glyphicon-time" />12 mins ago</small>
                                 </div>
                                 <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
