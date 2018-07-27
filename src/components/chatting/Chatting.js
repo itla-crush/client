@@ -30,13 +30,16 @@ class Chatting extends Component{
                 <Header />
                 <div className="c-contacts">
                     <div className="persons">
-                        
+                        <div className="buscador">
+                            <input type="text" className="form-control" placeholder="Buscar"/>
+                        </div>
                         <div className="friend">
                             <div className="persons-imagen">
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
                             </div>
                             <div className="persons-nombres">
                                 <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
                             </div>
                         </div>
                        
@@ -46,6 +49,7 @@ class Chatting extends Component{
                             </div>
                             <div className="persons-nombres">
                                 <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
                             </div>
                          </div>
                          <div className="friend">
@@ -54,6 +58,7 @@ class Chatting extends Component{
                             </div>
                             <div className="persons-nombres">
                                 <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
                             </div>
                          </div>
                          <div className="friend">
@@ -62,9 +67,57 @@ class Chatting extends Component{
                             </div>
                             <div className="persons-nombres">
                                 <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
                             </div>
                          </div>
+                         <div className="friend">
+                            <div className="persons-imagen">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
+                            </div>
+                            <div className="persons-nombres">
+                                <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
+                            </div>
+                         </div>
+                         <div className="friend">
+                            <div className="persons-imagen">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
+                            </div>
+                            <div className="persons-nombres">
+                                <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
+                            </div>
+                         </div>
+                         <div className="friend">
+                            <div className="persons-imagen">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
+                            </div>
+                            <div className="persons-nombres">
+                                <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
+                            </div>
+                         </div>
+                         <div className="friend">
+                            <div className="persons-imagen">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
+                            </div>
+                            <div className="persons-nombres">
+                                <p>Dalton Tejada C</p>
+                                <p>@molondron</p>
+                            </div>
+                        </div>
                        
+                    </div>
+
+                    <div className="conversacion">
+                       
+                           <form action="" className="formu-p">
+                             <div className="formu">
+                                <div><textarea className="text-camp"  name="" id="" cols="30" rows="10"></textarea></div>
+                                <div className="ctn"><input type="submit" value="enviar"/></div>
+                             </div>
+                           </form>
+                      
                     </div>
                     
 
