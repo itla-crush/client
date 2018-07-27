@@ -57,8 +57,8 @@ export default class Profile extends Component {
           }
         });
         
-        var postsRef = firebase.database().ref(`${ref}/posts-to-me`);
-        postsRef.on('value', snapshot => {
+        var postsToMeRef = firebase.database().ref(`${ref}/posts-to-me`);
+        postsToMeRef.on('value', snapshot => {
           var postsToMe = snapshot.val();
           if(postsToMe) {
             this.setState({ postsToMe });
