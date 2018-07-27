@@ -34,6 +34,10 @@ margin-right: 60px;
 font-size: 13px;
 }
 
+.primary-font {
+font-size: 15px;
+}
+
 .chat li .chat-body p
 {
 margin: 0;
