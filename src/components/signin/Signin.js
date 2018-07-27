@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 // Assets
 import './signin.css';
-import './modalpassword.css';
+// import './modalpassword.css';
 import '../../css/signin_signup.css';
 
 class Signin extends Component {

@@ -130,12 +130,15 @@ class CreatePost extends Component {
             this.submitNewPost(postData, imageFile);
           } else {
             console.log('Debes elegir el destinatario.');
+            alert('Debes elegir el destinatario.');
           }
         } else {
           console.log('La declaracion debe tener mas de 10 caracteres.');
+          alert('La declaracion debe tener mas de 10 caracteres.');
         }
       } else {
         console.log('La declaracion es obligatoria.');
+        alert('La declaracion es obligatoria.');
       }
 
     }

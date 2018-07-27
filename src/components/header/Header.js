@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import _ from 'lodash';
 import ResultWidget from '../../components/result_widget/ResultWidget';
+import ProfileWidget from '../../components/profile_widget/ProfileWidget';
 
 // Components
 
@@ -13,6 +14,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            uid: null,
             newData: null,
             showResult: false,
             isSignedIn: false,
@@ -96,6 +98,10 @@ class Header extends Component {
         }
     }
 
+    getUid = (uid) => {
+        this.setState({ uid });
+    }
+
     obtener = () => {
         var z = document.getElementById('search-user');
         var posicion = z.getBoundingClientRect();
@@ -132,8 +138,9 @@ class Header extends Component {
                 </div>
             </nav>
             { this.state.showResult ? (
-                <ResultWidget users={this.state.newData || '¡No hay resultados!'} /> ) : ( "" ) 
+                <ResultWidget users={this.state.newData || '¡No hay resultados!'} getUid={this.getUid.bind(this)} /> ) : ( "" ) 
             }
+            <ProfileWidget uid={this.state.uid} />
         </header>
         
       );
