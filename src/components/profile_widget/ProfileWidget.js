@@ -21,18 +21,18 @@ class ProfileWidget extends Component {
     }
   }
 
-  // componentWillReceiveProps() {
-  //   var uid = this.props.uid;
-  //   if(uid) {
-  //     firebase.database().ref(`/users/${uid}`).once('value')
-  //     .then(snapshot => {
-  //       var user = snapshot.val();
-  //       if(user) {
-  //         this.setState({ user });
-  //       }
-  //     });
-  //   }
-  // }
+  componentWillReceiveProps() {
+    var uid = this.props.uid;
+    if(uid) {
+      firebase.database().ref(`/users/${uid}`).once('value')
+      .then(snapshot => {
+        var user = snapshot.val();
+        if(user) {
+          this.setState({ user });
+        }
+      });
+    }
+  }
   
   render() {
     var uid = this.props.uid || '';
@@ -41,7 +41,7 @@ class ProfileWidget extends Component {
     var username = this.state.user.username || 'Desconocido';
     var photoUrl = this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
     var phoneNumber = this.state.user.phoneNumber || 'Desconocido';
-    var age = this.state.user.age || '19';
+    var age = this.state.user.age ? `${this.state.user.age} años` : 'Desconocido';
     var gender = this.state.user.gender || 'Desconocido';
     var location = this.state.user.location || 'Desconocido';
 
@@ -74,7 +74,7 @@ class ProfileWidget extends Component {
                 <div className="profile-widget-content">
                   <div className="profile-widget-info">
                     <div className="profile-widget-info-content" style={{width: '30%'}}>
-                      <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Edad:</span>&nbsp;<span style={{color: 'rgba(0, 0, 0, 0.87)'}}>{`${age} años`}</span></p>
+                      <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Edad:</span>&nbsp;<span style={{color: 'rgba(0, 0, 0, 0.87)'}}>{`${age}`}</span></p>
                       <p><span style={{color: 'rgba(0, 0, 0, 0.6)'}}>Sexo:</span>&nbsp;<span style={{color: 'rgba(0, 0, 0, 0.87)'}}>{gender}</span></p>
                     </div>
                     <div className="profile-widget-info-content" style={{width: '70%'}}>

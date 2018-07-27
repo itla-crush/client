@@ -19,6 +19,7 @@ class Signup extends Component {
       this.generateUsername = this.generateUsername.bind(this);
       this.generateDisplayName = this.generateDisplayName.bind(this);
       this.calendar = this.calendar.bind(this);
+      this.convertGender = this.convertGender.bind(this);
     }
 
     componentDidMount() {
@@ -44,6 +45,21 @@ class Signup extends Component {
       name = _.split(name, ' ', 1);
       lastname = _.split(lastname, ' ', 1);
       return `@${_.toLower(name+lastname)}`;
+    }
+
+    convertGender = (gender) => {
+      switch (_.toLower(gender)) {
+        case 'male':
+          gender = 'Hombre';
+          break;
+        case 'female':
+          gender = 'Mujer';
+          break;
+        default:
+          // gender = gender;
+          break;
+      }
+      return gender;
     }
 
     signInWithGoogle = () => {
@@ -82,6 +98,7 @@ class Signup extends Component {
       var lastname = res.additionalUserInfo.profile.family_name;
       var username = this.generateUsername(name, lastname);
       var displayName = this.generateDisplayName(name, lastname);
+      var gender = this.convertGender(res.additionalUserInfo.profile.gender);
       firebase.database().ref('users/' + res.user.uid).set({
         username: username,
         displayName: displayName,
@@ -92,7 +109,7 @@ class Signup extends Component {
         creationTime: res.user.metadata.creationTime || 'null',
         lastSignInTime: res.user.metadata.lastSignInTime || 'null',
         verified_email: res.additionalUserInfo.profile.verified_email || 'null',
-        gender: res.additionalUserInfo.profile.gender || 'null',
+        gender: gender || 'null',
         id: res.additionalUserInfo.profile.id || 'null',
         uid: res.user.uid || 'null'
       }, error => {
