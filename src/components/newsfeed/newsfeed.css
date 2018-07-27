@@ -187,7 +187,8 @@ div.div-comments::-webkit-scrollbar-track-piece {
     background-color: rgba(0, 0, 0, 0.1);
 }
 div.div-comments::-webkit-scrollbar-thumb{
-    background-color: #8BC34A; /*=> color del indicador del scroll */
+    background-color: rgba(247, 1, 76, 0.6); /*=> color del indicador del scroll */
+    /* #8BC34A */
 }
  div.div-comments::-webkit-scrollbar-button {
     /* background-color: #009688;  */

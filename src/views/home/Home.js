@@ -7,6 +7,7 @@ import UserSidebar from '../../components/user_sidebar/UserSidebar';
 import CreatePost from '../../components/create_post/CreatePost';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
 import ChatSidebar from '../../components/chat_sidebar/ChatSidebar';
+import ChatWidget from '../../components/chat_widget/ChatWidget';
 import Footer from '../../components/footer/Footer';
 
 // Assets
@@ -81,6 +82,7 @@ class Home extends Component {
                 </main>
               </section>
               <ChatSidebar />
+              <ChatWidget />
             </div>
             <Footer />
         </div>

@@ -3,6 +3,7 @@ import firebase from 'firebase';
 
 // Components
 import Header from '../../components/header/Header';
+import Newsfeed from '../../components/newsfeed/NewsFeed';
 
 import './profile.css';
 
@@ -10,6 +11,9 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          showPost: true,
+          posts: null,
+          postsToMe: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -22,13 +26,45 @@ export default class Profile extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
+        this.loadPosts = this.loadPosts.bind(this);
+        this.showPost = this.showPost.bind(this);
+        this.showPostToMe = this.showPostToMe.bind(this);
+    }
+
+    showPost = () => {
+        this.setState({ showPost: true });
+    }
+
+    showPostToMe = () => {
+        this.setState({ showPost: false });
     }
 
     componentWillReceiveProps(nextProps) {
       this.setState({
         user: nextProps.user
       });
+      this.loadPosts(nextProps.uid);
     } 
+
+    loadPosts = (uid) => {
+        var ref = `/users/${uid}`;
+
+        var postsRef = firebase.database().ref(`${ref}/posts`);
+        postsRef.on('value', snapshot => {
+          var posts = snapshot.val();
+          if(posts) {
+            this.setState({ posts });
+          }
+        });
+        
+        var postsRef = firebase.database().ref(`${ref}/posts-to-me`);
+        postsRef.on('value', snapshot => {
+          var postsToMe = snapshot.val();
+          if(postsToMe) {
+            this.setState({ postsToMe });
+          }
+        });
+    }
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
@@ -37,88 +73,68 @@ export default class Profile extends Component {
     }
     
     render(){
-     return(
+        var posts = this.state.posts;
+        var postsToMe = this.state.postsToMe;
+        return(
 
-       <div className="Profile"> 
-           <Header />
-            <div className="pf">
-                <div className="foto">
-                    <img src={this.state.user.photoUrl} alt={this.state.user.displayName} />
-                </div>
-                <section className="informacion ">
-                    <div className="datos-conf">
-                        <div className="nombre-usuario">
-                            <h2>{this.state.user.displayName}</h2>
-                            <p>{this.state.user.username}</p>
-                        </div>
-                        <div className="editar">
-                            <a href="/edit_profile">Editar Perfil</a>
-                        </div>
-                    </div>
-                    <div className="estadisticas">
-                        <div className="realizados">
-                            <p>Publicaciones</p>
-                            <h5>{this.state.user.postCount || '0'}</h5>
-                        </div>
-                        <div className="privado">
-                            <p>Privados</p>
-                            <h5>{this.state.user.postToMeCount || '0'}</h5>
-                        </div>
-                        <div className="seguidos">
-                            <p>Seguidos</p>
-                            <h5>{this.state.user.followersCount || '0'}</h5>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            {/* Segunda vista de usuario */}
-            {/* <div>
-                <div className="pf-segundo" id="pf-segundo">
+        <div className="Profile"> 
+            <Header />
+                <div className="pf">
                     <div className="foto">
-                        <img className src="../img/modelo-default.jpg" />
+                        <img src={this.state.user.photoUrl} alt={this.state.user.displayName} />
                     </div>
                     <section className="informacion ">
                         <div className="datos-conf">
                             <div className="nombre-usuario">
-                                <h2>Dalton Tejada Cortorreal</h2>
-                                <p className>@MegadaltonOT</p>
+                                <h2>{this.state.user.displayName}</h2>
+                                <p>{this.state.user.username}</p>
                             </div>
                             <div className="editar">
                                 <a href="/edit_profile">Editar Perfil</a>
                             </div>
                         </div>
+                        <div className="estadisticas">
+                            <div className="realizados">
+                                <p>Publicaciones</p>
+                                <h5>{this.state.user.postCount || '0'}</h5>
+                            </div>
+                            <div className="privado">
+                                <p>Privados</p>
+                                <h5>{this.state.user.postToMeCount || '0'}</h5>
+                            </div>
+                            <div className="seguidos">
+                                <p>Seguidos</p>
+                                <h5>{this.state.user.followersCount || '0'}</h5>
+                            </div>
+                        </div>
                     </section>
                 </div>
-                <div className="estadist-segundo">
-                    <div className="realizados">
-                        <h4>7</h4>
-                        <p>Publicaciones</p><p>
-                        </p></div>
-                    <div className="privado">
-                        <h4>3</h4>
-                        <p>Privados</p> 
+            <div className="content-de">
+                <div className="public-private">
+                    <div className="declarations">
+                        <p className="grow" onClick={this.showPost}>Contenido uno</p>
                     </div>
-                    <div className="seguidos">
-                        <h4>26</h4>
-                        <p>Seguidos</p> 
+                    <div className="declarations">
+                        <p className="grow" onClick={this.showPostToMe}>Contenido dos</p>
                     </div>
                 </div>
-            </div> */}
+                <div className="w3-animate-opacity ">
+                    <div>
+                    {   this.state.showPost ? (
+                            posts ? ( 
+                                Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
+                            ) : ( "No haz hecho publicaciones" )
+                        ) : (
+                            postsToMe ? ( 
+                                Object.keys(postsToMe).map((post) => <Newsfeed key={post} id={post} data={postsToMe[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
+                            ) : ( "No haz recibido declaraciones" )
+                        )
+                    }
+                    </div>
+                </div>
+                
 
-         <div className="content-de">
-            <div className="public-private">
-                <div className="declarations">
-                    <p className="grow">Contenido uno</p>
-                </div>
-                <div className="declarations">
-                    <p className="grow">Contenido dos</p>
-                </div>
-            </div>
-                <div className="a w3-animate-opacity ">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
+                {/* 
                 <div className="b w3-animate-opacity ">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
@@ -162,20 +178,20 @@ export default class Profile extends Component {
                 <div className="c w3-animate-opacity">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
+                </div> */}
 
-                <div className="salto">
+                    <div className="salto">
 
-                </div>
-    
-                <div className="salir">
-                    <img src='' alt=""/>
-                </div>
-           
-          </div>
+                    </div>
+        
+                    <div className="salir">
+                        <img src='' alt=""/>
+                    </div>
+            
+            </div>
 
 
-        </div>
+            </div>
         );
     }
 }

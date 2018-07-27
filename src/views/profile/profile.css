@@ -309,7 +309,7 @@
 .content-de{ 
    margin: auto;
    margin-top: 50px;
-   width: 740px; 
+   width: 600px;  
   
 }
 .public-private{
@@ -355,6 +355,10 @@
     border-radius: 10px;
     text-align: center; */
     
+}
+
+.w3-animate-opacity {
+    width: 600px;
 }
 
 .w3-animate-zoom {
