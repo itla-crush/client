@@ -95,7 +95,7 @@ class App extends Component {
                         <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
                         <Route path='/chatting' component={Chatting} />
-                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} />)} />
+                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} uid={this.state.user.uid} />)} />
                         <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} />)} />
                         <Route path='/change_password' component={ChangePassword} />
                         <Route path='/profile_widget' component={Page404} />
