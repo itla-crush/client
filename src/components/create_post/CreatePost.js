@@ -29,6 +29,8 @@ class CreatePost extends Component {
       this.handleOnBurPost = this.handleOnBurPost.bind(this);
       this.handleOnFocusPost = this.handleOnFocusPost.bind(this);
       this.clearForm = this.clearForm.bind(this);
+      this.increasePostCount = this.increasePostCount.bind(this);
+      
       // this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
     }
   
@@ -147,7 +149,7 @@ class CreatePost extends Component {
     
       if(imageFile && imageFile.toString() !== '') {
         var storageRef = firebase.storage().ref();
-        var uploadTask = storageRef.child(`images/post_image/${imageFileUploaded.name}`).put(imageFileUploaded);
+        var uploadTask = storageRef.child(`images/post_image/${newPostKey}/${imageFileUploaded.name}`).put(imageFileUploaded);
 
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -174,6 +176,7 @@ class CreatePost extends Component {
             updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
             console.log(downloadURL);
             firebase.database().ref().update(updates);
+            this.increasePostCount(postData.fromUid, postData.toUid);
           });
         });
 
@@ -184,8 +187,34 @@ class CreatePost extends Component {
         updates[`/users/${postData.fromUid}/posts/${newPostKey}`] = postData;
         updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
         firebase.database().ref().update(updates);
+        this.increasePostCount(postData.fromUid, postData.toUid);
       }
       this.clearForm();
+    }
+
+    increasePostCount = (fromUid, toUid) => {
+      var postCount = firebase.database().ref(`/users/${fromUid}/postCount`);
+      var postToMeCount = firebase.database().ref(`/users/${toUid}/postToMeCount`);
+      postCount.transaction(currentRank => {
+        // If users/ada/rank has never been set, currentRank will be `null`.
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+        console.log(`CreatePost.js 205: ${currentRank}`);
+        return currentRank;
+      });
+
+      postToMeCount.transaction(currentRank => {
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+        console.log(`CreatePost.js 215: ${currentRank}`);
+        return currentRank;
+      });
     }
 
     handleUploadImage = (evt) => {

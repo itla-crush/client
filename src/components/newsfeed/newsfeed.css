@@ -32,15 +32,11 @@
     border-radius: 50%;
 }
 
-.div-user {
-
-}
-
 .div-user a {
     /*margin-left: 10px;*/
     text-decoration: none;
     color: rgb(0, 0, 0);
-    font-size: 14px;
+    font-size: 16px;
     /*font-weight: bold;*/
 }
 
@@ -113,7 +109,8 @@
 
 .div-comments ul li {
     padding-left: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
+    font-size: 15px;
 }
 
 /*.div-form-comment {
@@ -182,20 +179,27 @@
 div.div-comments::-webkit-scrollbar {
     width: 6px; /*=> ancho del scroll*/
     background-color: #000000; /*=> Color del fondo principal */
- }
- div.div-comments::-webkit-scrollbar:hover {
-    width: 8px; /*=> ancho del scroll*/
- }
- div.div-comments::-webkit-scrollbar-track {
+}
+div.div-comments::-webkit-scrollbar-track {
     background-color: #ffffff;
- }
- div.div-comments::-webkit-scrollbar-track-piece {
-     background-color: rgba(0, 0, 0, 0.1);
- }
- div.div-comments::-webkit-scrollbar-thumb{
+}
+div.div-comments::-webkit-scrollbar-track-piece {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+div.div-comments::-webkit-scrollbar-thumb{
     background-color: #8BC34A; /*=> color del indicador del scroll */
- }
+}
  div.div-comments::-webkit-scrollbar-button {
     /* background-color: #009688;  */
     /*=> color de flechas */
  }
+/*  
+div.div-comments::-webkit-scrollbar-track:hover {
+    width: 8px;
+}
+div.div-comments::-webkit-scrollbar-thumb:hover {
+    width: 8px;
+}
+div.div-comments::-webkit-scrollbar-track-piece:hover {
+    width: 8px;
+} */
