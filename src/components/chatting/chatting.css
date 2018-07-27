@@ -3,7 +3,20 @@ body{
 }
 .c-contacts{
     margin-top: 70px;
-    width: 350px;
+    display: flex;
+    
+}
+.c-contacts .persons {
+    overflow: scroll;
+    width: 300px;
+    height: 590px;
+    border-right: 1px solid #ccc;
+}
+.c-contacts .persons .buscador{
+    padding: 10px;
+}
+.c-contacts .persons .buscador input[type="text"]{
+    height: 35px;
 }
 
 .c-contacts .persons .friend{
@@ -12,8 +25,47 @@ body{
     margin-bottom: 7px;
 }
 
+.c-contacts .persons .friend .persons-nombres p{margin-bottom: 0px;}
+.c-contacts .persons .friend:hover{
+    cursor: pointer;
+}
+
 .c-contacts .persons .persons-imagen img{
     width: 80px;
     border-radius: 50px;
 }
 
+.c-contacts .conversacion{
+    border: 1px solid #ccc;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+
+}
+.c-contacts .conversacion .formu-p .formu .text-camp{
+    resize: none;
+    padding: 10px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-style: none;
+    border-color: Transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: none;
+    height: 50px;
+
+}
+
+.c-contacts .conversacion .formu-p .formu .ctn input[type="submit"]{
+
+}
+
+.c-contacts .conversacion .formu{
+
+    display: flex;
+}
+
+
+.c-contacts .conversacion .formu-p{
+}
