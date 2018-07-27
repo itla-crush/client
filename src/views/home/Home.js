@@ -95,8 +95,8 @@ class Home extends Component {
                   </section>
                 </main>
               </section>
-              <ChatSidebar users={this.state.users || 'null'} />
-              { this.state.user.displayName && this.state.user.username ? (<ChatWidget chatId={this.state.chatId || ''} openChat={this.openChat.bind(this)} />) : ("") }
+              <ChatSidebar users={this.state.users || 'null'} openChat={this.openChat.bind(this)} currentUserUid={this.state.user.uid} />
+              { this.state.user.displayName && this.state.user.username ? (<ChatWidget chatId={this.state.chatId || ''} messages={this.state.messages || ''} currentUserUid={this.state.user.uid} />) : ("") }
             </div>
             <Footer />
         </div>

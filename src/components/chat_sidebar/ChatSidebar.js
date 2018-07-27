@@ -7,30 +7,34 @@ import ChatItem from '../chat_item/ChatItem';
 import './chatsidebar.css';
 
 class ChatSidebar extends Component {
+    constructor(props) {
+      super(props);
+    }
 
-    openChat = () => {
-      var id = 'Id del chat';
-      this.props.openChat(id);
+    openChat = (e) => {
+      if(this.props.openChat) {
+        var value = e.currentTarget.id;
+        this.props.openChat(value);
+      }
     }
 
     render() {
+      const currentUserUid = this.props.currentUserUid;
       var users = this.props.users;
       var listItems = '';
       
       if(users != null){
   
         listItems = Object.keys(users).map((user) =>
-          <li key={user} className="li-each-chat" onClick={this.openChat}>
-            {/* <a className="" href="#"> */}
+          <li key={user} id={user} className="li-each-chat" onClick={this.openChat} style={{display: user == currentUserUid ? 'none' : ''}}>
               <div className="div-chat-content center-content">
                 <div className="div-img-profile-chat"> 
                   <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />
                 </div>
                 <div className="div-user-chat">
-                  <span>{users[user].displayName || ''}</span><span>Activo</span>
+                  <span class="court-text" style={{maxWidth:'155px'}}>{users[user].displayName || ''}</span><span>Activo</span>
                 </div>
               </div>
-            {/* </a> */}
           </li>
         );
   

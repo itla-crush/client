@@ -10,6 +10,32 @@ class ChatWidget extends Component {
     }
 
     render() {
+        const currentUserUid = this.props.currentUserUid;
+        var messages = this.props.messages;
+        var listItems = '';
+        
+        if(messages != null){
+            // "http://placehold.it/50/55C1E7/fff&text=U"
+            // == currentUserUid ? messages[message]. : messages[message].
+          listItems = Object.keys(messages).map((message) =>
+            <li key={message} className={messages[message].uid == currentUserUid ? "right clearfix" : "left clearfix"}>
+                <span className={messages[message].uid == currentUserUid ? "chat-img pull-right" : "chat-img pull-left"}>
+                    <img src={messages[message].photoUrl} alt="" className="img-circle" />
+                </span>
+                <div className="chat-body clearfix">
+                    <div className="header">
+                        <strong className="primary-font">{messages[message].displayName}</strong> <small className={messages[message].uid == currentUserUid ? "pull-right text-muted" : "pull-left text-muted"}>
+                        <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                    </div>
+                    <p>{messages[message].text}</p>
+                </div>
+            </li>
+          );
+    
+        } else {
+          listItems = <li>¡No hay usuarios!</li>;
+        }
+
         return (
             <div className="ChatWidget">
                 <div className="panel panel-primary">
@@ -24,62 +50,37 @@ class ChatWidget extends Component {
                 <div className="panel-collapse collapse" id="collapseOne">
                     <div className="panel-body">
                     <ul className="chat">
-                        <li className="left clearfix"><span className="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" className="img-circle" />
-                        </span>
-                        <div className="chat-body clearfix">
-                            <div className="header">
-                            <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
-                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                        <li className="left clearfix">
+                            <span className="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" className="img-circle" />
+                            </span>
+                            <div className="chat-body clearfix">
+                                <div className="header">
+                                    <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
+                                    <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                </div>
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                dolor, quis ullamcorper ligula sodales.
+                                </p>
                             </div>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                            dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
                         </li>
-                        <li className="right clearfix"><span className="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" className="img-circle" />
-                        </span>
-                        <div className="chat-body clearfix">
-                            <div className="header">
-                            <small className="text-muted"><span className="glyphicon glyphicon-time" />13 mins ago</small>
-                            <strong className="pull-right primary-font">Bhaumik Patel</strong>
+                        <li className="right clearfix">
+                            <span className="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" className="img-circle" />
+                            </span>
+                            <div className="chat-body clearfix">
+                                <div className="header">
+                                    <small className="text-muted"><span className="glyphicon glyphicon-time" />13 mins ago</small>
+                                    <strong className="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                dolor, quis ullamcorper ligula sodales.
+                                </p>
                             </div>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                            dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
                         </li>
-                        <li className="left clearfix"><span className="chat-img pull-left">
-                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" className="img-circle" />
-                        </span>
-                        <div className="chat-body clearfix">
-                            <div className="header">
-                            <strong className="primary-font">Jack Sparrow</strong> <small className="pull-right text-muted">
-                                <span className="glyphicon glyphicon-time" />14 mins ago</small>
-                            </div>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                            dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                        </li>
-                        <li className="right clearfix"><span className="chat-img pull-right">
-                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" className="img-circle" />
-                        </span>
-                        <div className="chat-body clearfix">
-                            <div className="header">
-                            <small className="text-muted"><span className="glyphicon glyphicon-time" />15 mins ago</small>
-                            <strong className="pull-right primary-font">Bhaumik Patel</strong>
-                            </div>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                            dolor, quis ullamcorper ligula sodales.
-                            </p>
-                        </div>
-                        </li>
+                        
                     </ul>
                     </div>
                     <div className="panel-footer">

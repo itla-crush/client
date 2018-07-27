@@ -9,3 +9,9 @@ body {
 #root {
   width: 100%;
 }
+
+.court-text {
+  text-overflow:ellipsis;
+  white-space:nowrap; 
+  overflow:hidden; 
+}
