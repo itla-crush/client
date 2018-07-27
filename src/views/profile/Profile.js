@@ -115,6 +115,55 @@ export default class Profile extends Component {
                     <h3>Contenido dos</h3>
                 </div>
             </div>
+                <div className="a w3-animate-zoom ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="b w3-animate-zoom ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="c w3-animate-zoom ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="a w3-animate-zoom ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="b w3-animate-zoom ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="c w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="a w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="b w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="c w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="a w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="b w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="c w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+           
           </div>
 
 
