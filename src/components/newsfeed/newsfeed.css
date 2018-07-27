@@ -179,19 +179,23 @@
     cursor: pointer;
 }
  
- body::-webkit-scrollbar {
-    width: 16px; /*=> ancho del scroll*/
+div.div-comments::-webkit-scrollbar {
+    width: 6px; /*=> ancho del scroll*/
     background-color: #000000; /*=> Color del fondo principal */
  }
- body::-webkit-scrollbar-track {
+ div.div-comments::-webkit-scrollbar:hover {
+    width: 8px; /*=> ancho del scroll*/
+ }
+ div.div-comments::-webkit-scrollbar-track {
     background-color: #ffffff;
  }
- body::-webkit-scrollbar-track-piece {
+ div.div-comments::-webkit-scrollbar-track-piece {
      background-color: rgba(0, 0, 0, 0.1);
  }
- body::-webkit-scrollbar-thumb{
+ div.div-comments::-webkit-scrollbar-thumb{
     background-color: #8BC34A; /*=> color del indicador del scroll */
  }
- body::-webkit-scrollbar-button {
-    background-color: #009688; /*=> color de flechas */
+ div.div-comments::-webkit-scrollbar-button {
+    /* background-color: #009688;  */
+    /*=> color de flechas */
  }
