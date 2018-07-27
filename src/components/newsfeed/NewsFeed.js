@@ -118,7 +118,7 @@ class Newsfeed extends Component {
       var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
       return (
-        <article className="post">
+        <article className="post ">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
               <a href="#" onClick={e => e.preventDefault()}>

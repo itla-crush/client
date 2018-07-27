@@ -118,8 +118,8 @@ export default class Profile extends Component {
                         <p className="grow" onClick={this.showPostToMe}>Contenido dos</p>
                     </div>
                 </div>
-                <div className="w3-animate-opacity ">
-                    <div>
+                <div>
+                    <div className="w3-animate-opacity ">
                     {   this.state.showPost ? (
                             posts ? ( 
                                 Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
