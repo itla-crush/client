@@ -44,7 +44,7 @@ class ChatWidget extends Component {
                         <div className="chat-body clearfix">
                             <div className="header">
                             <small className="text-muted"><span className="glyphicon glyphicon-time" />13 mins ago</small>
-                            <strong className="pull-right primary-font">Bhaumik Patel</strong>
+                            <strong className="pull-right primary-font" style={{fontSize:'16px'}}>Bhaumik Patel</strong>
                             </div>
                             <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare

@@ -30,11 +30,15 @@ margin-left: 60px;
 margin-right: 60px;
 }
 
+.text-muted {
+font-size: 13px;
+}
 
 .chat li .chat-body p
 {
 margin: 0;
 color: #777777;
+font-size: 15px;
 }
 
 .panel .slidedown .glyphicon, .chat .glyphicon
