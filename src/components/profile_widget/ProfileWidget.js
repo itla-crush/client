@@ -101,8 +101,10 @@ class ProfileWidget extends Component {
                   </div> */}
                 </div>
                 <div className="profile-widget-footer center-content">
-                  <button className="btn-o"><i className="fas fa-user-plus"></i> Seguir</button>
-                  <button className="btn-o"><i className="fas fa-envelope"></i> Mensaje</button>
+                  {/* <button className="btn-o"><i className="fas fa-user-plus"></i> Seguir</button>
+                  <button className="btn-o"><i className="fas fa-envelope"></i> Mensaje</button> */}
+                  
+                  <button className="btn-o" data-dismiss="modal"><i className="fas fa-times-circle"></i> Cerrar</button>
                   <button className="btn-o"><i className="fas fa-pencil-alt"></i> Declaración</button>
                 </div>
               </div>

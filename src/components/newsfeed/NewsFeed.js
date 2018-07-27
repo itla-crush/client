@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import _ from 'lodash';
 
 // Components
 import Post from '../../components/post/Post';
@@ -22,37 +23,44 @@ class Newsfeed extends Component {
 
     handleSendComment = (event) => {
       var txtAreaComment = document.getElementById(`textareaComment${this.props.id}`);
-      var textAreaComment = txtAreaComment.value;
+      var textAreaComment = _.trim(txtAreaComment.value); 
 
       if(this.props.currentUserUid !== 'null') {
-        var toUid = this.props.data.toUid; // Para actualizar el comentario en el destinatario
-        var fromUid = this.props.data.fromUid; // Para actualizar el comentario en el owner del post
-  
-        var commentData = {
-          uid: this.props.currentUserUid,
-          text: textAreaComment, 
-          // username: this.props.currentUserName,
-          displayName: this.props.currentUserDisplayName,
-          timestamp: {
-            day: new Date().getDate(),
-            month: new Date().getMonth(),
-            year: new Date().getFullYear(),
-            minute: new Date().getMinutes(),
-            hour: new Date().getHours()
+        if(!_.isEmpty(textAreaComment)) {
+          var toUid = this.props.data.toUid; // Para actualizar el comentario en el destinatario
+          var fromUid = this.props.data.fromUid; // Para actualizar el comentario en el owner del post
+    
+          var commentData = {
+            uid: this.props.currentUserUid,
+            text: textAreaComment, 
+            // username: this.props.currentUserName,
+            displayName: this.props.currentUserDisplayName,
+            timestamp: {
+              day: new Date().getDate(),
+              month: new Date().getMonth(),
+              year: new Date().getFullYear(),
+              minute: new Date().getMinutes(),
+              hour: new Date().getHours()
+            }
           }
+          var newCommentKey = firebase.database().ref().child(`/users/${fromUid}/posts/${this.props.id}/comments`).push().key;
+          var updates = {};
+    
+          if(this.props.data.isPublic) {
+            updates[`/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
+          }
+          updates[`/users/${fromUid}/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
+          updates[`/users/${toUid}/posts-to-me/${this.props.id}/comments/${newCommentKey}`] = commentData;
+          firebase.database().ref().update(updates);
+
+        } else {
+          alert('Debes escribir algo para comentar.');
+          console.log('Debes escribir algo para comentar.');         
         }
-        var newCommentKey = firebase.database().ref().child(`/users/${fromUid}/posts/${this.props.id}/comments`).push().key;
-        var updates = {};
-  
-        if(this.props.data.isPublic) {
-          updates[`/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
-        }
-        updates[`/users/${fromUid}/posts/${this.props.id}/comments/${newCommentKey}`] = commentData;
-        updates[`/users/${toUid}/posts-to-me/${this.props.id}/comments/${newCommentKey}`] = commentData;
-        firebase.database().ref().update(updates);
 
       } else {
-        console.log('Debes iniciar sesión para hacer comentarios.')
+        alert('Debes iniciar sesión para hacer comentarios.');
+        console.log('Debes iniciar sesión para hacer comentarios.');
       }
 
       txtAreaComment.value = '';
