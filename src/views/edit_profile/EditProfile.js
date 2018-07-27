@@ -96,7 +96,11 @@ export default class EditProfile extends Component {
                 </div>
                 <div className="confirmacion">
                     <div className="acciones">
-                        <div className="act"><button type="button" className="btn-contra">Cambiar contraseña</button></div>
+                        <div className="act">
+                            <a href="/change_password">
+                              <button type="button" className="btn-contra">Cambiar contraseña</button>
+                            </a>
+                        </div>
                         <div className="act"><button type="button" className="btn">Guardar cambios</button></div>
                     </div>
                 </div>

@@ -109,15 +109,144 @@ class Chatting extends Component{
                        
                     </div>
 
-                    <div className="conversacion">
-                           <form action="" className="formu-p">
-                             <div className="formu">
-                                <div className="text-c"><textarea className="text-camp"  id="" placeholder="Escribe un mensaje..."></textarea></div>
-                                <div className="ctn"><input type="submit" value="Enviar"/></div>
-                             </div>
-                           </form>
-                    </div>
                     
+                        
+                        <div className="conversacion">
+
+                            <div className="chat-users">
+                                <div className="list-users">
+                                    {/* <div className="cont-u">
+                                        <span className="picture">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body">
+                                            <div className="info-person">
+                                               <strong>Melani Rogriguez</strong> 
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, dolor praesentium aperiam tempore accusamus nesciunt sapiente voluptatum? Magnam libero, perspiciatis repellat qui dicta laboriosam eos a, odit ab quo neque eum porro id voluptatum optio fugit. Rerum, consequatur? Laudantium sunt porro laborum numquam beatae asperiores. Numquam blanditiis earum omnis eaque!
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, dolor praesentium aperiam tempore accusamus nesciunt sapiente voluptatum? Magnam libero, perspiciatis repellat qui dicta laboriosam eos a, odit ab quo neque eum porro id voluptatum optio fugit. Rerum, consequatur? Laudantium sunt porro laborum numquam beatae asperiores. Numquam blanditiis earum omnis eaque!
+                                            </p>
+                                        </div>
+                                    </div> */}
+
+
+
+
+                                  <ul className="talk-persons">
+                                    <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                               Lorem ipsum
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                            Lorem ipsum dolor
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elits.
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Dalton Mi Amor! ¿como estas? 
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Holaaa
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Holaaa
+                                            </p>
+                                        </div>
+                                     </li>
+                                     <li className="left clearfix space">
+                                        <span className="chat-img pull-left">
+                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
+                                        </span>
+                                        <div className="chat-body clearfix">
+                                            <div className="header">
+                                                <strong className="primary-font">Melani Rodriguez</strong> <small className="pull-right text-muted">
+                                                <span className="glyphicon glyphicon-time" />12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Holaaa
+                                            </p>
+                                        </div>
+                                     </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+
+
+
+                                <form action="" className="formu-p">
+                                    <div className="formu">
+                                        <div className="text-c"><textarea className="text-camp"  id="" placeholder="Escribe un mensaje..."></textarea></div>
+                                        <div className="ctn"><input type="submit" value="Enviar"/></div>
+                                    </div>
+                                </form>
+                        </div>
+                  
 
 
 
