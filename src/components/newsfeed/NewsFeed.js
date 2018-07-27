@@ -15,6 +15,7 @@ class Newsfeed extends Component {
           comments: null
       }
       this.handleSendComment = this.handleSendComment.bind(this);
+      this.handleLike = this.handleLike.bind(this);
       this.getMonth = this.getMonth.bind(this);
       this.handleFocusComment = this.handleFocusComment.bind(this);
     }
@@ -62,6 +63,40 @@ class Newsfeed extends Component {
       document.getElementById(`textareaComment${this.props.id}`).focus();
     }
 
+    handleLike = (event) => {
+      event.preventDefault();
+
+      if(this.props.currentUserUid !== 'null') {
+        var toUid = this.props.data.toUid; // Para actualizar el comentario en el destinatario
+        var fromUid = this.props.data.fromUid; // Para actualizar el comentario en el owner del post
+
+        var postCount = firebase.database().ref(`/users/${fromUid}/posts/${this.props.id}/likes`);
+        postCount.transaction(currentRank => {
+          
+          if(currentRank) {
+            currentRank++;
+          } else {
+            currentRank = 1;
+          }
+
+          var updates = {};
+
+          if(this.props.data.isPublic) {
+            updates[`/posts/${this.props.id}/likes`] = currentRank;
+          }
+          updates[`/users/${toUid}/posts-to-me/${this.props.id}/likes`] = currentRank;
+          firebase.database().ref().update(updates);
+
+          console.log(`NewsFeed.js 90: ${currentRank}`);
+          return currentRank;
+        });
+
+      } else {
+        console.log('Debes iniciar sesión para dar me gusta.')
+      }
+
+    }
+
     getMonth = (month) => {
       let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
       return meses[month];
@@ -86,12 +121,12 @@ class Newsfeed extends Component {
         <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
-              <a href="#" onClick={e => e.preventDefault}>
+              <a href="#" onClick={e => e.preventDefault()}>
               <img alt={""} className="img-profile" src={photoUrl} />
               </a>
             </div>
             <div className="div-user"> 
-              <a href="#" onClick={e => e.preventDefault}>{username}</a> {/* Usuario */}
+              <a href="#" onClick={e => e.preventDefault()}>{username}</a> {/* Usuario */}
               {/* <p>17 de julio a las 15:19</p> */}
               <p>{`${this.props.data.timestamp.day} de ${month} a las ${this.props.data.timestamp.hour}:${this.props.data.timestamp.minute}`}</p>
             </div>
@@ -112,12 +147,12 @@ class Newsfeed extends Component {
           </div>
           <div className="div-footer"> {/* Pie Del Post */}
             <section className="section-like-comment">
-              <a className="" href="#" onClick={e => e.preventDefault}><i className="far fa-heart icon-post" /></a>
+              <a className="" href="#" onClick={this.handleLike}><i className="far fa-heart icon-post" /></a>
               <a className="" href="#" onClick={this.handleFocusComment}><i className="far fa-comment icon-post" /></a>
             </section>
             <section> {/* Cantidad Me Gusta del Post */}
               <div className="div-likes">
-                <a href="#" onClick={e => e.preventDefault}><span>{`${this.props.data.likes || "0"} Me gusta`}</span></a>
+                <a href="#" onClick={e => e.preventDefault()}><span>{`${this.props.data.likes || "0"} Me gusta`}</span></a>
               </div>
             </section>
             <div className="div-comments"> {/* Seccion de Comentarios del Post */}
@@ -126,7 +161,7 @@ class Newsfeed extends Component {
                   comments ? (
                     Object.keys(comments).map((comment) => 
                         <li key={comment} className=""> 
-                            <a href={`profile-friend/${comments[comment].uid}`} onClick={e => e.preventDefault}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
+                            <a href={`profile-friend/${comments[comment].uid}`} onClick={e => e.preventDefault()}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
                         </li>
                         )
                     ) : (
