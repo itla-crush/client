@@ -149,3 +149,21 @@
     font-size: 14px;
     font-family: "AbeeZee";
 }
+
+
+
+
+div.busqueda-perfil::-webkit-scrollbar {
+    width: 6px; /*=> ancho del scroll*/
+    background-color: #000000; /*=> Color del fondo principal */
+}
+div.busqueda-perfil::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+div.busqueda-perfil::-webkit-scrollbar-track-piece {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+div.busqueda-perfil::-webkit-scrollbar-thumb{
+    background-color: rgba(247, 1, 76, 0.6); /*=> color del indicador del scroll */
+    /* #8BC34A */
+}

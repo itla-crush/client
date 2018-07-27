@@ -16,8 +16,8 @@ class ChatWidget extends Component {
                 <div className="panel-heading" id="accordion">
                     <span className="glyphicon glyphicon-comment" /> Chat
                     <div className="btn-group pull-right">
-                    <a type="button" className="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        <span className="glyphicon glyphicon-chevron-down" />
+                    <a type="button" className="btn btn-default btn-xs open-close-chat" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <i className="fas fa-comments" />
                     </a>
                     </div>
                 </div>
@@ -84,9 +84,9 @@ class ChatWidget extends Component {
                     </div>
                     <div className="panel-footer">
                     <div className="input-group">
-                        <input id="btn-input" type="text" className="form-control input-sm" placeholder="Type your message here..." />
+                        <input id="btn-input" type="text" className="form-control input-sm" style={{fontSize:'14px'}} placeholder="Type your message here..." />
                         <span className="input-group-btn">
-                        <button className="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                            <button className="btn btn-warning btn-sm" id="btn-chat">Enviar</button>
                         </span>
                     </div>
                     </div>

@@ -17,6 +17,8 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          chatId: null,
+          users: null,
           posts: null,
           user: {
             displayName: null,
@@ -31,6 +33,10 @@ class Home extends Component {
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
         this.signOut = this.signOut.bind(this);
+    }
+
+    openChat = (id) => {
+      console.log(id);
     }
 
     signOut = () => {
@@ -58,6 +64,14 @@ class Home extends Component {
           this.setState({ posts });
         }
       });
+      
+      var usersRef = firebase.database().ref('users/');
+      usersRef.on('value', snapshot => {
+        var users = snapshot.val();
+        if(users) {
+          this.setState({ users });
+        }
+      });
     }
 
     render() {
@@ -81,8 +95,8 @@ class Home extends Component {
                   </section>
                 </main>
               </section>
-              <ChatSidebar />
-              <ChatWidget />
+              <ChatSidebar users={this.state.users || 'null'} />
+              { this.state.user.displayName && this.state.user.username ? (<ChatWidget chatId={this.state.chatId || ''} openChat={this.openChat.bind(this)} />) : ("") }
             </div>
             <Footer />
         </div>

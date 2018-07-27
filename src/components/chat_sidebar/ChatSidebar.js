@@ -7,59 +7,49 @@ import ChatItem from '../chat_item/ChatItem';
 import './chatsidebar.css';
 
 class ChatSidebar extends Component {
+
+    openChat = () => {
+      var id = 'Id del chat';
+      this.props.openChat(id);
+    }
+
     render() {
+      var users = this.props.users;
+      var listItems = '';
+      
+      if(users != null){
+  
+        listItems = Object.keys(users).map((user) =>
+          <li key={user} className="li-each-chat" onClick={this.openChat}>
+            {/* <a className="" href="#"> */}
+              <div className="div-chat-content center-content">
+                <div className="div-img-profile-chat"> 
+                  <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />
+                </div>
+                <div className="div-user-chat">
+                  <span>{users[user].displayName || ''}</span><span>Activo</span>
+                </div>
+              </div>
+            {/* </a> */}
+          </li>
+        );
+  
+      } else {
+        listItems = <li>¡No hay usuarios!</li>;
+      }
+
       return (
         <aside className="right-aside center-content">
           <section>
             <div className="">
               <h4>Chat Online!</h4>
-              {/* Chat Users */}
               <div className="chatOrderedList">
                 <div className="chat-sidebar">
                   <ul className="list-unstyled">
-                    {/* Each User Chat */}
-                    <li className="li-each-chat">
-                      <a className="" href="#">
-                        <div className="div-chat-content center-content">
-                          <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
-                            <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-                          </div>
-                          <div className="div-user-chat">
-                            <span>@userguest</span><span>32 min</span>
-                            {/* <textarea disabled rows="1" style="width: 100%; max-width: 100%; border-style: none; border-color: transparent; resize: none; background-color: transparent; overflow: hidden; ">@userguestuserguestuserguestuserguest</textarea><span>Activo</span> */}
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li className="li-each-chat">
-                      <a className="" href="#">
-                        <div className="div-chat-content center-content">
-                          <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
-                            <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-                          </div>
-                          <div className="div-user-chat">
-                            <span>@userguest</span><span>Activo</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li className="li-each-chat">
-                      <a className="" href="#">
-                        <div className="div-chat-content center-content">
-                          <div className="div-img-profile-chat"> {/* Perfil de Usuario */}
-                            <img className="img-profile-chat" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-                          </div>
-                          <div className="div-user-chat">
-                            <span>@userguest</span><span>2 h</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    {/* /Each User Chat */}
+                    {listItems}
                   </ul>
                 </div>
               </div>
-              {/* /Chat Users */}
             </div> 
           </section>
         </aside>
