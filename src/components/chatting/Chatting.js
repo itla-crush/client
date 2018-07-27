@@ -113,7 +113,7 @@ class Chatting extends Component{
                            <form action="" className="formu-p">
                              <div className="formu">
                                 <div className="text-c"><textarea className="text-camp"  id="" placeholder="Escribe un mensaje..."></textarea></div>
-                                <div className="ctn"><input type="submit" value="enviar"/></div>
+                                <div className="ctn"><input type="submit" value="Enviar"/></div>
                              </div>
                            </form>
                     </div>
