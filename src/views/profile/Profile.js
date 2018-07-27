@@ -58,15 +58,15 @@ export default class Profile extends Component {
                     <div className="estadisticas">
                         <div className="realizados">
                             <p>Publicaciones</p>
-                            <h5>{this.state.user.newsFeedCount || "0"}</h5>
+                            <h5>{this.state.user.postCount || '0'}</h5>
                         </div>
                         <div className="privado">
                             <p>Privados</p>
-                            <h5>{this.state.user.privatePostCount || "0"}</h5>
+                            <h5>{this.state.user.postToMeCount || '0'}</h5>
                         </div>
                         <div className="seguidos">
                             <p>Seguidos</p>
-                            <h5>{this.state.user.followers || "0"}</h5>
+                            <h5>{this.state.user.followersCount || '0'}</h5>
                         </div>
                     </div>
                 </section>

@@ -176,7 +176,6 @@ class CreatePost extends Component {
             updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
             console.log(downloadURL);
             firebase.database().ref().update(updates);
-            this.increasePostCount(postData.fromUid, postData.toUid);
           });
         });
 
@@ -187,8 +186,8 @@ class CreatePost extends Component {
         updates[`/users/${postData.fromUid}/posts/${newPostKey}`] = postData;
         updates[`/users/${postData.toUid}/posts-to-me/${newPostKey}`] = postData;
         firebase.database().ref().update(updates);
-        this.increasePostCount(postData.fromUid, postData.toUid);
       }
+      this.increasePostCount(postData.fromUid, postData.toUid);
       this.clearForm();
     }
 
@@ -202,7 +201,7 @@ class CreatePost extends Component {
         } else {
           currentRank = 1;
         }
-        console.log(`CreatePost.js 205: ${currentRank}`);
+        console.log(`CreatePost.js 204: ${currentRank}`);
         return currentRank;
       });
 
@@ -212,7 +211,7 @@ class CreatePost extends Component {
         } else {
           currentRank = 1;
         }
-        console.log(`CreatePost.js 215: ${currentRank}`);
+        console.log(`CreatePost.js 214: ${currentRank}`);
         return currentRank;
       });
     }
