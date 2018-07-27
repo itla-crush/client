@@ -105,6 +105,15 @@ export default class Profile extends Component {
                     </div>
                 </div>
             </div> */}
+
+            <div className="">
+                <div>
+                    <h3>Contenido uno</h3>
+                </div>
+                <div>
+                    <h3>Contenido dos</h3>
+                </div>
+            </div>
         </div>
         );
     }
