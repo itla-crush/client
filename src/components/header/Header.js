@@ -59,17 +59,20 @@ class Header extends Component {
 
         if(!_.isEmpty(_.trim(searchUser.value))) {
             this.setState({ showResult: true });
-            firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
+            firebase.database().ref('/users/').once('value')
             .then(snapshot => {
               this.setState({users: snapshot.val()});
 
               if(snapshot.val()) {
                 newData = snapshot.val();
-                this.setState({ newData });
+                // this.setState({ newData });
+                for(var user in newData) {
+                    console.log(user);
+                }
 
               } else {
                 newData = '¡No hay resultados!';
-                this.setState({ newData });
+                // this.setState({ newData });
               }
               
             })
@@ -78,7 +81,7 @@ class Header extends Component {
             });
         } else {
             newData = '¡No hay resultados!';
-            this.setState({ newData });
+            // this.setState({ newData });
         }
         
         //searchUser.setAttribute("data-content", searchUser.value);

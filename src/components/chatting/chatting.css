@@ -33,7 +33,8 @@
 .c-contacts .conversacion .chat-users{
     height: 500px;
     font-family: "AbeeZee";
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .c-contacts .conversacion .chat-users .list-users{
     list-style: none;
@@ -46,7 +47,7 @@
 }
 .c-contacts .conversacion .chat-users .list-users .talk-persons .chat-img .img-p{
     margin-right: 8px;
-    width: 85px;
+    width: 80px;
     border-radius: 50%;
 }
 .c-contacts .conversacion .chat-users .list-users .talk-persons .space{
