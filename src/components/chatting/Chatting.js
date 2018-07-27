@@ -17,6 +17,7 @@ class Chatting extends Component{
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
         this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
+        this.getMonth = this.getMonth.bind(this);
     }
 
     addBootstrap4 = () => {
@@ -61,6 +62,11 @@ class Chatting extends Component{
         });
     }
 
+    getMonth = (month) => {
+      let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      return meses[month];
+    }
+
     render(){
         var chat = this.state.chat;
         var uid = this.props.uid;
@@ -76,7 +82,7 @@ class Chatting extends Component{
                 <div className="chat-body clearfix">
                     <div className="header">
                         <strong className="primary-font">{chat[message].displayName}</strong> 
-                        <small className="pull-right text-muted"><span className="glyphicon glyphicon-time" />12 mins ago</small>
+                        <small className="pull-right text-muted"><span className="glyphicon glyphicon-time" />{`${chat[message].timestamp.day} de ${this.getMonth(chat[message].timestamp.month)} a las ${chat[message].timestamp.hour}:${chat[message].timestamp.minute}`}</small>
                     </div>
                     <p>
                         {chat[message].text}
