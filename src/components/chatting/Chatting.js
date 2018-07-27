@@ -36,7 +36,14 @@ class Chatting extends Component{
             firebase.database().ref('chat/').push().set({
                 text: textAreaMessage, 
                 photoUrl: photoUrl,
-                displayName: displayName
+                displayName: displayName,
+                timestamp: {
+                  day: new Date().getDate(),
+                  month: new Date().getMonth(),
+                  year: new Date().getFullYear(),
+                  minute: new Date().getMinutes(),
+                  hour: new Date().getHours()
+                }
             }, error => console.log(error));
             txtAreaMessage.value = '';
         } else {
