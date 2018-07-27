@@ -301,3 +301,24 @@
         font-size: 12px;
     }
 }
+
+
+/* ----- ESTILOS PUBLICACIONES PUBLICAS Y PRIVADAS */
+
+
+.content-de{
+   margin-top: 50px;
+}
+.public-private{
+    display: flex;
+    margin: auto;
+    width: 740px; 
+}
+.content-de .public-private .declarations{
+    width: 50%;
+}
+
+.content-de .public-private .declarations h3{
+    text-align: center;
+    font-family: "AbeeZee";
+}
