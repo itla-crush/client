@@ -3,7 +3,8 @@
     display: flex; 
 }
 .c-contacts .persons {
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     width: 300px;
     height: 590px;
 }
@@ -19,7 +20,15 @@
     margin-bottom: 7px;
     font-family: "AbeeZee";
 }
-.c-contacts .persons .friend .persons-nombres p{margin-bottom: 0px;}
+.c-contacts .persons .friend .persons-nombres {
+    max-width: 160px;
+}
+.c-contacts .persons .friend .persons-nombres p {
+    margin-bottom: 0px;
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+    overflow:hidden; 
+}
 .c-contacts .persons .friend:hover{
     cursor: pointer;
 }
