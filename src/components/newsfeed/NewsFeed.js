@@ -86,12 +86,12 @@ class Newsfeed extends Component {
         <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
-              <a href="#">
+              <a href="#" onClick={e => e.preventDefault}>
               <img alt={""} className="img-profile" src={photoUrl} />
               </a>
             </div>
             <div className="div-user"> 
-              <a href="#">{username}</a> {/* Usuario */}
+              <a href="#" onClick={e => e.preventDefault}>{username}</a> {/* Usuario */}
               {/* <p>17 de julio a las 15:19</p> */}
               <p>{`${this.props.data.timestamp.day} de ${month} a las ${this.props.data.timestamp.hour}:${this.props.data.timestamp.minute}`}</p>
             </div>
@@ -112,12 +112,12 @@ class Newsfeed extends Component {
           </div>
           <div className="div-footer"> {/* Pie Del Post */}
             <section className="section-like-comment">
-              <a className="" href="#"><i className="far fa-heart icon-post" /></a>
+              <a className="" href="#" onClick={e => e.preventDefault}><i className="far fa-heart icon-post" /></a>
               <a className="" href="#" onClick={this.handleFocusComment}><i className="far fa-comment icon-post" /></a>
             </section>
             <section> {/* Cantidad Me Gusta del Post */}
               <div className="div-likes">
-                <a href="#"><span>{`${this.props.data.likes || "0"} Me gusta`}</span></a>
+                <a href="#" onClick={e => e.preventDefault}><span>{`${this.props.data.likes || "0"} Me gusta`}</span></a>
               </div>
             </section>
             <div className="div-comments"> {/* Seccion de Comentarios del Post */}
@@ -126,7 +126,7 @@ class Newsfeed extends Component {
                   comments ? (
                     Object.keys(comments).map((comment) => 
                         <li key={comment} className=""> 
-                            <a href={`profile-friend/${comments[comment].uid}`}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
+                            <a href={`profile-friend/${comments[comment].uid}`} onClick={e => e.preventDefault}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
                         </li>
                         )
                     ) : (
