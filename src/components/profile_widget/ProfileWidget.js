@@ -36,7 +36,6 @@ class ProfileWidget extends Component {
   
   render() {
     var uid = this.props.uid || '';
-    console.log(uid);
     var displayName = this.state.user.displayName || 'Desconocido';
     var username = this.state.user.username || 'Desconocido';
     var photoUrl = this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
