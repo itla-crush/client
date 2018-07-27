@@ -28,17 +28,17 @@ class UserSidebar extends Component {
                 <div className="center-content">
                   <div className="">
                     <p>Seguidos</p>
-                    <p>34</p>
+                    <p>{this.props.followersCount || '0'}</p>
                   </div>
                   <hr className="vl" />
                   <div>
                     <p>Posts</p>
-                    <p>7</p>
+                    <p>{this.props.postCount || '0'}</p>
                   </div>
                   <hr className="vl" />
                   <div>
                     <p>Para mí</p>
-                    <p>3</p>
+                    <p>{this.props.postToMeCount || '0'}</p>
                   </div>
                 </div>
               </footer>

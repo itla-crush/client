@@ -66,7 +66,7 @@ class Home extends Component {
         <div className="Home">
             <Header />
             <div className="container main-content">
-              <UserSidebar photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} displayName={this.state.user.displayName || 'Invitado'} username={this.state.user.username || '@invitado'} />
+              <UserSidebar postCount={this.state.user.postCount || '0'} postToMeCount={this.state.user.postToMeCount || '0'} followersCount={this.state.user.followersCount || '0'} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} displayName={this.state.user.displayName || 'Invitado'} username={this.state.user.username || '@invitado'} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section>
