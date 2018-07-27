@@ -109,29 +109,41 @@ export default class Profile extends Component {
          <div className="content-de">
             <div className="public-private">
                 <div className="declarations">
-                    <h3>Contenido uno</h3>
+                    <p className="grow">Contenido uno</p>
                 </div>
                 <div className="declarations">
-                    <h3>Contenido dos</h3>
+                    <p className="grow">Contenido dos</p>
                 </div>
             </div>
-                <div className="a w3-animate-zoom ">
+                <div className="a w3-animate-opacity ">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
-                <div className="b w3-animate-zoom ">
+                <div className="b w3-animate-opacity ">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
-                <div className="c w3-animate-zoom ">
+                <div className="c w3-animate-opacity ">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
-                <div className="a w3-animate-zoom ">
+                <div className="a w3-animate-opacity ">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
-                <div className="b w3-animate-zoom ">
+                <div className="b w3-animate-opacity ">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="c w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="a w3-animate-opacity">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+                </div>
+                <div className="b w3-animate-opacity">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
@@ -151,17 +163,13 @@ export default class Profile extends Component {
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div>
-                <div className="a w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+
+                <div className="salto">
+
                 </div>
-                <div className="b w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="c w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
+    
+                <div className="salir">
+                    <img src='' alt=""/>
                 </div>
            
           </div>

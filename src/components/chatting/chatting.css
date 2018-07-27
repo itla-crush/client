@@ -1,0 +1,19 @@
+
+body{
+}
+.c-contacts{
+    margin-top: 70px;
+    width: 350px;
+}
+
+.c-contacts .persons .friend{
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.c-contacts .persons .persons-imagen img{
+    width: 80px;
+    border-radius: 50px;
+}
+

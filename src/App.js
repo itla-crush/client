@@ -9,6 +9,7 @@ import EditProfile from './views/edit_profile/EditProfile';
 import ChangePassword from './views/change_password/ChangePassword';
 import Page404 from './views/page404/Page404';
 import Forgotpassword from './components/forgotpassword/Forgotpassword';
+import Chatting from './components/chatting/Chatting';
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
 import firebase from 'firebase';
@@ -93,6 +94,7 @@ class App extends Component {
                         <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
                         <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
+                        <Route path='/chatting' component={Chatting} />
                         <Route path='/profile' render={(props) => (<Profile user={this.state.user} />)} />
                         <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} />)} />
                         <Route path='/change_password' component={ChangePassword} />

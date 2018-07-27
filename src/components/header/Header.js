@@ -124,7 +124,7 @@ class Header extends Component {
                 <div className="iconos">
                     <ul className="nav navbar-nav"> 
                     <li><a href="/home"><i className="fa fa-home icono" /></a></li>
-                    <li><a href="#"><i className="fa fa-heart icono" /></a></li>
+                    <li><a href="/chatting"><i className="fa fa-heart icono" /></a></li>
                     {/* <li><a href="/profile"><i className="fa fa-user icono" /></a></li> */}
                     <li><a href={this.state.isSignedIn ? '/profile' :  '/index'}><i className="fa fa-user icono" /></a></li>
                     </ul>
