@@ -19,6 +19,7 @@ class Chatting extends Component{
         this.addBootstrap4();
         this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
         this.getMonth = this.getMonth.bind(this);
+        this.setScrollYtoBottom = this.setScrollYtoBottom.bind(this);
     }
 
     addBootstrap4 = () => {
@@ -46,8 +47,12 @@ class Chatting extends Component{
                   minute: new Date().getMinutes(),
                   hour: new Date().getHours()
                 }
-            }, error => console.log(error));
+            }, error => {if(error) console.log(error);});
             txtAreaMessage.value = '';
+
+            // setTimeout(this.setScrollYtoBottom(), 300);
+            this.setScrollYtoBottom();
+
         } else {
             console.log('Debes escribir un mensaje para enviarlo');
             alert('Debes escribir un mensaje para enviarlo');
@@ -77,6 +82,12 @@ class Chatting extends Component{
       return meses[month];
     }
 
+    setScrollYtoBottom = () => {
+        // Asignar scroll abajo
+        let divChat = document.getElementById("div-chat-users");
+        divChat.scrollTop = divChat.scrollHeight + 1000;
+    }
+
     render(){
         var chat = this.state.chat;
         var uid = this.props.uid;
@@ -100,6 +111,9 @@ class Chatting extends Component{
                 </div>
             </li>
           );
+
+        //   setTimeout(this.setScrollYtoBottom(), 300);
+        this.setScrollYtoBottom();
     
         } else {
           listItems = <li>¡No hay mensajes!</li>;
@@ -123,7 +137,7 @@ class Chatting extends Component{
           );
     
         } else {
-            listUsers = <li>¡No hay usuarios!</li>;
+            listUsers = '¡No hay usuarios!';
         }
 
         return(
