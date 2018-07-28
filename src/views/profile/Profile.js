@@ -29,6 +29,7 @@ export default class Profile extends Component {
         this.loadPosts = this.loadPosts.bind(this);
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     showPost = () => {
@@ -65,6 +66,9 @@ export default class Profile extends Component {
           }
         });
     }
+    logout = () => {
+        firebase.auth().signOut();
+    }
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
@@ -92,10 +96,16 @@ export default class Profile extends Component {
                             <div className="editar">
                                 <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
                                 <div className="btnOp-salir">
-                                    <a href="#">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=5b2acb3d-edf7-443b-87e9-a8c9c37eacea" alt=""/>
-                                    </a>
-                                </div>
+                                    <button
+                                     onClick={this.logout}
+                                     className="btn-s"
+                                     data-toggle="popover" 
+                                     data-placement="bottom" 
+                                     data-content="<a  href='/index'>Cerrar sesión</a>" 
+                                     data-trigger="focus">
+                                       <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
+                                   </button>
+                                </div> 
                             </div>
                         </div>
                         <div className="estadisticas">
