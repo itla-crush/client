@@ -50,7 +50,8 @@ class Chatting extends Component{
             }, error => {if(error) console.log(error);});
             txtAreaMessage.value = '';
 
-            setTimeout(this.setScrollYtoBottom(), 300);
+            // setTimeout(this.setScrollYtoBottom(), 300);
+            this.setScrollYtoBottom();
 
         } else {
             console.log('Debes escribir un mensaje para enviarlo');
@@ -111,7 +112,8 @@ class Chatting extends Component{
             </li>
           );
 
-          setTimeout(this.setScrollYtoBottom(), 300);
+        //   setTimeout(this.setScrollYtoBottom(), 300);
+        this.setScrollYtoBottom();
     
         } else {
           listItems = <li>¡No hay mensajes!</li>;
