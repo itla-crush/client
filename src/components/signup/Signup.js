@@ -22,10 +22,20 @@ class Signup extends Component {
       this.convertGender = this.convertGender.bind(this);
       this.showMessageError = this.showMessageError.bind(this);
       this.validateForm = this.validateForm.bind(this);
+      this.getAge = this.getAge.bind(this);
+      this.validateDate = this.validateDate.bind(this);
     }
 
     componentDidMount() {
       this.calendar();
+      this.validateDate('13/09/1985');
+      this.validateDate('3000/09/13');
+      this.validateDate('2018/7/27');
+      this.validateDate('2018/7/28');
+      this.validateDate('2018/7/29');
+      this.validateDate('27/7/2018');
+      this.validateDate('28/7/2018');
+      this.validateDate('29/7/2018');
     }
 
     changeView = (e) => {
@@ -146,6 +156,29 @@ class Signup extends Component {
       });
     }
 
+    getAge = (dateString) => {
+      var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+     return `${age} años`;
+    }
+
+    validateDate = (date) => {
+      var x = new Date();
+      var fecha = date.split("/");
+      x.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+      var today = new Date();
+ 
+      if (x >= today)
+        return false;
+      else
+        return true;
+    }
+
     signUpWithEmail = (event) => {
       event.preventDefault();
       var userData = this.validateForm();
@@ -160,6 +193,7 @@ class Signup extends Component {
             email: res.user.email,
             photoUrl : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
             username: userData.username, 
+            age: userData.age,
             birthdate: userData.birthdate,
             gender: userData.gender
           }, error => {
@@ -186,6 +220,8 @@ class Signup extends Component {
       let selectGender = document.getElementById('selectGender');
       let gender = selectGender.options[selectGender.selectedIndex].value;
 
+      let age = this.getAge(birthdate);
+
       var userData = {
         name: _.capitalize(_.camelCase(name)),
         lastname: _.capitalize(_.camelCase(lastname)),
@@ -194,7 +230,8 @@ class Signup extends Component {
         password: password,
         verifyPassword: verifyPassword,
         birthdate: birthdate,
-        gender: gender
+        gender: gender,
+        age: age
       }
 
       if(!_.isEmpty(name)) {
