@@ -113,7 +113,8 @@ class Newsfeed extends Component {
         });
 
       } else {
-        console.log('Debes iniciar sesión para dar me gusta.')
+        console.log('Debes iniciar sesión para dar me gusta.');
+        alert('Debes iniciar sesión para dar me gusta.');
       }
 
     }

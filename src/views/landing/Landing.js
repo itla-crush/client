@@ -59,7 +59,7 @@ class Landing extends Component {
                     )}
                 </div>
             </div>
-            <ForgottenPassword />
+            {/* <ForgottenPassword /> */}
         </div>
       );
     }

@@ -20,6 +20,8 @@ class Signup extends Component {
       this.generateDisplayName = this.generateDisplayName.bind(this);
       this.calendar = this.calendar.bind(this);
       this.convertGender = this.convertGender.bind(this);
+      this.showMessageError = this.showMessageError.bind(this);
+      this.validateForm = this.validateForm.bind(this);
     }
 
     componentDidMount() {
@@ -93,13 +95,40 @@ class Signup extends Component {
       });
     }
 
+    showMessageError = (code, text) => {
+      var message = '';
+
+      switch (code) {
+        case "auth/invalid-email":
+          message = 'El correo no es válido';
+          break;
+        case "auth/wrong-password":
+          message = 'La contraseña es incorrecta';
+          break;
+        case "auth/user-not-found":
+          message = 'Este usuario no existe';
+          break;
+        case "auth/weak-password":
+          message = 'La contraseña debe tener al menos 6 caracteres';
+          break;
+        case "auth/email-already-exists":
+          message = 'Este correo ya existe';
+          break;
+        default:
+          message = `code: ${code} message: ${text}`;
+          break;
+      }
+      console.log(message);
+      alert(message);
+    }
+
     writeUserData = (res) => {
       var name = res.additionalUserInfo.profile.given_name;
       var lastname = res.additionalUserInfo.profile.family_name;
       var username = this.generateUsername(name, lastname);
       var displayName = this.generateDisplayName(name, lastname);
       var gender = this.convertGender(res.additionalUserInfo.profile.gender);
-      firebase.database().ref('users/' + res.user.uid).set({
+      firebase.database().ref(`/users/${res.user.uid}`).set({
         username: username,
         displayName: displayName,
         name: name,
@@ -113,44 +142,116 @@ class Signup extends Component {
         id: res.additionalUserInfo.profile.id || 'null',
         uid: res.user.uid || 'null'
       }, error => {
-        console.log(error);
+        if(error) console.log(error);
       });
     }
 
     signUpWithEmail = (event) => {
       event.preventDefault();
+      var userData = this.validateForm();
+      if(userData) {
+        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+        .then(res => {
+          firebase.database().ref(`/users/${res.user.uid}`).set({
+            displayName: `${userData.name}  ${userData.lastname}`,
+            name: userData.name,
+            lastname: userData.lastname,
+            email: res.user.email,
+            photoUrl : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
+            username: userData.username, 
+            birthdate: userData.birthdate,
+            gender: userData.gender
+          }, error => {
+            if(error) console.log(error);
+          });
+        })
+        .catch(error => {
+          this.showMessageError(error.code, error.message);
+        });
+      } else {
+        console.log(`UserData false - Signup.js 169: ${userData}`);
+      }
+    }
+
+    validateForm = () => {
       let name = _.trim(document.getElementById('name').value);
       let lastname = _.trim(document.getElementById('lastname').value);
       let username = _.trim(document.getElementById('username').value);
       let email = _.trim(document.getElementById('email').value);
       let password = _.trim(document.getElementById('password').value);
       let verifyPassword = _.trim(document.getElementById('verifyPassword').value);
-      
-      if(_.isEqual(password, verifyPassword)) {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(res => {
-          firebase.database().ref('users/' + res.user.uid).set({
-            displayName: `${name}  ${lastname}`,
-            name: name,
-            lastname: lastname,
-            email: res.user.email,
-            photoUrl : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
-            username: username
-          }, error => {
-            console.log(error);
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      }
-    }
 
-    opciones = () => {
-    //  option:hover{
-    //     color: white;
-    //      background: #488f8f;
-    //   }
+      let birthdate = _.trim(document.getElementById('datepicker').value);
+      let selectGender = document.getElementById('selectGender');
+      let gender = selectGender.options[selectGender.selectedIndex].value;
+
+      var userData = {
+        name: _.capitalize(_.camelCase(name)),
+        lastname: _.capitalize(_.camelCase(lastname)),
+        username: `@${username}`,
+        email: email,
+        password: password,
+        verifyPassword: verifyPassword,
+        birthdate: birthdate,
+        gender: gender
+      }
+
+      if(!_.isEmpty(name)) {
+        if(!_.isEmpty(lastname)) {
+          if(!_.isEmpty(username)) {
+            if(!_.isEmpty(email)) {
+              if(!_.isEmpty(password)) {
+                if(!_.isEmpty(password)) {
+                  if(selectGender.selectedIndex !== 0) {
+                    // if(birthdate) {  Validar fecha de nacimiento
+                      if(_.isEqual(password, verifyPassword)) {
+                        return userData;
+                      } else {
+                        console.log('Las contraseñas no coinciden');
+                        alert('Las contraseñas no coinciden');
+                        return false;
+                      }
+                    // } else {
+                    //   console.log('Debes seleccionar tu género');
+                    //   alert('Debes seleccionar tu género');
+                    // return false;
+                    // }
+                  } else {
+                    console.log('Debes seleccionar tu género');
+                    alert('Debes seleccionar tu género');
+                    return false;
+                  }
+                } else {
+                  console.log('Debes escribir una contraseña');
+                  alert('Debes escribir una contraseña');
+                  return false;
+                }
+              } else {
+                console.log('Debes escribir una contraseña');
+                alert('Debes escribir una contraseña');
+                return false;
+              }
+            } else {
+              console.log('Debes escribir tu correo');
+              alert('Debes escribir tu correo');
+              return false;
+            }
+          } else {
+            console.log('Debes escribir un nombre de usuario');
+            alert('Debes escribir un nombre de usuario');
+            return false;
+          }
+        } else {
+          console.log('Debes escribir tu apellido');
+          alert('Debes escribir tu apellido');
+          return false;
+        }
+      } else {
+        console.log('Debes escribir tu nombre');
+        alert('Debes escribir tu nombre');
+        return false;
+      }
+
     }
 
     calendar = () => {
@@ -196,13 +297,13 @@ class Signup extends Component {
             
             <div className="datecalendario">
               <div className="dada">
-                <input type="text" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
+                <input type="date" id="datepicker" className="datepicker fech-calendario" placeholder="Fecha de nacimiento" />
               </div>
                 <div className="genero">
-                  <select className="browser-default sexo">
+                  <select id="selectGender" className="browser-default sexo">
                     <option selected disabled >Sexo</option>
-                    <option id="op" className="opciones" value={1}>Hombre</option>
-                    <option id="op" className="opciones" value={2}>Mujer</option>
+                    <option id="op" className="opciones" value='Hombre'>Hombre</option>
+                    <option id="op" className="opciones" value='Mujer'>Mujer</option>
                   </select>
                 </div>
             </div>

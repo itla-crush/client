@@ -83,6 +83,13 @@ class App extends Component {
                 this.setState({ isSignedIn: false });
             }
         });
+        
+        console.log('Actualizar informaciones de usuarios');
+        console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
+        console.log('Errores de la API');
+        console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
+        console.log('Validar fechas');
+        console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
     }
 // match.params.id
     render() {

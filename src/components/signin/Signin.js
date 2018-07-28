@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import firebase from 'firebase';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
 // Assets
@@ -16,6 +17,7 @@ class Signin extends Component {
       this.signInWithEmail = this.signInWithEmail.bind(this);
       this.handleGuest = this.handleGuest.bind(this);
       this.generatePassword = this.generatePassword.bind(this);
+      this.showMessageError = this.showMessageError.bind(this);
     }
 
     generatePassword = () => {
@@ -38,14 +40,45 @@ class Signin extends Component {
       event.preventDefault();
       let email = document.getElementById('emailLogin').value;
       let password = document.getElementById('passwordLogin').value;
-      firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(error => {
-        console.log(error);
-      });
+      if(!_.isEmpty(_.trim(email))) {
+        if(!_.isEmpty(_.trim(password))) {
+          firebase.auth().signInWithEmailAndPassword(email, password)
+          .catch(error => {
+            this.showMessageError(error.code, error.message);
+          });
+        } else {
+          console.log('Debe proporcionar su contraseña');
+          alert('Debe proporcionar su contraseña');
+        }
+      } else {
+        console.log('Debe proporcionar un email');
+        alert('Debe proporcionar un email');
+      }
     }
 
     handleGuest = () => {
       firebase.auth().signOut();
+    }
+
+    showMessageError = (code, text) => {
+      var message = '';
+
+      switch (code) {
+        case "auth/invalid-email":
+          message = 'El correo no es válido';
+          break;
+        case "auth/wrong-password":
+          message = 'La contraseña es incorrecta';
+          break;
+        case "auth/user-not-found":
+          message = 'Este usuario no existe';
+          break;
+        default:
+          message = text;
+          break;
+      }
+      console.log(message);
+      alert(message);
     }
 
     render() {

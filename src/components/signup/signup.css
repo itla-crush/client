@@ -86,3 +86,7 @@
         margin: auto;
     }
 }
+
+#datepicker {
+    overflow: hidden;
+}
