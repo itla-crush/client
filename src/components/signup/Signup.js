@@ -26,6 +26,8 @@ class Signup extends Component {
 
     componentDidMount() {
       this.calendar();
+      console.log('Actualizar informaciones de usuarios');
+      console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
     }
 
     changeView = (e) => {
@@ -108,8 +110,14 @@ class Signup extends Component {
         case "auth/user-not-found":
           message = 'Este usuario no existe';
           break;
+        case "auth/weak-password":
+          message = 'La contraseña debe tener al menos 6 caracteres';
+          break;
+        case "auth/email-already-exists":
+          message = 'Este correo ya existe';
+          break;
         default:
-          message = text;
+          message = `code: ${code} message: ${text}`;
           break;
       }
       console.log(message);
@@ -122,7 +130,7 @@ class Signup extends Component {
       var username = this.generateUsername(name, lastname);
       var displayName = this.generateDisplayName(name, lastname);
       var gender = this.convertGender(res.additionalUserInfo.profile.gender);
-      firebase.database().ref('users/' + res.user.uid).set({
+      firebase.database().ref(`/users/${res.user.uid}`).set({
         username: username,
         displayName: displayName,
         name: name,
@@ -136,17 +144,17 @@ class Signup extends Component {
         id: res.additionalUserInfo.profile.id || 'null',
         uid: res.user.uid || 'null'
       }, error => {
-        console.log(error);
+        if(error) console.log(error);
       });
     }
 
     signUpWithEmail = (event) => {
       event.preventDefault();
       var userData = this.validateForm();
-      if(userData !== false) {
+      if(userData) {
         firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
         .then(res => {
-          firebase.database().ref('users/' + res.user.uid).set({
+          firebase.database().ref(`/users/${res.user.uid}`).set({
             displayName: `${userData.name}  ${userData.lastname}`,
             name: userData.name,
             lastname: userData.lastname,
@@ -156,12 +164,14 @@ class Signup extends Component {
             birthdate: userData.birthdate,
             gender: userData.gender
           }, error => {
-            console.log(error);
+            if(error) console.log(error);
           });
         })
         .catch(error => {
           this.showMessageError(error.code, error.message);
         });
+      } else {
+        console.log(`UserData false - Signup.js 169: ${userData}`);
       }
     }
 
@@ -178,9 +188,9 @@ class Signup extends Component {
       let gender = selectGender.options[selectGender.selectedIndex].value;
 
       var userData = {
-        name: name,
-        lastname: lastname,
-        username: username,
+        name: _.capitalize(_.camelCase(name)),
+        lastname: _.capitalize(_.camelCase(lastname)),
+        username: `@${username}`,
         email: email,
         password: password,
         verifyPassword: verifyPassword,
@@ -194,7 +204,7 @@ class Signup extends Component {
             if(!_.isEmpty(email)) {
               if(!_.isEmpty(password)) {
                 if(!_.isEmpty(password)) {
-                  if(selectGender.selectedIndex == 0) {
+                  if(selectGender.selectedIndex !== 0) {
                     // if(birthdate) {  Validar fecha de nacimiento
                       if(_.isEqual(password, verifyPassword)) {
                         return userData;
