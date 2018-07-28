@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 
 // Components
 import Header from '../../components/header/Header';
@@ -10,6 +11,16 @@ export default class ChangePassword extends Component{
         super(props);
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
+        
+        if(!firebase.auth().currentUser) {
+            window.location.replace("/index");
+        }
+    }
+
+    componentWillMount() {
+        // if(!this.props.isSignedUp) {
+        //     window.location.replace("/index");
+        // }
     }
 
     addBootstrap4 = () => {

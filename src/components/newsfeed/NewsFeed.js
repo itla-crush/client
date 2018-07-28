@@ -132,9 +132,15 @@ class Newsfeed extends Component {
           this.setState({ comments });
         }
       });
+<<<<<<< HEAD
       AOS.init({
         duration : 500
       })
+=======
+      // AOS.init({
+      //   duration : 5
+      // });
+>>>>>>> ec4983bc1ddafd9eb3eaea0c621858449b8861e4
     }
 
     render() {
@@ -143,7 +149,7 @@ class Newsfeed extends Component {
       var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
       return (
-        <div data-aos="zoom-in">
+        // <div data-aos="zoom-in">
         <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
@@ -207,7 +213,7 @@ class Newsfeed extends Component {
           </div>
           {/* <Aos/> */}
         </article>
-        </div>
+        //</div>
       );
     }
   }

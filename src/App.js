@@ -90,33 +90,22 @@ class App extends Component {
         console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
         console.log('Validar fechas');
         console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
-	//function getAge(dateString) {
-		var dateString = "1999/5/12";
-   		var today = new Date();
-    		var birthDate = new Date(dateString);
-    		var age = today.getFullYear() - birthDate.getFullYear();
-    		var m = today.getMonth() - birthDate.getMonth();
-    		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        		age--;
-    		}
-		console.log(age);
-    		//return age;
-	//}
+	    
     }
-// match.params.id
+    // match.params.id
     render() {
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
                 {/* { this.state.currentUser ? ( */}
                     <Switch>
-                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} isSignedUp={this.state.user.uid ? true : false} />)} />
                         <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
                         <Route path='/forgotpassword' component={Forgotpassword} />
-                        <Route path='/chatting' render={(props) => (<Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} />)}/>
-                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} uid={this.state.user.uid} />)} />
-                        <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} />)} />
-                        <Route path='/change_password' component={ChangePassword} />
+                        <Route path='/chatting' render={(props) => (<Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} isSignedUp={this.state.user.uid ? true : false} />)}/>
+                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} uid={this.state.user.uid} isSignedUp={this.state.user.uid ? true : false} />)} />
+                        <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />)} />
+                        <Route path='/change_password' component={ChangePassword} isSignedUp={this.state.user.uid ? true : false} />
                         <Route path='/profile_widget' component={Page404} />
 
                         {/* <Redirect from='/index' exact to='/home' /> */}

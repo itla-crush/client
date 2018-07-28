@@ -22,6 +22,8 @@ class Signup extends Component {
       this.convertGender = this.convertGender.bind(this);
       this.showMessageError = this.showMessageError.bind(this);
       this.validateForm = this.validateForm.bind(this);
+      this.getAge = this.getAge.bind(this);
+      this.validateDate = this.validateDate.bind(this);
     }
 
     componentDidMount() {
@@ -73,15 +75,16 @@ class Signup extends Component {
         // Buscar el usuario en la base de datos
         firebase.database().ref('/users/' + res.user.uid).once('value')
         .then(snapshot => {
-          console.log(`Signup.js 57: ${res}`);
+          console.log(`Signup.js 78: ${res}`);
           // Escribir el usuario si no existe
           if(snapshot.val() === null) {
             this.writeUserData(res);
           } else {
             firebase.database().ref(`/users/${res.user.uid}/`).update({
               lastSignInTime: res.user.metadata.lastSignInTime || 'null'
-            }, error => {
-              console.log(error);
+            }, error => { 
+              if(error){ console.log(error); }
+              else{ window.location.replace("/home"); }
             });
           }
           // End Escribir Usurio
@@ -142,8 +145,32 @@ class Signup extends Component {
         id: res.additionalUserInfo.profile.id || 'null',
         uid: res.user.uid || 'null'
       }, error => {
-        if(error) console.log(error);
+        if(error) { console.log(error); }
+        else { window.location.replace("/home"); }
       });
+    }
+
+    getAge = (dateString) => {
+      var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+     return `${age} años`;
+    }
+
+    validateDate = (date) => {
+      var x = new Date();
+      var fecha = date.split("/");
+      x.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
+      var today = new Date();
+ 
+      if (x >= today)
+        return false;
+      else
+        return true;
     }
 
     signUpWithEmail = (event) => {
@@ -160,10 +187,15 @@ class Signup extends Component {
             email: res.user.email,
             photoUrl : 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0',
             username: userData.username, 
+            age: userData.age,
             birthdate: userData.birthdate,
             gender: userData.gender
           }, error => {
-            if(error) console.log(error);
+            if(error) {
+              console.log(error);
+            } else {
+              window.location.replace("/home");
+            }
           });
         })
         .catch(error => {
@@ -186,6 +218,8 @@ class Signup extends Component {
       let selectGender = document.getElementById('selectGender');
       let gender = selectGender.options[selectGender.selectedIndex].value;
 
+      let age = this.getAge(birthdate);
+
       var userData = {
         name: _.capitalize(_.camelCase(name)),
         lastname: _.capitalize(_.camelCase(lastname)),
@@ -194,7 +228,8 @@ class Signup extends Component {
         password: password,
         verifyPassword: verifyPassword,
         birthdate: birthdate,
-        gender: gender
+        gender: gender,
+        age: age
       }
 
       if(!_.isEmpty(name)) {
@@ -204,7 +239,7 @@ class Signup extends Component {
               if(!_.isEmpty(password)) {
                 if(!_.isEmpty(password)) {
                   if(selectGender.selectedIndex !== 0) {
-                    // if(birthdate) {  Validar fecha de nacimiento
+                    if(this.validateDate(birthdate)) { 
                       if(_.isEqual(password, verifyPassword)) {
                         return userData;
                       } else {
@@ -212,11 +247,11 @@ class Signup extends Component {
                         alert('Las contraseñas no coinciden');
                         return false;
                       }
-                    // } else {
-                    //   console.log('Debes seleccionar tu género');
-                    //   alert('Debes seleccionar tu género');
-                    // return false;
-                    // }
+                    } else {
+                      console.log('La fecha selecciona debe ser menor a la actual');
+                      alert('La fecha selecciona debe ser menor a la actual');
+                    return false;
+                    }
                   } else {
                     console.log('Debes seleccionar tu género');
                     alert('Debes seleccionar tu género');

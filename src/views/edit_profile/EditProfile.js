@@ -22,6 +22,16 @@ export default class EditProfile extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
+        
+        if(!firebase.auth().currentUser) {
+            window.location.replace("/index");
+        }
+    }
+
+    componentWillMount() {
+        // if(!this.props.isSignedUp) {
+        //     window.location.replace("/index");
+        // }
     }
 
     componentWillReceiveProps(nextProps) {

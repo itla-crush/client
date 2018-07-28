@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // Components
@@ -21,6 +22,10 @@ class Landing extends Component {
         }
         this.addMaterialize = this.addMaterialize.bind(this);
         this.addMaterialize();
+
+        if(firebase.auth().currentUser) {
+            window.location.replace('/home');
+        }
     }
 
     changeView = (event) => {

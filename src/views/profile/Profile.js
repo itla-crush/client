@@ -29,7 +29,20 @@ export default class Profile extends Component {
         this.loadPosts = this.loadPosts.bind(this);
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
+<<<<<<< HEAD
         this.logout = this.logout.bind(this);
+=======
+        
+        if(!firebase.auth().currentUser) {
+            window.location.replace("/index");
+        }
+    }
+
+    componentWillMount() {
+        // if(!this.props.isSignedUp) {
+        //     window.location.replace("/index");
+        // }
+>>>>>>> ec4983bc1ddafd9eb3eaea0c621858449b8861e4
     }
 
     showPost = () => {
