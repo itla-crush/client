@@ -29,6 +29,9 @@ export default class Profile extends Component {
         this.loadPosts = this.loadPosts.bind(this);
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
+<<<<<<< HEAD
+        this.logout = this.logout.bind(this);
+=======
         
         if(!firebase.auth().currentUser) {
             window.location.replace("/index");
@@ -39,6 +42,7 @@ export default class Profile extends Component {
         // if(!this.props.isSignedUp) {
         //     window.location.replace("/index");
         // }
+>>>>>>> ec4983bc1ddafd9eb3eaea0c621858449b8861e4
     }
 
     showPost = () => {
@@ -75,6 +79,9 @@ export default class Profile extends Component {
           }
         });
     }
+    logout = () => {
+        firebase.auth().signOut();
+    }
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
@@ -100,7 +107,18 @@ export default class Profile extends Component {
                                 <p>{this.state.user.username}</p>
                             </div>
                             <div className="editar">
-                                <a href="/edit_profile">Editar Perfil</a>
+                                <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
+                                <div className="btnOp-salir">
+                                    <button
+                                     onClick={this.logout}
+                                     className="btn-s"
+                                     data-toggle="popover" 
+                                     data-placement="bottom" 
+                                     data-content="<a  href='/index'>Cerrar sesión</a>" 
+                                     data-trigger="focus">
+                                       <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
+                                   </button>
+                                </div> 
                             </div>
                         </div>
                         <div className="estadisticas">
@@ -122,10 +140,10 @@ export default class Profile extends Component {
             <div className="content-de">
                 <div className="public-private">
                     <div className="declarations">
-                        <p className="grow" onClick={this.showPost}>Contenido uno</p>
+                        <p className="grow" onClick={this.showPost}>Publicaciones</p>
                     </div>
                     <div className="declarations">
-                        <p className="grow" onClick={this.showPostToMe}>Contenido dos</p>
+                        <p className="grow" onClick={this.showPostToMe}>Declaraciones</p>
                     </div>
                 </div>
                 <div>
@@ -190,13 +208,7 @@ export default class Profile extends Component {
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div> */}
 
-                    <div className="salto">
-
-                    </div>
-        
-                    <div className="salir">
-                        <img src='' alt=""/>
-                    </div>
+                    
             
             </div>
 

@@ -132,9 +132,15 @@ class Newsfeed extends Component {
           this.setState({ comments });
         }
       });
+<<<<<<< HEAD
+      AOS.init({
+        duration : 500
+      })
+=======
       // AOS.init({
       //   duration : 5
       // });
+>>>>>>> ec4983bc1ddafd9eb3eaea0c621858449b8861e4
     }
 
     render() {
