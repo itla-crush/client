@@ -32,7 +32,7 @@ class UserSidebar extends Component {
                 </a>
               </div>
               <div className="center-content">
-                <a class="username" href="#" onClick={this.handleOnClick}>
+                <a className="username" href="#" onClick={this.handleOnClick}>
                   <h5>{this.props.username || '@invitado'}</h5> 
                 </a>
               </div> 
