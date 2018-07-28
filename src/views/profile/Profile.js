@@ -90,7 +90,12 @@ export default class Profile extends Component {
                                 <p>{this.state.user.username}</p>
                             </div>
                             <div className="editar">
-                                <a href="/edit_profile">Editar Perfil</a>
+                                <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
+                                <div className="btnOp-salir">
+                                    <a href="#">
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=5b2acb3d-edf7-443b-87e9-a8c9c37eacea" alt=""/>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div className="estadisticas">
@@ -112,10 +117,10 @@ export default class Profile extends Component {
             <div className="content-de">
                 <div className="public-private">
                     <div className="declarations">
-                        <p className="grow" onClick={this.showPost}>Contenido uno</p>
+                        <p className="grow" onClick={this.showPost}>Publicaciones</p>
                     </div>
                     <div className="declarations">
-                        <p className="grow" onClick={this.showPostToMe}>Contenido dos</p>
+                        <p className="grow" onClick={this.showPostToMe}>Declaraciones</p>
                     </div>
                 </div>
                 <div>
@@ -180,13 +185,7 @@ export default class Profile extends Component {
                     Quaerat fugiat eaque, incidunt cum quod aliquid.
                 </div> */}
 
-                    <div className="salto">
-
-                    </div>
-        
-                    <div className="salir">
-                        <img src='' alt=""/>
-                    </div>
+                    
             
             </div>
 
