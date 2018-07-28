@@ -12,7 +12,8 @@ class Chatting extends Component{
     constructor(props){
         super();
         this.state = {
-            chat: null
+            chat: null,
+            users: null
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
@@ -60,6 +61,15 @@ class Chatting extends Component{
                 this.setState({ chat });
             }
         });
+      
+        firebase.database().ref('users/').on('value', snapshot => {
+          var users = snapshot.val();
+          if(users) {
+            this.setState({ users });
+          }
+        });
+
+        // document.getElementById('div-chat-users').scrollTop = 500;
     }
 
     getMonth = (month) => {
@@ -95,154 +105,54 @@ class Chatting extends Component{
           listItems = <li>¡No hay mensajes!</li>;
         }
 
-        return(
+        var users = this.state.users;
+        var listUsers = '';
+        
+        if(users != null){
+    
+            listUsers = Object.keys(users).map((user) =>
+            <div key={user} className="friend" style={{display: user == uid ? 'none' : ''}}>
+                <div className="persons-imagen">
+                    <img src={users[user].photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt="" />
+                </div>
+                <div className="persons-nombres">
+                    <p>{users[user].displayName || 'DisplayName'}</p>
+                    <p>{users[user].username || '@username'}</p>
+                </div>
+            </div>
+          );
+    
+        } else {
+            listUsers = <li>¡No hay usuarios!</li>;
+        }
 
-            <div>
+        return(
+            <div className="Chatting">
                 <Header />
                 <div className="c-contacts">
                     <div className="persons">
                         <div className="buscador">
                             <input type="text" className="form-control" placeholder="Buscar"/>
                         </div>
-                        {/* <div style={{overflowX:'hidden', overflowY:'auto'}}> */}
-                        <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
-                                <p>@molondron</p>
-                            </div>
-                        </div>
-                       
-                        <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C Nombre largo</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C Nombre largo</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C Nombre largo</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C Nombre largo</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
-                                <p>@molondron</p>
-                            </div>
-                         </div>
-                         <div className="friend">
-                            <div className="persons-imagen">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
-                            </div>
-                            <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
-                                <p>@molondron</p>
-                            </div>
-                        </div>
-                        {/* </div> */}
+                        {listUsers}
                     </div>
-
-                    
-                        
-                        <div className="conversacion">
-
-                            <div className="chat-users">
-                                <div className="list-users">
-                                    {/* <div className="cont-u">
-                                        <span className="picture">
-                                            <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="User Avatar" className="img-p" />
-                                        </span>
-                                        <div className="chat-body">
-                                            <div className="info-person">
-                                               <strong>Melani Rogriguez</strong> 
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, dolor praesentium aperiam tempore accusamus nesciunt sapiente voluptatum? Magnam libero, perspiciatis repellat qui dicta laboriosam eos a, odit ab quo neque eum porro id voluptatum optio fugit. Rerum, consequatur? Laudantium sunt porro laborum numquam beatae asperiores. Numquam blanditiis earum omnis eaque!
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, dolor praesentium aperiam tempore accusamus nesciunt sapiente voluptatum? Magnam libero, perspiciatis repellat qui dicta laboriosam eos a, odit ab quo neque eum porro id voluptatum optio fugit. Rerum, consequatur? Laudantium sunt porro laborum numquam beatae asperiores. Numquam blanditiis earum omnis eaque!
-                                            </p>
-                                        </div>
-                                    </div> */}
-
-
-
-
-                                  <ul className="talk-persons">{listItems}</ul>
-                                </div>
+                    <div className="conversacion">
+                        <div id="div-chat-users" className="chat-users">
+                            <div className="list-users">
+                                <ul className="talk-persons">{listItems}</ul>
                             </div>
-                            
-
-
-
-                                <form action="" className="formu-p" onSubmit={this.handleSubmitMessage}>
-                                    <div className="formu">
-                                        <div className="text-c"><textarea className="text-camp"  id="textAreaMessage" placeholder="Escribe un mensaje..."></textarea></div>
-                                        <div className="ctn"><input type="submit" value="Enviar" onClick={this.handleSubmitMessage}/></div>
-                                    </div>
-                                </form>
                         </div>
-                  
-
-
-
-
-
-
-                  {/* <a href="#">
-                            <div className="resultado-imagen">
-                            <img src="../img/perfil/clasico2.jpg" alt />
+                        <form action="" className="formu-p" onSubmit={this.handleSubmitMessage}>
+                            <div className="formu">
+                                <div className="text-c"><textarea className="text-camp"  id="textAreaMessage" placeholder="Escribe un mensaje..."></textarea></div>
+                                <div className="ctn"><input type="submit" value="Enviar" onClick={this.handleSubmitMessage}/></div>
                             </div>
-                            <div className="resultado-nombres">
-                            <p>Dalton Tejada C</p>
-                            <p>MegadaltonOT</p>
-                            </div>
-                        </a> */}
+                        </form>
+                    </div>
                 </div>
             </div>
-
-           
-            
         );
     }
-    
 }
 
 export default Chatting;

@@ -19,6 +19,7 @@
     align-items: center;
     margin-bottom: 7px;
     font-family: "AbeeZee";
+    padding-left: 5px;
 }
 .c-contacts .persons .friend .persons-nombres {
     max-width: 160px;
@@ -35,6 +36,7 @@
 .c-contacts .persons .persons-imagen img{
     width: 60px;
     border-radius: 50px;
+    margin-right: 5px;
 }
 
 /* ESTILOS CHAT UNIVERSAL */

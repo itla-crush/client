@@ -32,9 +32,7 @@ class Newsfeed extends Component {
       var pre = document.createElement('pre');
       pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
       document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
-  }
-
-    
+    }
 
     handleSendComment = (event) => {
       var txtAreaComment = document.getElementById(`textareaComment${this.props.id}`);
@@ -134,7 +132,7 @@ class Newsfeed extends Component {
         }
       });
       AOS.init({
-        duration : 1000
+        duration : 250
       })
     }
 
@@ -149,7 +147,7 @@ class Newsfeed extends Component {
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
               <a href="#" onClick={e => e.preventDefault()}>
-              <img alt={""} className="img-profile" src={photoUrl} />
+                <img alt={""} className="img-profile" src={photoUrl} />
               </a>
             </div>
             <div className="div-user"> 
@@ -198,12 +196,12 @@ class Newsfeed extends Component {
               </ul>
             </div>
             <div className="div-form-comment">
-                <hr className="hl" />
-                <form className="form-comment">
-                  <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
-                  {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
-                  {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
-                </form>
+              <hr className="hl" />
+              <form className="form-comment">
+                <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
+                {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
+                {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
+              </form>
             </div>
           </div>
           {/* <Aos/> */}

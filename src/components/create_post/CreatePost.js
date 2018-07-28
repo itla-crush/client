@@ -4,7 +4,7 @@ import _ from 'lodash';
 import ResultWidget from '../../components/result_widget/ResultWidget';
 
 // Assets
-import './CreatePost.css';
+import './createpost.css';
 
 class CreatePost extends Component {
     constructor(props) {
