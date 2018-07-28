@@ -26,8 +26,6 @@ class Signup extends Component {
 
     componentDidMount() {
       this.calendar();
-      console.log('Actualizar informaciones de usuarios');
-      console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
     }
 
     changeView = (e) => {
