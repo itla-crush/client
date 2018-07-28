@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 
+// importing aos
+import AOS from '../../../node_modules/aos'
+
 // Components
 import Post from '../../components/post/Post';
 
+
+
 // Assets
 import './newsfeed.css';
+
+import '../../../node_modules/aos/dist/aos.css'
 
 class Newsfeed extends Component {
     constructor(props) {
@@ -20,6 +27,14 @@ class Newsfeed extends Component {
       this.getMonth = this.getMonth.bind(this);
       this.handleFocusComment = this.handleFocusComment.bind(this);
     }
+
+    addBootstrap4 = () => {
+      var pre = document.createElement('pre');
+      pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
+      document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
+  }
+
+    
 
     handleSendComment = (event) => {
       var txtAreaComment = document.getElementById(`textareaComment${this.props.id}`);
@@ -118,6 +133,9 @@ class Newsfeed extends Component {
           this.setState({ comments });
         }
       });
+      AOS.init({
+        duration : 1000
+      })
     }
 
     render() {
@@ -126,7 +144,8 @@ class Newsfeed extends Component {
       var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
       return (
-        <article className="post ">
+        <div data-aos="zoom-in">
+        <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
               <a href="#" onClick={e => e.preventDefault()}>
@@ -187,7 +206,9 @@ class Newsfeed extends Component {
                 </form>
             </div>
           </div>
+          {/* <Aos/> */}
         </article>
+        </div>
       );
     }
   }

@@ -4,6 +4,7 @@
   "description": "React",
   "private": true,
   "dependencies": {
+    "aos": "^2.3.3",
     "firebase": "^5.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
