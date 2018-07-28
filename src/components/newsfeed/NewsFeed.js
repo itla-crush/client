@@ -132,9 +132,9 @@ class Newsfeed extends Component {
           this.setState({ comments });
         }
       });
-      AOS.init({
-        duration : 5
-      })
+      // AOS.init({
+      //   duration : 5
+      // });
     }
 
     render() {
@@ -143,7 +143,7 @@ class Newsfeed extends Component {
       var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
       return (
-        <div data-aos="zoom-in">
+        // <div data-aos="zoom-in">
         <article className="post">
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
@@ -207,7 +207,7 @@ class Newsfeed extends Component {
           </div>
           {/* <Aos/> */}
         </article>
-        </div>
+        //</div>
       );
     }
   }

@@ -24,6 +24,12 @@ export default class EditProfile extends Component {
         this.addBootstrap4();
     }
 
+    componentWillMount() {
+        if(!this.props.isSignedUp) {
+            window.location.replace("/index");
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
       this.setState({
         user: nextProps.user

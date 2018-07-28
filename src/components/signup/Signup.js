@@ -28,14 +28,6 @@ class Signup extends Component {
 
     componentDidMount() {
       this.calendar();
-      this.validateDate('13/09/1985');
-      this.validateDate('3000/09/13');
-      this.validateDate('2018/7/27');
-      this.validateDate('2018/7/28');
-      this.validateDate('2018/7/29');
-      this.validateDate('27/7/2018');
-      this.validateDate('28/7/2018');
-      this.validateDate('29/7/2018');
     }
 
     changeView = (e) => {
@@ -83,15 +75,16 @@ class Signup extends Component {
         // Buscar el usuario en la base de datos
         firebase.database().ref('/users/' + res.user.uid).once('value')
         .then(snapshot => {
-          console.log(`Signup.js 57: ${res}`);
+          console.log(`Signup.js 78: ${res}`);
           // Escribir el usuario si no existe
           if(snapshot.val() === null) {
             this.writeUserData(res);
           } else {
             firebase.database().ref(`/users/${res.user.uid}/`).update({
               lastSignInTime: res.user.metadata.lastSignInTime || 'null'
-            }, error => {
-              console.log(error);
+            }, error => { 
+              if(error){ console.log(error); }
+              else{ window.location.replace("/home"); }
             });
           }
           // End Escribir Usurio
@@ -152,7 +145,8 @@ class Signup extends Component {
         id: res.additionalUserInfo.profile.id || 'null',
         uid: res.user.uid || 'null'
       }, error => {
-        if(error) console.log(error);
+        if(error) { console.log(error); }
+        else { window.location.replace("/home"); }
       });
     }
 
@@ -170,7 +164,7 @@ class Signup extends Component {
     validateDate = (date) => {
       var x = new Date();
       var fecha = date.split("/");
-      x.setFullYear(fecha[2],fecha[1]-1,fecha[0]);
+      x.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
       var today = new Date();
  
       if (x >= today)
@@ -197,7 +191,11 @@ class Signup extends Component {
             birthdate: userData.birthdate,
             gender: userData.gender
           }, error => {
-            if(error) console.log(error);
+            if(error) {
+              console.log(error);
+            } else {
+              window.location.replace("/home");
+            }
           });
         })
         .catch(error => {
@@ -241,7 +239,7 @@ class Signup extends Component {
               if(!_.isEmpty(password)) {
                 if(!_.isEmpty(password)) {
                   if(selectGender.selectedIndex !== 0) {
-                    // if(birthdate) {  Validar fecha de nacimiento
+                    if(this.validateDate(birthdate)) { 
                       if(_.isEqual(password, verifyPassword)) {
                         return userData;
                       } else {
@@ -249,11 +247,11 @@ class Signup extends Component {
                         alert('Las contraseñas no coinciden');
                         return false;
                       }
-                    // } else {
-                    //   console.log('Debes seleccionar tu género');
-                    //   alert('Debes seleccionar tu género');
-                    // return false;
-                    // }
+                    } else {
+                      console.log('La fecha selecciona debe ser menor a la actual');
+                      alert('La fecha selecciona debe ser menor a la actual');
+                    return false;
+                    }
                   } else {
                     console.log('Debes seleccionar tu género');
                     alert('Debes seleccionar tu género');

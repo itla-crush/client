@@ -31,6 +31,12 @@ export default class Profile extends Component {
         this.showPostToMe = this.showPostToMe.bind(this);
     }
 
+    componentWillMount() {
+        if(!this.props.isSignedUp) {
+            window.location.replace("/index");
+        }
+    }
+
     showPost = () => {
         this.setState({ showPost: true });
     }

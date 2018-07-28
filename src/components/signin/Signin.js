@@ -44,7 +44,11 @@ class Signin extends Component {
         if(!_.isEmpty(_.trim(password))) {
           firebase.auth().signInWithEmailAndPassword(email, password)
           .catch(error => {
-            this.showMessageError(error.code, error.message);
+            if(error) {
+              this.showMessageError(error.code, error.message);
+            } else {
+              window.location.replace("/home");
+            }
           });
         } else {
           console.log('Debe proporcionar su contraseña');

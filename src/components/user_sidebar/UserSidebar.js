@@ -4,23 +4,36 @@ import React, { Component } from 'react';
 import './usersidebar.css';
 
 class UserSidebar extends Component {
-    // constructor(props) {
-    //   super(props);
-    // }
+    constructor(props) {
+      super(props);
+      this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick = (e) => {
+      e.preventDefault();
+      if(this.props.isSignedUp) {
+        // funciona como una redirección HTTP
+        window.location.replace("/profile");
+
+        // funciona como si dieras clic en un enlace
+        // window.location.href = "/profile";
+      }
+    }
+
     render() {
       return (
         <aside className="left-aside center-content">
           <section> 
             <div>
-              <h4>{this.props.displayName}</h4> 
+              <h4>{this.props.displayName || 'Invitado'}</h4> 
               <div className="div-img-profile center-content">  {/* Contenedor de la Imagen de Perfil */}
-                <a href="#">
-                  <img alt="" className="img-profile-user" src={this.props.photoUrl} /> {/* Imagen */}
+                <a href="#" onClick={this.handleOnClick} >
+                  <img alt="" className="img-profile-user" src={this.props.photoUrl  || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} /> {/* Imagen */}
                 </a>
               </div>
               <div className="center-content">
-                <a className="username" href="#">
-                  <h5>{this.props.username}</h5> 
+                <a href="#" onClick={this.handleOnClick}>
+                  <h5>{this.props.username || '@invitado'}</h5> 
                 </a>
               </div> 
               <footer className="footer-user-sidebar">

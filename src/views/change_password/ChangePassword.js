@@ -12,6 +12,12 @@ export default class ChangePassword extends Component{
         this.addBootstrap4();
     }
 
+    componentWillMount() {
+        if(!this.props.isSignedUp) {
+            window.location.replace("/index");
+        }
+    }
+
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
         pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	

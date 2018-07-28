@@ -46,7 +46,7 @@ class ChatSidebar extends Component {
         <aside className="right-aside center-content">
           <section>
             <div className="">
-              <h4>Chat Online!</h4>
+              <h4>Usuarios</h4>
               <div className="chatOrderedList">
                 <div className="chat-sidebar">
                   <ul className="list-unstyled">
