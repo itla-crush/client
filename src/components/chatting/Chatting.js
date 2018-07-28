@@ -104,6 +104,7 @@ class Chatting extends Component{
                         <div className="buscador">
                             <input type="text" className="form-control" placeholder="Buscar"/>
                         </div>
+                        {/* <div style={{overflowX:'hidden', overflowY:'auto'}}> */}
                         <div className="friend">
                             <div className="persons-imagen">
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
@@ -128,7 +129,7 @@ class Chatting extends Component{
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
                             </div>
                             <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
+                                <p>Dalton Tejada C Nombre largo</p>
                                 <p>@molondron</p>
                             </div>
                          </div>
@@ -137,7 +138,7 @@ class Chatting extends Component{
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
                             </div>
                             <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
+                                <p>Dalton Tejada C Nombre largo</p>
                                 <p>@molondron</p>
                             </div>
                          </div>
@@ -146,7 +147,7 @@ class Chatting extends Component{
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
                             </div>
                             <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
+                                <p>Dalton Tejada C Nombre largo</p>
                                 <p>@molondron</p>
                             </div>
                          </div>
@@ -155,7 +156,7 @@ class Chatting extends Component{
                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" />
                             </div>
                             <div className="persons-nombres">
-                                <p>Dalton Tejada C</p>
+                                <p>Dalton Tejada C Nombre largo</p>
                                 <p>@molondron</p>
                             </div>
                          </div>
@@ -177,7 +178,7 @@ class Chatting extends Component{
                                 <p>@molondron</p>
                             </div>
                         </div>
-                       
+                        {/* </div> */}
                     </div>
 
                     
