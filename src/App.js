@@ -90,6 +90,18 @@ class App extends Component {
         console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
         console.log('Validar fechas');
         console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
+	//function getAge(dateString) {
+		var dateString = "1999/5/12";
+   		var today = new Date();
+    		var birthDate = new Date(dateString);
+    		var age = today.getFullYear() - birthDate.getFullYear();
+    		var m = today.getMonth() - birthDate.getMonth();
+    		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        		age--;
+    		}
+		console.log(age);
+    		//return age;
+	//}
     }
 // match.params.id
     render() {
