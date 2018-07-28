@@ -302,7 +302,7 @@ div.chat-sidebar::-webkit-scrollbar-thumb{
     border-color: rgba(0, 0, 0, 0.15);
 }
 
-.left-aside div .username h5 {
+.left-aside div h5 {
     margin-top: 5px;
 }
 
