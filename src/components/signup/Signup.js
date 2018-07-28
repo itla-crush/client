@@ -153,6 +153,7 @@ class Signup extends Component {
         firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
         .then(res => {
           firebase.database().ref(`/users/${res.user.uid}`).set({
+            uid: res.user.uid,
             displayName: `${userData.name}  ${userData.lastname}`,
             name: userData.name,
             lastname: userData.lastname,
