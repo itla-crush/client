@@ -22,10 +22,6 @@ class Landing extends Component {
         }
         this.addMaterialize = this.addMaterialize.bind(this);
         this.addMaterialize();
-
-        if(firebase.auth().currentUser) {
-            window.location.replace('/home');
-        }
     }
 
     changeView = (event) => {

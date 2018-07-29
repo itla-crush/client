@@ -30,9 +30,6 @@ export default class Profile extends Component {
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
         this.logout = this.logout.bind(this);
-        if(!firebase.auth().currentUser) {
-            window.location.replace("/index");
-        }
     }
 
     componentWillMount() {

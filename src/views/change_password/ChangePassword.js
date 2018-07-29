@@ -11,10 +11,6 @@ export default class ChangePassword extends Component{
         super(props);
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
-        
-        if(!firebase.auth().currentUser) {
-            window.location.replace("/index");
-        }
     }
 
     componentWillMount() {
