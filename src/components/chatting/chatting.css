@@ -45,7 +45,7 @@
 .c-contacts .conversacion .chat-users{
     height: 500px;
     font-family: "AbeeZee";
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
 }
 .c-contacts .conversacion .chat-users .list-users{
