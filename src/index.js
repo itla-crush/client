@@ -34,4 +34,4 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
-ReactDOM.render(<App  isSignedIn={!!firebase.auth().currentUser} backgroundID={backgroundID} />, document.getElementById('root'));
+ReactDOM.render(<App backgroundID={backgroundID} />, document.getElementById('root'));

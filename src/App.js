@@ -20,7 +20,6 @@ class App extends Component {
         this.state = {
             // isSignedIn: this.props.isSignedIn,
             // currentUser: false,
-            guest: false,
             user: {
                 displayName: null,
                 photoUrl: null,
@@ -96,7 +95,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/friend/:id' exact render={(props) => (<Profile profileId={'abcdefghi'} />)} />
+                        <Route path='/friend' exact render={(props) => (<Profile profileId={'abcdefghi'} />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (

@@ -10,13 +10,12 @@ import './chatsidebar.css';
 class ChatSidebar extends Component {
     constructor(props) {
       super(props);
+      this.redirect = this.redirect.bind(this);
     }
 
-    openChat = (e) => {
-      if(this.props.openChat) {
+    redirect = (e) => {
         var value = e.currentTarget.id;
-        this.props.openChat(value);
-      }
+        
     }
 
     render() {
@@ -27,10 +26,10 @@ class ChatSidebar extends Component {
       if(users != null){
   
         listItems = Object.keys(users).map((user) =>
-          <li key={user} id={user} className="li-each-chat" onClick={this.openChat} style={{display: user == currentUserUid ? 'none' : ''}}>
+          <li key={user} id={user} className="li-each-chat" onClick={this.redirect} style={{display: user == currentUserUid ? 'none' : ''}}>
             {/* <Link to={`/profile/${user}`} > */}
-            {/* <Link to={{ pathname: '/friend', state: { id: user } }} > */}
-            <a href={`friend/${user}`} >
+            <Link to={{ pathname: '/friend', state: { id: user } }} >
+            {/* <a href={`friend/${user}`} > */}
               <div className="div-chat-content center-content">
                 <div className="div-img-profile-chat"> 
                   <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />
@@ -39,8 +38,8 @@ class ChatSidebar extends Component {
                   <span className="court-text" style={{maxWidth:'155px'}}>{users[user].displayName || ''}</span><span>Activo</span>
                 </div>
               </div>
-            </a>
-            {/* </Link> */}
+            {/* </a> */}
+            </Link>
           </li>
         );
   

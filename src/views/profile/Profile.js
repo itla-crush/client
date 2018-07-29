@@ -70,8 +70,16 @@ export default class Profile extends Component {
             console.log(nextProps.location);
             console.log(this.props.location);
         }
-        console.log(nextProps.profileId);
         console.log(nextProps);
+        console.log(nextProps.profileId);
+        console.log(this.props);
+        console.log(this.props.location);
+        console.log(windows.location);
+        // console.log(this.props.location.state);
+        // console.log(this.props.location.state.id);
+        // console.log(nextProps.history.location);
+        // console.log(nextProps.history.location.state);
+        // console.log(nextProps.history.location.state.id);
     } 
 
     loadUser = (uid) => {
