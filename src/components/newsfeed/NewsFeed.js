@@ -147,7 +147,6 @@ class Newsfeed extends Component {
     }
 
     render() {
-      
       var month = this.getMonth(this.props.data.timestamp.month);
       var photoUrl = this.props.data.isAnonimous == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
       var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
@@ -197,7 +196,7 @@ class Newsfeed extends Component {
                   comments ? (
                     Object.keys(comments).map((comment) => 
                         <li key={comment} className=""> 
-                            <a href={`friend?${comments[comment].uid}`} onClick={e => e.preventDefault()}>{comments[comment].displayName}</a><span>{comments[comment].text}</span>
+                            <a href={`friend?${comments[comment].uid}`} >{comments[comment].displayName}</a><span>{comments[comment].text}</span>
                         </li>
                         )
                     ) : (
