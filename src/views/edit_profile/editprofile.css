@@ -66,9 +66,24 @@
 .configuracion .cambiar-info .form-group .editar-foto p{
     margin: 0;
 }
-.configuracion .cambiar-info .form-group .editar-foto a:hover{
-    text-decoration: none;
+.configuracion .cambiar-info .form-group .editar-foto .file-input{
+    visibility: hidden;
+    width: 0;
 }
+.configuracion .cambiar-info .form-group .editar-foto .file-input::before{
+    background-color: rgba(0,0,0,0);
+  border: solid 1px rgba(0,0,0,0);
+  content: 'Editar foto de perfil';
+  display: inline-block;
+  padding: 5px 0px;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  visibility: visible;
+  position: absolute;
+  color: #1D84B5;
+}
+
 .configuracion .cambiar-info .form-group .info{
     margin-right: 20px;
     font-family: "AbeeZee";

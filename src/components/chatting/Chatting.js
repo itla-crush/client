@@ -50,8 +50,11 @@ class Chatting extends Component{
             }, error => {if(error) console.log(error);});
             txtAreaMessage.value = '';
 
-            // setTimeout(this.setScrollYtoBottom(), 300);
+            
             this.setScrollYtoBottom();
+            setTimeout(this.setScrollYtoBottom(), 100);
+            
+            // this.setTimeOut(this.setScrollYtoBottom(), 250);
 
         } else {
             console.log('Debes escribir un mensaje para enviarlo');
@@ -85,7 +88,7 @@ class Chatting extends Component{
     setScrollYtoBottom = () => {
         // Asignar scroll abajo
         let divChat = document.getElementById("div-chat-users");
-        divChat.scrollTop = divChat.scrollHeight + 1000;
+        divChat.scrollTop = divChat.scrollHeight;
     }
 
     render(){
