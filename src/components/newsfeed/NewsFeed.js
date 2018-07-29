@@ -133,7 +133,7 @@ class Newsfeed extends Component {
         }
       });
       // AOS.init({
-      //   duration : 5
+      //   duration : 500
       // });
     }
 

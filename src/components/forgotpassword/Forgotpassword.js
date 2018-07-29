@@ -6,6 +6,7 @@ class Forgotpassword extends Component {
 
     render(){
         return(
+            <div className="ForgotPassword">
             <div className="forgot">
                 <div className="forgot-son">
                     <div className="titulo">
@@ -26,6 +27,7 @@ class Forgotpassword extends Component {
                         </form>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
