@@ -104,6 +104,7 @@ class App extends Component {
                         <Route path='/forgotpassword' component={Forgotpassword} />
                         <Route path='/chatting' render={(props) => (<Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} isSignedUp={this.state.user.uid ? true : false} />)}/>
                         <Route path='/profile' render={(props) => (<Profile user={this.state.user} uid={this.state.user.uid} isSignedUp={this.state.user.uid ? true : false} />)} />
+                        <Route path='/profile/:id' render={(props) => (<Profile user={''} uid={''} isSignedUp={false} />)} />
                         <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />)} />
                         <Route path='/change_password' component={ChangePassword} isSignedUp={this.state.user.uid ? true : false} />
                         <Route path='/profile_widget' component={Page404} />

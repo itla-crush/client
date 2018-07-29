@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import Header from '../../components/header/Header';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
 
-import './profile.css';
+import './profilefriend.css';
 
 export default class Profile extends Component {
     constructor(props) {
@@ -32,17 +32,10 @@ export default class Profile extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    componentDidMount() {
-        // console.log(location);
-        // console.log(location.state);
-        // console.log(location.state.id);
+    componentWillMount() {
         // if(!this.props.isSignedUp) {
         //     window.location.replace("/index");
         // }
-        // const { match: { params } } = this.props;
-        // const { location: { state } } = this.props;
-        // console.log(params);
-        // console.log(state);
     }
 
     showPost = () => {
@@ -79,7 +72,6 @@ export default class Profile extends Component {
           }
         });
     }
-
     logout = () => {
         firebase.auth().signOut();
     }

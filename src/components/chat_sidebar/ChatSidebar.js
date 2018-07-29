@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // Components
 import ChatItem from '../chat_item/ChatItem';
@@ -27,6 +28,8 @@ class ChatSidebar extends Component {
   
         listItems = Object.keys(users).map((user) =>
           <li key={user} id={user} className="li-each-chat" onClick={this.openChat} style={{display: user == currentUserUid ? 'none' : ''}}>
+            <Link to={`/profile/${user}`} >
+            {/* <Link to={{ pathname: '/profile', state: { id: user } }} > */}
               <div className="div-chat-content center-content">
                 <div className="div-img-profile-chat"> 
                   <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />
@@ -35,6 +38,7 @@ class ChatSidebar extends Component {
                   <span className="court-text" style={{maxWidth:'155px'}}>{users[user].displayName || ''}</span><span>Activo</span>
                 </div>
               </div>
+            </Link>
           </li>
         );
   
