@@ -36,7 +36,7 @@ class Home extends Component {
     }
 
     openChat = (id) => {
-      console.log(id);
+      // console.log(id);
     }
 
     signOut = () => {
@@ -76,16 +76,18 @@ class Home extends Component {
 
     render() {
       var posts = this.state.posts;
+      var sesion = window.localStorage.getItem('sesion');
+      sesion = (sesion === 'true') ? true : false;
       
       return (
         <div className="Home">
             <Header />
             <div className="container main-content">
-              <UserSidebar isSignedUp={this.state.user.uid ? true : false} postCount={this.state.user.postCount || '0'} postToMeCount={this.state.user.postToMeCount || '0'} followersCount={this.state.user.followersCount || '0'} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} username={this.state.user.username} />
+              <UserSidebar postCount={this.state.user.postCount || '0'} postToMeCount={this.state.user.postToMeCount || '0'} followersCount={this.state.user.followersCount || '0'} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} username={this.state.user.username} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section> 
-                    { this.state.user.displayName && this.state.user.username ? (<CreatePost uid={this.state.user.uid} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} username={this.state.user.username} displayName={this.state.user.displayName} />) : ("") }
+                    { sesion ? (<CreatePost uid={this.state.user.uid} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} username={this.state.user.username} displayName={this.state.user.displayName} />) : ("") }
                     <div>
                       { posts ? ( 
                         Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
@@ -96,7 +98,7 @@ class Home extends Component {
                 </main>
               </section>
               <ChatSidebar users={this.state.users || 'null'} openChat={this.openChat.bind(this)} currentUserUid={this.state.user.uid} />
-              { this.state.user.displayName && this.state.user.username ? (<ChatWidget chatId={this.state.chatId || ''} messages={this.state.messages || ''} currentUserUid={this.state.user.uid} />) : ("") }
+              { sesion ? (<ChatWidget chatId={this.state.chatId || ''} messages={this.state.messages || ''} currentUserUid={this.state.user.uid} />) : ("") }
             </div>
             <Footer />
         </div>

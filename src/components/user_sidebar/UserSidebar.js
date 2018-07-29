@@ -11,7 +11,11 @@ class UserSidebar extends Component {
 
     handleOnClick = (e) => {
       e.preventDefault();
-      if(this.props.isSignedUp) {
+      
+      var sesion = window.localStorage.getItem('sesion');
+      sesion = (sesion === 'true') ? true : false;
+
+      if(sesion) {
         // funciona como una redirección HTTP
         window.location.replace("/profile");
 

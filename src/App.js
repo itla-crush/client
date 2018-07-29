@@ -85,7 +85,6 @@ class App extends Component {
         console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
         console.log('Validar fechas');
         console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
-        console.log(window.localStorage.getItem('sesion'));
     }
     // match.params.id
     render() {
@@ -97,7 +96,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/profile/:id' exact render={(props) => (<Profile />)} />
+                        <Route path='/friend/:id' exact render={(props) => (<Profile profileId={'abcdefghi'} />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (

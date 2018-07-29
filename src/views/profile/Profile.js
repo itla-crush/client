@@ -56,10 +56,22 @@ export default class Profile extends Component {
 
     componentWillReceiveProps(nextProps) {
     //   this.setState({ user: nextProps.user });
-      if(nextProps.uid) {
-          this.loadUser(nextProps.uid);
-          this.loadPosts(nextProps.uid);
-      }
+        if(nextProps.uid) {
+            this.loadUser(nextProps.uid);
+            this.loadPosts(nextProps.uid);
+        } 
+        // else {
+        //     let uid;
+        //     this.loadUser(uid);
+        //     this.loadPosts(uid);
+        // }
+        if (nextProps.location !== this.props.location) {
+            // navigated!
+            console.log(nextProps.location);
+            console.log(this.props.location);
+        }
+        console.log(nextProps.profileId);
+        console.log(nextProps);
     } 
 
     loadUser = (uid) => {

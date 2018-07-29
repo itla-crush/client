@@ -136,9 +136,9 @@ class Header extends Component {
             <nav className="navbar navbar-default nav-content">
                 <div className="container d-flex justify-content-around">
                 <div className="lg" data-toggle="tooltip" data-placement="bottom" title="Inicio">
-                    <Link to="/home">
+                    <a href="/home">
                         <img src="img/cupido3.png" id="logo" className="logo" alt="Logo" />
-                    </Link>
+                    </a>
                 </div>
                 <div className="search">
                     <form onSubmit={e => e.preventDefault()} action="#" method="POST" style={{paddingBottom: "15px"}}>
