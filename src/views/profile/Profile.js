@@ -59,27 +59,20 @@ export default class Profile extends Component {
         if(nextProps.uid) {
             this.loadUser(nextProps.uid);
             this.loadPosts(nextProps.uid);
-        } 
-        // else {
-        //     let uid;
-        //     this.loadUser(uid);
-        //     this.loadPosts(uid);
-        // }
-        if (nextProps.location !== this.props.location) {
-            // navigated!
-            console.log(nextProps.location);
-            console.log(this.props.location);
+        } else {
+            let uid = window.location.search;
+            if(uid) {
+                uid = uid.substring(1);
+                this.loadUser(uid);
+                this.loadPosts(uid);
+                // uid = uid.split('?');
+                // console.log(uid);
+                // console.log(uid[0]);
+                // console.log(uid[1]);
+            } else {
+                window.location.replace("/home");
+            }
         }
-        console.log(nextProps);
-        console.log(nextProps.profileId);
-        console.log(this.props);
-        console.log(this.props.location);
-        console.log(windows.location);
-        // console.log(this.props.location.state);
-        // console.log(this.props.location.state.id);
-        // console.log(nextProps.history.location);
-        // console.log(nextProps.history.location.state);
-        // console.log(nextProps.history.location.state.id);
     } 
 
     loadUser = (uid) => {
@@ -124,6 +117,7 @@ export default class Profile extends Component {
     render(){
         var posts = this.state.posts;
         var postsToMe = this.state.postsToMe;
+        var friend = this.props.friend;
         return(
 
         <div className="Profile"> 
@@ -138,20 +132,25 @@ export default class Profile extends Component {
                                 <h2>{this.state.user.displayName}</h2>
                                 <p>{this.state.user.username}</p>
                             </div>
-                            <div className="editar">
-                                <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
-                                <div className="btnOp-salir">
-                                    <button
-                                        onClick={this.logout}
-                                        className="btn-s"
-                                        data-toggle="popover" 
-                                        data-placement="bottom" 
-                                        data-content="<a  href='/index'>Cerrar sesión</a>}"
-                                        data-trigger="focus">
-                                       <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
-                                   </button>
-                                </div> 
-                            </div>
+                            {   friend ? (
+                                        ""
+                                ) : (
+                                <div className="editar">
+                                    <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
+                                        <div className="btnOp-salir">
+                                            <button
+                                                onClick={this.logout}
+                                                className="btn-s"
+                                                data-toggle="popover" 
+                                                data-placement="bottom" 
+                                                data-content="<a  href='/index'>Cerrar sesión</a>}"
+                                                data-trigger="focus">
+                                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
+                                            </button>
+                                        </div> 
+                                </div>
+                                )
+                            }
                         </div>
                         <div className="estadisticas">
                             <div className="realizados">
@@ -183,11 +182,11 @@ export default class Profile extends Component {
                     {   this.state.showPost ? (
                             posts ? ( 
                                 Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
-                            ) : ( "No haz hecho publicaciones" )
+                            ) : ( "No hay publicaciones" )
                         ) : (
                             postsToMe ? ( 
                                 Object.keys(postsToMe).map((post) => <Newsfeed key={post} id={post} data={postsToMe[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
-                            ) : ( "No haz recibido declaraciones" )
+                            ) : ( "No hay declaraciones" )
                         )
                     }
                     </div>

@@ -66,7 +66,7 @@ class App extends Component {
         // if(this.isUserSignedIn()) {
         //     this.setState({ isSignedIn: true });
         // }
-        console.log(window.localStorage.getItem('sesion'));
+        // console.log(window.localStorage.getItem('sesion'));
     }
 
     componentDidMount() {
@@ -78,12 +78,12 @@ class App extends Component {
         //     }
         // });
         
-        console.log('Actualizar informaciones de usuarios');
-        console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
-        console.log('Errores de la API');
-        console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
-        console.log('Validar fechas');
-        console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
+        // console.log('Actualizar informaciones de usuarios');
+        // console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
+        // console.log('Errores de la API');
+        // console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
+        // console.log('Validar fechas');
+        // console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
     }
     // match.params.id
     render() {
@@ -95,7 +95,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/friend' exact render={(props) => (<Profile profileId={'abcdefghi'} />)} />
+                        <Route path='/friend' render={(props) => (<Profile friend={true} />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (
