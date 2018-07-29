@@ -35,11 +35,11 @@
      -o-transform: rotate(45deg);
      transform: rotate(45deg);
 }
-.wd .personas {
+/* .wd .personas {
     padding-top: 10px;
-}
+} */
 .wd .busqueda-perfil {
-    max-height: 350px;
+    max-height: -webkit-fill-available;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -113,11 +113,11 @@
 }
 .wd-post .personas {
     padding-top: 10px;
-    max-height: 350px;
-    height: auto;
+    /* max-height: 350px; */
+    /* height: auto; */
 }
 .wd-post .busqueda-perfil {
-    max-height: 350px;
+    max-height: -webkit-fill-available;
     max-width: 228px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -151,7 +151,11 @@
 }
 
 
-
+.personas {
+    padding-top: 10px;
+    overflow: hidden;
+    max-height: 340px;
+}
 
 div.busqueda-perfil::-webkit-scrollbar {
     width: 6px; /*=> ancho del scroll*/
