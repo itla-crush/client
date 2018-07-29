@@ -81,6 +81,7 @@ export default class Profile extends Component {
         }) 
         .catch(e => {
             console.log(`Code: ${e.code} Message: ${e.message}`);
+            window.location.replace("/home");
         });
     }
 
