@@ -10,13 +10,16 @@ export default class ChangePassword extends Component{
     constructor(props) {
         super(props);
         this.addBootstrap4 = this.addBootstrap4.bind(this);
-        this.addBootstrap4();
     }
 
     componentWillMount() {
         // if(!this.props.isSignedUp) {
         //     window.location.replace("/index");
         // }
+    }
+
+    componentDidMount() {
+        this.addBootstrap4();
     }
 
     addBootstrap4 = () => {

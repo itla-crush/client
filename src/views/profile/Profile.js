@@ -25,7 +25,6 @@ export default class Profile extends Component {
           }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
-        this.addBootstrap4();
         this.loadPosts = this.loadPosts.bind(this);
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
@@ -33,6 +32,7 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
+        this.addBootstrap4();
         // console.log(location);
         // console.log(location.state);
         // console.log(location.state.id);

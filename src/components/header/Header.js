@@ -35,6 +35,8 @@ class Header extends Component {
         this.obtener = this.obtener.bind(this);
         this.handleOnBur = this.handleOnBur.bind(this);
         this.handleOnFocus = this.handleOnFocus.bind(this);
+        this.handleGoToChatting = this.handleGoToChatting.bind(this);
+        this.handleGoToProfile = this.handleGoToProfile.bind(this);
     }
 
     stateAuth = () => {
@@ -55,19 +57,22 @@ class Header extends Component {
         var searchUser = document.getElementById('search-user');
         // var dataVal = searchUser.getAttribute("data-content");
 
-        var newData = '¡No hay resultados!';
+        var newData = '¡No hay resultados!';searchUser.value
 
         if(!_.isEmpty(_.trim(searchUser.value))) {
             this.setState({ showResult: true });
+
             firebase.database().ref('/users/').once('value')
             .then(snapshot => {
               this.setState({users: snapshot.val()});
 
               if(snapshot.val()) {
                 newData = snapshot.val();
+                var users;
                 // this.setState({ newData });
                 for(var user in newData) {
-                    console.log(user);
+                    newData[user].displayName;
+
                 }
 
               } else {
@@ -101,6 +106,18 @@ class Header extends Component {
         }
     }
 
+    handleGoToChatting = (e) => {
+        e.preventDefault();
+        console.log('Debes iniciar sesion para entrar al chat');
+        alert('Debes iniciar sesion para entrar al chat');
+    }
+
+    handleGoToProfile = (e) => {
+        e.preventDefault();
+        console.log('Debes iniciar sesion para entrar al perfil');
+        alert('Debes iniciar sesion para entrar al perfil');
+    }
+
     getUid = (uid) => {
         this.setState({ uid });
     }
@@ -118,7 +135,7 @@ class Header extends Component {
         <header>
             <nav className="navbar navbar-default nav-content">
                 <div className="container d-flex justify-content-around">
-                <div className="lg">
+                <div className="lg" data-toggle="tooltip" data-placement="bottom" title="Inicio">
                     <Link to="/home">
                         <img src="img/cupido3.png" id="logo" className="logo" alt="Logo" />
                     </Link>
@@ -132,10 +149,11 @@ class Header extends Component {
                 {/*Iconos del Menu*/}
                 <div className="iconos">
                     <ul className="nav navbar-nav"> 
-                    <li><a href="/home"><i className="fa fa-home icono" /></a></li>
-                    <li><a href="/chatting"><i className="fa fa-heart icono" /></a></li>
+                    <li data-toggle="tooltip" data-placement="bottom" title="Inicio"><a href="/home"><i className="fa fa-home icono" /></a></li>
+                    <li data-toggle="tooltip" data-placement="bottom" title="Chat"><a href="/chatting" {...this.state.uid ? '' : this.handleGoToChatting} ><i className="fa fa-heart icono" /></a></li>
                     {/* <li><a href="/profile"><i className="fa fa-user icono" /></a></li> */}
-                    <li><a href={this.state.isSignedIn ? '/profile' :  '/index'}><i className="fa fa-user icono" /></a></li>
+                    <li data-toggle="tooltip" data-placement="bottom" title="Perfil"><a href="/profile" {...this.state.uid ? '' : this.handleGoToProfile}><i className="fa fa-user icono" /></a></li>
+                    {/* <li><a href={this.state.isSignedIn ? '/profile' :  '/index'}><i className="fa fa-user icono" /></a></li> */}
                     </ul>
                 </div>
                 </div>

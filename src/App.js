@@ -19,7 +19,7 @@ class App extends Component {
         super(props);
         this.state = {
             isSignedIn: this.props.isSignedIn,
-            currentUser: null,
+            currentUser: false,
             guest: false,
             user: {
                 displayName: null,
@@ -41,21 +41,19 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
             console.log('Logeado');
-            this.setState({
-                currentUser: true
-            });
+            this.setState({ currentUser: true });
+            window.localStorage.setItem('sesion', 'true'); 
             firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
-                this.setState({
-                    user: snapshot.val(),
-                });
+                this.setState({ user: snapshot.val() });
             }) 
             .catch(e => {
                 console.log(`Code: ${e.code} Message: ${e.message}`);
             });
           } else {
                 this.setState({
-                    currentUser: null
+                    currentUser: false
                 });
+                window.localStorage.setItem('sesion', 'false'); 
                 console.log('Sesion cerrada');
             }
         });
@@ -73,6 +71,7 @@ class App extends Component {
         // if(this.isUserSignedIn()) {
         //     this.setState({ isSignedIn: true });
         // }
+        console.log(window.localStorage.getItem('sesion'));
     }
 
     componentDidMount() {
@@ -90,44 +89,76 @@ class App extends Component {
         console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
         console.log('Validar fechas');
         console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
-	    
+        console.log(this.state.currentUser);
+        console.log(this.state.user.uid);
+        console.log(!this.state.user.uid);
+        console.log(!!this.state.user.uid);
+        console.log(window.localStorage.getItem('sesion'));
     }
     // match.params.id
     render() {
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
-                {/* { this.state.currentUser ? ( */}
                     <Switch>
-                        <Route path='/index' render={(props) => (<Landing backgroundID={this.props.backgroundID} isSignedUp={this.state.user.uid ? true : false} />)} />
-                        <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
-                        <Route path='/forgotpassword' component={Forgotpassword} />
-                        <Route path='/chatting' render={(props) => (<Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} isSignedUp={this.state.user.uid ? true : false} />)}/>
-                        <Route path='/profile' render={(props) => (<Profile user={this.state.user} uid={this.state.user.uid} isSignedUp={this.state.user.uid ? true : false} />)} />
-                        <Route path='/profile/:id' render={(props) => (<Profile user={''} uid={''} isSignedUp={false} />)} />
-                        <Route path='/edit_profile' render={(props) => (<EditProfile user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />)} />
-                        <Route path='/change_password' component={ChangePassword} isSignedUp={this.state.user.uid ? true : false} />
-                        <Route path='/profile_widget' component={Page404} />
-
-                        {/* <Redirect from='/index' exact to='/home' /> */}
-
-                        <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
+                        <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
+                        <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
+                        <Route path='/profile/:id' exact render={(props) => (<Profile user={''} uid={''} isSignedUp={false} />)} />
+                        <Route path='/index' 
+                            render={(props) => ( 
+                                sesion ? (
+                                    <Redirect to="/home"/>
+                                ) : (
+                                    <Landing backgroundID={this.props.backgroundID} isSignedUp={this.state.user.uid ? true : false} /> )
+                            )} />
+                        <Route path='/chatting' 
+                            render={(props) => (
+                                sesion ? (
+                                    <Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} isSignedUp={this.state.user.uid ? true : false} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route path='/profile' 
+                            render={(props) => (
+                                sesion ? (
+                                    <Profile user={this.state.user} uid={this.state.user.uid} isSignedUp={this.state.user.uid ? true : false} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route path='/edit_profile' 
+                            render={(props) => (
+                                sesion ? (
+                                    <EditProfile user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route path='/change_password' 
+                            render={(props) => (
+                                sesion ? (
+                                    <ChangePassword user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route path='/' exact strict 
+                            render={(props) => ( 
+                                sesion ? (
+                                    <Redirect to="/home"/>
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route path='' exact strict
+                            render={(props) => ( 
+                                sesion ? (
+                                    <Redirect to="/home"/>
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        
+                        <Route component={Page404} />
+                        
                     </Switch> 
-                {/* ) : (
-                    <Switch> */}
-
-                        {/* <Route path='/home' render={(props) => (<Home user={this.state.user} />)} />
-                        <Route path='/forgotpassword' component={Forgotpassword} />
-                        <Route path='/profile' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='/edit_profile' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='/change_password' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='/edit_profile?:id' render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} /> */}
-                        {/* <Route path='/profile_widget' component={Page404} /> */}
-                        {/* <Route path='/' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} />
-                        <Route path='' exact strict render={(props) => (<Landing backgroundID={this.props.backgroundID} />)} /> */}
-                    {/* </Switch> 
-                ) } */}
                 </div>
             </BrowserRouter>
         );

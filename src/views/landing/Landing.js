@@ -21,7 +21,6 @@ class Landing extends Component {
             isSigninShowen: true
         }
         this.addMaterialize = this.addMaterialize.bind(this);
-        this.addMaterialize();
     }
 
     changeView = (event) => {
@@ -42,6 +41,10 @@ class Landing extends Component {
         document.body.style.backgroundImage = `url(img/${this.props.backgroundID || 4}.jpg)`; 
         document.querySelector("head").innerHTML += '<style>body{ height: 100vh; }</style>'; 
         // document.querySelector("head").innerHTML += '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>'; 
+    }
+
+    componentDidMount() {
+        this.addMaterialize();
     }
 
     render() {

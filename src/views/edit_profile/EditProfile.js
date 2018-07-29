@@ -21,13 +21,16 @@ export default class EditProfile extends Component {
           }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
-        this.addBootstrap4();
     }
 
     componentWillMount() {
         // if(!this.props.isSignedUp) {
         //     window.location.replace("/index");
         // }
+    }
+
+    componentDidMount() {
+        this.addBootstrap4();
     }
 
     componentWillReceiveProps(nextProps) {
