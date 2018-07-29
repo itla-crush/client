@@ -29,6 +29,7 @@ export default class Profile extends Component {
         this.showPost = this.showPost.bind(this);
         this.showPostToMe = this.showPostToMe.bind(this);
         this.logout = this.logout.bind(this);
+        this.loadUser = this.loadUser.bind(this);
     }
 
     componentDidMount() {
@@ -54,11 +55,21 @@ export default class Profile extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState({
-        user: nextProps.user
-      });
-      this.loadPosts(nextProps.uid);
+    //   this.setState({ user: nextProps.user });
+      if(nextProps.uid) {
+          this.loadUser(nextProps.uid);
+          this.loadPosts(nextProps.uid);
+      }
     } 
+
+    loadUser = (uid) => {
+        firebase.database().ref(`/users/${uid}`).once('value', snapshot => {
+            this.setState({ user: snapshot.val() });
+        }) 
+        .catch(e => {
+            console.log(`Code: ${e.code} Message: ${e.message}`);
+        });
+    }
 
     loadPosts = (uid) => {
         var ref = `/users/${uid}`;

@@ -97,7 +97,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/profile/:id' exact render={(props) => (<Profile user={''} uid={''} />)} />
+                        <Route path='/profile/:id' exact render={(props) => (<Profile />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (
@@ -115,7 +115,7 @@ class App extends Component {
                         <Route path='/profile' 
                             render={(props) => (
                                 sesion ? (
-                                    <Profile user={this.state.user} uid={this.state.user.uid} />
+                                    <Profile uid={this.state.user.uid} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
