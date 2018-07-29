@@ -161,7 +161,7 @@ class Header extends Component {
             { this.state.showResult ? (
                 <ResultWidget users={this.state.newData || '¡No hay resultados!'} getUid={this.getUid.bind(this)} /> ) : ( "" ) 
             }
-            <ProfileWidget uid={this.state.uid} />
+            {/* <ProfileWidget uid={this.state.uid} /> */}
             {/* { this.state.uid ? <ProfileWidget uid={this.state.uid} /> : ""} */}
         </header>
         
