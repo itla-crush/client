@@ -18,8 +18,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSignedIn: this.props.isSignedIn,
-            currentUser: false,
+            // isSignedIn: this.props.isSignedIn,
+            // currentUser: false,
             guest: false,
             user: {
                 displayName: null,
@@ -31,7 +31,7 @@ class App extends Component {
                 uid: null
             }
         }
-        this.isUserSignedIn = this.isUserSignedIn.bind(this);
+        // this.isUserSignedIn = this.isUserSignedIn.bind(this);
         this.signOut = this.signOut.bind(this);
         this.stateAuth = this.stateAuth.bind(this);
         this.stateAuth();
@@ -41,8 +41,7 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
             console.log('Logeado');
-            this.setState({ currentUser: true });
-            window.localStorage.setItem('sesion', 'true'); 
+            // this.setState({ currentUser: true });
             firebase.database().ref(`/users/${user.uid}`).once('value', snapshot => {
                 this.setState({ user: snapshot.val() });
             }) 
@@ -50,18 +49,15 @@ class App extends Component {
                 console.log(`Code: ${e.code} Message: ${e.message}`);
             });
           } else {
-                this.setState({
-                    currentUser: false
-                });
-                window.localStorage.setItem('sesion', 'false'); 
+                // this.setState({ currentUser: false });
                 console.log('Sesion cerrada');
             }
         });
     }
 
-    isUserSignedIn = () => {
-        return !!firebase.auth().currentUser;
-    }
+    // isUserSignedIn = () => {
+    //     return !!firebase.auth().currentUser;
+    // }
 
     signOut = () => {
         firebase.auth().signOut();
@@ -75,13 +71,13 @@ class App extends Component {
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged(user => {
-            if(user) {
-                this.setState({ isSignedIn: true });
-            } else {
-                this.setState({ isSignedIn: false });
-            }
-        });
+        // firebase.auth().onAuthStateChanged(user => {
+        //     if(user) {
+        //         this.setState({ isSignedIn: true });
+        //     } else {
+        //         this.setState({ isSignedIn: false });
+        //     }
+        // });
         
         console.log('Actualizar informaciones de usuarios');
         console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
@@ -89,10 +85,6 @@ class App extends Component {
         console.log('https://firebase.google.com/docs/auth/admin/errors?hl=es-419');
         console.log('Validar fechas');
         console.log('https://blog.reaccionestudio.com/funciones-para-validar-fechas-con-javascript/');
-        console.log(this.state.currentUser);
-        console.log(this.state.user.uid);
-        console.log(!this.state.user.uid);
-        console.log(!!this.state.user.uid);
         console.log(window.localStorage.getItem('sesion'));
     }
     // match.params.id
@@ -105,39 +97,39 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/profile/:id' exact render={(props) => (<Profile user={''} uid={''} isSignedUp={false} />)} />
+                        <Route path='/profile/:id' exact render={(props) => (<Profile user={''} uid={''} />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (
                                     <Redirect to="/home"/>
                                 ) : (
-                                    <Landing backgroundID={this.props.backgroundID} isSignedUp={this.state.user.uid ? true : false} /> )
+                                    <Landing backgroundID={this.props.backgroundID} /> )
                             )} />
                         <Route path='/chatting' 
                             render={(props) => (
                                 sesion ? (
-                                    <Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} isSignedUp={this.state.user.uid ? true : false} />
+                                    <Chatting uid={this.state.user.uid} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
                         <Route path='/profile' 
                             render={(props) => (
                                 sesion ? (
-                                    <Profile user={this.state.user} uid={this.state.user.uid} isSignedUp={this.state.user.uid ? true : false} />
+                                    <Profile user={this.state.user} uid={this.state.user.uid} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
                         <Route path='/edit_profile' 
                             render={(props) => (
                                 sesion ? (
-                                    <EditProfile user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />
+                                    <EditProfile user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
                         <Route path='/change_password' 
                             render={(props) => (
                                 sesion ? (
-                                    <ChangePassword user={this.state.user} isSignedUp={this.state.user.uid ? true : false} />
+                                    <ChangePassword user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
