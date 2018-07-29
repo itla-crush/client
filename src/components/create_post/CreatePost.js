@@ -204,7 +204,6 @@ class CreatePost extends Component {
         } else {
           currentRank = 1;
         }
-        console.log(`CreatePost.js 204: ${currentRank}`);
         return currentRank;
       });
 
@@ -214,7 +213,6 @@ class CreatePost extends Component {
         } else {
           currentRank = 1;
         }
-        console.log(`CreatePost.js 214: ${currentRank}`);
         return currentRank;
       });
     }
