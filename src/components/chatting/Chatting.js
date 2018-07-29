@@ -50,9 +50,7 @@ class Chatting extends Component{
             }, error => {if(error) console.log(error);});
             txtAreaMessage.value = '';
 
-            
-            this.setScrollYtoBottom();
-            setTimeout(this.setScrollYtoBottom(), 100);
+            // setInterval(this.setScrollYtoBottom(), 30);
             
             // this.setTimeOut(this.setScrollYtoBottom(), 250);
 
@@ -115,7 +113,7 @@ class Chatting extends Component{
             </li>
           );
 
-        //   setTimeout(this.setScrollYtoBottom(), 300);
+        // setTimeout(this.setScrollYtoBottom(), 300);
         this.setScrollYtoBottom();
     
         } else {
