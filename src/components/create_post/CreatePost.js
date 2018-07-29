@@ -91,8 +91,6 @@ class CreatePost extends Component {
       var toUid = toUser['toUid'];
 
       var uid = this.props.uid;
-      console.log(uid);
-      console.log(this.props);
       var displayName = this.props.displayName;
       var username = this.props.username;
       var photoUrl = this.props.photoUrl;
@@ -129,7 +127,7 @@ class CreatePost extends Component {
       if(!_.isEmpty(_.trim(textDeclaration))) {
         if((_.trim(textDeclaration)).length > 5) {
           if(toUid) {
-            //this.submitNewPost(postData, imageFile);
+            this.submitNewPost(postData, imageFile);
           } else {
             console.log('Debes elegir el destinatario.');
             alert('Debes elegir el destinatario.');
