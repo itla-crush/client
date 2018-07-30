@@ -9,7 +9,7 @@ import EditProfile from './views/edit_profile/EditProfile';
 import ChangePassword from './views/change_password/ChangePassword';
 import Page404 from './views/page404/Page404';
 import Forgotpassword from './components/forgotpassword/Forgotpassword';
-import Chatting from './components/chatting/Chatting';
+import Chatting from './views/chatting/Chatting';
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
 import firebase from 'firebase';

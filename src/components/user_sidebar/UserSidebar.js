@@ -37,7 +37,7 @@ class UserSidebar extends Component {
               </div>
               <div className="center-content">
                 <a className="username" href="#" onClick={this.handleOnClick}>
-                  <h5>{`@${this.props.username}` || '@invitado'}</h5> 
+                  <h5>{this.props.username ? `@${this.props.username}` : '@invitado'}</h5> 
                 </a>
               </div> 
               <footer className="footer-user-sidebar">

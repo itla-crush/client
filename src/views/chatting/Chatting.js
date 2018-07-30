@@ -13,13 +13,16 @@ class Chatting extends Component{
         super();
         this.state = {
             chat: null,
-            users: null
+            users: null,
+            newData: null
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
         this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
         this.getMonth = this.getMonth.bind(this);
         this.setScrollYtoBottom = this.setScrollYtoBottom.bind(this);
+        this.handleSearchChat = this.handleSearchChat.bind(this);
+        this.getUsers = this.getUsers.bind(this);
     }
 
     addBootstrap4 = () => {
@@ -86,7 +89,59 @@ class Chatting extends Component{
     setScrollYtoBottom = () => {
         // Asignar scroll abajo
         let divChat = document.getElementById("div-chat-users");
-        divChat.scrollTop = divChat.scrollHeight;
+        divChat.scrollTop = divChat.scrollHeight + 500;
+    }
+
+    handleSearchChat = () => {
+        var searchUser = document.getElementById('search-user-chat');
+        searchUser = _.trim(searchUser.value);
+        
+        if(_.isEmpty(searchUser)) {
+            this.setState({ newData: this.state.users });
+        } else {
+            this.getUsers(searchUser);
+        }
+    }
+
+    getUsers = (searchText) => {
+        var newData = '¡No hay resultados!';
+
+        if(!_.isEmpty(searchText)) {
+            this.setState({ showResult: true });
+
+            firebase.database().ref('/users/').orderByChild('displayName').once('value')
+            .then(snapshot => {
+              this.setState({users: snapshot.val()});
+
+              if(snapshot.val()) {
+                newData = snapshot.val();
+                var users = {};
+                for(var user in newData) {
+                    if(user !== this.state.uid && _.toLower(newData[user].displayName).search(_.toLower(searchText)) !== -1) {
+                        users[user] = newData[user];
+                    }
+                }
+
+                if(Object.entries(users).length !== 0) {
+                    newData = users;
+                } else {
+                    newData = '¡No hay resultados!';
+                }
+                this.setState({ newData });
+
+              } else {
+                newData = '¡No hay resultados!';
+                this.setState({ newData });
+              }
+              
+            })
+            .catch(e => {
+              console.log(`Code: ${e.code} Message: ${e.message}`);
+            });
+        } else {
+            newData = '¡No hay resultados!';
+            this.setState({ newData });
+        }
     }
 
     render(){
@@ -120,7 +175,7 @@ class Chatting extends Component{
           listItems = <h1 style={{textAlign: 'center'}}>Cargando mensajes...</h1>;
         }
 
-        var users = this.state.users;
+        var users = this.state.newData ? this.state.newData : this.state.users;
         var listUsers = '';
         
         if(users != null){
@@ -140,7 +195,7 @@ class Chatting extends Component{
           );
     
         } else {
-            listUsers = '¡No hay usuarios!';
+            listUsers = <h5 style={{textAlign: 'center'}}>Cargando usuarios...</h5>;
         }
 
         return(
@@ -149,7 +204,7 @@ class Chatting extends Component{
                 <div className="c-contacts">
                     <div className="persons">
                         <div className="buscador">
-                            <input type="text" className="form-control" placeholder="Buscar"/>
+                            <input id="search-user-chat" onChange={this.handleSearchChat} type="text" className="form-control" placeholder="Buscar"/>
                         </div>
                         {listUsers}
                     </div>

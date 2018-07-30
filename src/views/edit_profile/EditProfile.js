@@ -22,9 +22,11 @@ export default class EditProfile extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.handleSaveChanges = this.handleSaveChanges.bind(this);
+        this.handleSaveChanges2 = this.handleSaveChanges2.bind(this);
         this.generateDisplayName = this.generateDisplayName.bind(this);
         this.handleUpdatePhoto = this.handleUpdatePhoto.bind(this);
         this.handleUploadImage = this.handleUploadImage.bind(this);
+        this.setInputValue = this.setInputValue.bind(this);
     }
 
     generateDisplayName = (name, lastname) => {
@@ -67,12 +69,64 @@ export default class EditProfile extends Component {
       this.setState({
         user: nextProps.user
       });
+      this.setInputValue();
     }
 
     addBootstrap4 = () => {
         var pre = document.createElement('pre');
         pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
+    }
+
+    handleSaveChanges2 = () => {
+        var editProfileName = document.getElementById('editProfileName');
+        var editProfileLastname = document.getElementById('editProfileLastname');
+        var editProfileUsername = document.getElementById('editProfileUsername');
+        var editProfileEmail = document.getElementById('editProfileEmail');
+
+        editProfileName = _.trim(editProfileName.value);
+        editProfileLastname = _.trim(editProfileLastname.value);
+        editProfileUsername = _.trim(editProfileUsername.value);
+        editProfileEmail = _.trim(editProfileEmail.value);
+
+        if(_.isEmpty(editProfileName)) {
+            editProfileName = this.state.user.name || '';
+        }
+        if(_.isEmpty(editProfileLastname)) {
+            editProfileLastname = this.state.user.lastname || '';
+        }
+        if(_.isEmpty(editProfileUsername)) {
+            editProfileUsername = this.state.user.username || '';
+        }
+        if(_.isEmpty(editProfileEmail)) {
+            editProfileEmail = this.state.user.email || '';
+        }
+
+        var user = firebase.auth().currentUser;
+        var displayName = this.generateDisplayName(editProfileName, editProfileLastname);
+
+        user.updateProfile({
+            displayName: displayName,
+            email: editProfileEmail 
+        }).then(() => {
+            var ref = firebase.database().ref(`/users/${user.uid}/`)
+            .update({
+                displayName: displayName,
+                name: editProfileName,
+                lastname: editProfileLastname,
+                username: editProfileUsername,
+                email: editProfileEmail
+            });
+            console.log('Información actualizada con éxito');
+            alert('Información actualizada con éxito');
+            window.location.reload();
+        }).catch(error => {
+            console.log(error);
+            console.log('Ocurrió un error al actualizar su información');
+            alert('Ocurrió un error al actualizar su información');
+        });
+
+                     
     }
 
     handleSaveChanges = () => {
@@ -200,6 +254,18 @@ export default class EditProfile extends Component {
     //   }
     }
 
+    setInputValue = () => {
+        var editProfileName = document.getElementById('editProfileName');
+        var editProfileLastname = document.getElementById('editProfileLastname');
+        var editProfileUsername = document.getElementById('editProfileUsername');
+        var editProfileEmail = document.getElementById('editProfileEmail');
+
+        editProfileName.value = this.state.user.name;
+        editProfileLastname.value = this.state.user.lastname || '';
+        editProfileUsername.value = this.state.user.username || '';
+        editProfileEmail.value = this.state.user.email || '';
+    }
+
     render(){ 
         var displayName = this.state.user.displayName || '';
         var photoUrl = this.state.user.photoUrl;
@@ -239,13 +305,13 @@ export default class EditProfile extends Component {
                         <div className="form-group">
                             <div className="info"><label>Nombre</label></div>
                             <div className="entrada">
-                                <input id="editProfileName" type="text" className="form-control" placeholder="Nombre" value={name} />
+                                <input id="editProfileName" type="text" className="form-control" placeholder={name} defaultValue={name} />
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="info"><label>Apellidos</label></div>
                             <div className="entrada">
-                                <input id="editProfileLastname" type="text" className="form-control" placeholder="Apellidos" value={lastname} />
+                                <input id="editProfileLastname" type="text" className="form-control" placeholder={lastname} defaultValue={lastname} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -254,13 +320,13 @@ export default class EditProfile extends Component {
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">@</div>
                                 </div>
-                                <input id="editProfileUsername" type="text" className="form-control" placeholder="Nombre de usuario" value={username} />
+                                <input id="editProfileUsername" type="text" className="form-control" placeholder={username} defaultValue={username} />
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="info"><label>Correo</label></div>
                             <div className="entrada">
-                                <input id="editProfileEmail" type="email" className="form-control" placeholder="Correo" value={email} />
+                                <input id="editProfileEmail" type="email" className="form-control" placeholder={email} defaultValue={email} />
                             </div>
                         </div>
                     </div>
@@ -271,7 +337,7 @@ export default class EditProfile extends Component {
                                     <button type="button" className="btn-contra">Cambiar contraseña</button>
                                 </a>
                             </div>
-                            <div className="act"><button onClick={this.handleSaveChanges} type="button" className="btn">Guardar cambios</button></div>
+                            <div className="act"><button onClick={this.handleSaveChanges2} type="button" className="btn">Guardar cambios</button></div>
                         </div>
                     </div>
                 </div>

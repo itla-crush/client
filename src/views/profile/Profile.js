@@ -131,7 +131,7 @@ export default class Profile extends Component {
                         <div className="datos-conf">
                             <div className="nombre-usuario">
                                 <h2>{this.state.user.displayName}</h2>
-                                <p>{this.state.user.username}</p>
+                                <p>{this.state.user.username ? `@${this.state.user.username}` : '@username'}</p>
                             </div>
                             {   friend ? (
                                         ""

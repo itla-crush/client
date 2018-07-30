@@ -14,8 +14,8 @@ class ResultWidget extends Component {
   // }
     
   setUserDataPost = (e) => {
-    e.preventDefault();
     if(this.props.setUserDataPost) {
+      e.preventDefault();
       var value = e.currentTarget.id;
       this.props.setUserDataPost(value);
     }
