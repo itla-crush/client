@@ -66,7 +66,7 @@ export default class EditProfile extends Component {
                         user.updateProfile({
                             displayName: "Jane Q. User",
                             photoURL: "https://example.com/jane-q-user/profile.jpg",
-                            email 
+                            email: editProfileEmail 
                         }).then(() => {
                             console.log('Información actualizada con éxito');
                             alert('Información actualizada con éxito');
