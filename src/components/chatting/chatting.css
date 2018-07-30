@@ -15,12 +15,15 @@
 .c-contacts .persons .buscador input[type="text"]{
     height: 35px;
 }
-.c-contacts .persons .friend{
+.c-contacts .persons .friend a{
     display: flex;
     align-items: center;
     margin-bottom: 7px;
     font-family: "AbeeZee";
     padding-left: 5px;
+}
+.c-contacts .persons .friend a:hover{
+    text-decoration: none;
 }
 .c-contacts .persons .friend .persons-nombres {
     max-width: 160px;
