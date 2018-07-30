@@ -43,7 +43,8 @@ class Header extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 this.setState({
-                    isSignedIn: true
+                    isSignedIn: true,
+                    uid: user.uid
                 });
             } else {
                 this.setState({
@@ -57,27 +58,35 @@ class Header extends Component {
         var searchUser = document.getElementById('search-user');
         // var dataVal = searchUser.getAttribute("data-content");
 
-        var newData = '¡No hay resultados!';searchUser.value
+        var newData = '¡No hay resultados!';
+        var searchText = _.trim(searchUser.value);
 
-        if(!_.isEmpty(_.trim(searchUser.value))) {
+        if(!_.isEmpty(searchText)) {
             this.setState({ showResult: true });
 
-            firebase.database().ref('/users/').once('value')
+            firebase.database().ref('/users/').orderByChild('displayName').once('value')
             .then(snapshot => {
               this.setState({users: snapshot.val()});
 
               if(snapshot.val()) {
                 newData = snapshot.val();
-                var users;
-                // this.setState({ newData });
+                var users = {};
                 for(var user in newData) {
-                    newData[user].displayName;
-
+                    if(user !== this.state.uid && _.toLower(newData[user].displayName).search(_.toLower(searchText)) !== -1) {
+                        users[user] = newData[user];
+                    }
                 }
+
+                if(Object.entries(users).length !== 0) {
+                    newData = users;
+                } else {
+                    newData = '¡No hay resultados!';
+                }
+                this.setState({ newData });
 
               } else {
                 newData = '¡No hay resultados!';
-                // this.setState({ newData });
+                this.setState({ newData });
               }
               
             })
@@ -86,7 +95,7 @@ class Header extends Component {
             });
         } else {
             newData = '¡No hay resultados!';
-            // this.setState({ newData });
+            this.setState({ newData });
         }
         
         //searchUser.setAttribute("data-content", searchUser.value);

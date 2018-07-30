@@ -144,7 +144,7 @@ export default class Profile extends Component {
                                                 className="btn-s"
                                                 data-toggle="popover" 
                                                 data-placement="bottom" 
-                                                data-content="<a  href='/index'>Cerrar sesión</a>}"
+                                                data-content="<a href='/index'>Cerrar sesión</a>"
                                                 data-trigger="focus">
                                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
                                             </button>
