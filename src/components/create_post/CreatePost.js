@@ -184,7 +184,7 @@ class CreatePost extends Component {
           console.log(error);
         }, () => {
         // Upload completed successfully, now we can get the download URL
-          uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+          uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
             postData.imageUrl = downloadURL;
             if(postData.isPublic) {
               updates[`/posts/${newPostKey}`] = postData;

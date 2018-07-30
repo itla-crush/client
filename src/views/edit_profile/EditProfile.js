@@ -22,6 +22,14 @@ export default class EditProfile extends Component {
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.handleSaveChanges = this.handleSaveChanges.bind(this);
+        this.generateDisplayName = this.generateDisplayName.bind(this);
+        this.handleUpdatePhoto = this.handleUpdatePhoto.bind(this);
+    }
+
+    generateDisplayName = (name, lastname) => {
+      name = _.split(name, ' ', 1);
+      lastname = _.split(lastname, ' ', 1);
+      return `${name} ${lastname}`;
     }
 
     componentWillMount() {
@@ -32,6 +40,29 @@ export default class EditProfile extends Component {
 
     componentDidMount() {
         this.addBootstrap4();
+        var uid = this.state.user.uid;
+        console.log(this);
+        console.log(this.state);
+        console.log(this.state.user);
+        console.log(this.state.user.uid);
+        // if(uid) {
+            firebase.database().ref(`/users/${this.state.user.uid}/`).on('value', snapshot => {
+                var photoUrl = snapshot.val();
+                if(photoUrl) {
+                    console.log(photoUrl);
+                    console.log(photoUrl.photoUrl);
+                }
+            });
+            firebase.database().ref(`/users/${this.state.user.uid}/photoUrl`).on('value', snapshot => {
+                var photoUrl = snapshot.val();
+                if(photoUrl) {
+                    console.log(photoUrl);
+                    console.log(photoUrl.photoUrl);
+                }
+            });
+        // } else {
+        //     console.log('ELSE');
+        // }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -52,10 +83,10 @@ export default class EditProfile extends Component {
         var editProfileUsername = document.getElementById('editProfileUsername');
         var editProfileEmail = document.getElementById('editProfileEmail');
 
-        editProfileName = editProfileName.value;
-        editProfileLastname = editProfileLastname.value;
-        editProfileUsername = editProfileUsername.value;
-        editProfileEmail = editProfileEmail.value;
+        editProfileName = _.trim(editProfileName.value);
+        editProfileLastname = _.trim(editProfileLastname.value);
+        editProfileUsername = _.trim(editProfileUsername.value);
+        editProfileEmail = _.trim(editProfileEmail.value);
 
         if(!_.isEmpty(editProfileName)) {
             if(!_.isEmpty(editProfileLastname)) {
@@ -63,11 +94,20 @@ export default class EditProfile extends Component {
                     if(!_.isEmpty(editProfileEmail)) {
 
                         var user = firebase.auth().currentUser;
+                        var displayName = this.generateDisplayName(editProfileName, editProfileLastname);
+
                         user.updateProfile({
-                            displayName: "Jane Q. User",
-                            photoURL: "https://example.com/jane-q-user/profile.jpg",
+                            displayName: displayName,
                             email: editProfileEmail 
                         }).then(() => {
+                            var ref = firebase.database().ref(`/users/${user.uid}/`)
+                            .update({
+                                displayName: displayName,
+                                name: editProfileName,
+                                lastname: editProfileLastname,
+                                username: editProfileUsername,
+                                email: editProfileEmail
+                            });
                             console.log('Información actualizada con éxito');
                             alert('Información actualizada con éxito');
                         }).catch(error => {
@@ -75,6 +115,7 @@ export default class EditProfile extends Component {
                             console.log('Ocurrió un error al actualizar su información');
                             alert('Ocurrió un error al actualizar su información');
                         });
+
                     } else {
                         console.log('Debes escribir tu correo');
                         alert('Debes escribir tu correo');
@@ -91,6 +132,50 @@ export default class EditProfile extends Component {
             console.log('Debes escribir tu nombre');
                 alert('Debes escribir tu nombre');
         }
+    }
+
+    handleUpdatePhoto = (e) => {
+        const file = e.target.files[0];
+
+        var uid = this.state.user.uid;
+
+        var storageRef = firebase.storage().ref();
+        var uploadTask = storageRef.child(`images/user_profile/${uid}/${file.name}`).put(file);
+
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED:
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING:
+                console.log('Upload is running');
+                break;
+            }
+          }, error => {
+                if(error) { console.log(error) };
+          }, () => {
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                console.log(downloadURL);
+
+                var user = firebase.auth().currentUser;
+                user.updateProfile({
+                    photoUrl: downloadURL
+                }).then(() => {
+                    firebase.database().ref(`/users/${uid}/`).update({
+                        photoUrl: downloadURL
+                    });
+                    console.log('Foto de perfil actualizada con éxito');
+                    // alert('Foto de perfil actualizada con éxito');
+                }).catch(error => {
+                    console.log(error);
+                    console.log('Ocurrió un error al actualizar su foto de perfil');
+                    alert('Ocurrió un error al actualizar su foto de perfil');
+                });
+
+            });
+          });
     }
 
     render(){ 
@@ -125,8 +210,8 @@ export default class EditProfile extends Component {
                                 <img src={photoUrl} alt="" />
                             </div>
                             <div className="editar-foto">
-                                <p>{this.state.user.displayName}</p>
-                               <div><input type="file" accept="image/png, image/jpeg" className="file-input"/></div> 
+                                <p>{displayName}</p>
+                               <div><input type="file" accept="image/png, image/jpeg" className="file-input" onChange={this.handleUpdatePhoto} /></div> 
                             </div>
                         </div>
                         <div className="form-group">
@@ -147,7 +232,7 @@ export default class EditProfile extends Component {
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">@</div>
                                 </div>
-                                <input id="editProfileUsername" type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={username} />
+                                <input id="editProfileUsername" type="text" className="form-control" placeholder="Nombre de usuario" value={username} />
                             </div>
                         </div>
                         <div className="form-group">
