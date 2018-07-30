@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-
+import _ from 'lodash';
 // Components
 import Header from '../../components/header/Header';
 
@@ -57,8 +57,40 @@ export default class EditProfile extends Component {
         editProfileUsername = editProfileUsername.value;
         editProfileEmail = editProfileEmail.value;
 
+        if(!_.isEmpty(editProfileName)) {
+            if(!_.isEmpty(editProfileLastname)) {
+                if(!_.isEmpty(editProfileUsername)) {
+                    if(!_.isEmpty(editProfileEmail)) {
 
-
+                        var user = firebase.auth().currentUser;
+                        user.updateProfile({
+                            displayName: "Jane Q. User",
+                            photoURL: "https://example.com/jane-q-user/profile.jpg",
+                            email 
+                        }).then(() => {
+                            console.log('Información actualizada con éxito');
+                            alert('Información actualizada con éxito');
+                        }).catch(error => {
+                            console.log(error);
+                            console.log('Ocurrió un error al actualizar su información');
+                            alert('Ocurrió un error al actualizar su información');
+                        });
+                    } else {
+                        console.log('Debes escribir tu correo');
+                        alert('Debes escribir tu correo');
+                    }
+                } else {
+                    console.log('Debes escribir un nombre de usuario');
+                    alert('Debes escribir un nombre de usuario');
+                }
+            } else {
+                console.log('Debes escribir tu apellido');
+                    alert('Debes escribir tu apellido');
+            }
+        } else {
+            console.log('Debes escribir tu nombre');
+                alert('Debes escribir tu nombre');
+        }
     }
 
     render(){ 
