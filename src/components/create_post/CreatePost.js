@@ -329,8 +329,8 @@ class CreatePost extends Component {
             </div>
           </div>
           { this.state.showResult ? (
-            <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
-          ) : ( "" ) 
+              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
+            ) : ( "" ) 
           }
         </div>
       )

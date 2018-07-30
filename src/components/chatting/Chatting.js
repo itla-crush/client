@@ -68,7 +68,7 @@ class Chatting extends Component{
             }
         });
       
-        firebase.database().ref('users/').on('value', snapshot => {
+        firebase.database().ref('users/').orderByChild('displayName').on('value', snapshot => {
           var users = snapshot.val();
           if(users) {
             this.setState({ users });
