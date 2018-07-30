@@ -56,18 +56,32 @@ class CreatePost extends Component {
       // var dataVal = searchUser.getAttribute("data-content");
 
       var newData = '¡No hay resultados!';
+      var searchText = _.trim(searchUser.value);
 
-      if(!_.isEmpty(_.trim(searchUser.value))) {
-          this.setState({ showResult: true });
-          firebase.database().ref('/users/').orderByChild('displayName').startAt(searchUser.value).once('value')
-          .then(snapshot => {
-            this.setState({users: snapshot.val()});
+      if(!_.isEmpty(searchText)) {
+        this.setState({ showResult: true });
 
-            if(snapshot.val()) {
-              newData = snapshot.val();
-              this.setState({ newData });
+        firebase.database().ref('/users/').orderByChild('displayName').once('value')
+        .then(snapshot => {
+          this.setState({users: snapshot.val()});
+
+          if(snapshot.val()) {
+            newData = snapshot.val();
+            var users = {};
+            for(var user in newData) {
+                if(user !== this.state.uid && _.toLower(newData[user].displayName).search(_.toLower(searchText)) !== -1) {
+                    users[user] = newData[user];
+                }
+            }
+
+            if(Object.entries(users).length !== 0) {
+                newData = users;
             } else {
-              console.log('ELSE Header.js 70');
+                newData = '¡No hay resultados!';
+            }
+            this.setState({ newData });
+
+            } else {
               newData = '¡No hay resultados!';
               this.setState({ newData });
             }
@@ -315,8 +329,8 @@ class CreatePost extends Component {
             </div>
           </div>
           { this.state.showResult ? (
-            <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
-          ) : ( "" ) 
+              <ResultWidget users={this.state.newData || '¡No hay resultados!'} metadata={"Metadata"} setUserDataPost={this.getUserDataFromSearch.bind(this)} />
+            ) : ( "" ) 
           }
         </div>
       )
