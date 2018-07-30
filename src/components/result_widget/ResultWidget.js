@@ -40,7 +40,7 @@ class ResultWidget extends Component {
             </div>
             <div className="resultado-nombres">
               <p>{users[user].displayName || 'Username'}</p>
-              <p>{users[user].username || '@username'}</p>
+              <p>{`@${users[user].username}` || '@username'}</p>
             </div>
           </a>
         </li>

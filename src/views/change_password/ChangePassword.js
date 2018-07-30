@@ -55,11 +55,11 @@ export default class ChangePassword extends Component{
                         console.log(error);
                     });
                 }).catch(error => {
-                    console.log(error);
+                    console.log(error); // auth/wrong-password // The password is invalid or the user does not have a password.
                     console.log('La contraseña que haz introducido no es correcta');
                     alert('La contraseña que haz introducido no es correcta'); 
                 });
-                
+
             } else {
                 console.log('Las contraseñas no coinciden');
                 alert('Las contraseñas no coinciden'); 

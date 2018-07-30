@@ -133,7 +133,7 @@ class Chatting extends Component{
                     </div>
                     <div className="persons-nombres">
                         <p>{users[user].displayName || 'DisplayName'}</p>
-                        <p>{users[user].username || '@username'}</p>
+                        <p>{users[user].username ? `@${users[user].username}` : '@username'}</p>
                     </div>
                 </a>
             </div>
