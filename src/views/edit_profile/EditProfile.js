@@ -21,6 +21,7 @@ export default class EditProfile extends Component {
           }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
+        this.handleSaveChanges = this.handleSaveChanges.bind(this);
     }
 
     componentWillMount() {
@@ -45,7 +46,28 @@ export default class EditProfile extends Component {
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
 
+    handleSaveChanges = () => {
+        var editProfileName = document.getElementById('editProfileName');
+        var editProfileLastname = document.getElementById('editProfileLastname');
+        var editProfileUsername = document.getElementById('editProfileUsername');
+        var editProfileEmail = document.getElementById('editProfileEmail');
+
+        editProfileName = editProfileName.value;
+        editProfileLastname = editProfileLastname.value;
+        editProfileUsername = editProfileUsername.value;
+        editProfileEmail = editProfileEmail.value;
+
+
+
+    }
+
     render(){ 
+        var displayName = this.state.user.displayName || '';
+        var photoUrl = this.state.user.photoUrl;
+        var name = this.state.user.name || '';
+        var lastname = this.state.user.lastname || '';
+        var username = this.state.user.username || '';
+        var email = this.state.user.email || '';
         return(
             <div className="EditProfile">
                 <Header />
@@ -63,12 +85,12 @@ export default class EditProfile extends Component {
                         </div>
                     </div> */}
                     <div className="nombre-usuario">
-                        <p>{this.state.user.displayName || ''}</p>
+                        <p>{displayName}</p>
                     </div>
                     <div className="cambiar-info">
                         <div className="form-group div-foto">
                             <div className="foto-perfil">
-                                <img src={this.state.user.photoUrl} alt={this.state.user.displayName || ''} />
+                                <img src={photoUrl} alt="" />
                             </div>
                             <div className="editar-foto">
                                 <p>{this.state.user.displayName}</p>
@@ -78,13 +100,13 @@ export default class EditProfile extends Component {
                         <div className="form-group">
                             <div className="info"><label>Nombre</label></div>
                             <div className="entrada">
-                                <input type="text" className="form-control" placeholder="Nombre" value={this.state.user.name || ''} />
+                                <input id="editProfileName" type="text" className="form-control" placeholder="Nombre" value={name} />
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="info"><label>Apellidos</label></div>
                             <div className="entrada">
-                                <input type="text" className="form-control" placeholder="Apellidos" value={this.state.user.lastname || ''} />
+                                <input id="editProfileLastname" type="text" className="form-control" placeholder="Apellidos" value={lastname} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -93,13 +115,13 @@ export default class EditProfile extends Component {
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">@</div>
                                 </div>
-                                <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={this.state.user.username || ''} />
+                                <input id="editProfileUsername" type="text" className="form-control" id="inlineFormInputGroup" placeholder="Nombre de usuario" value={username} />
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="info"><label>Correo</label></div>
                             <div className="entrada">
-                                <input type="email" className="form-control" placeholder="Correo" value={this.state.user.email || ''} />
+                                <input id="editProfileEmail" type="email" className="form-control" placeholder="Correo" value={email} />
                             </div>
                         </div>
                     </div>
@@ -110,7 +132,7 @@ export default class EditProfile extends Component {
                                     <button type="button" className="btn-contra">Cambiar contraseña</button>
                                 </a>
                             </div>
-                            <div className="act"><button type="button" className="btn">Guardar cambios</button></div>
+                            <div className="act"><button onClick={this.handleSaveChanges} type="button" className="btn">Guardar cambios</button></div>
                         </div>
                     </div>
                 </div>

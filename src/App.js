@@ -70,13 +70,13 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // firebase.auth().onAuthStateChanged(user => {
-        //     if(user) {
-        //         this.setState({ isSignedIn: true });
-        //     } else {
-        //         this.setState({ isSignedIn: false });
-        //     }
-        // });
+        firebase.auth().onAuthStateChanged(user => {
+            if(user) {
+                window.localStorage.setItem('sesion', 'true'); 
+            } else {
+                window.localStorage.setItem('sesion', 'false'); 
+            }
+        });
         
         // console.log('Actualizar informaciones de usuarios');
         // console.log('https://firebase.google.com/docs/auth/web/manage-users?hl=es-419');
