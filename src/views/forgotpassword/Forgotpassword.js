@@ -9,8 +9,9 @@ class Forgotpassword extends Component {
         super(props);
         this.handleResetPassword = this.handleResetPassword.bind(this);
     }
-    
-    handleResetPassword = () => {
+
+    handleResetPassword = (e) => {
+        e.preventDefault();
         var emailForgotPassword = document.getElementById('emailForgotPassword');
         emailForgotPassword = _.trim(emailForgotPassword.value);
 
@@ -19,6 +20,7 @@ class Forgotpassword extends Component {
                 //   Password reset email sent.
                 console.log('Password reset email sent.');
                 console.log('Chequea tu correo para restablecer contraseña');
+                window.location.replace('index');
             })
             .catch(error => {
             // Error occurred. Inspect error.code.
@@ -57,10 +59,10 @@ class Forgotpassword extends Component {
                          </p>
                     </div>
                     <div className="formulario">
-                        <form action="">
+                        <form action="" onSubmit={this.handleResetPassword} >
                             <div className="correo">
                                 <div className="cc"><label htmlFor="">Correo</label></div>
-                                <input id="emailForgotPassword" type="email" placeholder=""/>
+                                <input id="emailForgotPassword" required type="email" placeholder=""/>
                             </div>
                            <div className="btn-s"><input onClick={this.handleResetPassword} type="submit" value="Enviar"/></div> 
                         </form>
