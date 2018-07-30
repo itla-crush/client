@@ -65,7 +65,7 @@
 }
 .configuracion .cambiar-info .div-foto .editar-foto .file-input{
     visibility: hidden;
-    width: 0;
+    width: 20px;
 }
 .configuracion .cambiar-info .div-foto .editar-foto .file-input::before{
   background-color: rgba(0,0,0,0);
