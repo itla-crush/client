@@ -149,7 +149,7 @@ class Newsfeed extends Component {
     render() {
       var month = this.getMonth(this.props.data.timestamp.month);
       var photoUrl = this.props.data.isAnonimous == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
-      var username = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
+      var displayName = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
       return (
         // <div data-aos="zoom-in">
@@ -161,7 +161,7 @@ class Newsfeed extends Component {
               </a>
             </div>
             <div className="div-user"> 
-              <a href={'#'} onClick={this.goToFriend}>{username}</a> {/* Usuario */}
+              <a href={'#'} onClick={this.goToFriend}>{displayName}</a> {/* Usuario */}
               {/* <p>17 de julio a las 15:19</p> */}
               <p>{`${this.props.data.timestamp.day} de ${month} a las ${this.props.data.timestamp.hour}:${this.props.data.timestamp.minute}`}</p>
             </div>

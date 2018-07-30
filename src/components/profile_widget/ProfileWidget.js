@@ -37,7 +37,7 @@ class ProfileWidget extends Component {
   render() {
     var uid = this.props.uid || '';
     var displayName = this.state.user.displayName || 'Desconocido';
-    var username = this.state.user.username || 'Desconocido';
+    var username = this.state.user.username ? `@${this.state.user.username}` : 'Desconocido';
     var photoUrl = this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0';
     var phoneNumber = this.state.user.phoneNumber || 'Desconocido';
     var age = this.state.user.age ? `${this.state.user.age} años` : 'Desconocido';

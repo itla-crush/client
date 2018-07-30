@@ -117,7 +117,7 @@ class Chatting extends Component{
         this.setScrollYtoBottom();
     
         } else {
-          listItems = <li>¡No hay mensajes!</li>;
+          listItems = <h1 style={{textAlign: 'center'}}>Cargando mensajes...</h1>;
         }
 
         var users = this.state.users;
@@ -133,7 +133,7 @@ class Chatting extends Component{
                     </div>
                     <div className="persons-nombres">
                         <p>{users[user].displayName || 'DisplayName'}</p>
-                        <p>{users[user].username || '@username'}</p>
+                        <p>{users[user].username ? `@${users[user].username}` : '@username'}</p>
                     </div>
                 </a>
             </div>

@@ -48,7 +48,7 @@ class Signup extends Component {
     generateUsername = (name, lastname) => {
       name = _.split(name, ' ', 1);
       lastname = _.split(lastname, ' ', 1);
-      return `@${_.toLower(name+lastname)}`;
+      return `${_.toLower(name+lastname)}`;
     }
 
     convertGender = (gender) => {
