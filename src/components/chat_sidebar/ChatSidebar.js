@@ -35,7 +35,7 @@ class ChatSidebar extends Component {
                   <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />
                 </div>
                 <div className="div-user-chat">
-                  <span className="court-text" style={{maxWidth:'155px'}}>{users[user].displayName || ''}</span><span>Activo</span>
+                  <span className="court-text" style={{maxWidth:'155px'}}>{users[user].displayName || ''}</span><span></span>
                 </div>
               </div>
             </a>

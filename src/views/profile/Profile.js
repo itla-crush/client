@@ -65,6 +65,7 @@ export default class Profile extends Component {
                 uid = uid.substring(1);
                 this.loadUser(uid);
                 this.loadPosts(uid);
+                console.log(uid);
                 // uid = uid.split('?');
                 // console.log(uid);
                 // console.log(uid[0]);
@@ -125,12 +126,12 @@ export default class Profile extends Component {
             <Header />
                 <div className="pf">
                     <div className="foto">
-                        <img src={this.state.user.photoUrl} alt={this.state.user.displayName} />
+                        <img src={this.state.user.photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt={this.state.user.displayName} />
                     </div>
                     <section className="informacion ">
                         <div className="datos-conf">
                             <div className="nombre-usuario">
-                                <h2>{this.state.user.displayName}</h2>
+                                <h2>{this.state.user.displayName || 'Username'}</h2>
                                 <p>{this.state.user.username ? `@${this.state.user.username}` : '@username'}</p>
                             </div>
                             {   friend ? (
