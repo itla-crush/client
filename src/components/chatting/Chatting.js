@@ -117,7 +117,7 @@ class Chatting extends Component{
         this.setScrollYtoBottom();
     
         } else {
-          listItems = <li>¡No hay mensajes!</li>;
+          listItems = <h1 style={{textAlign: 'center'}}>Cargando mensajes...</h1>;
         }
 
         var users = this.state.users;
