@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // Components
 import Welcome from '../../components/welcome/Welcome';
@@ -8,8 +6,6 @@ import Welcome from '../../components/welcome/Welcome';
 import Signin from '../../components/signin/Signin';
 // eslint-disable-next-line
 import Signup from '../../components/signup/Signup';
-// eslint-disable-next-line
-import ForgottenPassword from '../../components/forgotten_password/ForgottenPassword';
 
 // Assets
 import './landing.css';
@@ -63,7 +59,6 @@ class Landing extends Component {
                     )}
                 </div>
             </div>
-            {/* <ForgottenPassword /> */}
         </div>
       );
     }

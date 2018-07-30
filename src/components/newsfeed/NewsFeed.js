@@ -5,11 +5,6 @@ import _ from 'lodash';
 // importing aos
 import AOS from '../../../node_modules/aos'
 
-// Components
-import Post from '../../components/post/Post';
-
-
-
 // Assets
 import './newsfeed.css';
 
