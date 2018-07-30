@@ -242,8 +242,8 @@ class CreatePost extends Component {
     
         var reader = new FileReader();
     
-        reader.onload = (function(theFile) {
-        return function(e) {
+        reader.onload = (theFile => {
+        return e => { 
           document.getElementById("imageView").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
         };
         })(f);

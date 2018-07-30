@@ -24,6 +24,7 @@ export default class EditProfile extends Component {
         this.handleSaveChanges = this.handleSaveChanges.bind(this);
         this.generateDisplayName = this.generateDisplayName.bind(this);
         this.handleUpdatePhoto = this.handleUpdatePhoto.bind(this);
+        this.handleUploadImage = this.handleUploadImage.bind(this);
     }
 
     generateDisplayName = (name, lastname) => {
@@ -40,26 +41,23 @@ export default class EditProfile extends Component {
 
     componentDidMount() {
         this.addBootstrap4();
-        var uid = this.state.user.uid;
-        console.log(this);
-        console.log(this.state);
-        console.log(this.state.user);
-        console.log(this.state.user.uid);
-        // if(uid) {
-            firebase.database().ref(`/users/${this.state.user.uid}/`).on('value', snapshot => {
-                var photoUrl = snapshot.val();
-                if(photoUrl) {
-                    console.log(photoUrl);
-                    console.log(photoUrl.photoUrl);
-                }
-            });
-            firebase.database().ref(`/users/${this.state.user.uid}/photoUrl`).on('value', snapshot => {
-                var photoUrl = snapshot.val();
-                if(photoUrl) {
-                    console.log(photoUrl);
-                    console.log(photoUrl.photoUrl);
-                }
-            });
+        // var uid = this.state.user.uid;
+        // var uid = window.localStorage.getItem('uid');
+        // if(uid !== null && uid !== '') {
+        //     firebase.database().ref(`/users/${this.state.user.uid}/`).on('value', snapshot => {
+        //         var photoUrl = snapshot.val();
+        //         if(photoUrl) {
+        //             console.log(photoUrl);
+        //             console.log(photoUrl.photoUrl);
+        //         }
+        //     });
+        //     firebase.database().ref(`/users/${this.state.user.uid}/photoUrl`).on('value', snapshot => {
+        //         var photoUrl = snapshot.val();
+        //         if(photoUrl) {
+        //             console.log(photoUrl);
+        //             console.log(photoUrl.photoUrl);
+        //         }
+        //     });
         // } else {
         //     console.log('ELSE');
         // }
@@ -158,6 +156,7 @@ export default class EditProfile extends Component {
           }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
                 console.log(downloadURL);
+                document.getElementById("photoProfile").src = downloadURL;
 
                 var user = firebase.auth().currentUser;
                 user.updateProfile({
@@ -168,6 +167,7 @@ export default class EditProfile extends Component {
                     });
                     console.log('Foto de perfil actualizada con éxito');
                     // alert('Foto de perfil actualizada con éxito');
+
                 }).catch(error => {
                     console.log(error);
                     console.log('Ocurrió un error al actualizar su foto de perfil');
@@ -176,6 +176,28 @@ export default class EditProfile extends Component {
 
             });
           });
+        //   this.handleUploadImage(e);
+    }
+
+    handleUploadImage = (evt) => {
+    //   const files = evt.target.files;
+    //   this.setState({ imageFile: files[0] });
+      
+    //   for (var i = 0, f; f = files[i]; i++) {
+    //     if (!f.type.match('image.*')) {
+    //       continue;
+    //     }
+    
+    //     var reader = new FileReader();
+    
+    //     reader.onload = (function(theFile) {
+    //     return function(e) {
+    //       document.getElementById("foto-perfil").innerHTML = ['<img src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+    //     };
+    //     })(f);
+    
+    //     reader.readAsDataURL(f);
+    //   }
     }
 
     render(){ 
@@ -207,7 +229,7 @@ export default class EditProfile extends Component {
                     <div className="cambiar-info">
                         <div className="form-group div-foto">
                             <div className="foto-perfil">
-                                <img src={photoUrl} alt="" />
+                                <img id="photoProfile" src={photoUrl} alt="" />
                             </div>
                             <div className="editar-foto">
                                 <p>{displayName}</p>

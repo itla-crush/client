@@ -95,7 +95,14 @@ export default class ChangePassword extends Component{
                         </div>
                     </div>
                     <div className="confirmacion">
+                        <div className="acciones">
+                        <div className="act">
+                            <a href="/edit_profile">
+                                <button type="button" className="btn-contra">Volver atrás</button>
+                            </a>
+                        </div>
                         <button type="button" className="btn" onClick={this.handleSubmit} >Guardar cambios</button>
+                        </div>
                     </div>
                 </div>
             </div>

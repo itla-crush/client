@@ -29,8 +29,10 @@ var backgroundID = Math.floor(Math.random() * (5-1) + 1);
 firebase.auth().onAuthStateChanged(user => {
     if(user) {
         window.localStorage.setItem('sesion', 'true'); 
+        window.localStorage.setItem('uid', user.uid);
     } else {
-        window.localStorage.setItem('sesion', 'false'); 
+        window.localStorage.setItem('sesion', 'false');
+        window.localStorage.setItem('uid', '');
     }
 });
 
