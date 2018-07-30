@@ -72,7 +72,7 @@ export default class EditProfile extends Component {
                             </div>
                             <div className="editar-foto">
                                 <p>{this.state.user.displayName}</p>
-                                <input type="file" accept="image/png, image/jpeg" className="file-input"/>
+                               <div><input type="file" accept="image/png, image/jpeg" className="file-input"/></div> 
                             </div>
                         </div>
                         <div className="form-group">
