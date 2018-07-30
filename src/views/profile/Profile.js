@@ -14,6 +14,7 @@ export default class Profile extends Component {
           showPost: true,
           posts: null,
           postsToMe: null,
+          friendUid: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -30,6 +31,7 @@ export default class Profile extends Component {
         this.showPostToMe = this.showPostToMe.bind(this);
         this.logout = this.logout.bind(this);
         this.loadUser = this.loadUser.bind(this);
+        this.handleFollow = this.handleFollow.bind(this);
     }
 
     componentDidMount() {
@@ -66,6 +68,7 @@ export default class Profile extends Component {
                 this.loadUser(uid);
                 this.loadPosts(uid);
                 console.log(uid);
+                this.setState({ friendUid: uid });
                 // uid = uid.split('?');
                 // console.log(uid);
                 // console.log(uid[0]);
@@ -115,11 +118,19 @@ export default class Profile extends Component {
         pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
+
+    handleFollow = (e) => {
+       e.preventDefault();
+       var fromUid = this.state.user.uid;
+       var toUid = this.state.friendUid;
+    }
     
     render(){
         var posts = this.state.posts;
         var postsToMe = this.state.postsToMe;
         var friend = this.props.friend;
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
         return(
 
         <div className="Profile"> 
@@ -143,13 +154,25 @@ export default class Profile extends Component {
                                             <button
                                                 onClick={this.logout}
                                                 className="btn-s"
-                                                data-toggle="popover" 
+                                                // data-toggle="popover" 
+                                                data-toggle="tooltip"
                                                 data-placement="bottom" 
-                                                data-content="<a href='/index'>Cerrar sesión</a>"
+                                                data-content="Cerrar sesión"
+                                                // data-content="<a href='/index'>Cerrar sesión</a>"
                                                 data-trigger="focus">
                                                 <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
                                             </button>
                                         </div> 
+                                </div>
+                                )
+                            }
+                            {   friend && sesion ? (
+                                        ""
+                                ) : (
+                                <div className="editar">
+                                    <div>
+                                        <a href="#" className="btn-editar-op" onClick={this.handleFollow} >Seguir</a>
+                                    </div>
                                 </div>
                                 )
                             }

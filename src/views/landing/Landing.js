@@ -43,6 +43,11 @@ class Landing extends Component {
         this.addMaterialize();
     }
 
+    componentWillUnmount() {
+        document.body.style.backgroundImage = "";
+        document.querySelector("head > pre").innerHTML = "";
+    }
+
     render() {
       return (
         <div className="cont">
