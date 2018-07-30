@@ -66,14 +66,14 @@ export default class EditProfile extends Component {
                     <p>{this.state.user.displayName || ''}</p>
                 </div>
                 <div className="cambiar-info">
-                    <div className="form-group div-foto">
-                    <div className="foto-perfil">
-                        <img src={this.state.user.photoUrl} alt={this.state.user.displayName || ''} />
-                    </div>
-                    <div className="editar-foto">
-                        <p>{this.state.user.displayName}</p>
-                        <input type="file" accept="image/png, image/jpeg" class="file-input"/>
-                    </div>
+                    <div className="div-foto">
+                        <div className="foto-perfil">
+                            <img src={this.state.user.photoUrl} alt={this.state.user.displayName || ''} />
+                        </div>
+                        <div className="editar-foto">
+                            <p>{this.state.user.displayName}</p>
+                            <input type="file" accept="image/png, image/jpeg" class="file-input"/>
+                        </div>
                     </div>
                     <div className="form-group">
                     <div className="info"><label>Nombre</label></div>
