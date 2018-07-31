@@ -142,3 +142,11 @@
 .c-contacts .conversacion .formu-p{
     width: 100%;
 }
+
+
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
