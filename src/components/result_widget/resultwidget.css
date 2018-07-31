@@ -39,7 +39,8 @@
     padding-top: 10px;
 } */
 .wd .busqueda-perfil {
-    max-height: -webkit-fill-available;
+    /* max-height: -webkit-fill-available; */
+    max-height: stretch;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -117,7 +118,8 @@
     /* height: auto; */
 }
 .wd-post .busqueda-perfil {
-    max-height: -webkit-fill-available;
+    /* max-height: -webkit-fill-available; */
+    max-height: stretch;
     max-width: 228px;
     overflow-x: hidden;
     overflow-y: auto;

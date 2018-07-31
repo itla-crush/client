@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import _ from 'lodash';
 
 // Components
 import Header from '../../components/header/Header';
@@ -76,7 +77,7 @@ export default class Profile extends Component {
                 this.loadPosts(uid);
                 this.setState({ friendUid: uid });
                 this.addOneMoreVisited(uid);
-                console.log(uid);
+                // console.log(uid);
                 // uid = uid.split('?');
                 // console.log(uid);
                 // console.log(uid[0]);
@@ -128,6 +129,7 @@ export default class Profile extends Component {
     }
 
     addOneMoreVisited = (friendUid) => {
+        friendUid = _.trim(friendUid);
         var visitedCount = firebase.database().ref(`/users/${friendUid}/visitedCount`);
         visitedCount.transaction(currentRank => {
             
@@ -143,6 +145,9 @@ export default class Profile extends Component {
             firebase.database().ref().update(updates);
 
             return currentRank;
+        })
+        .catch(error => {
+            if(error) console.log(error);
         });
     }
 
