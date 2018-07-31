@@ -22,6 +22,7 @@
 }
 .pf .foto img{
     width: 200px;
+    height: 200px;
     border-radius: 125px;
 }
 .pf .informacion {
@@ -106,8 +107,8 @@
     margin-right: 30px;
 }
 .pf-segundo .foto img{
-    width: 200px;
-    border-radius: 125px;
+    width: 100px;
+    border-radius: 150px;
 }
 .pf-segundo .informacion {
     width: 50%;
