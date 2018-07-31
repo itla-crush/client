@@ -149,15 +149,16 @@ export default class Profile extends Component {
             // var updates = {}
             
             // updates[`/users/${friendUid}/visitedCount`] = currentRank;
-            firebase.database().ref(`/users/${friendUid}/`).update({
-                visitedCount: currentRank
-            });
+            // firebase.database().ref(`/users/${friendUid}/`).update({
+            //     visitedCount: currentRank
+            // });
 
             return currentRank;
         })
         .catch(error => {
             if(error) console.log(error);
         });
+        console.log('Profile.js 161');
         this.setState({ isVisited: true });
     }
 
