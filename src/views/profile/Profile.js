@@ -88,13 +88,11 @@ export default class Profile extends Component {
         if(nextProps.currentUserUid) {
             this.setState({ currentUserUid: nextProps.currentUserUid });
         }
-        console.log('Profile.js 70');
+        
         if(nextProps.uid) {
-            console.log('Profile.js 72');
             this.loadUser(nextProps.uid);
             this.loadPosts(nextProps.uid);
         } else {
-            console.log('Profile.js 76');
             let uid = window.location.search;
             if(uid) { 
                 uid = uid.substring(1);
@@ -102,7 +100,6 @@ export default class Profile extends Component {
                 this.loadPostsFriend(uid);
                 this.setState({ friendUid: uid });
                 if(this.state.isVisited === false) {
-                    console.log('Profile.js 84');
                     this.addOneMoreVisited(uid);
                 }
                 // console.log(uid);
@@ -114,8 +111,6 @@ export default class Profile extends Component {
                 window.location.replace("/home");
             }
         }
-        console.log(nextProps);
-        console.log(nextProps.friend);
     } 
 
     loadUser = (uid) => {
@@ -305,13 +300,13 @@ export default class Profile extends Component {
                                             <button
                                                 onClick={this.logout}
                                                 className="btn-s"
-                                                // data-toggle="popover" 
                                                 data-toggle="tooltip"
                                                 data-placement="bottom" 
-                                                data-content="Cerrar sesión"
-                                                // data-content="<a href='/index'>Cerrar sesión</a>"
-                                                data-trigger="focus">
-                                                <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/>
+                                                title="Cerrar sesión"
+                                                data-trigger="hover">
+                                                {/* <i className="fas fa-sign-out-alt iconFontAwesome"></i> */}
+                                                <i className="fas fa-power-off iconFontAwesome"></i>
+                                                {/* <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/> */}
                                             </button>
                                         </div> 
                                 </div>
