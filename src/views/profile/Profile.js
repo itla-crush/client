@@ -17,6 +17,8 @@ export default class Profile extends Component {
           postsToMe: null,
           friendUid: null,
           isVisited: false,
+          visitedCount: null,
+          nextProps: false,
         //   currentUserUid: null,
         //   followers: null,
           user: {
@@ -51,6 +53,25 @@ export default class Profile extends Component {
         // const { location: { state } } = this.props;
         // console.log(params);
         // console.log(state);
+        if(this.state.nextProps === false) {
+            let uid = window.location.search;
+            if(uid) {
+                uid = uid.substring(1);
+                this.loadUser(uid);
+                this.loadPostsFriend(uid);
+                this.setState({ friendUid: uid });
+                if(this.state.isVisited === false) {
+                    this.addOneMoreVisited(uid);
+                }
+                // console.log(uid);
+                // uid = uid.split('?');
+                // console.log(uid);
+                // console.log(uid[0]);
+                // console.log(uid[1]);
+            } else {
+                // window.location.replace("/home");
+            }
+        }
     }
 
     showPost = () => {
@@ -63,21 +84,25 @@ export default class Profile extends Component {
 
     componentWillReceiveProps(nextProps) {
     //   this.setState({ user: nextProps.user });
+        this.setState({ nextProps: true });
         if(nextProps.currentUserUid) {
             this.setState({ currentUserUid: nextProps.currentUserUid });
         }
-
+        console.log('Profile.js 70');
         if(nextProps.uid) {
+            console.log('Profile.js 72');
             this.loadUser(nextProps.uid);
             this.loadPosts(nextProps.uid);
         } else {
+            console.log('Profile.js 76');
             let uid = window.location.search;
-            if(uid) {
+            if(uid) { 
                 uid = uid.substring(1);
                 this.loadUser(uid);
-                this.loadPosts(uid);
+                this.loadPostsFriend(uid);
                 this.setState({ friendUid: uid });
                 if(this.state.isVisited === false) {
+                    console.log('Profile.js 84');
                     this.addOneMoreVisited(uid);
                 }
                 // console.log(uid);
@@ -89,15 +114,57 @@ export default class Profile extends Component {
                 window.location.replace("/home");
             }
         }
+        console.log(nextProps);
+        console.log(nextProps.friend);
     } 
 
     loadUser = (uid) => {
-        firebase.database().ref(`/users/${uid}`).once('value', snapshot => {
-            this.setState({ user: snapshot.val() });
-        }) 
-        .catch(e => {
-            console.log(`Code: ${e.code} Message: ${e.message}`);
-            window.location.replace("/home");
+        firebase.database().ref(`/users/${uid}`).on('value', snapshot => { 
+            var user = snapshot.val();
+            this.setState({ user });
+            this.setState({ visitedCount: user.visitedCount });
+        });
+        // .catch(e => {
+        //     console.log(`Code: ${e.code} Message: ${e.message}`);
+        //     window.location.replace("/home");
+        // });
+    }
+
+    loadPostsFriend = (uid) => {
+        var ref = `/users/${uid}`;
+
+        var postsRef = firebase.database().ref(`${ref}/posts`);
+        postsRef.on('value', snapshot => {
+          var posts = snapshot.val();
+          if(posts) {
+            var newDataPost = {};
+              for(var post in posts) {
+                  if(posts[post].isPublic) {
+                      newDataPost[post] = posts[post];
+                  }
+              }
+              if(Object.entries(newDataPost).length !== 0) {
+                  this.setState({ posts: newDataPost });
+              }
+            // this.setState({ posts });
+          }
+        });
+        
+        var postsToMeRef = firebase.database().ref(`${ref}/posts-to-me`);
+        postsToMeRef.on('value', snapshot => {
+          var postsToMe = snapshot.val();
+          if(postsToMe) {
+            var newDataPostToMe = {};
+            for(var post in postsToMe) {
+                if(postsToMe[post].isPublic) {
+                    newDataPostToMe[post] = postsToMe[post];
+                }
+            }
+            if(Object.entries(newDataPostToMe).length !== 0) {
+                this.setState({ postsToMe: newDataPostToMe });
+            }
+            // this.setState({ postsToMe });
+          }
         });
     }
 
@@ -123,6 +190,7 @@ export default class Profile extends Component {
 
     logout = () => {
         firebase.auth().signOut();
+        window.location.replace('/index');
     }
 
     addBootstrap4 = () => {
@@ -141,24 +209,11 @@ export default class Profile extends Component {
             } else {
                 currentRank = 1;
             }
-
-            // firebase.database().ref(`/users/${friendUid}/visitedCount`).set({
-
-            // });
-
-            // var updates = {}
-            
-            // updates[`/users/${friendUid}/visitedCount`] = currentRank;
-            // firebase.database().ref(`/users/${friendUid}/`).update({
-            //     visitedCount: currentRank
-            // });
-
             return currentRank;
         })
         .catch(error => {
             if(error) console.log(error);
         });
-        console.log('Profile.js 161');
         this.setState({ isVisited: true });
     }
 
@@ -276,7 +331,7 @@ export default class Profile extends Component {
                         <div className="estadisticas">
                             <div className="seguidos">
                                 <p>Vistas</p>
-                                <h5>{this.state.user.visitedCount || '0'}</h5>
+                                <h5>{this.state.visitedCount || '0'}</h5>
                             </div>
                             <div className="realizados">
                                 <p>Publicaciones</p>

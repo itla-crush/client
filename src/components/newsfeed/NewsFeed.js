@@ -104,7 +104,6 @@ class Newsfeed extends Component {
           updates[`/users/${toUid}/posts-to-me/${this.props.id}/likes`] = currentRank;
           firebase.database().ref().update(updates);
 
-          console.log(`NewsFeed.js 90: ${currentRank}`);
           return currentRank;
         });
 

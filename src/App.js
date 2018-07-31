@@ -27,6 +27,7 @@ class App extends Component {
                 email: null,
                 name: null,
                 lastname: null,
+                visitedCount: null,
                 uid: null
             }
         }
