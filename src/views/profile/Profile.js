@@ -16,6 +16,7 @@ export default class Profile extends Component {
           posts: null,
           postsToMe: null,
           friendUid: null,
+          isVisited: false,
         //   currentUserUid: null,
         //   followers: null,
           user: {
@@ -76,7 +77,9 @@ export default class Profile extends Component {
                 this.loadUser(uid);
                 this.loadPosts(uid);
                 this.setState({ friendUid: uid });
-                this.addOneMoreVisited(uid);
+                if(this.state.isVisited === false) {
+                    this.addOneMoreVisited(uid);
+                }
                 // console.log(uid);
                 // uid = uid.split('?');
                 // console.log(uid);
@@ -149,6 +152,7 @@ export default class Profile extends Component {
         .catch(error => {
             if(error) console.log(error);
         });
+        this.setState({ isVisited: true });
     }
 
     // loadFollowers = () => {

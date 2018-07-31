@@ -1,8 +1,8 @@
 .wd { 
     position: fixed;
     z-index: 1035;
-    /* top: -33px; */
-    margin-top: 66.5px;
+    top: 65.5px;
+    /* margin-top: 66.5px; */
     left: 500px;
 }
 .wd .resultados{  

@@ -27,7 +27,8 @@ class Home extends Component {
             email: null,
             name: null,
             lastname: null,
-            uid: null
+            uid: null,
+            visitedCount: null
           }
         }
         this.addBootstrap4 = this.addBootstrap4.bind(this);
@@ -83,7 +84,7 @@ class Home extends Component {
         <div className="Home">
             <Header />
             <div className="container main-content">
-              <UserSidebar postCount={this.state.user.postCount || '0'} postToMeCount={this.state.user.postToMeCount || '0'} followersCount={this.state.user.followersCount || '0'} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} username={this.state.user.username} />
+              <UserSidebar postCount={this.state.user.postCount || '0'} postToMeCount={this.state.user.postToMeCount || '0'} visitedCount={this.state.user.visitedCount || '0'} photoUrl={this.state.user.photoUrl} displayName={this.state.user.displayName} username={this.state.user.username} />
               <section className="center-content" style={{width: "100%", margin: "0px", padding: "0"}}>
                 <main className="main center-content">
                   <section> 
