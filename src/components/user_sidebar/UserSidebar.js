@@ -44,8 +44,8 @@ class UserSidebar extends Component {
                 <hr className="hl" />
                 <div className="center-content">
                   <div className="">
-                    <p>Seguidos</p>
-                    <p>{this.props.followersCount || '0'}</p>
+                    <p>Vistas</p>
+                    <p>{this.props.visitedCount || '0'}</p>
                   </div>
                   <hr className="vl" />
                   <div>

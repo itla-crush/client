@@ -15,6 +15,8 @@ export default class Profile extends Component {
           posts: null,
           postsToMe: null,
           friendUid: null,
+        //   currentUserUid: null,
+        //   followers: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -22,6 +24,7 @@ export default class Profile extends Component {
             email: null,
             name: null,
             lastname: null,
+            visitedCount: null,
             uid: null
           }
         }
@@ -31,7 +34,7 @@ export default class Profile extends Component {
         this.showPostToMe = this.showPostToMe.bind(this);
         this.logout = this.logout.bind(this);
         this.loadUser = this.loadUser.bind(this);
-        this.handleFollow = this.handleFollow.bind(this);
+        this.addOneMoreVisited = this.addOneMoreVisited.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +61,10 @@ export default class Profile extends Component {
 
     componentWillReceiveProps(nextProps) {
     //   this.setState({ user: nextProps.user });
+        if(nextProps.currentUserUid) {
+            this.setState({ currentUserUid: nextProps.currentUserUid });
+        }
+
         if(nextProps.uid) {
             this.loadUser(nextProps.uid);
             this.loadPosts(nextProps.uid);
@@ -67,8 +74,9 @@ export default class Profile extends Component {
                 uid = uid.substring(1);
                 this.loadUser(uid);
                 this.loadPosts(uid);
-                console.log(uid);
                 this.setState({ friendUid: uid });
+                this.addOneMoreVisited(uid);
+                console.log(uid);
                 // uid = uid.split('?');
                 // console.log(uid);
                 // console.log(uid[0]);
@@ -119,11 +127,83 @@ export default class Profile extends Component {
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
 
-    handleFollow = (e) => {
-       e.preventDefault();
-       var fromUid = this.state.user.uid;
-       var toUid = this.state.friendUid;
+    addOneMoreVisited = (friendUid) => {
+        var visitedCount = firebase.database().ref(`/users/${friendUid}/visitedCount`);
+        visitedCount.transaction(currentRank => {
+            
+            if(currentRank) {
+                currentRank++;
+            } else {
+                currentRank = 1;
+            }
+
+            var updates = {}
+            
+            updates[`/users/${friendUid}/visitedCount`] = currentRank;
+            firebase.database().ref().update(updates);
+
+            return currentRank;
+        });
     }
+
+    // loadFollowers = () => {
+    //     var uid = this.state.user.uid;
+    //     if(uid) {
+    //         firebase.database().ref(`/users/${uid}`).on('value', snapshot => {
+    //             var followers = snapshot.val();
+    //             if(followers) {
+    //                 this.setState({ followers });
+    //             }
+    //         });
+    //     }
+    // }
+
+    // submitFollower = (currentUserUid, isSubmit) => {
+    //     // var currentUserUid = this.state.currentUserUid;
+    //     isSubmit = true;
+    //     if(currentUserUid) {
+    //         var friendUid = this.state.friendUid; // Para actualizar en el destinatario
+    //         if(friendUid) {
+    //             if(isSubmit) {
+    //                 var followersCount = firebase.database().ref(`/users/${friendUid}/followersCount`);
+    //                 followersCount.transaction(currentRank => {
+                        
+    //                     if(currentRank) {
+    //                         currentRank++;
+    //                     } else {
+    //                         currentRank = 1;
+    //                     }
+            
+    //                     var updates = {};
+            
+    //                     // updates[`/users/${currentUserUid}/followingCount`] = currentRank;
+    //                     updates[`/users/${friendUid}/followersCount`] = currentRank;
+    //                     firebase.database().ref().update(updates);
+    //                     console.log(`Profile.js 161: ${currentRank}`);
+
+
+
+    //                     return currentRank;
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }
+
+    // updateFollowers = (currentUserUid, friendUid) => {
+    //     var updates = {};
+            
+        // updates[`/users/${currentUserUid}/followingCount`] = currentRank;
+    //     updates[`/users/${currentUserUid}/followers`] = friendUid;
+    //     updates[`/users/${friendUid}/following`] = currentUserUid;
+    //     firebase.database().ref().update(updates);
+    // }
+
+    // handleFollow = (e) => {
+    //    e.preventDefault();
+    //    var fromUid = this.state.user.uid;
+    //    var toUid = this.state.friendUid;
+    // }
     
     render(){
         var posts = this.state.posts;
@@ -131,8 +211,8 @@ export default class Profile extends Component {
         var friend = this.props.friend;
         var sesion = window.localStorage.getItem('sesion');
         sesion = (sesion === 'true') ? true : false;
-        return(
 
+        return(
         <div className="Profile"> 
             <Header />
                 <div className="pf">
@@ -166,18 +246,22 @@ export default class Profile extends Component {
                                 </div>
                                 )
                             }
-                            {   friend && sesion ? (
-                                        ""
-                                ) : (
+                            {/* {   friend && sesion ?(
                                 <div className="editar">
                                     <div>
                                         <a href="#" className="btn-editar-op" onClick={this.handleFollow} >Seguir</a>
                                     </div>
                                 </div>
+                                ) :  (
+                                        ""
                                 )
-                            }
+                            } */}
                         </div>
                         <div className="estadisticas">
+                            <div className="seguidos">
+                                <p>Vistas</p>
+                                <h5>{this.state.user.visitedCount || '0'}</h5>
+                            </div>
                             <div className="realizados">
                                 <p>Publicaciones</p>
                                 <h5>{this.state.user.postCount || '0'}</h5>
@@ -185,10 +269,6 @@ export default class Profile extends Component {
                             <div className="privado">
                                 <p>Privados</p>
                                 <h5>{this.state.user.postToMeCount || '0'}</h5>
-                            </div>
-                            <div className="seguidos">
-                                <p>Seguidos</p>
-                                <h5>{this.state.user.followersCount || '0'}</h5>
                             </div>
                         </div>
                     </section>

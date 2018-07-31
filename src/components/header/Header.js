@@ -146,7 +146,7 @@ class Header extends Component {
                 <div className="container d-flex justify-content-around">
                 <div className="lg" data-toggle="tooltip" data-placement="bottom" title="Inicio">
                     <a href="/home">
-                        <img src="img/cupido3.png" id="logo" className="logo" alt="Logo" />
+                        <img src="img/logo.png" id="logo" className="logo" alt="Logo" />
                     </a>
                 </div>
                 <div className="search">

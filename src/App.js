@@ -95,7 +95,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
-                        <Route path='/friend' render={(props) => (<Profile friend={true} />)} />
+                        <Route path='/friend' render={(props) => (<Profile friend={true} currentUserUid={this.state.user.uid} />)} />
                         <Route path='/index' 
                             render={(props) => ( 
                                 sesion ? (
