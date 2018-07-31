@@ -106,7 +106,7 @@ class Header extends Component {
     }
 
     handleOnBur = () => {
-        setTimeout(this.handleOnNoFocus.bind(this), 300);
+        // setTimeout(this.handleOnNoFocus.bind(this), 300);
     }
 
     handleOnFocus = () => {
