@@ -39,6 +39,7 @@
 }
 .c-contacts .persons .persons-imagen img{
     width: 60px;
+    height: 60px;
     border-radius: 50px;
     margin-right: 5px;
 }
@@ -63,6 +64,7 @@
 .c-contacts .conversacion .chat-users .list-users .talk-persons .chat-img .img-p{
     margin-right: 8px;
     width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 .c-contacts .conversacion .chat-users .list-users .talk-persons .space{
