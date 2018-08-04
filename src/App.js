@@ -37,6 +37,7 @@ class App extends Component {
         this.stateAuth();
     }
 
+    //Obteniendo el usuario con sesion activa
     stateAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
@@ -94,6 +95,7 @@ class App extends Component {
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
                     <Switch>
+                        {/* Creando Rutas, de la pagina*/}
                         <Route path='/home' render={(props) => ( <Home user={this.state.user} /> )} />
                         <Route path='/forgotpassword' render={(props) => (<Forgotpassword />)} />
                         <Route path='/friend' render={(props) => (<Profile friend={true} currentUserUid={this.state.user.uid} />)} />
