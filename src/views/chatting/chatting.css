@@ -46,7 +46,8 @@
 /* ESTILOS CHAT UNIVERSAL */
 .c-contacts .conversacion { width: 100%; }
 .c-contacts .conversacion .chat-users{
-    height: 100%;
+    /* height: 100%; */
+    height: 510px;
     font-family: "AbeeZee";
     overflow-y: scroll;
     overflow-x: hidden;
