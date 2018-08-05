@@ -12,6 +12,7 @@ export function initFirebase() {
     });
 }
 
+//Autenticacion mediante el acceso con cuenta de Google
 export function signInWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -24,6 +25,7 @@ export function signInWithGoogle() {
     });
 }
 
+//Autenticacion mediante el acceso con cuenta normal
 export function signInWithEmail(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
