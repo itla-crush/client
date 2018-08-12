@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
 import './resultwidget.css';
 
 class ResultWidget extends Component {
-  constructor(props) {
-    super(props);
-    // this.setUserDataPost = this.setUserDataPost.bind(this);
-  }
-
-  // setUid = (e) => {
-  //   e.preventDefault();
-  // }
     
   setUserDataPost = (e) => {
+    var value;
     if(this.props.setUserDataPost) {
       e.preventDefault();
-      var value = e.currentTarget.id;
+      value = e.currentTarget.id;
       this.props.setUserDataPost(value);
     }
     if(this.props.getUid) {
-      var value = e.currentTarget.id;
+      value = e.currentTarget.id;
       this.props.getUid(value);
     }
   }

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
 
-// importing aos
-import AOS from '../../../node_modules/aos'
-
 // Assets
 import './newsfeed.css';
 
@@ -142,12 +139,30 @@ class Newsfeed extends Component {
 
     render() {
       var month = this.getMonth(this.props.data.timestamp.month);
-      var photoUrl = this.props.data.isAnonimous == true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
-      var displayName = this.props.data.isAnonimous == true ? "Anónimo" : this.props.data.fromDisplayName;
+      var photoUrl = this.props.data.isAnonimous === true ? "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0" : this.props.data.fromPhotoUrl;
+      var displayName = this.props.data.isAnonimous === true ? "Anónimo" : this.props.data.fromDisplayName;
       var comments = this.state.comments;
+      var sesion = window.localStorage.getItem('sesion');
+      sesion = (sesion === 'true') ? true : false;
+
       return (
         // <div data-aos="zoom-in">
         <article className="post">
+          { sesion ? 
+              <a className="button-setting"
+                  // href="#"
+                  // onClick={e => e.preventDefault()}
+                  // role="button"
+                  // rel="popover"
+                  data-toggle="popover" 
+                  // data-trigger="hover" 
+                  // data-placement="bottom" 
+                  title="Reportar"
+                  data-content="¿Repotar publicación?"> 
+                <i className="fas fa-ellipsis-h"></i>
+                {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
+              </a> : ""
+          }
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
               <a href={'#'} onClick={this.goToFriend}>

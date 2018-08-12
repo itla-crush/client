@@ -275,8 +275,8 @@ export default class Profile extends Component {
         var posts = this.state.posts;
         var postsToMe = this.state.postsToMe;
         var friend = this.props.friend;
-        var sesion = window.localStorage.getItem('sesion');
-        sesion = (sesion === 'true') ? true : false;
+        // var sesion = window.localStorage.getItem('sesion');
+        // sesion = (sesion === 'true') ? true : false;
 
         return(
         <div className="Profile"> 

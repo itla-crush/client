@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import _ from 'lodash';
 import ResultWidget from '../../components/result_widget/ResultWidget';
-import ProfileWidget from '../../components/profile_widget/ProfileWidget';
+// import ProfileWidget from '../../components/profile_widget/ProfileWidget';
 
 // Components
 
