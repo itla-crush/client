@@ -179,6 +179,8 @@ class CreatePost extends Component {
             case firebase.storage.TaskState.RUNNING:
               console.log('Upload is running');
               break;
+            default:
+              break;             
           }
         }, error => {
           console.log(error);

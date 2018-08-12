@@ -109,7 +109,7 @@ export default class EditProfile extends Component {
             displayName: displayName,
             email: editProfileEmail 
         }).then(() => {
-            var ref = firebase.database().ref(`/users/${user.uid}/`)
+            firebase.database().ref(`/users/${user.uid}/`)
             .update({
                 displayName: displayName,
                 name: editProfileName,
@@ -152,7 +152,7 @@ export default class EditProfile extends Component {
                             displayName: displayName,
                             email: editProfileEmail 
                         }).then(() => {
-                            var ref = firebase.database().ref(`/users/${user.uid}/`)
+                            firebase.database().ref(`/users/${user.uid}/`)
                             .update({
                                 displayName: displayName,
                                 name: editProfileName,
@@ -203,6 +203,8 @@ export default class EditProfile extends Component {
                 break;
               case firebase.storage.TaskState.RUNNING:
                 console.log('Upload is running');
+                break;
+              default:
                 break;
             }
           }, error => {

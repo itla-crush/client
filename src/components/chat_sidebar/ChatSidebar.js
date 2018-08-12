@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // Components
-import ChatItem from '../chat_item/ChatItem';
+// import ChatItem from '../chat_item/ChatItem';
 
 // Assets
 import './chatsidebar.css';
@@ -14,7 +14,7 @@ class ChatSidebar extends Component {
     }
 
     redirect = (e) => {
-        var value = e.currentTarget.id;
+        // var value = e.currentTarget.id;
         // window.location.replace("/home");
     }
 
@@ -26,7 +26,7 @@ class ChatSidebar extends Component {
       if(users != null){
   
         listItems = Object.keys(users).map((user) =>
-          <li key={user} id={user} className="li-each-chat" onClick={this.redirect} style={{display: user == currentUserUid ? 'none' : ''}}>
+          <li key={user} id={user} className="li-each-chat" onClick={this.redirect} style={{display: user === currentUserUid ? 'none' : ''}}>
             {/* <Link to={`/profile/${user}`} > */}
             {/* <Link to={{ pathname: '/friend', state: { id: user } }} > */}
             <a href={`friend?${user}`} >
