@@ -136,14 +136,21 @@ class App extends Component {
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
-                        <Route path='/' exact strict 
+                        <Route path='/admin' 
+                            render={(props) => (
+                                sesion ? (
+                                    <Admin user={this.state.user} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                            )} />
+                        <Route exact strict path='/' exact strict 
                             render={(props) => ( 
                                 sesion ? (
                                     <Redirect to="/home"/>
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
-                        <Route path='' exact strict
+                        <Route exact strict path='' exact strict
                             render={(props) => ( 
                                 sesion ? (
                                     <Redirect to="/home"/>
@@ -152,7 +159,6 @@ class App extends Component {
                             )} />
                         
                         <Route component={Page404} />
-                        <Route path='/admin' component={Admin}/>
                     </Switch> 
                 </div>
             </BrowserRouter>

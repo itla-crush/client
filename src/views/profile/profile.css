@@ -23,7 +23,9 @@
 .pf .foto img{
     width: 200px;
     height: 200px;
-    border-radius: 125px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: solid 0.5px rgba(0, 0, 0, 0.09);
 }
 .pf .informacion {
     width: 50%;
@@ -108,7 +110,9 @@
 }
 .pf-segundo .foto img{
     width: 100px;
-    border-radius: 150px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: solid 0.5px rgba(0, 0, 0, 0.09);
 }
 .pf-segundo .informacion {
     width: 50%;
@@ -222,7 +226,7 @@
 @media screen and (max-width: 768px){
     .pf .foto img{
         width: 170px;
-        border-radius: 125px;
+        /* border-radius: 125px; */
     }    
     .pf .informacion .datos-conf .nombre-usuario h2{
        font-size: 26px;
@@ -233,7 +237,7 @@
       /* -----ESTILOS DE LA SEGUNDA VISTA PERFIL ------- */
      .pf-segundo .foto img{
         width: 170px;
-        border-radius: 125px;
+        /* border-radius: 125px; */
     }    
     .pf-segundo .informacion .datos-conf .nombre-usuario h2{
        font-size: 26px;
@@ -245,7 +249,7 @@
 @media screen and (max-width: 700px){
     .pf .foto img{
         width: 150px;
-        border-radius: 125px;
+        /* border-radius: 125px; */
     }   
     .pf .informacion {
         width: 70%;
@@ -253,7 +257,7 @@
     /* -----ESTILOS DELA SEGUNDA VISTA PERFIL ------- */
     .pf-segundo .foto img{
         width: 150px;
-        border-radius: 125px;
+        /* border-radius: 125px; */
     }   
     .pf-segundo .informacion {
         width: 70%;
