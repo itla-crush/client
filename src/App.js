@@ -10,6 +10,8 @@ import ChangePassword from './views/change_password/ChangePassword';
 import Page404 from './views/page404/Page404';
 import Forgotpassword from './views/forgotpassword/Forgotpassword';
 import Chatting from './views/chatting/Chatting';
+import Admin from './components/admin/Admin';
+
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
 import firebase from 'firebase';
@@ -150,7 +152,7 @@ class App extends Component {
                             )} />
                         
                         <Route component={Page404} />
-                        
+                        <Route path='/admin' component={Admin}/>
                     </Switch> 
                 </div>
             </BrowserRouter>
