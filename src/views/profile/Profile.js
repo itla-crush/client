@@ -56,7 +56,7 @@ export default class Profile extends Component {
         if(this.state.nextProps === false) {
             let uid = window.location.search;
             if(uid) {
-                uid = uid.substring(1);
+                uid = uid.substring(4);
                 this.loadUser(uid);
                 this.loadPostsFriend(uid);
                 this.setState({ friendUid: uid });
@@ -95,7 +95,7 @@ export default class Profile extends Component {
         } else {
             let uid = window.location.search;
             if(uid) { 
-                uid = uid.substring(1);
+                uid = uid.substring(4);
                 this.loadUser(uid);
                 this.loadPostsFriend(uid);
                 this.setState({ friendUid: uid });

@@ -182,7 +182,7 @@ class Chatting extends Component{
     
             listUsers = Object.keys(users).map((user) =>
             <div key={user} className="friend" style={{display: user === uid ? 'none' : ''}}>
-                <a href={`friend?${user}`} >
+                <a href={`friend?id=${user}`} >
                     <div className="persons-imagen">
                         <img src={users[user].photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt="" />
                     </div>

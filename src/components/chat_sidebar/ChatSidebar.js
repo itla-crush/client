@@ -29,7 +29,7 @@ class ChatSidebar extends Component {
           <li key={user} id={user} className="li-each-chat" onClick={this.redirect} style={{display: user === currentUserUid ? 'none' : ''}}>
             {/* <Link to={`/profile/${user}`} > */}
             {/* <Link to={{ pathname: '/friend', state: { id: user } }} > */}
-            <a href={`friend?${user}`} >
+            <a href={`friend?id=${user}`} >
               <div className="div-chat-content center-content">
                 <div className="div-img-profile-chat"> 
                   <img className="img-profile-chat" src={users[user].photoUrl || ''} alt='' />

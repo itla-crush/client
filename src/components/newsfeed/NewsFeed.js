@@ -133,7 +133,7 @@ class Newsfeed extends Component {
       if(this.props.data.isAnonimous) {
         e.preventDefault();
       } else {
-        window.location.replace(`friend?${this.props.data.fromUid}`);
+        window.location.replace(`friend?id=${this.props.data.fromUid}`);
       }
     }
 
@@ -150,22 +150,24 @@ class Newsfeed extends Component {
         <article className="post">
           { sesion ? 
               <a className="button-setting"
-                  // href="#"
+                  > 
+                <i className="fas fa-ellipsis-h"
+                // href="#"
                   // onClick={e => e.preventDefault()}
-                  // role="button"
-                  // rel="popover"
+                  role="button"
+                  rel="popover"
                   data-toggle="popover" 
-                  // data-trigger="hover" 
-                  // data-placement="bottom" 
-                  title="Reportar"
-                  data-content="¿Repotar publicación?"> 
-                <i className="fas fa-ellipsis-h"></i>
+                  // data-trigger="focus" 
+                  data-placement="bottom" 
+                  // title="Reportar"
+                  data-content="¿Repotar publicación?"
+                ></i>
                 {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
               </a> : ""
           }
           <header className="header-post">
             <div className="div-img-profile">  {/* Contenedor de la Imagen de Perfil */}
-              <a href={'#'} onClick={this.goToFriend}>
+              <a href="#" onClick={this.goToFriend}>
                 <img alt={""} className="img-profile" src={photoUrl} />
               </a>
             </div>
@@ -205,7 +207,7 @@ class Newsfeed extends Component {
                   comments ? (
                     Object.keys(comments).map((comment) => 
                         <li key={comment} className=""> 
-                            <a href={`friend?${comments[comment].uid}`} >{comments[comment].displayName}</a><span>{comments[comment].text}</span>
+                            <a href={`friend?id=${comments[comment].uid}`} >{comments[comment].displayName}</a><span>{comments[comment].text}</span>
                         </li>
                         )
                     ) : (
