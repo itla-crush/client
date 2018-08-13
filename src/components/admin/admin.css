@@ -1,19 +1,6 @@
 .ad{
     /* background: #E5E5E5; */
 }
-.tablero-title {
-    background: #121619;
-    padding: 10px;
-    margin-bottom: 68px;
-}
-.administrador .tablero-title p{
-    font-size: 32px;
-    margin: 0px;
-    color: #FBFEF9;
-    text-align: center;
-    margin-top: 9px;
-    margin-bottom: 4px;
-}
 .estadisticas{
     width: 90%;
     margin: auto;

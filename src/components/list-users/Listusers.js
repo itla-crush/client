@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 // Assets
 import './listusers.css'; 
 
+
+import Tablero from '../../components/tablero/Tablero';
+
+
 class Listusers extends Component{
     constructor(props){
         super(props);
@@ -21,9 +25,7 @@ class Listusers extends Component{
     render(){
         return(
            <div className="user">
-                <div className="tablero-title">
-                    <p>Tablero</p>
-                </div>
+                <Tablero />
                 <div className="user-tables">
                     <div className="buscar-usuario">
                         <input id="" type="text" className="search-u" placeholder="Buscar"/>

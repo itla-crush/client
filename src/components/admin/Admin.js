@@ -3,18 +3,17 @@ import React, { Component } from 'react';
 // Assets
 import './admin.css'; 
 
+import Tablero from '../../components/tablero/Tablero';
+
 
 class Admin extends Component{
     render(){
         return(
             <div className="ad">
                <div className="administrador">
-                   <div className="tablero-title">
-                       <p>Tablero</p>
-                   </div>
+                    <Tablero />
                    {/* estadisticas usuarios */}
                    <div className="estadisticas">
-
                        <div className="est-users">
                          <i class="fas fa-users"></i>
                          <div className="info-t">
