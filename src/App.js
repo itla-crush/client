@@ -11,6 +11,7 @@ import Page404 from './views/page404/Page404';
 import Forgotpassword from './views/forgotpassword/Forgotpassword';
 import Chatting from './views/chatting/Chatting';
 import Admin from './components/admin/Admin';
+import Listusers from './components/list-users/Listusers';
 
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
@@ -143,6 +144,13 @@ class App extends Component {
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
+                        <Route path='/list-users' 
+                            render={(props) => (
+                                sesion ? (
+                                    <Listusers user={this.state.user} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                         )} />   
                         <Route exact strict path='/' exact strict 
                             render={(props) => ( 
                                 sesion ? (
