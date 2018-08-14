@@ -35,44 +35,7 @@ class Listusers extends Component{
                         <div className="container">
                         <div className="row">
 
-                         <div className="pf-ct col-md-8">
-                            <section>
-                                <div className="ust">
-                                   <h4>Luisa Avalo</h4> 
-                                </div>
-                                <div className="imgXUPR center-content">  {/* Contenedor de la Imagen de Perfil */}
-                                    <a href="#" onClick={this.handleOnClick} >
-                                    <img alt="" className="imgXUPR-2 " src={this.props.photoUrl  || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} /> {/* Imagen */}
-                                    </a>
-                                </div>
-                                <div className="center-content">
-                                    <a className="username" href="#" onClick={this.handleOnClick}>
-                                    <h5>@Luisa85</h5> 
-                                    </a>
-                                </div>
-                            </section>
-                         </div> 
-
-                         <div className="pf-ct col-md-8">
-                            <section>
-                                <div className="ust">
-                                   <h4>Luisa Avalo</h4> 
-                                </div>
-                                <div className="imgXUPR center-content">  {/* Contenedor de la Imagen de Perfil */}
-                                    <a href="#" onClick={this.handleOnClick} >
-                                    <img alt="" className="imgXUPR-2 " src={this.props.photoUrl  || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} /> {/* Imagen */}
-                                    </a>
-                                </div>
-                                <div className="center-content">
-                                    <a className="username" href="#" onClick={this.handleOnClick}>
-                                    <h5>@Luisa85</h5> 
-                                    </a>
-                                </div>
-                            </section>
-                         </div> 
-
-
-                         <div className="pf-ct col-md-8">
+                         <div className="pf-ct col-md-4">
                             <section>
                                 <div className="ust">
                                    <h4>Luisa Avalo</h4> 
