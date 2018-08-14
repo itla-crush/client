@@ -17,7 +17,7 @@ class Admin extends Component{
                        <div className="est-users">
                          <i class="fas fa-users"></i>
                          <div className="info-t">
-                             <h4 className="tl">Usuarios</h4>
+                             <h6 className="tl">Usuarios</h6>
                              <p className="est">80</p>
                          </div>
                        </div>
@@ -25,7 +25,7 @@ class Admin extends Component{
                        <div className="est-declaraciones">
                          <i class="fas fa-chart-pie"></i>
                          <div className="info-t">
-                             <h4 className="tl">Publicaciones</h4>
+                             <h6 className="tl">Publicaciones</h6>
                              <p className="est">140</p>
                          </div>
                        </div>
@@ -34,7 +34,7 @@ class Admin extends Component{
                        <div className="est-declaraciones-report">
                          <i class="far fa-bell"></i>
                          <div className="info-t">
-                             <h4 className="tl">Publicaciones reportadas</h4>
+                             <h6 className="tl">Publicaciones reportadas</h6>
                              <p className="est">27</p>
                          </div>
                        </div>
