@@ -12,6 +12,8 @@ import Forgotpassword from './views/forgotpassword/Forgotpassword';
 import Chatting from './views/chatting/Chatting';
 import Admin from './components/admin/Admin';
 import Listusers from './components/list-users/Listusers';
+import Publications from './components/publications/Publications';
+import PublicationsReports from './components/publicationsReports/PublicationsReports';
 
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
@@ -151,6 +153,20 @@ class App extends Component {
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />   
+                         <Route path='/publications' 
+                            render={(props) => (
+                                sesion ? (
+                                    <Publications user={this.state.user} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                         )} />   
+                         <Route path='/publicationsReports' 
+                            render={(props) => (
+                                sesion ? (
+                                    <PublicationsReports user={this.state.user} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                         )} />  
                         <Route exact strict path='/' exact strict 
                             render={(props) => ( 
                                 sesion ? (
