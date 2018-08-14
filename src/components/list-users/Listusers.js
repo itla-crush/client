@@ -12,6 +12,7 @@ class Listusers extends Component{
         super(props);
 
         this.addBootstrap4 = this.addBootstrap4.bind(this);
+        this.addBootstrap4();
     }
 
 
