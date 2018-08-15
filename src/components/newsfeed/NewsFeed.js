@@ -173,27 +173,27 @@ class Newsfeed extends Component {
       var sesion = window.localStorage.getItem('sesion');
       sesion = (sesion === 'true') ? true : false;
 
+      var isAdmin = window.localStorage.getItem('isAdmin');
+      isAdmin = (isAdmin === 'true') ? true : false;
+
       var deleteOrReport = this.props.currentUserUid === this.props.data.fromUid ? true : false;
+      var postDeleted = this.props.postDeleted || false;
+
+      var modal = deleteOrReport ? "#deleteNewsfeedModal" : "#reportNewsfeedModal";
+      var tooltip = deleteOrReport ? "Eliminar declaración" : "Reportar declaración";
 
       return (
         // <div data-aos="zoom-in">
         <article className="post">
-          { sesion ? 
+          { sesion && !postDeleted ? 
               <a className="button-setting"
                   data-toggle="modal" 
-                  data-target={deleteOrReport ? "#deleteNewsfeedModal" : "#reportNewsfeedModal"}
+                  data-target={modal}
                   onClick={this.handleReportNewsfeed} > 
                 <i className="fas fa-ellipsis-h"
-                  // href="#"
-                  // onClick={e => e.preventDefault()}
-                  // role="tooltip"
-                  // rel="tooltip"
-                  // data-trigger="focus" 
-                  // data-content="¿Repotar declaración?"
-                  
                   data-toggle="tooltip"
                   data-placement="bottom" 
-                  title={deleteOrReport ? "Eliminar declaración" : "Reportar declaración"}
+                  title={tooltip}
                   data-trigger="hover" ></i>
                 {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
               </a> : ""
@@ -225,10 +225,13 @@ class Newsfeed extends Component {
             }
           </div>
           <div className="div-footer"> {/* Pie Del Post */}
-            <section className="section-like-comment">
+          { !postDeleted ?
+              <section className="section-like-comment">
               <a className="" href="#" onClick={this.handleLike}><i className="far fa-heart icon-post" /></a>
               <a className="" href="#" onClick={this.handleFocusComment}><i className="far fa-comment icon-post" /></a>
-            </section>
+            </section> : ""
+          }
+            
             <section> {/* Cantidad Me Gusta del Post */}
               <div className="div-likes">
                 <a href="#" onClick={e => e.preventDefault()}><span>{`${this.props.data.likes || "0"} Me gusta`}</span></a>
@@ -249,14 +252,16 @@ class Newsfeed extends Component {
                 }
               </ul>
             </div>
-            <div className="div-form-comment">
-              <hr className="hl" />
-              <form className="form-comment">
-                <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
-                {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
-                {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
-              </form>
-            </div>
+            { !postDeleted ?
+                <div className="div-form-comment">
+                  <hr className="hl" />
+                  <form className="form-comment">
+                    <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
+                    {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
+                    {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
+                  </form>
+                </div> : ""
+            }
           </div>
           {/* <Aos/> */}
           {/* { sesion ? <ReportNewsfeedWidget NewsfeedId={this.props.id || null} /> : "" } */}

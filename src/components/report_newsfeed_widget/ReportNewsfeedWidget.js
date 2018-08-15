@@ -121,7 +121,7 @@ class ReportNewsfeedWidget extends Component {
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="reportRadio" id="reportRadio2" value="Es molesta o de mal gusto" onClick={this.handleChangeCheckedRadio} />
                                 <label className="form-check-label" htmlFor="reportRadio2">
-                                    Es molesta o de mal gusto
+                                    Es molesto o de mal gusto
                                 </label>
                             </div>
                             <div className="form-check">

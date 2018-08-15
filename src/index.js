@@ -30,9 +30,18 @@ firebase.auth().onAuthStateChanged(user => {
     if(user) {
         window.localStorage.setItem('sesion', 'true'); 
         window.localStorage.setItem('uid', user.uid);
+        firebase.database().ref(`/users/${user.uid}`).once('value').then(snapshot => {
+            snapshot = snapshot.val();
+            if(snapshot) {
+                if(snapshot.isAdmin) {
+                    window.localStorage.setItem('isAdmin', 'true');
+                }
+            }
+        });
     } else {
         window.localStorage.setItem('sesion', 'false');
         window.localStorage.setItem('uid', '');
+        window.localStorage.setItem('isAdmin', 'false');
     }
 });
 

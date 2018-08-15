@@ -97,6 +97,11 @@ class App extends Component {
     render() {
         var sesion = window.localStorage.getItem('sesion');
         sesion = (sesion === 'true') ? true : false;
+
+        var isAdmin = window.localStorage.getItem('isAdmin');
+        // isAdmin = (isAdmin === 'true') ? true : false;
+        isAdmin = true;
+
         return (
             <BrowserRouter>
                 <div className="App" style={{width: "100%"}}>
@@ -142,35 +147,35 @@ class App extends Component {
                             )} />
                         <Route path='/admin' 
                             render={(props) => (
-                                sesion ? (
+                                sesion && isAdmin ? (
                                     <Admin user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
                         <Route path='/list-users' 
                             render={(props) => (
-                                sesion ? (
+                                sesion && isAdmin ? (
                                     <ListUsers user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />   
                          <Route path='/posts-list' 
                             render={(props) => (
-                                sesion ? (
+                                sesion && isAdmin ? (
                                     <PostsList user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />   
                          <Route path='/posts-reported' 
                             render={(props) => (
-                                sesion ? (
+                                sesion && isAdmin ? (
                                     <PostsReported user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />    
                          <Route path='/posts-deleted' 
                             render={(props) => (
-                                sesion ? (
+                                sesion && isAdmin ? (
                                     <PostsDeleted user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
