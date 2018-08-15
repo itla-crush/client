@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
+import swal from 'sweetalert';
 
 // Components
 import Header from '../../components/header/Header';
@@ -189,8 +190,27 @@ export default class Profile extends Component {
     }
 
     logout = () => {
-        firebase.auth().signOut();
-        window.location.replace('/index');
+
+        swal({
+            title: "¿Deseas cerrar sesión?",
+            text: "Si cierras sesión tendrás que volver a autenticarte para hacer declaraciones y ver declaraciones privadas!",
+            icon: "warning",
+            // buttons: true,
+            // dangerMode: true,
+            buttons: ["Cancelar", "Cerrar sesión"],
+        })
+        .then((willLogout) => {
+            if (willLogout) {
+                firebase.auth().signOut();
+                swal("Sesión cerrada!", {
+                    icon: "success",
+                })
+                .then(() => window.location.replace('/index'));
+            } else {
+            //   swal("Your imaginary file is safe!");
+            }
+        });
+
     }
 
     addBootstrap4 = () => {

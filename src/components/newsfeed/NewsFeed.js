@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
+import swal from 'sweetalert';
 
 // Assets
 import './newsfeed.css';
@@ -45,8 +46,11 @@ class Newsfeed extends Component {
     handleSendComment = (event) => {
       var txtAreaComment = document.getElementById(`textareaComment${this.props.id}`);
       var textAreaComment = _.trim(txtAreaComment.value); 
+      
+      var sesion = window.localStorage.getItem('sesion');
+      sesion = (sesion === 'true') ? true : false;
 
-      if(this.props.currentUserUid !== 'null') {
+      if(sesion) {
         if(!_.isEmpty(textAreaComment)) {
           var toUid = this.props.data.toUid; // Para actualizar el comentario en el destinatario
           var fromUid = this.props.data.fromUid; // Para actualizar el comentario en el owner del post
@@ -75,13 +79,29 @@ class Newsfeed extends Component {
           firebase.database().ref().update(updates);
 
         } else {
-          alert('Debes escribir algo para comentar.');
-          console.log('Debes escribir algo para comentar.');         
+          // alert('Debes escribir algo para comentar.');
+          // console.log('Debes escribir algo para comentar.');      
+          swal("Alerta!", "Debes escribir algo para comentar.", "info");   
         }
 
       } else {
-        alert('Debes iniciar sesión para hacer comentarios.');
-        console.log('Debes iniciar sesión para hacer comentarios.');
+        // alert('Debes iniciar sesión para hacer comentarios.');
+        // console.log('Debes iniciar sesión para hacer comentarios.');
+          swal({
+              title: "Alerta!",
+              text: "Debes iniciar sesión para hacer comentarios.",
+              icon: "info",
+              // buttons: true,
+              // dangerMode: true,
+              buttons: ["Cerrar", "Iniciar sesión"],
+          })
+          .then((willRedirect) => {
+              if (willRedirect) {
+                  window.location.replace('/index');
+              } else {
+              //   swal("Your imaginary file is safe!");
+              }
+          });
       }
 
       txtAreaComment.value = '';
@@ -170,9 +190,11 @@ class Newsfeed extends Component {
                   // rel="tooltip"
                   // data-trigger="focus" 
                   // data-content="¿Repotar declaración?"
-                  data-toggle="tooltip" 
+                  
+                  data-toggle="tooltip"
                   data-placement="bottom" 
-                  title={deleteOrReport ? "Eliminar declaración" : "Reportar declaración"} ></i>
+                  title={deleteOrReport ? "Eliminar declaración" : "Reportar declaración"}
+                  data-trigger="hover" ></i>
                 {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
               </a> : ""
           }

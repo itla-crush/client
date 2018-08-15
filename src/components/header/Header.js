@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
+import swal from 'sweetalert';
 import ResultWidget from '../../components/result_widget/ResultWidget';
 // import ProfileWidget from '../../components/profile_widget/ProfileWidget';
 
@@ -115,15 +116,55 @@ class Header extends Component {
     }
 
     handleGoToChatting = (e) => {
-        e.preventDefault();
-        console.log('Debes iniciar sesion para entrar al chat');
-        alert('Debes iniciar sesion para entrar al chat');
+        // console.log('Debes iniciar sesion para acceder al chat');
+        // alert('Debes iniciar sesion para acceder al chat');
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
+
+        if(sesion === false) {
+            e.preventDefault();
+            swal({
+                title: "Alerta!",
+                text: "Debes iniciar sesion para acceder al chat.",
+                icon: "info",
+                // buttons: true,
+                // dangerMode: true,
+                buttons: ["Cerrar", "Iniciar sesión"],
+            })
+            .then((willRedirect) => {
+                if (willRedirect) {
+                    window.location.replace('/index');
+                } else {
+                //   swal("Your imaginary file is safe!");
+                }
+            });
+        }
     }
 
     handleGoToProfile = (e) => {
-        e.preventDefault();
-        console.log('Debes iniciar sesion para entrar al perfil');
-        alert('Debes iniciar sesion para entrar al perfil');
+        // console.log('Debes iniciar sesion para acceder al perfil');
+        // alert('Debes iniciar sesion para acceder al perfil');
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
+
+        if(sesion === false) {
+            e.preventDefault();
+            swal({
+                title: "Alerta!",
+                text: "Debes iniciar sesion para acceder al perfil.",
+                icon: "info",
+                // buttons: true,
+                // dangerMode: true,
+                buttons: ["Cerrar", "Iniciar sesión"],
+            })
+            .then((willRedirect) => {
+                if (willRedirect) {
+                    window.location.replace('/index');
+                } else {
+                //   swal("Your imaginary file is safe!");
+                }
+            });
+        }
     }
 
     getUid = (uid) => {
@@ -158,8 +199,8 @@ class Header extends Component {
                 <div className="iconos">
                     <div className="navbar-nav">
                         <div className="op-i"><a href="/home" data-toggle="tooltip" data-placement="bottom" title="Inicio"><i className="fa fa-home icono" /></a></div>
-                        <div className="op-i"><a href="/chatting" data-toggle="tooltip" data-placement="bottom" title="Chat" {...this.state.uid ? '' : this.handleGoToChatting} ><i className="fa fa-heart icono" /></a></div>
-                        <div className="op-i"><a href="/profile" {...this.state.uid ? '' : this.handleGoToProfile} data-toggle="tooltip" data-placement="bottom" title="Perfil"><i className="fa fa-user icono" /></a></div>
+                        <div className="op-i"><a href="/chatting" data-toggle="tooltip" data-placement="bottom" title="Chat" onClick={this.handleGoToChatting} ><i className="fa fa-heart icono" /></a></div>
+                        <div className="op-i"><a href="/profile" onClick={this.handleGoToProfile} data-toggle="tooltip" data-placement="bottom" title="Perfil"><i className="fa fa-user icono" /></a></div>
                     </div>
                 </div>
                 </div>
