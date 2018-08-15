@@ -149,9 +149,8 @@ class Signup extends Component {
         uid: res.user.uid || 'null'
       }, error => {
         if(error) { console.log(error); }
-        else { window.location.replace("/home"); }
+        else { this.addOneMoreUserCount(); window.location.replace("/home"); }
       });
-      this.addOneMoreUserCount();
     }
 
     getAge = (dateString) => {

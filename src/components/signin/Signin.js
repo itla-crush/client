@@ -3,7 +3,6 @@
 import firebase from 'firebase';
 import _ from 'lodash';
 import swal from 'sweetalert';
-import { Link } from 'react-router-dom';
 
 // Assets
 import './signin.css';

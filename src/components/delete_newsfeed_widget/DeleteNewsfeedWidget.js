@@ -13,7 +13,7 @@ class DeleteNewsfeedWidget extends Component {
     }
 
     handleSubmitDelete = () => {
-        var isPublic = this.props.isPublic;
+        // var isPublic = this.props.isPublic;
         var newsfeedReportedId = this.props.newsfeedId;
         var uid = this.props.uidReported;
         var timestamp = {

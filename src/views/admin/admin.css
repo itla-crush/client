@@ -4,10 +4,15 @@
 .estadisticas{
     width: 90%;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .estadisticas .est-users,
 .estadisticas .est-declaraciones,
 .estadisticas .est-declaraciones-report{
+    width: 45%;
     font-family:"AbeeZee";
     margin: auto;
     margin-bottom: 32px;
@@ -19,23 +24,22 @@
     box-sizing: border-box;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
 }
-.estadisticas .est-users:hover{
+.estadisticas .est-users:hover {
     background: rgb(243, 243, 243);
     cursor: pointer;
 }
-.estadisticas .est-declaraciones:hover{
+.estadisticas .est-declaraciones:hover {
     background: rgb(243, 243, 243);
     cursor: pointer;
 }
-.estadisticas .est-declaraciones-report:hover{
+.estadisticas .est-declaraciones-report:hover {
     background: rgb(243, 243, 243);
     cursor: pointer;
 }
-
 
 .estadisticas .est-users .fas,
 .estadisticas .est-declaraciones .fas,
-.estadisticas .est-declaraciones-report .far{
+.estadisticas .est-declaraciones-report .far {
     display: flex;
     justify-content: center;
     padding: 40px;
@@ -45,8 +49,9 @@
     color: #FFFFFA;
     border-radius: 8px 0 0 8px;
 }
-.estadisticas .est-users .fas{ background: #0F8B8D;}
-.estadisticas .est-declaraciones .fas { background: #FFE74C;}
+
+.estadisticas .est-users .fas{ background: #0F8B8D; }
+.estadisticas .est-declaraciones .fas { background: #FFE74C; }
 .estadisticas .est-declaraciones-report .far { background: #800E13; } 
 
 .info-t{

@@ -12,7 +12,6 @@ class Admin extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            users: null,
             analytics: {
                 usersCount: null,
                 postsCount: null,
@@ -20,16 +19,14 @@ class Admin extends Component{
                 deletedPostsCount: null
             }
         }
+        this.loadAnalytics = this.loadAnalytics.bind(this);
+        this.loadAnalytics();
     }
 
     componentDidMount() {
-        firebase.database().ref('users/').orderByChild('displayName').on('value', snapshot => {
-          var users = snapshot.val();
-          if(users) {
-            this.setState({ users });
-          }
-        });
+    }
 
+    loadAnalytics = () => {
         firebase.database().ref('analytics/').on('value', snapshot => {
           var analytics = snapshot.val();
           if(analytics) {
