@@ -5,7 +5,8 @@ import _ from 'lodash';
 // Assets
 import './newsfeed.css';
 
-import '../../../node_modules/aos/dist/aos.css'
+import ReportNewsfeedWidget from '../report_newsfeed_widget/ReportNewsfeedWidget';
+// import '../../../node_modules/aos/dist/aos.css'
 
 class Newsfeed extends Component {
     constructor(props) {
@@ -19,6 +20,20 @@ class Newsfeed extends Component {
       this.getMonth = this.getMonth.bind(this);
       this.handleFocusComment = this.handleFocusComment.bind(this);
       this.goToFriend = this.goToFriend.bind(this);
+      this.handleReportNewsfeed = this.handleReportNewsfeed.bind(this);
+    }
+
+    componentDidMount() {
+      var postsRef = firebase.database().ref(`posts/${this.props.id}/comments`);
+      postsRef.on('value', snapshot => {
+        var comments = snapshot.val();
+        if(comments) {
+          this.setState({ comments });
+        }
+      });
+      // AOS.init({
+      //   duration : 500
+      // });
     }
 
     addBootstrap4 = () => {
@@ -77,6 +92,12 @@ class Newsfeed extends Component {
       document.getElementById(`textareaComment${this.props.id}`).focus();
     }
 
+    handleReportNewsfeed = (event) => {
+      event.preventDefault();
+      // console.log(this.props.id || 'null');
+      this.props.newsfeedIdMethod(this.props.id, this.props.data.fromUid);
+    }
+
     handleLike = (event) => {
       event.preventDefault();
 
@@ -116,19 +137,6 @@ class Newsfeed extends Component {
       return meses[month];
     }
 
-    componentDidMount() {
-      var postsRef = firebase.database().ref(`posts/${this.props.id}/comments`);
-      postsRef.on('value', snapshot => {
-        var comments = snapshot.val();
-        if(comments) {
-          this.setState({ comments });
-        }
-      });
-      // AOS.init({
-      //   duration : 500
-      // });
-    }
-
     goToFriend = (e) =>{
       if(this.props.data.isAnonimous) {
         e.preventDefault();
@@ -150,18 +158,19 @@ class Newsfeed extends Component {
         <article className="post">
           { sesion ? 
               <a className="button-setting"
-                  > 
+                  data-toggle="modal" 
+                  data-target="#reportNewsfeedModal"
+                  onClick={this.handleReportNewsfeed} > 
                 <i className="fas fa-ellipsis-h"
-                // href="#"
+                  // href="#"
                   // onClick={e => e.preventDefault()}
-                  role="button"
-                  rel="popover"
-                  data-toggle="popover" 
+                  // role="tooltip"
+                  // rel="tooltip"
                   // data-trigger="focus" 
+                  // data-content="¿Repotar publicación?"
+                  data-toggle="tooltip" 
                   data-placement="bottom" 
-                  // title="Reportar"
-                  data-content="¿Repotar publicación?"
-                ></i>
+                  title="Reportar publicación" ></i>
                 {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
               </a> : ""
           }
@@ -226,6 +235,7 @@ class Newsfeed extends Component {
             </div>
           </div>
           {/* <Aos/> */}
+          {/* { sesion ? <ReportNewsfeedWidget NewsfeedId={this.props.id || null} /> : "" } */}
         </article>
         //</div>
       );

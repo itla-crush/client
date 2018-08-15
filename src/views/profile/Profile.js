@@ -5,6 +5,7 @@ import _ from 'lodash';
 // Components
 import Header from '../../components/header/Header';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
+import ReportNewsfeedWidget from '../../components/report_newsfeed_widget/ReportNewsfeedWidget';
 
 import './profile.css';
 
@@ -19,6 +20,8 @@ export default class Profile extends Component {
           isVisited: false,
           visitedCount: null,
           nextProps: false,
+          newsfeedId: null,
+          uidReported: null,
         //   currentUserUid: null,
         //   followers: null,
           user: {
@@ -212,6 +215,12 @@ export default class Profile extends Component {
         this.setState({ isVisited: true });
     }
 
+    newsfeedIdMethod = (newsfeedId, uidReported) => {
+        // console.log(newsfeedId);
+        this.setState({ newsfeedId });
+        this.setState({ uidReported });
+    }
+
     // loadFollowers = () => {
     //     var uid = this.state.user.uid;
     //     if(uid) {
@@ -275,8 +284,8 @@ export default class Profile extends Component {
         var posts = this.state.posts;
         var postsToMe = this.state.postsToMe;
         var friend = this.props.friend;
-        // var sesion = window.localStorage.getItem('sesion');
-        // sesion = (sesion === 'true') ? true : false;
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
 
         return(
         <div className="Profile"> 
@@ -352,11 +361,11 @@ export default class Profile extends Component {
                     <div className="w3-animate-opacity ">
                     {   this.state.showPost ? (
                             posts ? ( 
-                                Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
+                                Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
                             ) : ( "No hay publicaciones" )
                         ) : (
                             postsToMe ? ( 
-                                Object.keys(postsToMe).map((post) => <Newsfeed key={post} id={post} data={postsToMe[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
+                                Object.keys(postsToMe).map((post) => <Newsfeed key={post} id={post} data={postsToMe[post]} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
                             ) : ( "No hay declaraciones" )
                         )
                     }
@@ -415,6 +424,7 @@ export default class Profile extends Component {
             </div>
 
 
+                { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
             </div>
         );
     }

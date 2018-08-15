@@ -8,6 +8,7 @@ import CreatePost from '../../components/create_post/CreatePost';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
 import ChatSidebar from '../../components/chat_sidebar/ChatSidebar';
 // import ChatWidget from '../../components/chat_widget/ChatWidget';
+import ReportNewsfeedWidget from '../../components/report_newsfeed_widget/ReportNewsfeedWidget';
 import Footer from '../../components/footer/Footer';
 
 // Assets
@@ -20,6 +21,8 @@ class Home extends Component {
           chatId: null,
           users: null,
           posts: null,
+          newsfeedId: null,
+          uidReported: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -30,25 +33,10 @@ class Home extends Component {
             uid: null,
             visitedCount: null
           }
-        }
+        };
         this.addBootstrap4 = this.addBootstrap4.bind(this);
         this.addBootstrap4();
         this.signOut = this.signOut.bind(this);
-    }
-
-    openChat = (id) => {
-      // console.log(id);
-    }
-
-    signOut = () => {
-        firebase.auth().signOut();
-        alert('Sesion Cerrada');
-    }
-
-    addBootstrap4 = () => {
-        var pre = document.createElement('pre');
-        pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
-        document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -75,6 +63,27 @@ class Home extends Component {
       });
     }
 
+    openChat = (id) => {
+      // console.log(id);
+    }
+
+    signOut = () => {
+        firebase.auth().signOut();
+        alert('Sesion Cerrada');
+    }
+
+    addBootstrap4 = () => {
+        var pre = document.createElement('pre');
+        pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
+        document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
+    }
+
+    newsfeedIdMethod = (newsfeedId, uidReported) => {
+      // console.log(newsfeedId);
+      this.setState({ newsfeedId });
+      this.setState({ uidReported });
+    }
+
     render() {
       var posts = this.state.posts;
       var sesion = window.localStorage.getItem('sesion');
@@ -91,7 +100,7 @@ class Home extends Component {
                     { sesion ? (<CreatePost uid={this.state.user.uid} photoUrl={this.state.user.photoUrl || 'https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0'} username={this.state.user.username} displayName={this.state.user.displayName} />) : ("") }
                     <div>
                       { posts ? ( 
-                        Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
+                        Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post]} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.state.user.uid || 'null'} currentUserDisplayName={this.state.user.displayName || ''} />).reverse() 
                         ) : ( "" )
                       }
                     </div>
@@ -102,6 +111,7 @@ class Home extends Component {
               {/* { sesion ? (<ChatWidget chatId={this.state.chatId || ''} messages={this.state.messages || ''} currentUserUid={this.state.user.uid} />) : ("") } */}
             </div>
             <Footer />
+            { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
         </div>
       );
     
