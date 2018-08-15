@@ -11,16 +11,16 @@ class Listusers extends Component{
     constructor(props){
         super(props);
 
-        this.addBootstrap4 = this.addBootstrap4.bind(this);
-        this.addBootstrap4();
+        // this.addBootstrap4 = this.addBootstrap4.bind(this);
+        // this.addBootstrap4();
     }
 
 
-    addBootstrap4 = () => {
-        var pre = document.createElement('pre');
-        pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
-        document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
-    }
+    // addBootstrap4 = () => {
+    //     var pre = document.createElement('pre');
+    //     pre.innerHTML = '<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">';	
+    //     document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
+    // }
 
 
     render(){

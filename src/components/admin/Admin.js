@@ -14,6 +14,7 @@ class Admin extends Component{
                     <Tablero />
                    {/* estadisticas usuarios */}
                    <div className="estadisticas">
+                       
                        <div className="est-users">
                          <i class="fas fa-users"></i>
                          <div className="info-t">
@@ -36,6 +37,14 @@ class Admin extends Component{
                          <div className="info-t">
                              <h6 className="tl">Publicaciones reportadas</h6>
                              <p className="est">27</p>
+                         </div>
+                       </div>
+
+                       <div className="est-declaraciones-report">
+                         <i class="far fa-bell"></i>
+                         <div className="info-t">
+                             <h6 className="tl">Otra cosa</h6>
+                             <p className="est">Otra cosa</p>
                          </div>
                        </div>
                    </div>

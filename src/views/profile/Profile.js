@@ -290,6 +290,60 @@ export default class Profile extends Component {
         return(
         <div className="Profile"> 
             <Header />
+
+            {/* SEGUNDA VISTA */}
+           <div className="pf-segundo" id="pf-segundo">
+                <div className="foto">
+                <img src={this.state.user.photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt={this.state.user.displayName} />
+                </div>
+                <section className="informacion ">
+                    <div className="datos-conf">
+                    <div className="nombre-usuario">
+                    <h2>{this.state.user.displayName || 'Username'}</h2>
+                    <p>{this.state.user.username ? `@${this.state.user.username}` : '@username'}</p>
+                    </div>
+                    {   friend ? (
+                                            ""
+                                    ) : (
+                                    <div className="editar">
+                                        <div><a className="btn-editar-op" href="/edit_profile">Editar Perfil</a></div>
+                                            <div className="btnOp-salir">
+                                                <button
+                                                    onClick={this.logout}
+                                                    className="btn-s"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom" 
+                                                    title="Cerrar sesión"
+                                                    data-trigger="hover">
+                                                    {/* <i className="fas fa-sign-out-alt iconFontAwesome"></i> */}
+                                                    <i className="fas fa-power-off iconFontAwesome"></i>
+                                                    {/* <img src="https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2FbtnOptions.png?alt=media&token=e11bac00-b675-4283-a726-4b145df53e64"/> */}
+                                                </button>
+                                            </div> 
+                                    </div>
+                                    )
+                                }
+                    </div>
+                </section>
+                </div>
+                <div className="estadist-segundo">
+                    <div className="seguidos">
+                        <p>Vistas</p>
+                        <h5>{this.state.visitedCount || '0'}</h5>
+                    </div>
+                    <div className="realizados">
+                        <p>Publicaciones</p>
+                        <h5>{this.state.user.postCount || '0'}</h5>
+                    </div>
+                    <div className="privado">
+                        <p>Privados</p>
+                        <h5>{this.state.user.postToMeCount || '0'}</h5>
+                    </div>
+                </div>
+ 
+
+
+                {/* PRIMERA VISTA */}
                 <div className="pf">
                     <div className="foto">
                         <img src={this.state.user.photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt={this.state.user.displayName} />
@@ -371,61 +425,10 @@ export default class Profile extends Component {
                     }
                     </div>
                 </div>
-                
-
-                {/* 
-                <div className="b w3-animate-opacity ">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="c w3-animate-opacity ">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="a w3-animate-opacity ">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="b w3-animate-opacity ">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="c w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="a w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="b w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="c w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="a w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="b w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div>
-                <div className="c w3-animate-opacity">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                    Quaerat fugiat eaque, incidunt cum quod aliquid.
-                </div> */}
-
-                    
-            
             </div>
 
-
-                { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
-            </div>
+            { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
+        </div>
         );
     }
 }
