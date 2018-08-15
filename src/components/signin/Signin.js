@@ -152,11 +152,11 @@ class Signin extends Component {
                   <input id="passwordLogin" placeholder="Contraseña" type="password" className="validate" required />
                 </div>
                 <div className="boton">
-                  <button onClick={this.signInWithEmail} className="btn-iniciar-sesion">Iniciar Sesion</button>
+                  <button style={{cursor:"pointer"}} onClick={this.signInWithEmail} className="btn-iniciar-sesion">Iniciar Sesion</button>
                 </div>
                 <div className="boton">
                   <a href="/home" className="center-content">
-                    <input type="button" onClick={this.handleGuest} defaultValue="Invitado" className="btn2" /> 
+                    <input style={{cursor:"pointer"}} type="button" onClick={this.handleGuest} defaultValue="Invitado" className="btn2" /> 
                   </a>
                 </div>
               </form>

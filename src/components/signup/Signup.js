@@ -25,6 +25,7 @@ class Signup extends Component {
       this.validateForm = this.validateForm.bind(this);
       this.getAge = this.getAge.bind(this);
       this.validateDate = this.validateDate.bind(this);
+      this.addOneMoreUserCount = this.addOneMoreUserCount.bind(this);
     }
 
     componentDidMount() {
@@ -150,6 +151,7 @@ class Signup extends Component {
         if(error) { console.log(error); }
         else { window.location.replace("/home"); }
       });
+      this.addOneMoreUserCount();
     }
 
     getAge = (dateString) => {
@@ -196,6 +198,7 @@ class Signup extends Component {
             if(error) {
               console.log(error);
             } else {
+              this.addOneMoreUserCount();
               window.location.replace("/home");
             }
           });
@@ -323,6 +326,21 @@ class Signup extends Component {
       // });
     }
 
+    addOneMoreUserCount = () => {
+      var usersCount = firebase.database().ref('/analytics/usersCount');
+      usersCount.transaction(currentRank => {
+          
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+
+        return currentRank;
+      });
+
+    }
+
     render() {
       return (
         <div className="in-container-right">
@@ -356,12 +374,12 @@ class Signup extends Component {
             </div>
             {/* <div class=""> */}
             <div className="boton">
-                <button onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>
+                <button style={{cursor:"pointer"}} onClick={this.signUpWithEmail} className="btn-registro">Regístrate</button>
             </div>
             {/* </div> */}
           </form>
           <div className="boton">
-            <button onClick={this.signInWithGoogle} className="btn2">Ingresar con Google</button>
+            <button style={{cursor:"pointer"}} onClick={this.signInWithGoogle} className="btn2">Ingresar con Google</button>
           </div>
         </div>
       );

@@ -10,6 +10,7 @@ class ReportNewsfeedWidget extends Component {
         };
         this.handleSubmitReport = this.handleSubmitReport.bind(this);
         this.handleChangeCheckedRadio = this.handleChangeCheckedRadio.bind(this);
+        this.addOneMoreReportedPostsCount = this.addOneMoreReportedPostsCount.bind(this);
     }
 
     handleSubmitReport = () => {
@@ -63,6 +64,7 @@ class ReportNewsfeedWidget extends Component {
 
                 console.log('Reporte guardado correctamente!');
                 // alert('Reporte guardado correctamente!');
+                this.addOneMoreReportedPostCount();
                 swal("Exito!", "Su reporte ha sido enviado.", "success");
 
             }
@@ -79,6 +81,21 @@ class ReportNewsfeedWidget extends Component {
     handleChangeCheckedRadio = (e) => {
         var radioChecked = e.target.value;
         this.setState({ radioChecked });
+    }
+
+    addOneMoreReportedPostsCount = () => {
+      var reportedPostsCount = firebase.database().ref('/analytics/reportedPostsCount');
+      reportedPostsCount.transaction(currentRank => {
+          
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+
+        return currentRank;
+      });
+
     }
 
     render() {

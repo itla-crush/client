@@ -31,6 +31,7 @@ class CreatePost extends Component {
       this.handleOnFocusPost = this.handleOnFocusPost.bind(this);
       this.clearForm = this.clearForm.bind(this);
       this.increasePostCount = this.increasePostCount.bind(this);
+      this.addOneMorePostsCount = this.addOneMorePostsCount.bind(this);
       
       // this.getUserDataFromSearch = this.getUserDataFromSearch.bind(this);
     }
@@ -211,6 +212,7 @@ class CreatePost extends Component {
         firebase.database().ref().update(updates);
       }
       this.increasePostCount(postData.fromUid, postData.toUid);
+      this.addOneMorePostsCount();
       this.clearForm();
     }
 
@@ -304,6 +306,21 @@ class CreatePost extends Component {
       // imageView.innerHTML = '';
       this.setState({ imageFile: null });
       this.setState({ newPost: {toUsername: null, toDiplayName: null, toUid: null} });
+    }
+
+    addOneMorePostsCount = () => {
+      var postsCount = firebase.database().ref('/analytics/postsCount');
+      postsCount.transaction(currentRank => {
+          
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+
+        return currentRank;
+      });
+
     }
     
     render() {

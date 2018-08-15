@@ -9,6 +9,7 @@ class DeleteNewsfeedWidget extends Component {
             // radioChecked: null
         };
         this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
+        this.addOneMoreDeletedPostsCount = this.addOneMoreDeletedPostsCount.bind(this);
     }
 
     handleSubmitDelete = () => {
@@ -68,6 +69,21 @@ class DeleteNewsfeedWidget extends Component {
         });
     }
 
+    addOneMoreDeletedPostsCount = () => {
+      var deletedPostsCount = firebase.database().ref('/analytics/deletedPostsCount');
+      deletedPostsCount.transaction(currentRank => {
+          
+        if(currentRank) {
+          currentRank++;
+        } else {
+          currentRank = 1;
+        }
+
+        return currentRank;
+      });
+
+    }
+
     render() {
         return (
             <div className="modal fade" id="deleteNewsfeedModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -81,8 +97,8 @@ class DeleteNewsfeedWidget extends Component {
                     </div>
                     <div className="modal-body">
                         <h5>¿Seguro que quieres eliminar esta declaración?</h5>
-                        
-                        {this.props.newsfeedId}
+                        <p className="text-secondary">Si eliminas esta declaración ya no podrás recuperarla.</p>
+                        {/* {this.props.newsfeedId} */}
 
                     </div>
                     <div className="modal-footer">
