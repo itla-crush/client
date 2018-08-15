@@ -2,6 +2,7 @@
 import firebase from 'firebase';
 import _ from 'lodash';
 import ResultWidget from '../../components/result_widget/ResultWidget';
+import swal from 'sweetalert';
 
 // Assets
 import './createpost.css'; 
@@ -144,15 +145,18 @@ class CreatePost extends Component {
             this.submitNewPost(postData, imageFile);
           } else {
             console.log('Debes elegir el destinatario.');
-            alert('Debes elegir el destinatario.');
+            // alert('Debes elegir el destinatario.');
+            swal("Alerta!", "Debes elegir el destinatario.", "info");
           }
         } else {
-          console.log('La declaracion debe tener mas de 10 caracteres.');
-          alert('La declaracion debe tener mas de 10 caracteres.');
+          console.log('La declaracion debe tener mas de 5 caracteres.');
+          // alert('La declaracion debe tener mas de 5 caracteres.');
+          swal("Alerta!", "La declaracion debe tener mas de 5 caracteres.", "info");
         }
       } else {
         console.log('La declaracion es obligatoria.');
-        alert('La declaracion es obligatoria.');
+        // alert('La declaracion es obligatoria.');
+        swal("Alerta!", "La declaracion es obligatoria.", "info");
       }
 
     }

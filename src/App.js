@@ -167,14 +167,14 @@ class App extends Component {
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />  
-                        <Route exact strict path='/' exact strict 
+                        <Route exact strict path='/' 
                             render={(props) => ( 
                                 sesion ? (
                                     <Redirect to="/home"/>
                                 ) : (
                                     <Redirect to="/index"/> )
                             )} />
-                        <Route exact strict path='' exact strict
+                        <Route exact strict path=''
                             render={(props) => ( 
                                 sesion ? (
                                     <Redirect to="/home"/>

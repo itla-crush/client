@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import swal from 'sweetalert';
 
 class ReportNewsfeedWidget extends Component {
     constructor(props) {
@@ -39,7 +40,9 @@ class ReportNewsfeedWidget extends Component {
             if (error) {
                 // The write failed...
                 console.log(error);
-                alert('Error al procesar su petición.');
+                // alert('Error al procesar su petición.');
+
+                swal("Error!", "Ocurrió un error al procesar su petición.", "error");
             } else {
                 // Data saved successfully!
                 var reportedCount = firebase.database().ref(`/users/${uidReported}/reportedCount/`);
@@ -59,7 +62,9 @@ class ReportNewsfeedWidget extends Component {
                 document.getElementById('dismissReportWidget').click();
 
                 console.log('Reporte guardado correctamente!');
-                alert('Reporte guardado correctamente!');
+                // alert('Reporte guardado correctamente!');
+                swal("Exito!", "Su reporte ha sido enviado.", "success");
+
             }
         });
 

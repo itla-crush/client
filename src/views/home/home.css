@@ -117,12 +117,6 @@ body {
     left: 16px;
 } 
 
-.right-aside {
-    float: right;
-    right: 16px;
-    max-height: 200px;
-}
-
 .left-aside section,
 .right-aside section {
     width: 80%;

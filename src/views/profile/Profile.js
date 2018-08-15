@@ -221,7 +221,7 @@ export default class Profile extends Component {
         // console.log(newsfeedId);
         this.setState({ newsfeedId });
         this.setState({ uidReported });
-        this.setState({ isPublic }); 
+        this.setState({ isPublic });
     }
 
     // loadFollowers = () => {

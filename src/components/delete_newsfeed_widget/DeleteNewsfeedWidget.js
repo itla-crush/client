@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import swal from 'sweetalert';
 
 class DeleteNewsfeedWidget extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class DeleteNewsfeedWidget extends Component {
     handleSubmitDelete = () => {
         var isPublic = this.props.isPublic;
         var newsfeedReportedId = this.props.newsfeedId;
+        var uid = this.props.uidReported;
         var timestamp = {
             day: new Date().getDate(),
             month: new Date().getMonth(),
@@ -21,14 +23,14 @@ class DeleteNewsfeedWidget extends Component {
             hour: new Date().getHours()
         };
 
-        console.log({newsfeedReportedId, timestamp, isPublic});
+        // console.log({newsfeedReportedId, timestamp, isPublic});
 
-        firebase.database().ref(`posts/${newsfeedReportedId}`).once('value')
+        firebase.database().ref(`users/${uid}/posts/${newsfeedReportedId}`).once('value')
         .then(snapshot => {
             if(snapshot) {
                 var newsfeed = snapshot.val();
-                var fromUid = newsfeed.fromUid, toUid = newsfeed.toUid, isPublic = newsfeed.isPublic;
-                console.log({fromUid, toUid, isPublic});
+                // var fromUid = newsfeed.fromUid, toUid = newsfeed.toUid, isPublic = newsfeed.isPublic;
+                // console.log({fromUid, toUid, isPublic});
                 firebase.database().ref(`posts-deleted/${newsfeedReportedId}`).set({
                     newsfeed,
                     timestamp
@@ -36,25 +38,34 @@ class DeleteNewsfeedWidget extends Component {
                     if(error) {
                         // The write failed...
                         console.log(error);
-                        alert('Error al procesar su petición.');
+                        // alert('Error al procesar su petición.');
+                        swal("Error!", "Ocurrió un error al procesar su petición.", "error");
                     } else {
                         // Data saved successfully!
                         var updates = {};
 
                         if(newsfeed.isPublic) {
-                          updates[`/posts/${newsfeedReportedId}`] = null;
+                            // updates[`/posts/${newsfeedReportedId}`] = null;
+                            firebase.database().ref(`/posts/${newsfeedReportedId}`).remove();
                         }
-                        updates[`/users/${newsfeed.fromUid}/posts/${newsfeedReportedId}`] = null;
-                        updates[`/users/${newsfeed.toUid}/posts-to-me/${newsfeedReportedId}`] = null;
+                        // updates[`/users/${newsfeed.fromUid}/posts/${newsfeedReportedId}`] = null;
+                        // updates[`/users/${newsfeed.toUid}/posts-to-me/${newsfeedReportedId}`] = null;
+                        firebase.database().ref(`/users/${newsfeed.fromUid}/posts/${newsfeedReportedId}`).remove();
+                        firebase.database().ref(`/users/${newsfeed.toUid}/posts-to-me/${newsfeedReportedId}`).remove();
 
                         firebase.database().ref().update(updates);
                         document.getElementById('dismissDeleteWidget').click();
+
+                        swal("Éxito!", "La declaración ha sido eliminada.", "success");
 
                     }
                 });
             }
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            swal("Error!", "Ocurrió un error al procesar su petición.", "error");
+        });
     }
 
     render() {

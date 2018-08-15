@@ -1,5 +1,8 @@
 .right-aside {
     display: block;
+    max-height: 300px;
+    float: right;
+    right: 16px;
 }
 
 .right-aside section div h4 {
@@ -14,7 +17,7 @@
 }
 
 .chat-sidebar {
-    max-height: 150px;
+    max-height: 250px;
     overflow-x: hidden;
     overflow-y: auto;
 }
