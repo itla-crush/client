@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 // import _ from 'lodash';
 
 // Assets
@@ -43,6 +44,7 @@ class Admin extends Component{
                    {/* estadisticas usuarios */}
                    <div className="estadisticas">
                        
+                        <Link to="/list-users" >
                        <div className="est-users">
                          <i className="fas fa-users"></i>
                          <div className="info-t">
@@ -50,7 +52,9 @@ class Admin extends Component{
                              <p className="est">{this.state.analytics.usersCount || '0'}</p>
                          </div>
                        </div>
+                         </Link>
                          {/* estadisticas declaraciones */}
+                       <Link to="/publications" >
                        <div className="est-declaraciones">
                          <i className="fas fa-chart-pie"></i>
                          <div className="info-t">
@@ -58,8 +62,10 @@ class Admin extends Component{
                              <p className="est">{this.state.analytics.postsCount || '0'}</p>
                          </div>
                        </div>
+                         </Link>
 
                          {/* estadisticas declaraciones reportadas */}
+                        <Link to="/publicationsReports" >
                        <div className="est-declaraciones-report">
                          <i className="far fa-bell"></i>
                          <div className="info-t">
@@ -67,7 +73,9 @@ class Admin extends Component{
                              <p className="est">{this.state.analytics.reportedPostsCount || '0'}</p>
                          </div>
                        </div>
+                         </Link>
 
+                        <Link to="/publicationsDeleted" >
                        <div className="est-declaraciones-report">
                          <i className="far fa-bell"></i>
                          <div className="info-t">
@@ -75,6 +83,7 @@ class Admin extends Component{
                              <p className="est">{this.state.analytics.deletedPostsCount || '0'}</p>
                          </div>
                        </div>
+                         </Link>
                    </div>
 
                </div>

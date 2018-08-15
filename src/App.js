@@ -166,7 +166,14 @@ class App extends Component {
                                     <PublicationsReports user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
-                         )} />  
+                         )} />    
+                         <Route path='/publicationsDeleted' 
+                            render={(props) => (
+                                sesion ? (
+                                    <PublicationsReports user={this.state.user} />
+                                ) : (
+                                    <Redirect to="/index"/> )
+                         )} /> 
                         <Route exact strict path='/' 
                             render={(props) => ( 
                                 sesion ? (
