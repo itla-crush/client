@@ -182,6 +182,9 @@ class Newsfeed extends Component {
       var modal = deleteOrReport ? "#deleteNewsfeedModal" : "#reportNewsfeedModal";
       var tooltip = deleteOrReport ? "Eliminar declaración" : "Reportar declaración";
 
+      modal = isAdmin ? "#deleteNewsfeedModal" : modal;
+      tooltip = isAdmin ? "Eliminar declaración" : tooltip;
+
       return (
         // <div data-aos="zoom-in">
         <article className="post">
