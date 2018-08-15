@@ -22,19 +22,39 @@ class DeleteNewsfeedWidget extends Component {
         };
 
         console.log({newsfeedReportedId, timestamp, isPublic});
-        
-        // firebase.database().ref('posts-reported/').remove();
 
-        // var updates = {};
+        firebase.database().ref(`posts/${newsfeedReportedId}`).once('value')
+        .then(snapshot => {
+            if(snapshot) {
+                var newsfeed = snapshot.val();
+                var fromUid = newsfeed.fromUid, toUid = newsfeed.toUid, isPublic = newsfeed.isPublic;
+                console.log({fromUid, toUid, isPublic});
+                firebase.database().ref(`posts-deleted/${newsfeedReportedId}`).set({
+                    newsfeed,
+                    timestamp
+                }, error => {
+                    if(error) {
+                        // The write failed...
+                        console.log(error);
+                        alert('Error al procesar su petición.');
+                    } else {
+                        // Data saved successfully!
+                        var updates = {};
 
-        // if(this.props.isPublic) {
-        //   updates[`/posts/${this.props.id}/likes`] = currentRank;
-        // }
-        // updates['/posts/' + newPostKey] = postData;
-        // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+                        if(newsfeed.isPublic) {
+                          updates[`/posts/${newsfeedReportedId}`] = null;
+                        }
+                        updates[`/users/${newsfeed.fromUid}/posts/${newsfeedReportedId}`] = null;
+                        updates[`/users/${newsfeed.toUid}/posts-to-me/${newsfeedReportedId}`] = null;
 
-        // return firebase.database().ref().update(updates);
-        
+                        firebase.database().ref().update(updates);
+                        document.getElementById('dismissDeleteWidget').click();
+
+                    }
+                });
+            }
+        })
+        .catch(error => console.log(error));
     }
 
     render() {
@@ -49,14 +69,14 @@ class DeleteNewsfeedWidget extends Component {
                         </button>
                     </div>
                     <div className="modal-body">
-                        <h5>¿Desea eliminar esta declaración?</h5>
+                        <h5>¿Seguro que quieres eliminar esta declaración?</h5>
                         
                         {this.props.newsfeedId}
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal" id="dismissReportWidget">Cancelar</button>
-                        <button onClick={this.handleSubmitDelete} type="button" className="btn btn-danger">Aceptar</button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal" id="dismissDeleteWidget">Cancelar</button>
+                        <button onClick={this.handleSubmitDelete} type="button" className="btn btn-danger">Eliminar declaración</button>
                     </div>
                     </div>
                 </div>
