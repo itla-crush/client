@@ -11,9 +11,10 @@ import Page404 from './views/page404/Page404';
 import Forgotpassword from './views/forgotpassword/Forgotpassword';
 import Chatting from './views/chatting/Chatting';
 import Admin from './views/admin/Admin';
-import Listusers from './components/list-users/Listusers';
-import Publications from './components/publications/Publications';
-import PublicationsReports from './components/publicationsReports/PublicationsReports';
+import ListUsers from './components/list-users/ListUsers';
+import PostsList from './components/posts_list/PostsList';
+import PostsReported from './components/posts_reported/PostsReported';
+import PostsDeleted from './components/posts_deleted/PostsDeleted';
 
 
 // import { isUserSignedIn, stateAuth, signOut } from './functions/firebase-functions';
@@ -149,28 +150,28 @@ class App extends Component {
                         <Route path='/list-users' 
                             render={(props) => (
                                 sesion ? (
-                                    <Listusers user={this.state.user} />
+                                    <ListUsers user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />   
-                         <Route path='/publications' 
+                         <Route path='/posts-list' 
                             render={(props) => (
                                 sesion ? (
-                                    <Publications user={this.state.user} />
+                                    <PostsList user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />   
-                         <Route path='/publicationsReports' 
+                         <Route path='/posts-reported' 
                             render={(props) => (
                                 sesion ? (
-                                    <PublicationsReports user={this.state.user} />
+                                    <PostsReported user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} />    
-                         <Route path='/publicationsDeleted' 
+                         <Route path='/posts-deleted' 
                             render={(props) => (
                                 sesion ? (
-                                    <PublicationsReports user={this.state.user} />
+                                    <PostsDeleted user={this.state.user} />
                                 ) : (
                                     <Redirect to="/index"/> )
                          )} /> 

@@ -9,7 +9,8 @@ class DeleteNewsfeedWidget extends Component {
             // radioChecked: null
         };
         this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
-        this.addOneMoreDeletedPostsCount = this.addOneMoreDeletedPostsCount.bind(this);
+        this.addOneMorePostsCount = this.addOneMoreDeletedPostsCount.bind(this);
+        this.addOneLessPostsCount = this.addOneLessPostsCount.bind(this);
     }
 
     handleSubmitDelete = () => {
@@ -77,6 +78,22 @@ class DeleteNewsfeedWidget extends Component {
           currentRank++;
         } else {
           currentRank = 1;
+        }
+
+        return currentRank;
+      });
+    
+      this.addOneLessPostsCount();
+    }
+
+    addOneLessPostsCount = () => {
+      var postsCount = firebase.database().ref('/analytics/postsCount');
+      postsCount.transaction(currentRank => {
+          
+        if(currentRank) {
+          currentRank--;
+        } else {
+          currentRank = 0;
         }
 
         return currentRank;

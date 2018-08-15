@@ -53,8 +53,9 @@ class Admin extends Component{
                          </div>
                        </div>
                          </Link>
+
                          {/* estadisticas declaraciones */}
-                       <Link to="/publications" >
+                       <Link to="/posts-list" >
                        <div className="est-declaraciones">
                          <i className="fas fa-chart-pie"></i>
                          <div className="info-t">
@@ -65,7 +66,7 @@ class Admin extends Component{
                          </Link>
 
                          {/* estadisticas declaraciones reportadas */}
-                        <Link to="/publicationsReports" >
+                        <Link to="/posts-reported" >
                        <div className="est-declaraciones-report">
                          <i className="far fa-bell"></i>
                          <div className="info-t">
@@ -75,7 +76,7 @@ class Admin extends Component{
                        </div>
                          </Link>
 
-                        <Link to="/publicationsDeleted" >
+                        <Link to="/posts-deleted" >
                        <div className="est-declaraciones-report">
                          <i className="far fa-bell"></i>
                          <div className="info-t">
