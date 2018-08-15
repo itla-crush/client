@@ -6,6 +6,7 @@ import _ from 'lodash';
 import Header from '../../components/header/Header';
 import Newsfeed from '../../components/newsfeed/NewsFeed';
 import ReportNewsfeedWidget from '../../components/report_newsfeed_widget/ReportNewsfeedWidget';
+import DeleteNewsfeedWidget from '../../components/delete_newsfeed_widget/DeleteNewsfeedWidget';
 
 import './profile.css';
 
@@ -22,6 +23,7 @@ export default class Profile extends Component {
           nextProps: false,
           newsfeedId: null,
           uidReported: null,
+          isPublic: null,
         //   currentUserUid: null,
         //   followers: null,
           user: {
@@ -215,10 +217,11 @@ export default class Profile extends Component {
         this.setState({ isVisited: true });
     }
 
-    newsfeedIdMethod = (newsfeedId, uidReported) => {
+    newsfeedIdMethod = (newsfeedId, uidReported, isPublic) => {
         // console.log(newsfeedId);
         this.setState({ newsfeedId });
         this.setState({ uidReported });
+        this.setState({ isPublic }); 
     }
 
     // loadFollowers = () => {
@@ -426,8 +429,8 @@ export default class Profile extends Component {
                     </div>
                 </div>
             </div>
-
             { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
+            { sesion ? <DeleteNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} isPublic={this.state.isPublic} /> : "" }
         </div>
         );
     }

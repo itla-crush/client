@@ -5,7 +5,7 @@ import _ from 'lodash';
 // Assets
 import './newsfeed.css';
 
-import ReportNewsfeedWidget from '../report_newsfeed_widget/ReportNewsfeedWidget';
+// import ReportNewsfeedWidget from '../report_newsfeed_widget/ReportNewsfeedWidget';
 // import '../../../node_modules/aos/dist/aos.css'
 
 class Newsfeed extends Component {
@@ -95,7 +95,7 @@ class Newsfeed extends Component {
     handleReportNewsfeed = (event) => {
       event.preventDefault();
       // console.log(this.props.id || 'null');
-      this.props.newsfeedIdMethod(this.props.id, this.props.data.fromUid);
+      this.props.newsfeedIdMethod(this.props.id, this.props.data.fromUid, this.props.data.isPublic);
     }
 
     handleLike = (event) => {
@@ -153,13 +153,15 @@ class Newsfeed extends Component {
       var sesion = window.localStorage.getItem('sesion');
       sesion = (sesion === 'true') ? true : false;
 
+      var deleteOrReport = this.props.currentUserUid === this.props.data.fromUid ? true : false;
+
       return (
         // <div data-aos="zoom-in">
         <article className="post">
           { sesion ? 
               <a className="button-setting"
                   data-toggle="modal" 
-                  data-target="#reportNewsfeedModal"
+                  data-target={deleteOrReport ? "#deleteNewsfeedModal" : "#reportNewsfeedModal"}
                   onClick={this.handleReportNewsfeed} > 
                 <i className="fas fa-ellipsis-h"
                   // href="#"
@@ -167,10 +169,10 @@ class Newsfeed extends Component {
                   // role="tooltip"
                   // rel="tooltip"
                   // data-trigger="focus" 
-                  // data-content="¿Repotar publicación?"
+                  // data-content="¿Repotar declaración?"
                   data-toggle="tooltip" 
                   data-placement="bottom" 
-                  title="Reportar publicación" ></i>
+                  title={deleteOrReport ? "Eliminar declaración" : "Reportar declaración"} ></i>
                 {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
               </a> : ""
           }

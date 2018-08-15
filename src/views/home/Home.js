@@ -9,6 +9,7 @@ import Newsfeed from '../../components/newsfeed/NewsFeed';
 import ChatSidebar from '../../components/chat_sidebar/ChatSidebar';
 // import ChatWidget from '../../components/chat_widget/ChatWidget';
 import ReportNewsfeedWidget from '../../components/report_newsfeed_widget/ReportNewsfeedWidget';
+import DeleteNewsfeedWidget from '../../components/delete_newsfeed_widget/DeleteNewsfeedWidget';
 import Footer from '../../components/footer/Footer';
 
 // Assets
@@ -23,6 +24,7 @@ class Home extends Component {
           posts: null,
           newsfeedId: null,
           uidReported: null,
+          isPublic: null,
           user: {
             displayName: null,
             photoUrl: null,
@@ -78,10 +80,11 @@ class Home extends Component {
         document.querySelector("head").insertBefore(pre, document.querySelector("head").childNodes[0]);
     }
 
-    newsfeedIdMethod = (newsfeedId, uidReported) => {
+    newsfeedIdMethod = (newsfeedId, uidReported, isPublic) => {
       // console.log(newsfeedId);
       this.setState({ newsfeedId });
       this.setState({ uidReported });
+      this.setState({ isPublic }); 
     }
 
     render() {
@@ -112,9 +115,10 @@ class Home extends Component {
             </div>
             <Footer />
             { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
+            { sesion ? <DeleteNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} isPublic={this.state.isPublic} /> : "" }
         </div>
       );
-    
+      
     }
   }
   
