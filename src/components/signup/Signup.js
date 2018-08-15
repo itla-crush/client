@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import firebase from 'firebase';
 import _ from 'lodash';
+import swal from 'sweetalert';
  
 // Assets
 import './signup.css';
@@ -103,26 +104,27 @@ class Signup extends Component {
 
       switch (code) {
         case "auth/invalid-email":
-          message = 'El correo no es válido';
+          message = 'El correo no es válido.';
           break;
         case "auth/wrong-password":
-          message = 'La contraseña es incorrecta';
+          message = 'La contraseña es incorrecta.';
           break;
         case "auth/user-not-found":
-          message = 'Este usuario no existe';
+          message = 'Este usuario no existe.';
           break;
         case "auth/weak-password":
-          message = 'La contraseña debe tener al menos 6 caracteres';
+          message = 'La contraseña debe tener al menos 6 caracteres.';
           break;
         case "auth/email-already-exists":
-          message = 'Este correo ya existe';
+          message = 'Este correo ya existe.';
           break;
         default:
           message = `code: ${code} message: ${text}`;
           break;
       }
       console.log(message);
-      alert(message);
+      // alert(message);
+      swal("Error!", message, "error");
     }
 
     writeUserData = (res) => {
@@ -243,48 +245,57 @@ class Signup extends Component {
                       if(_.isEqual(password, verifyPassword)) {
                         return userData;
                       } else {
-                        console.log('Las contraseñas no coinciden');
-                        alert('Las contraseñas no coinciden');
+                        // console.log('Las contraseñas no coinciden');
+                        // alert('Las contraseñas no coinciden');
+                        swal("Alerta!", "Las contraseñas no coinciden.", "info");
                         return false;
                       }
                     } else {
-                      console.log('La fecha selecciona debe ser menor a la actual');
-                      alert('La fecha selecciona debe ser menor a la actual');
+                      // console.log('La fecha selecciona debe ser menor a la actual');
+                      // alert('La fecha selecciona debe ser menor a la actual');
+                        swal("Alerta!", "La fecha selecciona debe ser menor a la actual.", "info");
                     return false;
                     }
                   } else {
-                    console.log('Debes seleccionar tu género');
-                    alert('Debes seleccionar tu género');
+                    // console.log('Debes seleccionar tu género');
+                    // alert('Debes seleccionar tu género');
+                    swal("Alerta!", "Debes seleccionar tu género.", "info");
                     return false;
                   }
                 } else {
-                  console.log('Debes escribir una contraseña');
-                  alert('Debes escribir una contraseña');
+                  // console.log('Debes escribir una contraseña');
+                  // alert('Debes escribir una contraseña');
+                  swal("Alerta!", "Debes escribir una contraseña.", "info");
                   return false;
                 }
               } else {
-                console.log('Debes escribir una contraseña');
-                alert('Debes escribir una contraseña');
+                // console.log('Debes escribir una contraseña');
+                // alert('Debes escribir una contraseña');
+                swal("Alerta!", "Debes escribir una contraseña.", "info");
                 return false;
               }
             } else {
-              console.log('Debes escribir tu correo');
-              alert('Debes escribir tu correo');
+              // console.log('Debes escribir tu correo');
+              // alert('Debes escribir tu correo');
+              swal("Alerta!", "Debes escribir tu correo.", "info");
               return false;
             }
           } else {
-            console.log('Debes escribir un nombre de usuario');
-            alert('Debes escribir un nombre de usuario');
+            // console.log('Debes escribir un nombre de usuario');
+            // alert('Debes escribir un nombre de usuario');
+            swal("Alerta!", "Debes escribir un nombre de usuario.", "info");
             return false;
           }
         } else {
-          console.log('Debes escribir tu apellido');
-          alert('Debes escribir tu apellido');
+          // console.log('Debes escribir tu apellido');
+          // alert('Debes escribir tu apellido');
+          swal("Alerta!", "Debes escribir tu apellido.", "info");
           return false;
         }
       } else {
-        console.log('Debes escribir tu nombre');
-        alert('Debes escribir tu nombre');
+        // console.log('Debes escribir tu nombre');
+        // alert('Debes escribir tu nombre');
+        swal("Alerta!", "Debes escribir tu nombre.", "info");
         return false;
       }
 

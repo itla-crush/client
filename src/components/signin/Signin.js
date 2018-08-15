@@ -2,6 +2,7 @@
 
 import firebase from 'firebase';
 import _ from 'lodash';
+import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 
 // Assets
@@ -18,6 +19,8 @@ class Signin extends Component {
       this.handleGuest = this.handleGuest.bind(this);
       this.generatePassword = this.generatePassword.bind(this);
       this.showMessageError = this.showMessageError.bind(this);
+      this.handleForgotPassword = this.handleForgotPassword.bind(this);
+      this.handleResetPassword = this.handleResetPassword.bind(this);
     }
 
     generatePassword = () => {
@@ -51,12 +54,14 @@ class Signin extends Component {
             }
           });
         } else {
-          console.log('Debe proporcionar su contraseña');
-          alert('Debe proporcionar su contraseña');
+          // console.log('Debe proporcionar su contraseña');
+          // alert('Debe proporcionar su contraseña');
+          swal("Alerta!", "Debes proporcionar la contraseña.", "info");
         }
       } else {
-        console.log('Debe proporcionar un email');
-        alert('Debe proporcionar un email');
+        // console.log('Debe proporcionar un email');
+        // alert('Debe proporcionar un email');
+        swal("Alerta!", "Debes proporcionar un email.", "info");
       }
     }
 
@@ -64,25 +69,72 @@ class Signin extends Component {
       firebase.auth().signOut();
     }
 
+    handleResetPassword = (value) => {
+        var emailForgotPassword = _.trim(value);
+
+        if(!_.isEmpty(emailForgotPassword)) {
+            firebase.auth().sendPasswordResetEmail(emailForgotPassword).then(() => {
+                swal("Enlace enviado!", "Chequea tu correo para restablecer la contraseña.", "success"); 
+            })
+            .catch(error => {
+              // Error occurred. Inspect error.code.
+              var message = '';
+                switch (error.code) {
+                  case 'auth/invalid-email':
+                    message = 'El correo introducido no es válido.';
+                    break;
+                  case 'auth/user-not-found':
+                    message = 'Usuario no encontrado.';
+                    break;
+                  default:
+                    message = error;
+                    break;
+                }
+                console.log(error);
+                swal("Error!", message, "error"); 
+            });
+
+        } else {
+            swal("Alerta!", "Debes escribir tu correo", "info"); 
+        }
+    }
+
     showMessageError = (code, text) => {
       var message = '';
 
       switch (code) {
         case "auth/invalid-email":
-          message = 'El correo no es válido';
+          message = 'El correo no es válido.';
           break;
         case "auth/wrong-password":
-          message = 'La contraseña es incorrecta';
+          message = 'La contraseña es incorrecta.';
           break;
         case "auth/user-not-found":
-          message = 'Este usuario no existe';
+          message = 'Este usuario no existe.';
           break;
         default:
           message = text;
           break;
       }
       console.log(message);
-      alert(message);
+      // alert(message);
+        swal("Error!", message, "error");
+    }
+
+    handleForgotPassword = (e) => {
+      e.preventDefault();
+      swal({
+        title: "¿Olvidaste tu contraseña?",
+        text: "Escribe tu correo y te enviaremos un enlace que te permitirá restablecer tu contraseña.",
+        content: "input",
+        buttons: ["Cancelar", "Enviar"],
+      })
+      .then((value) => {
+        if(value) {
+          // swal(`You typed: ${value}`);
+          this.handleResetPassword(value);
+        }
+      });
     }
 
     render() {
@@ -110,7 +162,7 @@ class Signin extends Component {
               </form>
               <div className="olvidar">
                 <div className="olvidar-2">
-                  <a href="/forgotpassword">¿Olvidaste tu contraseña?</a>
+                  <a href="/forgotpassword" onClick={this.handleForgotPassword} >¿Olvidaste tu contraseña?</a>
                 </div>
               </div>
             </div>
@@ -120,3 +172,10 @@ class Signin extends Component {
   }
   
   export default Signin;
+
+  // swal("Write something here:", {
+  //   content: "input",
+  // })
+  // .then((value) => {
+  //   swal(`You typed: ${value}`);
+  // });

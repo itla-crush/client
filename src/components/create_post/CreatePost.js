@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
 import firebase from 'firebase';
 import _ from 'lodash';
-import ResultWidget from '../../components/result_widget/ResultWidget';
 import swal from 'sweetalert';
+import ResultWidget from '../../components/result_widget/ResultWidget';
 
 // Assets
 import './createpost.css'; 

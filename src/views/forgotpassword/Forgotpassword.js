@@ -16,7 +16,7 @@ class Forgotpassword extends Component {
         emailForgotPassword = _.trim(emailForgotPassword.value);
 
         if(!_.isEmpty(emailForgotPassword)) {
-            firebase.auth().sendPasswordResetEmail('20163825@itla.edu.do').then(() => {
+            firebase.auth().sendPasswordResetEmail(emailForgotPassword).then(() => {
                 //   Password reset email sent.
                 console.log('Password reset email sent.');
                 console.log('Chequea tu correo para restablecer contraseña');
@@ -24,13 +24,11 @@ class Forgotpassword extends Component {
             })
             .catch(error => {
             // Error occurred. Inspect error.code.
-                switch (error) {
+                switch (error.code) {
                     case 'auth/invalid-email':
-                        console.log('El correo introducido no es válido.');
                         console.log('El correo introducido no es válido.');
                         break;
                     case 'auth/user-not-found':
-                        console.log('Usuario no encontrado.');
                         console.log('Usuario no encontrado.');
                         break;
                     default:
@@ -45,6 +43,7 @@ class Forgotpassword extends Component {
             alert('Debe escribir su correo');
         }
     }
+    
     render(){
         return(
             <div className="ForgotPassword">

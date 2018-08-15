@@ -111,7 +111,7 @@ class Chatting extends Component{
 
             firebase.database().ref('/users/').orderByChild('displayName').once('value')
             .then(snapshot => {
-              this.setState({users: snapshot.val()});
+            //   this.setState({users: snapshot.val()});
 
               if(snapshot.val()) {
                 newData = snapshot.val();
@@ -125,12 +125,12 @@ class Chatting extends Component{
                 if(Object.entries(users).length !== 0) {
                     newData = users;
                 } else {
-                    newData = '¡No hay resultados!';
+                    newData = null;
                 }
                 this.setState({ newData });
 
               } else {
-                newData = '¡No hay resultados!';
+                newData = null;
                 this.setState({ newData });
               }
               
@@ -139,7 +139,7 @@ class Chatting extends Component{
               console.log(`Code: ${e.code} Message: ${e.message}`);
             });
         } else {
-            newData = '¡No hay resultados!';
+            newData = null;
             this.setState({ newData });
         }
     }
@@ -187,7 +187,7 @@ class Chatting extends Component{
                         <img src={users[user].photoUrl || "https://firebasestorage.googleapis.com/v0/b/social-crush.appspot.com/o/images%2Fuser_profile%2Fprofile_placeholder.jpg?alt=media&token=7efadeaa-d290-44aa-88aa-ec18a5181cd0"} alt="" />
                     </div>
                     <div className="persons-nombres">
-                        <p>{users[user].displayName || 'DisplayName'}</p>
+                        <p>{users[user].displayName || 'Username'}</p>
                         <p>{users[user].username ? `@${users[user].username}` : '@username'}</p>
                     </div>
                 </a>
