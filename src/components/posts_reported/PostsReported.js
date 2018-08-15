@@ -48,7 +48,8 @@ class PostsReported extends Component{
     }
 
     render() { 
-        // var posts = this.state.posts;
+        var posts = this.state.posts_reported;
+        // var posts_reported = this.state.posts_reported;
 
         return(
             <div>
@@ -59,15 +60,61 @@ class PostsReported extends Component{
                     </div>
                     
                     <div style={{width:"600px", margin:"auto"}}>
-                        {/* { posts ? ( 
-                            Object.keys(posts).map((post) => <Newsfeed key={post} id={post} data={posts[post].newsfeed} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} />).reverse() 
+                        { posts ? ( 
+                            Object.keys(posts).map((post) => <PostsItems key={post} id={post} data={posts[post]} user={this.props.user} />).reverse() 
                             ) : ( "" )
-                        } */}
+                        }
                     </div>
 
                 </div>
             </div>
         )
+    }
+}
+
+class PostsItems extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            posts: null,
+            posts_reported: null,
+            newsfeedId: null,
+            uidReported: null,
+            isPublic: null,
+            data: {
+                newsfeedReportedId: null
+            }
+        };
+
+    }
+
+    componentDidMount() {
+        var data = this.props.data;
+        this.setState({ data });
+
+        firebase.database().ref(`/users/${data.uidReported}/posts/${data.newsfeedReportedId}`).once('value').then(snapshot => {
+            snapshot = snapshot.val();
+            if(snapshot) {
+                this.setState({ post: snapshot });
+            }
+        });
+
+    }
+
+    newsfeedIdMethod = (newsfeedId, uidReported, isPublic) => {
+      // console.log(newsfeedId);
+      this.setState({ newsfeedId });
+      this.setState({ uidReported });
+      this.setState({ isPublic }); 
+    }
+
+    render() {
+        var post = this.state.post;
+        return (
+            <div>               
+               <Newsfeed id={this.state.data.newsfeedReportedId} data={post} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} />  
+            </div>
+        );
     }
 }
 
