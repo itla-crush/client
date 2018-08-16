@@ -7,6 +7,7 @@ import './postsreported.css';
 
 import Newsfeed from '../newsfeed/NewsFeed';
 import Tablero from '../../components/tablero/Tablero';
+import DeleteNewsfeedWidget from '../../components/delete_newsfeed_widget/DeleteNewsfeedWidget';
 
 class PostsReported extends Component{
     constructor(props) {
@@ -14,6 +15,9 @@ class PostsReported extends Component{
         this.state = {
             posts: null,
             posts_reported: null,
+            newsfeedId: null,
+            uidReported: null,
+            isPublic: null,
             newsfeedId: null,
             uidReported: null,
             isPublic: null
@@ -30,8 +34,6 @@ class PostsReported extends Component{
           this.setState({ posts_reported });
         }
       });
-
-
     }
 
     addBootstrap4 = () => {
@@ -50,14 +52,16 @@ class PostsReported extends Component{
     render() { 
         var posts = this.state.posts_reported;
         // var posts_reported = this.state.posts_reported;
+        var sesion = window.localStorage.getItem('sesion');
+        sesion = (sesion === 'true') ? true : false;
 
         return(
-            <div>
+            <div style={{width:"100%", height:"100%"}}>
                 <Tablero/>
                     <div className="">
-                        <div className="buscar-usuario">
+                        {/* <div className="buscar-usuario">
                         <input id="" type="text" className="search-u" placeholder="Buscar"/>
-                    </div>
+                    </div> */}
                     
                     <div style={{width:"600px", margin:"auto"}}>
                         { posts ? ( 
@@ -67,6 +71,7 @@ class PostsReported extends Component{
                     </div>
 
                 </div>
+                { sesion ? <DeleteNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.props.user.uid} isPublic={this.state.isPublic} postReported={true} postDeleted={true} /> : "" }
             </div>
         )
     }
@@ -91,7 +96,7 @@ class PostsItems extends Component{
     componentDidMount() {
         var data = this.props.data;
         this.setState({ data });
-
+        
         firebase.database().ref(`/users/${data.uidReported}/posts/${data.newsfeedReportedId}`).once('value').then(snapshot => {
             snapshot = snapshot.val();
             if(snapshot) {
@@ -110,9 +115,11 @@ class PostsItems extends Component{
 
     render() {
         var post = this.state.post;
+
+        // console.log(post);
         return (
-            <div>               
-               <Newsfeed id={this.state.data.newsfeedReportedId} data={post} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} />  
+            <div> 
+                { post ? <Newsfeed id={this.state.data.newsfeedReportedId} data={post} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} postReported={true} postDeleted={true} />   : "" }
             </div>
         );
     }

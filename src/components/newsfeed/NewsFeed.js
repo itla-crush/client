@@ -178,6 +178,7 @@ class Newsfeed extends Component {
 
       var deleteOrReport = this.props.currentUserUid === this.props.data.fromUid ? true : false;
       var postDeleted = this.props.postDeleted || false;
+      var postReported = this.props.postReported || false;
 
       var modal = deleteOrReport ? "#deleteNewsfeedModal" : "#reportNewsfeedModal";
       var tooltip = deleteOrReport ? "Eliminar declaración" : "Reportar declaración";
@@ -189,6 +190,19 @@ class Newsfeed extends Component {
         // <div data-aos="zoom-in">
         <article className="post">
           { sesion && !postDeleted ? 
+              <a className="button-setting"
+                  data-toggle="modal" 
+                  data-target={modal}
+                  onClick={this.handleReportNewsfeed} > 
+                <i className="fas fa-ellipsis-h"
+                  data-toggle="tooltip"
+                  data-placement="bottom" 
+                  title={tooltip}
+                  data-trigger="hover" ></i>
+                {/* data-toggle="tooltip" data-placement="top" title="Reportar" */}
+              </a> : ""
+          }
+          { postReported ? 
               <a className="button-setting"
                   data-toggle="modal" 
                   data-target={modal}
@@ -229,7 +243,7 @@ class Newsfeed extends Component {
           </div>
           <div className="div-footer"> {/* Pie Del Post */}
           { !postDeleted ?
-              <section className="section-like-comment">
+            <section className="section-like-comment">
               <a className="" href="#" onClick={this.handleLike}><i className="far fa-heart icon-post" /></a>
               <a className="" href="#" onClick={this.handleFocusComment}><i className="far fa-comment icon-post" /></a>
             </section> : ""
@@ -255,11 +269,21 @@ class Newsfeed extends Component {
                 }
               </ul>
             </div>
+            { postReported ?
+                <div className="div-form-comment">
+                  <hr className="hl" />
+                  <div>
+                    <p><stronge>Razón: </stronge>jahsdkjf</p>
+                    <p><stronge>Descripción: </stronge>laksjfkjna</p>
+                  </div>
+                </div> : ""
+            }
+
             { !postDeleted ?
                 <div className="div-form-comment">
                   <hr className="hl" />
                   <form className="form-comment">
-                    <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> {/* 5 lineas max */}
+                    <textarea id={`textareaComment${this.props.id}`} className="textarea-comment" rows={1} placeholder="Escribe un comentario..." defaultValue={""} /><i onClick={this.handleSendComment} className="material-icons send">send</i> 
                     {/* <button type="submit"><i class="fa fa-arrow-right icon-comment"></i></button> */}
                     {/* <button type="submit"><img alt="" src="img/send.svg" /></button> */}
                   </form>

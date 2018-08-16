@@ -55,7 +55,7 @@ class Admin extends Component{
                          </Link>
 
                          {/* estadisticas declaraciones */}
-                       <Link to="/posts-list" >
+                       <Link to="/posts-list" onClick={e => e.preventDefault()} >
                        <div className="est-declaraciones">
                          <i className="fas fa-chart-pie"></i>
                          <div className="info-t">
