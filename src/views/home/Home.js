@@ -113,7 +113,7 @@ class Home extends Component {
               <ChatSidebar users={this.state.users || 'null'} openChat={this.openChat.bind(this)} currentUserUid={this.state.user.uid} />
               {/* { sesion ? (<ChatWidget chatId={this.state.chatId || ''} messages={this.state.messages || ''} currentUserUid={this.state.user.uid} />) : ("") } */}
             </div>
-            <Footer />
+            {/* <Footer /> */}
             { sesion ? <ReportNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} /> : "" }
             { sesion ? <DeleteNewsfeedWidget newsfeedId={this.state.newsfeedId || null} uidReported={this.state.uidReported || null} currentUserUid={this.state.user.uid} isPublic={this.state.isPublic} /> : "" }
         </div>
