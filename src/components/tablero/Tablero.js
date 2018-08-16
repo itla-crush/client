@@ -8,7 +8,7 @@ class Tablero extends Component{
         return(
 
             <div className="tablero-title">
-                 <p>Tablero</p>
+                 <p>Administrador</p>
              </div>
 
         )
