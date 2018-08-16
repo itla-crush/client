@@ -119,7 +119,7 @@ class PostsItems extends Component{
         // console.log(post);
         return (
             <div> 
-                { post ? <Newsfeed id={this.state.data.newsfeedReportedId} data={post} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} postReported={true} postDeleted={true} />   : "" }
+                { post ? <Newsfeed id={this.state.data.newsfeedReportedId} data={post} dataReported={this.props.data || null} newsfeedIdMethod={this.newsfeedIdMethod.bind(this)} currentUserUid={this.props.user.uid || 'null'} currentUserDisplayName={this.props.user.displayName || ''} postReported={true} postDeleted={true} />   : "" }
             </div>
         );
     }

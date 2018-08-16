@@ -273,8 +273,8 @@ class Newsfeed extends Component {
                 <div className="div-form-comment">
                   <hr className="hl" />
                   <div>
-                    <p><stronge>Razón: </stronge>jahsdkjf</p>
-                    <p><stronge>Descripción: </stronge>laksjfkjna</p>
+                    <p><h5>Razón: </h5>{this.props.dataReported.radioChecked || ""}</p>
+                    <p><h5>Descripción: </h5>{this.props.dataReported.description || "No hay descripción"}</p>
                   </div>
                 </div> : ""
             }
